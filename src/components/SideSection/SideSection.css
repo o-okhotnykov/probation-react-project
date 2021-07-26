@@ -1,0 +1,11 @@
+.side-section {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+.side-section-container{
+    border-right: 1px solid #d5e3d6;
+}
+.main-section {
+    border-bottom: 1px solid #d5e3d6;
+}

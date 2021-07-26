@@ -1,0 +1,13 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.user-menu {
+    display: flex;
+    flex-direction: row;
+}
+.user-data{
+    display: flex;
+    flex-direction: column;
+}
