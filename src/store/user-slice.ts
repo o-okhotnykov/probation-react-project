@@ -1,5 +1,5 @@
-import { createAsyncThunk, createSlice, createSelector } from '@reduxjs/toolkit';
-import { RootState } from './root-store';
+import { createSlice, createSelector } from '@reduxjs/toolkit';
+import type { RootState } from './root-store';
 
 interface IUserState {
     accessToken: string;
@@ -13,7 +13,7 @@ export const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
-        logout: (state) => {
+        logout: (state: IUserState) => {
             state.accessToken = '';
         },
     },
@@ -21,7 +21,7 @@ export const userSlice = createSlice({
 
 export const { logout } = userSlice.actions;
 
-export const userSelector = (state: RootState) => state.user;
+export const userSelector = (state: RootState): IUserState => state.user;
 
 export const accessTokenSelector = createSelector(userSelector, (user) => user.accessToken);
 

@@ -23,7 +23,7 @@ module.exports = {
         project: './tsconfig.json',
     },
     rules: {
-
+        'no-param-reassign': 'off',
         'prettier/prettier': ['error', {}, { usePrettierrc: true }],
         '@typescript-eslint/no-unused-vars': ['error'],
     },
