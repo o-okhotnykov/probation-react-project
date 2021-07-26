@@ -6,7 +6,7 @@ import { Main } from './components/Main';
 export const App: React.FC = () => {
     return (
         <div className="App">
-            <Grid container spacing={3}>
+            <Grid container>
                 <Grid item xs={1} className="side-section-container">
                     <SideSection />
                 </Grid>

@@ -6,6 +6,7 @@ export const Main: React.FC = () => {
     return (
         <>
             <Navigation />
+            <div>H1</div>
         </>
     );
 };
