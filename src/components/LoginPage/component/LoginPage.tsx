@@ -1,10 +1,10 @@
 import { withFormik } from 'formik';
 import { loginValidator } from '../../../helper/validator';
 import { Form } from '../index';
-import { IFormValues } from '../Interface/Interfaces';
+import { ILoginFormValues } from '../../../interface/index';
 
 export const LoginPage = withFormik({
-    mapPropsToValues: ({ email, password }: IFormValues) => {
+    mapPropsToValues: ({ email, password }: ILoginFormValues) => {
         return {
             email: email || '',
             password: password || '',

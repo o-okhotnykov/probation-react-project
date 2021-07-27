@@ -1,19 +1,25 @@
 import React from 'react';
 import { Card, CardContent, CardMedia, TextField, Button } from '@material-ui/core';
+import { useDispatch } from 'react-redux';
 import { FormikProps } from 'formik';
+import { registerAsync } from '../../../store/user-slice';
 import logo from '../../../img/logo.png';
 import { useStyles } from '../index';
-import { IFormValues } from '../Interface/Interfaces';
+import { IRegisterFormValues } from '../../../interface';
 import './RegisterPage.scss';
 
-export const Form = (props: FormikProps<IFormValues>): any => {
-    const { values, touched, errors, isSubmitting, handleChange, handleBlur, handleSubmit } = props;
+export const Form = (props: FormikProps<IRegisterFormValues>): any => {
+    const { values, touched, errors, isSubmitting, handleChange, handleBlur } = props;
 
+    const dispatch = useDispatch();
     const classes = useStyles();
+    const handleSubmit = async () => {
+        dispatch(registerAsync());
+    };
 
     return (
         <div className="container">
-            <form onSubmit={handleSubmit} className="form">
+            <form onSubmit={() => handleSubmit()} className="form">
                 <Card>
                     <CardMedia className={classes.media} image={logo} title="Paella dish" />
                     <CardContent>

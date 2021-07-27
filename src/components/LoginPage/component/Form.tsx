@@ -3,10 +3,10 @@ import { Card, CardContent, CardMedia, TextField, Button } from '@material-ui/co
 import { FormikProps } from 'formik';
 import logo from '../../../img/logo.png';
 import { useStyles } from '../index';
-import { IFormValues } from '../Interface/Interfaces';
+import { ILoginFormValues } from '../../../interface';
 import './LoginPage.scss';
 
-export const Form = (props: FormikProps<IFormValues>): any => {
+export const Form = (props: FormikProps<ILoginFormValues>): any => {
     const { values, touched, errors, isSubmitting, handleChange, handleBlur, handleSubmit } = props;
 
     const classes = useStyles();
