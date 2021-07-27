@@ -4,6 +4,6 @@ export const useStyles = makeStyles(() => ({
     media: {
         margin: '10px auto',
         height: '30vh',
-        width: '30vh', // 16:9
+        width: '30vh',
     },
 }));
