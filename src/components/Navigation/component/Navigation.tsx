@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import { accessTokenSelector } from '../../../store/user-slice';
 import { UserMenu, Navbar } from '../index';
 import './Navigation.scss';
+import { RoutePath } from '../../../routes/RoutePath';
 
 export const Navigation: React.FC = () => {
     const accessToken = useSelector(accessTokenSelector);
@@ -16,8 +17,11 @@ export const Navigation: React.FC = () => {
                 <UserMenu />
             ) : (
                 <div>
-                    <Link to="/login">
+                    <Link to={RoutePath.login}>
                         <Button>Login</Button>
+                    </Link>
+                    <Link to={RoutePath.register}>
+                        <Button>Register</Button>
                     </Link>
                 </div>
             )}
