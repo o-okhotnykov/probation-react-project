@@ -1,8 +1,10 @@
+@import '../../styles/variables.scss';
+
 .header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 1px solid #d5e3d6;
+    border-bottom: 1px solid $border-green;
     padding: 15px;
 }
 .user-menu {

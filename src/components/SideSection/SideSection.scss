@@ -1,10 +1,11 @@
+@import '../../styles/variables.scss';
+
 .side-section {
     display: flex;
     align-items: flex-start;
     justify-content: center;
     height: 100vh;
 }
-.side-section-container{
-    border-right: 1px solid #d5e3d6;
+.side-section-container {
+    border-right: 1px solid $border-green;
 }
-
