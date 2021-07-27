@@ -1,14 +1,12 @@
-/* eslint-disable react-hooks/rules-of-hooks */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
-import { Card, CardContent, CardMedia, TextField, MenuItem, Button } from '@material-ui/core';
-import { withFormik } from 'formik';
-import { loginValidator } from '../../helper/validator';
-import logo from '../../img/logo.png';
-import { useStyles } from './styles';
+import { Card, CardContent, CardMedia, TextField, Button } from '@material-ui/core';
+import { FormikProps } from 'formik';
+import logo from '../../../img/logo.png';
+import { useStyles } from '../index';
+import { IFormValues } from '../Interface/Interfaces';
 import './LoginPage.scss';
 
-const form = (props: any) => {
+export const Form = (props: FormikProps<IFormValues>): any => {
     const { values, touched, errors, isSubmitting, handleChange, handleBlur, handleSubmit } = props;
 
     const classes = useStyles();
@@ -17,7 +15,7 @@ const form = (props: any) => {
         <div className="container">
             <form onSubmit={handleSubmit} className="form">
                 <Card>
-                    <CardMedia image={logo} title="Paella dish" />
+                    <CardMedia className={classes.media} image={logo} title="Paella dish" />
                     <CardContent>
                         <TextField
                             id="email"
@@ -56,22 +54,3 @@ const form = (props: any) => {
         </div>
     );
 };
-
-export const Form = withFormik({
-    mapPropsToValues: ({ email, password }: any) => {
-        return {
-            email: email || '',
-            password: password || '',
-        };
-    },
-
-    validationSchema: loginValidator,
-
-    handleSubmit: (values, { setSubmitting }) => {
-        setTimeout(() => {
-            // submit to the server
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-        }, 1000);
-    },
-})(form);

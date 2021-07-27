@@ -1,8 +1,8 @@
 /* eslint-disable import/prefer-default-export */
 import React from 'react';
 import Grid from '@material-ui/core/Grid/Grid';
-import { SideSection } from '../SideSection/SideSection';
-import { Navigation } from '../Navigation/Navigation';
+import { SideSection } from '../../SideSection/index';
+import { Navigation } from '../../Navigation/index';
 import './Main.scss';
 
 export const Main: React.FC = () => {
