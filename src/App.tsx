@@ -1,19 +1,13 @@
 import React from 'react';
-import Grid from '@material-ui/core/Grid';
-import { SideSection } from './components/SideSection/SideSection';
-import { Main } from './components/Main';
+import { Layout } from './components/Layout';
+import { Routes } from './routes/Routes';
 
 export const App: React.FC = () => {
     return (
         <div className="App">
-            <Grid container>
-                <Grid item xs={1} className="side-section-container">
-                    <SideSection />
-                </Grid>
-                <Grid item xs={11} className="main-section">
-                    <Main />
-                </Grid>
-            </Grid>
+            <Layout>
+                <Routes />
+            </Layout>
         </div>
     );
 };

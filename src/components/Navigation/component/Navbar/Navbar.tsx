@@ -1,14 +1,9 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
+import { useStyles } from './styles';
 
-const useStyles = makeStyles({
-    root: {
-        marginRight: '30px',
-    },
-});
 export const Navbar: React.FC = () => {
     const classes = useStyles();
     return (

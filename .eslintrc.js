@@ -23,6 +23,8 @@ module.exports = {
         project: './tsconfig.json',
     },
     rules: {
+        'react/prop-types': 'off',
+        'import/no-cycle': 'off',
         'import/prefer-default-export': 'off',
         'no-param-reassign': 'off',
         'prettier/prettier': ['error', {}, { usePrettierrc: true }],
