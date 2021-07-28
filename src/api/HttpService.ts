@@ -1,11 +1,35 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable consistent-return */
 
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
-import { BASE_URL } from '../constants/index';
+import { BASE_URL } from '../constants';
 
 const service = axios.create({
     baseURL: BASE_URL,
 });
+
+axios.interceptors.request.use(
+    (config): AxiosRequestConfig => {
+        console.log(config);
+        return config;
+    },
+    (error) => {
+        console.log(error);
+        return Promise.reject(error);
+    },
+);
+
+axios.interceptors.response.use(
+    (response) => {
+        console.log(response);
+        return response;
+    },
+    (error) => {
+        // if (error.response && error.response.status === 401) {
+        // }
+        return Promise.reject(error);
+    },
+);
 
 export class HttpService {
     static parseResponse(response: Promise<AxiosResponse>) {
@@ -16,6 +40,20 @@ export class HttpService {
 
     static handleSuccess(response: AxiosResponse) {
         return response;
+    }
+
+    static test() {
+        axios.interceptors.response.use(
+            (response) => {
+                console.log(response);
+                return response;
+            },
+            (error) => {
+                // if (error.response && error.response.status === 401) {
+                // }
+                return Promise.reject(error);
+            },
+        );
     }
 
     static handleError(error: AxiosError) {
@@ -36,7 +74,6 @@ export class HttpService {
     }
 
     static request(params: AxiosRequestConfig) {
-        console.log(params);
         const response = service.request(params);
         return this.parseResponse(response);
     }
