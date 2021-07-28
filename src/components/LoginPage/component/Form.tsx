@@ -4,12 +4,13 @@ import { Card, CardContent, CardMedia, TextField, Button } from '@material-ui/co
 import { FormikProps } from 'formik';
 import { loginAsync } from '../../../store/user-slice';
 import logo from '../../../img/logo.png';
-import { useStyles } from '../index';
+import { useStyles } from './styles';
 import { ILoginFormValues } from '../../../interface';
 import './LoginPage.scss';
 
-export const Form = (props: FormikProps<ILoginFormValues>): any => {
+export const Form: React.FC<FormikProps<ILoginFormValues>> = (props) => {
     const { values, touched, errors, isSubmitting, handleChange, handleBlur } = props;
+
     const dispatch = useDispatch();
     const classes = useStyles();
 
@@ -19,7 +20,7 @@ export const Form = (props: FormikProps<ILoginFormValues>): any => {
     };
 
     return (
-        <div className="container">
+        <div className="login-container">
             <form
                 onSubmit={(event: FormEvent<HTMLFormElement>) => handleSubmit(event)}
                 className="form"

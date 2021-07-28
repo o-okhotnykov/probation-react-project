@@ -4,11 +4,11 @@ import { useDispatch } from 'react-redux';
 import { FormikProps } from 'formik';
 import { registerAsync } from '../../../store/user-slice';
 import logo from '../../../img/logo.png';
-import { useStyles } from '../index';
+import { useStyles } from './styles';
 import { IRegisterFormValues } from '../../../interface';
 import './RegisterPage.scss';
 
-export const Form = (props: FormikProps<IRegisterFormValues>): any => {
+export const Form: React.FC<FormikProps<IRegisterFormValues>> = (props) => {
     const { values, touched, errors, isSubmitting, handleChange, handleBlur } = props;
 
     const dispatch = useDispatch();
@@ -20,7 +20,7 @@ export const Form = (props: FormikProps<IRegisterFormValues>): any => {
     };
 
     return (
-        <div className="container">
+        <div className="register-container">
             <form
                 onSubmit={(event: FormEvent<HTMLFormElement>) => handleSubmit(event)}
                 className="form"
