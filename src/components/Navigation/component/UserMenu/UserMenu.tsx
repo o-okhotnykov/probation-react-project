@@ -9,10 +9,10 @@ import ClearIcon from '@material-ui/icons/Clear';
 import Typography from '@material-ui/core/Typography';
 
 export const UserMenu: React.FC = () => {
-    const [anchorEl, setAnchorEl] = React.useState(null);
+    const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
     const open = Boolean(anchorEl);
 
-    const handleMenu = (event: any) => {
+    const handleMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
         setAnchorEl(event.currentTarget);
     };
 
