@@ -23,6 +23,8 @@ module.exports = {
         project: './tsconfig.json',
     },
     rules: {
+        'react/require-default-props': 'off',
+        'react/jsx-props-no-spreading': 'off',
         'import/no-cycle': 'off',
         'import/prefer-default-export': 'off',
         'no-param-reassign': 'off',
