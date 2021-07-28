@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardContent, CardMedia, TextField, Button } from '@material-ui/core';
 import { FormikProps } from 'formik';
-import logo from '../../../img/logo.png';
+import logo from 'img/logo.png';
 import { useStyles } from './styles';
 import { IFormValues } from '../Interface/Interfaces';
 import './RegisterPage.scss';
