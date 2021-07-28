@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, CardContent, CardMedia, TextField, Button } from '@material-ui/core';
 import { FormikProps } from 'formik';
 import logo from '../../../img/logo.png';
-import { useStyles } from '../index';
+import { useStyles } from './styles';
 import { IFormValues } from '../Interface/Interfaces';
 import './RegisterPage.scss';
 
@@ -12,7 +12,7 @@ export const Form: React.FC<FormikProps<IFormValues>> = (props) => {
     const classes = useStyles();
 
     return (
-        <div className="container">
+        <div className="register-container">
             <form onSubmit={handleSubmit} className="form">
                 <Card>
                     <CardMedia className={classes.media} image={logo} title="Paella dish" />

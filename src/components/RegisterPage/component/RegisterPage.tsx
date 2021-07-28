@@ -1,6 +1,6 @@
 import { withFormik } from 'formik';
 import { registerValidator } from './validation';
-import { Form } from '../index';
+import { Form } from './Form';
 import { IFormValues } from '../Interface/Interfaces';
 
 export const RegisterPage = withFormik({

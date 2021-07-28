@@ -1,6 +1,6 @@
 import { withFormik } from 'formik';
 import { loginValidator } from './validation';
-import { Form } from '../index';
+import { Form } from './Form';
 import { IFormValues } from '../Interface/Interfaces';
 
 export const LoginPage = withFormik({
