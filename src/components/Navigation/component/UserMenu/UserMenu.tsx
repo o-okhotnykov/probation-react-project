@@ -11,6 +11,7 @@ import Typography from '@material-ui/core/Typography';
 export const UserMenu: React.FC = () => {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
+
     const handleMenu = (event: any) => {
         setAnchorEl(event.currentTarget);
     };
