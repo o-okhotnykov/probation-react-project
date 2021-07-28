@@ -36,6 +36,7 @@ export class HttpService {
     }
 
     static request(params: AxiosRequestConfig) {
+        console.log(params);
         const response = service.request(params);
         return this.parseResponse(response);
     }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FormEvent } from 'react';
 import { Card, CardContent, CardMedia, TextField, Button } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import { FormikProps } from 'formik';
@@ -13,16 +13,35 @@ export const Form = (props: FormikProps<IRegisterFormValues>): any => {
 
     const dispatch = useDispatch();
     const classes = useStyles();
-    const handleSubmit = async () => {
-        dispatch(registerAsync());
+
+    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        dispatch(registerAsync(values));
     };
 
     return (
         <div className="container">
-            <form onSubmit={() => handleSubmit()} className="form">
+            <form
+                onSubmit={(event: FormEvent<HTMLFormElement>) => handleSubmit(event)}
+                className="form"
+            >
                 <Card>
                     <CardMedia className={classes.media} image={logo} title="Paella dish" />
                     <CardContent>
+                        <TextField
+                            id="email"
+                            label="Email"
+                            type="email"
+                            value={values.email}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            helperText={touched.email ? errors.email : ''}
+                            error={touched.email && Boolean(errors.email)}
+                            margin="dense"
+                            variant="outlined"
+                            fullWidth
+                        />
+
                         <TextField
                             id="name"
                             label="First Name"

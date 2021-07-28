@@ -6,6 +6,7 @@ import { IRegisterFormValues } from '../../../interface/index';
 
 export const RegisterPage = withFormik({
     mapPropsToValues: ({
+        email,
         name,
         surname,
         password,
@@ -13,6 +14,7 @@ export const RegisterPage = withFormik({
         birthDate,
     }: IRegisterFormValues) => {
         return {
+            email: email || '',
             name: name || '',
             surname: surname || '',
             password: password || '',

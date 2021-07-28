@@ -1,3 +1,22 @@
 {
-    "users": []
+  "users": [
+    {
+      "email": "sashaohotni26@gmail.com",
+      "password": "$2a$10$Zs4H9Le2hukmfzd7x3HZ.ObzGnVif9Xh7hHpoF4FBSKbCDRpfyP.G",
+      "name": "Alex",
+      "surname": "Under",
+      "confirmPassword": "123456Aa",
+      "birthDate": "2021-07-14",
+      "id": 1
+    },
+    {
+      "email": "fwqef@fwe.asfd",
+      "password": "$2a$10$10REahosrIslJ53A5jPfVOLLQPbIGqHpVEflufIq7TQ1G4X/X130y",
+      "name": "Alex",
+      "surname": "Under",
+      "confirmPassword": "123456Aa",
+      "birthDate": "2021-07-07",
+      "id": 2
+    }
+  ]
 }

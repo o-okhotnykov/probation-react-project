@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice, createSelector } from '@reduxjs/toolkit';
 import type { RootState } from './root-store';
 import { HttpService } from '../api/HttpService';
+import { IRegisterFormValues } from '../interface/index';
 
 interface IUserState {
     accessToken: string;
@@ -10,10 +11,14 @@ const initialState: IUserState = {
     accessToken: '',
 };
 
-export const registerAsync = createAsyncThunk('app/registerUser', async (user) => {
-    const data = await HttpService.post('register', user);
-    return data;
-});
+export const registerAsync = createAsyncThunk(
+    'app/registerUser',
+    async (user: IRegisterFormValues) => {
+        console.log(user);
+        const data = await HttpService.post('register', user);
+        return data;
+    },
+);
 
 export const userSlice = createSlice({
     name: 'user',
