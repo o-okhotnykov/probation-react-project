@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Button } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 import { isAuthorizedSelector } from 'store/user-slice';
-import { RoutePath } from 'constants/index';
+import { ROUTE_PATH } from 'constants/index';
 import { UserMenu, Navbar } from '../index';
 import './Navigation.scss';
 
@@ -18,8 +18,11 @@ export const Navigation: React.FC = () => {
                 <UserMenu />
             ) : (
                 <div>
-                    <Link to={RoutePath.login}>
+                    <Link to={ROUTE_PATH.login}>
                         <Button>Login</Button>
+                    </Link>
+                    <Link to={ROUTE_PATH.register}>
+                        <Button>Register</Button>
                     </Link>
                 </div>
             )}

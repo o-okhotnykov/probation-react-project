@@ -1,6 +1,5 @@
 import * as yup from 'yup';
-
-const PASSWORD_REGEXP = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,}$/;
+import { PASSWORD_REGEXP } from '../../../constants';
 
 export const loginValidator = yup.object().shape({
     password: yup
