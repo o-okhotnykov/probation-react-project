@@ -6,13 +6,13 @@ import { useStyles } from './styles';
 import { IFormValues } from '../Interface/Interfaces';
 import './LoginPage.scss';
 
-export const Form = (props: FormikProps<IFormValues>): any => {
+export const Form: React.FC<FormikProps<IFormValues>> = (props) => {
     const { values, touched, errors, isSubmitting, handleChange, handleBlur, handleSubmit } = props;
 
     const classes = useStyles();
 
     return (
-        <div className="container">
+        <div className="login-container">
             <form onSubmit={handleSubmit} className="form">
                 <Card>
                     <CardMedia className={classes.media} image={logo} title="Paella dish" />

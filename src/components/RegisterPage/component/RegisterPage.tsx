@@ -1,17 +1,20 @@
 import { withFormik } from 'formik';
-import { loginValidator } from './validation';
+import { registerValidator } from './validation';
 import { Form } from './Form';
 import { IFormValues } from '../Interface/Interfaces';
 
-export const LoginPage = withFormik({
-    mapPropsToValues: ({ email, password }: IFormValues) => {
+export const RegisterPage = withFormik({
+    mapPropsToValues: ({ name, surname, password, confirmPassword, birthDate }: IFormValues) => {
         return {
-            email: email || '',
+            name: name || '',
+            surname: surname || '',
             password: password || '',
+            confirmPassword: confirmPassword || '',
+            birthDate: birthDate || '',
         };
     },
 
-    validationSchema: loginValidator,
+    validationSchema: registerValidator,
 
     handleSubmit: (values, { setSubmitting }) => {
         setTimeout(() => {
