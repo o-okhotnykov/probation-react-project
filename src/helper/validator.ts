@@ -14,6 +14,7 @@ export const loginValidator = yup.object().shape({
 });
 
 export const registerValidator = yup.object().shape({
+    email: yup.string().email('The email should look like example@domain.ua').required('Required'),
     password: yup
         .string()
         .matches(

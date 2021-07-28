@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, createSelector } from '@reduxjs/toolkit';
 import type { RootState } from './root-store';
 import { HttpService } from '../api/HttpService';
-import { IRegisterFormValues } from '../interface/index';
+import { IRegisterFormValues, ILoginFormValues } from '../interface/index';
 
 interface IUserState {
     accessToken: string;
@@ -14,11 +14,15 @@ const initialState: IUserState = {
 export const registerAsync = createAsyncThunk(
     'app/registerUser',
     async (user: IRegisterFormValues) => {
-        console.log(user);
         const data = await HttpService.post('register', user);
         return data;
     },
 );
+
+export const loginAsync = createAsyncThunk('app/loginUser', async (user: ILoginFormValues) => {
+    const data = await HttpService.post('login', user);
+    return data;
+});
 
 export const userSlice = createSlice({
     name: 'user',
@@ -29,11 +33,17 @@ export const userSlice = createSlice({
         },
     },
     extraReducers: (builder) =>
-        builder.addCase(registerAsync.fulfilled, (state, action) => {
-            const payload = action?.payload;
-            const { accessToken } = payload?.data;
-            state.accessToken = accessToken;
-        }),
+        builder
+            .addCase(registerAsync.fulfilled, (state, action) => {
+                const payload = action?.payload;
+                const { accessToken } = payload?.data;
+                state.accessToken = accessToken;
+            })
+            .addCase(loginAsync.fulfilled, (state, action) => {
+                const payload = action?.payload;
+                const { accessToken } = payload?.data;
+                state.accessToken = accessToken;
+            }),
 });
 
 export const { logout } = userSlice.actions;

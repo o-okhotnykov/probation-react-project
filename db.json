@@ -17,6 +17,15 @@
       "confirmPassword": "123456Aa",
       "birthDate": "2021-07-07",
       "id": 2
+    },
+    {
+      "email": "1w@fwe.f",
+      "password": "$2a$10$r5kdnnfsUSCguHHZvwyXCelCUBJUTiPH9TMc9iGdepb3pEpCwlWEi",
+      "name": "Alex",
+      "surname": "Under",
+      "confirmPassword": "123456Aa",
+      "birthDate": "2021-07-08",
+      "id": 3
     }
   ]
 }
