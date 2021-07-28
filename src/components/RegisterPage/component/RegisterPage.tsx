@@ -1,5 +1,5 @@
 import { withFormik } from 'formik';
-import { registerValidator } from '../../../helper/validator';
+import { registerValidator } from './validation';
 import { Form } from '../index';
 import { IFormValues } from '../Interface/Interfaces';
 

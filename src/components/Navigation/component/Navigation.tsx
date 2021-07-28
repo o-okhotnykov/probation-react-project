@@ -3,17 +3,18 @@ import Grid from '@material-ui/core/Grid';
 import { Link } from 'react-router-dom';
 import { Button } from '@material-ui/core';
 import { useSelector } from 'react-redux';
-import { accessTokenSelector } from '../../../store/user-slice';
+import { isAuthorizedSelector } from '../../../store/user-slice';
 import { UserMenu, Navbar } from '../index';
+import { RoutePath } from '../../../constants';
 import './Navigation.scss';
-import { RoutePath } from '../../../routes/RoutePath';
 
 export const Navigation: React.FC = () => {
-    const accessToken = useSelector(accessTokenSelector);
+    const isAuthorized = useSelector(isAuthorizedSelector);
+
     return (
         <Grid item xs={12} className="header">
             <Navbar />
-            {accessToken ? (
+            {isAuthorized ? (
                 <UserMenu />
             ) : (
                 <div>
