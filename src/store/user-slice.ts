@@ -23,6 +23,11 @@ export const { logout } = userSlice.actions;
 
 export const userSelector = (state: RootState): IUserState => state.user;
 
-export const accessTokenSelector = createSelector(userSelector, (user) => user.accessToken);
+export const isAuthorizedSelector = createSelector(userSelector, ({ accessToken }) => {
+    if (accessToken.length > 0) {
+        return true;
+    }
+    return false;
+});
 
 export const userReducer = userSlice.reducer;
