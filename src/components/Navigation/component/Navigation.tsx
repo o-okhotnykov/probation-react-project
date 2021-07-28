@@ -3,9 +3,9 @@ import Grid from '@material-ui/core/Grid';
 import { Link } from 'react-router-dom';
 import { Button } from '@material-ui/core';
 import { useSelector } from 'react-redux';
-import { isAuthorizedSelector } from '../../../store/user-slice';
+import { isAuthorizedSelector } from 'store/user-slice';
+import { RoutePath } from 'constants/index';
 import { UserMenu, Navbar } from '../index';
-import { RoutePath } from '../../../constants';
 import './Navigation.scss';
 
 export const Navigation: React.FC = () => {

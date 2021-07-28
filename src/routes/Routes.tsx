@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { LoginPage } from '../components/LoginPage';
-import { Main } from '../components/Main';
-import { ErrorComponent } from '../components/ErrorComponent';
-import { RoutePath } from '../constants';
+import { LoginPage } from 'components/LoginPage';
+import { Main } from 'components/Main';
+import { ErrorComponent } from 'components/ErrorComponent';
+import { RoutePath } from 'constants/index';
 
 export const Routes: React.FC = () => {
     return (
