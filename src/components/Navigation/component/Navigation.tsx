@@ -21,6 +21,9 @@ export const Navigation: React.FC = () => {
                     <Link to={RoutePath.login}>
                         <Button>Login</Button>
                     </Link>
+                    <Link to={RoutePath.register}>
+                        <Button>Register</Button>
+                    </Link>
                 </div>
             )}
         </Grid>
