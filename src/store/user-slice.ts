@@ -18,7 +18,7 @@ export const registerAsync = createAsyncThunk(
         const data = await HttpService.post<LoginResponse>('login', user);
 
         if ('isAxiosError' in data) {
-            console.log('err', data);
+            console.log('err', data.response);
             return;
         }
 
@@ -30,7 +30,7 @@ export const loginAsync = createAsyncThunk('app/loginUser', async (user: ILoginF
     const data = await HttpService.post<LoginResponse>('login', user);
 
     if ('isAxiosError' in data) {
-        console.log('err', data);
+        console.log('err', data.response);
         return;
     }
 

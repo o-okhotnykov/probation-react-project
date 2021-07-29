@@ -1,3 +1,4 @@
+/* eslint-disable prefer-promise-reject-errors */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable consistent-return */
@@ -22,11 +23,8 @@ service.interceptors.response.use(
     (response) => {
         return response;
     },
-    async (error) => {
-        const originalRequest = error.config;
-        console.log(error);
-        console.log(originalRequest);
-        return Promise.reject(error);
+    (error) => {
+        return error;
     },
 );
 
