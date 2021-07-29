@@ -29,10 +29,10 @@ service.interceptors.response.use(
         return response;
     },
     (error) => {
-        if (error.response && error.response.status === 401) {
-            localStorage.clear();
+        if (error.response && error.response.data) {
+            return error.response.data;
         }
-        return Promise.reject(error);
+        return Promise.reject(error.message);
     },
 );
 
@@ -45,20 +45,6 @@ export class HttpService {
 
     static handleSuccess(response: AxiosResponse) {
         return response;
-    }
-
-    static test() {
-        axios.interceptors.response.use(
-            (response) => {
-                console.log(response);
-                return response;
-            },
-            (error) => {
-                // if (error.response && error.response.status === 401) {
-                // }
-                return Promise.reject(error);
-            },
-        );
     }
 
     static handleError(error: AxiosError) {

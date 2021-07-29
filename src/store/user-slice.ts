@@ -20,7 +20,6 @@ export const registerAsync = createAsyncThunk(
 );
 
 export const loginAsync = createAsyncThunk('app/loginUser', async (user: ILoginFormValues) => {
-    HttpService.test();
     const data = await HttpService.post('login', user);
     return data;
 });
