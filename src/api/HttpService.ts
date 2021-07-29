@@ -24,7 +24,10 @@ service.interceptors.response.use(
         return response;
     },
     (error) => {
-        return error;
+        if (error.response && error.response.data) {
+            return error;
+        }
+        return Promise.reject(error.message);
     },
 );
 
