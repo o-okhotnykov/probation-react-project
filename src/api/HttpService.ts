@@ -1,72 +1,50 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-/* eslint-disable consistent-return */
-
+/* eslint-disable class-methods-use-this */
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
+import { Dispatch } from 'react';
 import { BASE_URL } from '../constants';
+import { logout } from '../store/user-slice';
 
 const service = axios.create({
     baseURL: BASE_URL,
 });
 
-service.interceptors.request.use(
-    async (config) => {
-        // console.log(accessToken);
-        // config.headers = {
-        //     Authorization: `Bearer ${accessToken}`,
-        //     Accept: 'application/json',
-        //     'Content-Type': 'application/x-www-form-urlencoded',
-        // };
-        // console.log(config);
-        return config;
-    },
-    (error) => {
-        Promise.reject(error);
-    },
-);
-
-service.interceptors.response.use(
-    (response) => {
-        return response;
-    },
-    (error) => {
-        if (error.response && error.response.data) {
-            return error.response.data;
-        }
-        return Promise.reject(error.message);
-    },
-);
-
 export class HttpService {
-    static parseResponse(response: Promise<AxiosResponse>) {
-        return response
-            .then((data) => this.handleSuccess(data))
-            .catch((error) => this.handleError(error));
-    }
+    interceptorsInit(token: string, dispatch: Dispatch<any>): void {
+        service.interceptors.request.use(
+            async (config) => {
+                config.headers = {
+                    Authorization: `Bearer ${token}`,
+                };
+                return config;
+            },
+            (error) => {
+                Promise.reject(error);
+            },
+        );
 
-    static handleSuccess(response: AxiosResponse) {
-        return response;
-    }
+        service.interceptors.response.use(
+            (response) => {
+                return response;
+            },
+            async (error) => {
+                if (error.response.status === 401) {
+                    dispatch(logout());
+                    return error;
+                }
 
-    static handleError(error: AxiosError) {
-        if (error === undefined) {
-            return;
-        }
-
-        const response = error?.response;
-        if (response?.status === 401) {
-            this.redirectTo();
-        }
-
-        return Promise.reject(error);
+                return Promise.reject(error.message);
+            },
+        );
     }
 
     static redirectTo() {
         window.location.assign('/login');
     }
 
-    static request(params: AxiosRequestConfig) {
-        const response = service.request(params);
-        return this.parseResponse(response);
+    static request<T>(params: AxiosRequestConfig) {
+        return service.request(params) as Promise<
+            AxiosResponse<T> | AxiosError<{ message: string }>
+        >;
     }
 
     static get(path: string, payload: undefined) {
@@ -78,8 +56,8 @@ export class HttpService {
         });
     }
 
-    static post(path: string, payload: unknown) {
-        return this.request({
+    static post<T>(path: string, payload: any) {
+        return this.request<T>({
             method: 'POST',
             url: path,
             data: payload,
