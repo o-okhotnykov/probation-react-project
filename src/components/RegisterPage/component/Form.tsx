@@ -16,15 +16,20 @@ export const Form: React.FC<FormikProps<IRegisterFormValues>> = (props) => {
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        dispatch(registerAsync(values));
+        dispatch(
+            registerAsync({
+                email: values.email,
+                name: values.name,
+                surname: values.surname,
+                password: values.password,
+                birthDate: values.birthDate,
+            }),
+        );
     };
 
     return (
         <div className="register-container">
-            <form
-                onSubmit={(event: FormEvent<HTMLFormElement>) => handleSubmit(event)}
-                className="form"
-            >
+            <form onSubmit={handleSubmit} className="form">
                 <Card>
                     <CardMedia className={classes.media} image={logo} title="Paella dish" />
                     <CardContent>

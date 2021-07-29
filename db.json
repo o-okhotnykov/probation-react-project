@@ -26,6 +26,22 @@
       "confirmPassword": "123456Aa",
       "birthDate": "2021-07-08",
       "id": 3
+    },
+    {
+      "email": "ss@f.f",
+      "password": "$2a$10$eUGdLLqpDYVOq7pqvGHS3OVem9WZV.EC9scJKP7RbxUZjSPEP7f46",
+      "name": "gg",
+      "surname": "gg",
+      "birthDate": "2021-07-16",
+      "id": 4
+    },
+    {
+      "email": "1fw@fwe.f",
+      "password": "$2a$10$jxfyJtIa.zY1IRV7N93NkuoRfJe9Z3fhQ35uCM.vq8T8DzMXkO0qa",
+      "name": "Alex",
+      "surname": "Under",
+      "birthDate": "2021-07-02",
+      "id": 5
     }
   ]
 }

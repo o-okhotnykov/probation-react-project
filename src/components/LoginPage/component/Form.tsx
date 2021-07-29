@@ -21,10 +21,7 @@ export const Form: React.FC<FormikProps<ILoginFormValues>> = (props) => {
 
     return (
         <div className="login-container">
-            <form
-                onSubmit={(event: FormEvent<HTMLFormElement>) => handleSubmit(event)}
-                className="form"
-            >
+            <form onSubmit={handleSubmit} className="form">
                 <Card>
                     <CardMedia className={classes.media} image={logo} title="Paella dish" />
                     <CardContent>

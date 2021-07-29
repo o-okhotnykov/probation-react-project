@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, createSelector } from '@reduxjs/toolkit';
 import type { RootState } from './root-store';
 import { HttpService } from '../api/HttpService';
-import { IRegisterFormValues, ILoginFormValues } from '../interface/index';
+import { IRegisterResponse, ILoginFormValues } from '../interface';
 import { LoginResponse } from '../interface/api/auth';
 
 interface IUserState {
@@ -14,9 +14,9 @@ const initialState: IUserState = {
 
 export const registerAsync = createAsyncThunk(
     'app/registerUser',
-    async (user: IRegisterFormValues) => {
-        const data = await HttpService.post<LoginResponse>('login', user);
-
+    async (user: IRegisterResponse) => {
+        const data = await HttpService.post<LoginResponse>('register', user);
+        console.log(data);
         if ('isAxiosError' in data) {
             console.log('err', data.response);
             return;
@@ -48,18 +48,18 @@ export const userSlice = createSlice({
     extraReducers: (builder) =>
         builder
             .addCase(registerAsync.fulfilled, (state, action) => {
-                const token: string | undefined = action.payload?.data.accessToken;
-                if (token === undefined) {
+                const response: LoginResponse | undefined = action.payload?.data;
+                if (response === undefined) {
                     return;
                 }
-                state.accessToken = token;
+                state.accessToken = response?.accessToken;
             })
             .addCase(loginAsync.fulfilled, (state, action) => {
-                const token: string | undefined = action.payload?.data.accessToken;
-                if (token === undefined) {
+                const response: LoginResponse | undefined = action.payload?.data;
+                if (response === undefined) {
                     return;
                 }
-                state.accessToken = token;
+                state.accessToken = response?.accessToken;
             }),
 });
 

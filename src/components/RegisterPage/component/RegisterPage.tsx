@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { withFormik } from 'formik';
 import { registerValidator } from './validation';
 import { Form } from './Form';
@@ -25,5 +24,5 @@ export const RegisterPage = withFormik({
 
     validationSchema: registerValidator,
 
-    handleSubmit: (values, { setSubmitting }) => {},
+    handleSubmit: () => {},
 })(Form);
