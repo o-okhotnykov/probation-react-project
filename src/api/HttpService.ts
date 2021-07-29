@@ -1,19 +1,36 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable consistent-return */
 
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
-import { BASE_URL } from '../constants/index';
+import { BASE_URL } from '../constants';
 
 const service = axios.create({
     baseURL: BASE_URL,
 });
 
-export class HttpService {
-    static parseResponse(response: Promise<AxiosResponse>) {
-        return response
-            .then((data) => this.handleSuccess(data))
-            .catch((error) => this.handleError(error));
-    }
+service.interceptors.request.use(
+    async (config) => {
+        return config;
+    },
+    (error) => {
+        Promise.reject(error);
+    },
+);
 
+service.interceptors.response.use(
+    (response) => {
+        return response;
+    },
+    async (error) => {
+        const originalRequest = error.config;
+        console.log(error);
+        console.log(originalRequest);
+        return Promise.reject(error);
+    },
+);
+
+export class HttpService {
     static handleSuccess(response: AxiosResponse) {
         return response;
     }
@@ -35,10 +52,10 @@ export class HttpService {
         window.location.assign('/login');
     }
 
-    static request(params: AxiosRequestConfig) {
-        console.log(params);
-        const response = service.request(params);
-        return this.parseResponse(response);
+    static request<T>(params: AxiosRequestConfig) {
+        return service.request(params) as Promise<
+            AxiosResponse<T> | AxiosError<{ message: string }>
+        >;
     }
 
     static get(path: string, payload: undefined) {
@@ -50,8 +67,8 @@ export class HttpService {
         });
     }
 
-    static post(path: string, payload: unknown) {
-        return this.request({
+    static post<T>(path: string, payload: any) {
+        return this.request<T>({
             method: 'POST',
             url: path,
             data: payload,
