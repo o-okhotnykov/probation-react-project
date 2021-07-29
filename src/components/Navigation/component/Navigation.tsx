@@ -5,7 +5,7 @@ import { Button } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 import { isAuthorizedSelector } from '../../../store/user-slice';
 import { UserMenu, Navbar } from '../index';
-import { RoutePath } from '../../../constants';
+import { ROUTE_PATH } from '../../../constants';
 import './Navigation.scss';
 
 export const Navigation: React.FC = () => {
@@ -18,10 +18,10 @@ export const Navigation: React.FC = () => {
                 <UserMenu />
             ) : (
                 <div>
-                    <Link to={RoutePath.login}>
+                    <Link to={ROUTE_PATH.login}>
                         <Button>Login</Button>
                     </Link>
-                    <Link to={RoutePath.register}>
+                    <Link to={ROUTE_PATH.register}>
                         <Button>Register</Button>
                     </Link>
                 </div>

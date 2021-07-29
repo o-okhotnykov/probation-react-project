@@ -23,6 +23,7 @@ module.exports = {
         project: './tsconfig.json',
     },
     rules: {
+        'consistent-return': 'off',
         'react/prop-types': 'off',
         'import/no-cycle': 'off',
         'import/prefer-default-export': 'off',
