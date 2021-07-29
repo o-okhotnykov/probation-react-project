@@ -8,25 +8,30 @@ const service = axios.create({
     baseURL: BASE_URL,
 });
 
-axios.interceptors.request.use(
-    (config): AxiosRequestConfig => {
-        console.log(config);
+service.interceptors.request.use(
+    async (config) => {
+        // console.log(accessToken);
+        // config.headers = {
+        //     Authorization: `Bearer ${accessToken}`,
+        //     Accept: 'application/json',
+        //     'Content-Type': 'application/x-www-form-urlencoded',
+        // };
+        // console.log(config);
         return config;
     },
     (error) => {
-        console.log(error);
-        return Promise.reject(error);
+        Promise.reject(error);
     },
 );
 
-axios.interceptors.response.use(
+service.interceptors.response.use(
     (response) => {
-        console.log(response);
         return response;
     },
     (error) => {
-        // if (error.response && error.response.status === 401) {
-        // }
+        if (error.response && error.response.status === 401) {
+            localStorage.clear();
+        }
         return Promise.reject(error);
     },
 );
