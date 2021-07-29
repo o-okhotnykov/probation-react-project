@@ -42,6 +42,14 @@
       "surname": "Under",
       "birthDate": "2021-07-02",
       "id": 5
+    },
+    {
+      "email": "fwqfqwfsashaohotni26@gmail.com",
+      "password": "$2a$10$4XTmvCgET97EuV4H/K/MvOnVBOIbYrruodmagOmxCRmI5XT.mCmMW",
+      "name": "Alex",
+      "surname": "Under",
+      "birthDate": "2021-07-16",
+      "id": 6
     }
   ]
 }
