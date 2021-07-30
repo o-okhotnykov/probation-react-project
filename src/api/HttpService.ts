@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { BASE_URL } from '../constants';
 
@@ -7,9 +8,10 @@ const service = axios.create({
 });
 
 service.interceptors.response.use(
-    (response) => response,
+    (response) => Promise.resolve(response),
     (error) => {
-        return error;
+        const message = error.response.data;
+        return Promise.reject(message);
     },
 );
 

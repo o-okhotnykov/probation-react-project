@@ -3,6 +3,7 @@ import type { RootState } from './root-store';
 import { HttpService } from '../api/HttpService';
 import { IRegisterResponse, ILoginFormValues } from '../interface';
 import { LoginResponse, RegisterResponse } from '../interface/api/auth';
+import { errorToastNotify, successfulToastNotify } from '../Toasts';
 
 interface IUserState {
     accessToken: string;
@@ -56,10 +57,20 @@ export const userSlice = createSlice({
             })
             .addCase(loginAsync.fulfilled, (state, action) => {
                 const response = action.payload?.data;
+
                 if (response === undefined) {
                     return;
                 }
+                successfulToastNotify('Successful login');
                 state.accessToken = response?.accessToken;
+            })
+            .addCase(loginAsync.rejected, (state, action) => {
+                const { message } = action.error;
+
+                if (message === undefined) {
+                    return;
+                }
+                errorToastNotify(message);
             }),
 });
 

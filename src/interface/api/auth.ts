@@ -1,5 +1,6 @@
 export type LoginResponse = {
     accessToken: string;
+    error: { message: string };
     user: {
         birthDate: string;
         email: string;
