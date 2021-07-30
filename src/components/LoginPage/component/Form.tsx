@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { FormEvent } from 'react';
 import { useDispatch } from 'react-redux';
 import { Card, CardContent, CardMedia, TextField, Button } from '@material-ui/core';
@@ -38,10 +37,7 @@ export const Form: React.FC<FormikProps<ILoginFormValues>> = (props) => {
     return (
         <div className="login-container">
             <ToastContainer />
-            <form
-                onSubmit={(event: FormEvent<HTMLFormElement>) => handleSubmit(event)}
-                className="form"
-            >
+            <form onSubmit={handleSubmit} className="form">
                 <Card>
                     <CardMedia className={classes.media} image={logo} title="Paella dish" />
                     <CardContent>
