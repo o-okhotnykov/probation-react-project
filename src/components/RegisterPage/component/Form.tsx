@@ -2,10 +2,10 @@ import React, { FormEvent } from 'react';
 import { Card, CardContent, CardMedia, TextField, Button } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import { FormikProps } from 'formik';
-import { registerAsync } from '../../../store/user-slice';
-import logo from '../../../img/logo.png';
+import logo from 'img/logo.png';
+import { registerAsync } from 'store/user-slice';
+import { IRegisterFormValues } from 'interface';
 import { useStyles } from './styles';
-import { IRegisterFormValues } from '../../../interface';
 import './RegisterPage.scss';
 
 export const Form: React.FC<FormikProps<IRegisterFormValues>> = (props) => {
