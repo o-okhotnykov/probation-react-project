@@ -3,7 +3,7 @@ import React from 'react';
 import { Route, Redirect, RouteProps } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { isAuthorizedSelector } from '../store/user-slice';
-import { RoutePath } from '../constants';
+import { ROUTE_PATH } from '../constants';
 
 interface IProps {
     exact?: boolean;
@@ -17,7 +17,7 @@ export const PrivateRoute: React.FC<IProps> = ({ component: Component, ...rest }
         <Route
             {...rest}
             render={(props) =>
-                isAuthorized ? <Component {...props} /> : <Redirect to={RoutePath.login} />
+                isAuthorized ? <Component {...props} /> : <Redirect to={ROUTE_PATH.login} />
             }
         />
     );

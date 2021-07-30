@@ -1,11 +1,19 @@
 import { withFormik } from 'formik';
 import { registerValidator } from './validation';
 import { Form } from './Form';
-import { IFormValues } from '../Interface/Interfaces';
+import { IRegisterFormValues } from '../../../interface';
 
 export const RegisterPage = withFormik({
-    mapPropsToValues: ({ name, surname, password, confirmPassword, birthDate }: IFormValues) => {
+    mapPropsToValues: ({
+        email,
+        name,
+        surname,
+        password,
+        confirmPassword,
+        birthDate,
+    }: IRegisterFormValues) => {
         return {
+            email: email || '',
             name: name || '',
             surname: surname || '',
             password: password || '',
@@ -16,11 +24,5 @@ export const RegisterPage = withFormik({
 
     validationSchema: registerValidator,
 
-    handleSubmit: (values, { setSubmitting }) => {
-        setTimeout(() => {
-            // submit to the server
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-        }, 1000);
-    },
+    handleSubmit: () => {},
 })(Form);
