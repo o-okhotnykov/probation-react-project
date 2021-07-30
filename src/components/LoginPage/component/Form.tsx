@@ -1,20 +1,25 @@
 import React, { FormEvent } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Card, CardContent, CardMedia, TextField, Button } from '@material-ui/core';
 import { FormikProps } from 'formik';
-import 'react-toastify/dist/ReactToastify.css';
-import { loginAsync } from '../../../store/user-slice';
+import { useHistory } from 'react-router-dom';
+import { loginAsync, isAuthorizedSelector } from '../../../store/user-slice';
 import logo from '../../../img/logo.png';
 import { useStyles } from './styles';
 import { ILoginFormValues } from '../../../interface';
+import { ROUTE_PATH } from '../../../constants';
 import './LoginPage.scss';
 
 export const Form: React.FC<FormikProps<ILoginFormValues>> = (props) => {
     const { values, touched, errors, isSubmitting, handleChange, handleBlur } = props;
-
     const dispatch = useDispatch();
-
+    const history = useHistory();
+    const isAuthorized = useSelector(isAuthorizedSelector);
     const classes = useStyles();
+
+    if (isAuthorized) {
+        history.push(ROUTE_PATH.main);
+    }
 
     const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();

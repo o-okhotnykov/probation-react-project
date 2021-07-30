@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { BASE_URL } from '../constants';
 
