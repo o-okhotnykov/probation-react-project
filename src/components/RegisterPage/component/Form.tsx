@@ -3,12 +3,11 @@ import { Card, CardContent, CardMedia, TextField, Button } from '@material-ui/co
 import { useDispatch, useSelector } from 'react-redux';
 import { FormikProps } from 'formik';
 import { useHistory } from 'react-router-dom';
-import { registerAsync, isAuthorizedSelector } from '../../../store/user-slice';
-import logo from '../../../img/logo.png';
+import { registerAsync, isAuthorizedSelector } from 'store/user-slice';
+import { IRegisterFormValues } from 'interface';
+import { ROUTE_PATH } from 'constants/index';
+import logo from 'img/logo.png';
 import { useStyles } from './styles';
-import { IRegisterFormValues } from '../../../interface';
-
-import { ROUTE_PATH } from '../../../constants';
 import './RegisterPage.scss';
 
 export const Form: React.FC<FormikProps<IRegisterFormValues>> = (props) => {
