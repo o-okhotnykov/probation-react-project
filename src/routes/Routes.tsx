@@ -4,7 +4,7 @@ import { LoginPage } from 'components/LoginPage';
 import { RegisterPage } from 'components/RegisterPage';
 import { Main } from 'components/Main';
 import { ErrorComponent } from 'components/ErrorComponent';
-import { ROUTE_PATH } from 'constants/';
+import { ROUTE_PATH } from 'constants/index';
 import { PrivateRoute } from './PrivateRoute';
 
 export const Routes: React.FC = () => {
