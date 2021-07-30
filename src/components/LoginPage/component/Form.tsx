@@ -2,10 +2,10 @@ import React, { FormEvent } from 'react';
 import { useDispatch } from 'react-redux';
 import { Card, CardContent, CardMedia, TextField, Button } from '@material-ui/core';
 import { FormikProps } from 'formik';
-import { loginAsync } from '../../../store/user-slice';
-import logo from '../../../img/logo.png';
+import { loginAsync } from 'store/user-slice';
+import logo from 'img/logo.png';
+import { ILoginFormValues } from 'interface/index';
 import { useStyles } from './styles';
-import { ILoginFormValues } from '../../../interface';
 import './LoginPage.scss';
 
 export const Form: React.FC<FormikProps<ILoginFormValues>> = (props) => {
@@ -21,10 +21,7 @@ export const Form: React.FC<FormikProps<ILoginFormValues>> = (props) => {
 
     return (
         <div className="login-container">
-            <form
-                onSubmit={(event: FormEvent<HTMLFormElement>) => handleSubmit(event)}
-                className="form"
-            >
+            <form onSubmit={handleSubmit} className="form">
                 <Card>
                     <CardMedia className={classes.media} image={logo} title="Paella dish" />
                     <CardContent>

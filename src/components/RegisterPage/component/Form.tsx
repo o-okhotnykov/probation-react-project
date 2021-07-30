@@ -2,10 +2,10 @@ import React, { FormEvent } from 'react';
 import { Card, CardContent, CardMedia, TextField, Button } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import { FormikProps } from 'formik';
-import { registerAsync } from '../../../store/user-slice';
-import logo from '../../../img/logo.png';
+import logo from 'img/logo.png';
+import { registerAsync } from 'store/user-slice';
+import { IRegisterFormValues } from 'interface';
 import { useStyles } from './styles';
-import { IRegisterFormValues } from '../../../interface';
 import './RegisterPage.scss';
 
 export const Form: React.FC<FormikProps<IRegisterFormValues>> = (props) => {
@@ -16,15 +16,20 @@ export const Form: React.FC<FormikProps<IRegisterFormValues>> = (props) => {
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        dispatch(registerAsync(values));
+        dispatch(
+            registerAsync({
+                email: values.email,
+                name: values.name,
+                surname: values.surname,
+                password: values.password,
+                birthDate: values.birthDate,
+            }),
+        );
     };
 
     return (
         <div className="register-container">
-            <form
-                onSubmit={(event: FormEvent<HTMLFormElement>) => handleSubmit(event)}
-                className="form"
-            >
+            <form onSubmit={handleSubmit} className="form">
                 <Card>
                     <CardMedia className={classes.media} image={logo} title="Paella dish" />
                     <CardContent>

@@ -1,15 +1,16 @@
 /* eslint-disable class-methods-use-this */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { Dispatch } from 'react';
-import { BASE_URL } from '../constants';
-import { logout } from '../store/user-slice';
+import { logout } from 'store/user-slice';
+import { BASE_URL } from 'constants/index';
 
 const service = axios.create({
     baseURL: BASE_URL,
 });
 
 export class HttpService {
-    interceptorsInit(token: string, dispatch: Dispatch<any>): void {
+    interceptorsInit(token: string, dispatch: Dispatch<unknown>): void {
         service.interceptors.request.use(
             async (config) => {
                 config.headers = {
@@ -47,16 +48,15 @@ export class HttpService {
         >;
     }
 
-    static get(path: string, payload: undefined) {
+    static get(path: string) {
         return this.request({
             method: 'GET',
             url: path,
             responseType: 'json',
-            data: payload,
         });
     }
 
-    static post<T>(path: string, payload: any) {
+    static post<T>(path: string, payload: unknown) {
         return this.request<T>({
             method: 'POST',
             url: path,

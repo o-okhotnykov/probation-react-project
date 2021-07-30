@@ -1,7 +1,7 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid/Grid';
-import { SideSection } from '../../SideSection';
-import { Navigation } from '../../Navigation';
+import { SideSection } from 'components/SideSection';
+import { Navigation } from 'components/Navigation';
 import './Main.scss';
 
 export const Main: React.FC = () => {

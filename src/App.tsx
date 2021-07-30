@@ -1,10 +1,9 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Layout } from './components/Layout';
-import { Routes } from './routes/Routes';
-import { HttpService } from './api/HttpService';
-import { accessTokenSelector, logout } from './store/user-slice';
+import { accessTokenSelector } from 'store/user-slice';
+import { Layout } from 'components/Layout';
+import { Routes } from 'routes/Routes';
+import { HttpService } from 'api/HttpService';
 
 export const App: React.FC = () => {
     const token = useSelector(accessTokenSelector);
