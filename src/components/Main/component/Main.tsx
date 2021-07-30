@@ -4,6 +4,7 @@ import { SideSection } from 'components/SideSection';
 import { Navigation } from 'components/Navigation';
 import './Main.scss';
 import { TableComponent } from 'components/TableComponent';
+import { VerticalBar } from 'components/VerticalBar';
 
 export const Main: React.FC = () => {
     return (
@@ -15,6 +16,7 @@ export const Main: React.FC = () => {
                 <Grid item xs={11} className="main-section">
                     <Navigation />
                     <TableComponent />
+                    <VerticalBar />
                 </Grid>
             </Grid>
         </>
