@@ -5,6 +5,7 @@ import { RegisterPage } from 'components/RegisterPage';
 import { Main } from 'components/Main';
 import { ErrorComponent } from 'components/ErrorComponent';
 import { ROUTE_PATH } from 'constants/index';
+import { PrivateRoute } from './PrivateRoute';
 
 export const Routes: React.FC = () => {
     return (
@@ -12,7 +13,7 @@ export const Routes: React.FC = () => {
             <Switch>
                 <Route path={ROUTE_PATH.login} component={LoginPage} />
                 <Route path={ROUTE_PATH.register} component={RegisterPage} />
-                <Route path={ROUTE_PATH.main} component={Main} />
+                <PrivateRoute exact path={ROUTE_PATH.main} component={Main} />
                 <Route component={ErrorComponent} />
             </Switch>
         </Router>

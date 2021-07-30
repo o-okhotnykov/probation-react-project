@@ -6,10 +6,6 @@ import { useSelector } from 'react-redux';
 import { isAuthorizedSelector } from 'store/user-slice';
 import { ROUTE_PATH } from 'constants/index';
 import { UserMenu, Navbar } from '../index';
-<<<<<<< HEAD
-=======
-import { ROUTE_PATH } from '../../../constants';
->>>>>>> 8a857c9b2c422e788b0d5c12f840f4d829dadbe8
 import './Navigation.scss';
 
 export const Navigation: React.FC = () => {
