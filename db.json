@@ -1,3 +1,55 @@
 {
-    "users": []
+  "users": [
+    {
+      "email": "sashaohotni26@gmail.com",
+      "password": "$2a$10$Zs4H9Le2hukmfzd7x3HZ.ObzGnVif9Xh7hHpoF4FBSKbCDRpfyP.G",
+      "name": "Alex",
+      "surname": "Under",
+      "confirmPassword": "123456Aa",
+      "birthDate": "2021-07-14",
+      "id": 1
+    },
+    {
+      "email": "fwqef@fwe.asfd",
+      "password": "$2a$10$10REahosrIslJ53A5jPfVOLLQPbIGqHpVEflufIq7TQ1G4X/X130y",
+      "name": "Alex",
+      "surname": "Under",
+      "confirmPassword": "123456Aa",
+      "birthDate": "2021-07-07",
+      "id": 2
+    },
+    {
+      "email": "1w@fwe.f",
+      "password": "$2a$10$r5kdnnfsUSCguHHZvwyXCelCUBJUTiPH9TMc9iGdepb3pEpCwlWEi",
+      "name": "Alex",
+      "surname": "Under",
+      "confirmPassword": "123456Aa",
+      "birthDate": "2021-07-08",
+      "id": 3
+    },
+    {
+      "email": "ss@f.f",
+      "password": "$2a$10$eUGdLLqpDYVOq7pqvGHS3OVem9WZV.EC9scJKP7RbxUZjSPEP7f46",
+      "name": "gg",
+      "surname": "gg",
+      "birthDate": "2021-07-16",
+      "id": 4
+    },
+    {
+      "email": "1fw@fwe.f",
+      "password": "$2a$10$jxfyJtIa.zY1IRV7N93NkuoRfJe9Z3fhQ35uCM.vq8T8DzMXkO0qa",
+      "name": "Alex",
+      "surname": "Under",
+      "birthDate": "2021-07-02",
+      "id": 5
+    },
+    {
+      "email": "fwqfqwfsashaohotni26@gmail.com",
+      "password": "$2a$10$4XTmvCgET97EuV4H/K/MvOnVBOIbYrruodmagOmxCRmI5XT.mCmMW",
+      "name": "Alex",
+      "surname": "Under",
+      "birthDate": "2021-07-16",
+      "id": 6
+    }
+  ]
 }
