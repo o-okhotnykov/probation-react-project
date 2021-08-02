@@ -2,7 +2,7 @@ import React, { FormEvent } from 'react';
 import { Card, CardContent, CardMedia, TextField, Button } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { FormikProps } from 'formik';
-import { useHistory } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { registerAsync, isAuthorizedSelector } from 'store/user-slice';
 import { IRegisterFormValues } from 'interface';
 import { ROUTE_PATH } from 'constants/index';
@@ -14,12 +14,7 @@ export const Form: React.FC<FormikProps<IRegisterFormValues>> = (props) => {
     const { values, touched, errors, isSubmitting, handleChange, handleBlur } = props;
     const dispatch = useDispatch();
     const classes = useStyles();
-    const history = useHistory();
     const isAuthorized = useSelector(isAuthorizedSelector);
-
-    if (isAuthorized) {
-        history.push(ROUTE_PATH.main);
-    }
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -35,96 +30,106 @@ export const Form: React.FC<FormikProps<IRegisterFormValues>> = (props) => {
     };
 
     return (
-        <div className="register-container">
-            <form onSubmit={handleSubmit} className="form">
-                <Card>
-                    <CardMedia className={classes.media} image={logo} title="Paella dish" />
-                    <CardContent>
-                        <TextField
-                            id="email"
-                            label="Email"
-                            type="email"
-                            value={values.email}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            helperText={touched.email ? errors.email : ''}
-                            error={touched.email && Boolean(errors.email)}
-                            margin="dense"
-                            variant="outlined"
-                            fullWidth
-                        />
+        <>
+            {isAuthorized ? (
+                <Redirect to={ROUTE_PATH.main} />
+            ) : (
+                <div className="register-container">
+                    <form onSubmit={handleSubmit} className="form">
+                        <Card>
+                            <CardMedia className={classes.media} image={logo} title="Paella dish" />
+                            <CardContent>
+                                <TextField
+                                    id="email"
+                                    label="Email"
+                                    type="email"
+                                    value={values.email}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    helperText={touched.email ? errors.email : ''}
+                                    error={touched.email && Boolean(errors.email)}
+                                    margin="dense"
+                                    variant="outlined"
+                                    fullWidth
+                                />
 
-                        <TextField
-                            id="name"
-                            label="First Name"
-                            value={values.name}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            helperText={touched.name ? errors.name : ''}
-                            error={touched.name && Boolean(errors.name)}
-                            margin="dense"
-                            variant="outlined"
-                            fullWidth
-                        />
-                        <TextField
-                            id="surname"
-                            label="Surname"
-                            value={values.surname}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            helperText={touched.surname ? errors.surname : ''}
-                            error={touched.surname && Boolean(errors.surname)}
-                            margin="dense"
-                            variant="outlined"
-                            fullWidth
-                        />
+                                <TextField
+                                    id="name"
+                                    label="First Name"
+                                    value={values.name}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    helperText={touched.name ? errors.name : ''}
+                                    error={touched.name && Boolean(errors.name)}
+                                    margin="dense"
+                                    variant="outlined"
+                                    fullWidth
+                                />
+                                <TextField
+                                    id="surname"
+                                    label="Surname"
+                                    value={values.surname}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    helperText={touched.surname ? errors.surname : ''}
+                                    error={touched.surname && Boolean(errors.surname)}
+                                    margin="dense"
+                                    variant="outlined"
+                                    fullWidth
+                                />
 
-                        <TextField
-                            id="password"
-                            label="Password"
-                            type="password"
-                            value={values.password}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            helperText={touched.password ? errors.password : ''}
-                            error={touched.password && Boolean(errors.password)}
-                            margin="dense"
-                            variant="outlined"
-                            fullWidth
-                        />
-                        <TextField
-                            id="confirmPassword"
-                            label="Confirm Password"
-                            type="password"
-                            value={values.confirmPassword}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            helperText={touched.confirmPassword ? errors.confirmPassword : ''}
-                            error={touched.confirmPassword && Boolean(errors.confirmPassword)}
-                            margin="dense"
-                            variant="outlined"
-                            fullWidth
-                        />
-                        <TextField
-                            id="birthDate"
-                            type="date"
-                            defaultValue="2017-05-24"
-                            value={values.birthDate}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            helperText={touched.birthDate ? errors.birthDate : ''}
-                            error={touched.birthDate && Boolean(errors.birthDate)}
-                            margin="dense"
-                            variant="outlined"
-                            fullWidth
-                        />
-                    </CardContent>
+                                <TextField
+                                    id="password"
+                                    label="Password"
+                                    type="password"
+                                    value={values.password}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    helperText={touched.password ? errors.password : ''}
+                                    error={touched.password && Boolean(errors.password)}
+                                    margin="dense"
+                                    variant="outlined"
+                                    fullWidth
+                                />
+                                <TextField
+                                    id="confirmPassword"
+                                    label="Confirm Password"
+                                    type="password"
+                                    value={values.confirmPassword}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    helperText={
+                                        touched.confirmPassword ? errors.confirmPassword : ''
+                                    }
+                                    error={
+                                        touched.confirmPassword && Boolean(errors.confirmPassword)
+                                    }
+                                    margin="dense"
+                                    variant="outlined"
+                                    fullWidth
+                                />
+                                <TextField
+                                    id="birthDate"
+                                    type="date"
+                                    defaultValue="2017-05-24"
+                                    value={values.birthDate}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    helperText={touched.birthDate ? errors.birthDate : ''}
+                                    error={touched.birthDate && Boolean(errors.birthDate)}
+                                    margin="dense"
+                                    variant="outlined"
+                                    fullWidth
+                                />
+                            </CardContent>
 
-                    <Button type="submit" color="primary" disabled={isSubmitting}>
-                        Register
-                    </Button>
-                </Card>
-            </form>
-        </div>
+                            <Button type="submit" color="primary" disabled={isSubmitting}>
+                                Register
+                            </Button>
+                        </Card>
+                    </form>
+                </div>
+            )}
+        </>
     );
 };
