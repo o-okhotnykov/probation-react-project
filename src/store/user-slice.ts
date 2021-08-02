@@ -7,13 +7,13 @@ import { LoginResponse, RegisterResponse, IUserData } from '../interface/api/aut
 interface IUserState {
     accessToken: string;
     userId: number | null;
-    userData: IUserData | null;
+    userData: IUserData;
 }
 
 const initialState: IUserState = {
     accessToken: '',
     userId: null,
-    userData: null,
+    userData: { email: '', name: '', surname: '', birthDate: '', id: null },
 };
 
 export const registerAsync = createAsyncThunk(
@@ -95,7 +95,7 @@ export const userSelector = (state: RootState): IUserState => state.user;
 
 export const userIdSelector = createSelector(userSelector, ({ userId }) => userId);
 
-export const userDataSelector = createSelector(userSelector, ({ userData }) => userData);
+export const userDataSelector = createSelector(userSelector, ({ userData }): IUserData => userData);
 
 export const isAuthorizedSelector = createSelector(userSelector, ({ accessToken }) => {
     if (accessToken.length > 0) {
