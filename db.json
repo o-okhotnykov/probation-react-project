@@ -15,6 +15,14 @@
       "surname": "Under",
       "birthDate": "2021-08-05",
       "id": 2
+    },
+    {
+      "email": "1w@fwe.f",
+      "password": "$2a$10$GGQw/0Q41DJ8/Ok52CQ/RePBWt8w25s8FCUFvlXCqkln8SYIRr8dW",
+      "name": "Alex",
+      "surname": "Under",
+      "birthDate": "2021-08-06",
+      "id": 3
     }
   ]
 }

@@ -22,6 +22,14 @@ const persistedReducer = persistReducer(persistConfig, reducers);
 
 export const store = configureStore({
     reducer: persistedReducer,
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware({
+            serializableCheck: {
+                ignoredActions: ['payload.config.transformRequest'],
+                ignoredActionPaths: ['register', 'rehydrate', 'payload.config.transformRequest'],
+                ignoredPaths: ['register', 'rehydrate', 'payload.config.transformRequest'],
+            },
+        }),
 });
 
 export const getStore = store.getState();
