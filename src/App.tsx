@@ -7,8 +7,8 @@ import { Routes } from './routes/Routes';
 export const App: React.FC = () => {
     return (
         <div className="App">
+            <ToastContainer />
             <Layout>
-                <ToastContainer />
                 <Routes />
             </Layout>
         </div>
