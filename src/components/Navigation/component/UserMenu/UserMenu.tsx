@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
@@ -7,10 +8,13 @@ import Button from '@material-ui/core/Button';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import ClearIcon from '@material-ui/icons/Clear';
 import Typography from '@material-ui/core/Typography';
+import { getUserAsync, userIdSelector } from 'store/user-slice';
 
 export const UserMenu: React.FC = () => {
     const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
     const open = Boolean(anchorEl);
+    const dispatch = useDispatch();
+    const userId = useSelector(userIdSelector);
 
     const handleMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
         setAnchorEl(event.currentTarget);
@@ -19,6 +23,16 @@ export const UserMenu: React.FC = () => {
     const handleClose = () => {
         setAnchorEl(null);
     };
+
+    useEffect(() => {
+        if (userId === undefined) {
+            return;
+        }
+        if (userId === null) {
+            return;
+        }
+        dispatch(getUserAsync(userId));
+    }, [dispatch, userId]);
 
     return (
         <div className="user-menu">

@@ -2,21 +2,25 @@ import { createAsyncThunk, createSlice, createSelector } from '@reduxjs/toolkit'
 import type { RootState } from './root-store';
 import { HttpService } from '../api/HttpService';
 import { IRegisterResponse, ILoginFormValues } from '../interface';
-import { LoginResponse, RegisterResponse } from '../interface/api/auth';
+import { LoginResponse, RegisterResponse, IUserData } from '../interface/api/auth';
 
 interface IUserState {
     accessToken: string;
+    userId: number | null;
+    userData: IUserData | null;
 }
 
 const initialState: IUserState = {
     accessToken: '',
+    userId: null,
+    userData: null,
 };
 
 export const registerAsync = createAsyncThunk(
     'app/registerUser',
     async (user: IRegisterResponse) => {
         const data = await HttpService.post<RegisterResponse>('register', user);
-        console.log(data);
+
         if ('isAxiosError' in data) {
             console.log('err', data.response);
             return;
@@ -37,12 +41,24 @@ export const loginAsync = createAsyncThunk('app/loginUser', async (user: ILoginF
     return data;
 });
 
+export const getUserAsync = createAsyncThunk('app/getUser', async (userId: number) => {
+    const data = await HttpService.get<LoginResponse>(`users/${userId}`);
+
+    if ('isAxiosError' in data) {
+        console.log('err', data.response);
+        return;
+    }
+
+    return data;
+});
+
 export const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
         logout: (state: IUserState) => {
             state.accessToken = '';
+            state.userId = null;
         },
     },
     extraReducers: (builder) =>
@@ -52,6 +68,7 @@ export const userSlice = createSlice({
                 if (response === undefined) {
                     return;
                 }
+                state.userId = response?.user.id;
                 state.accessToken = response?.accessToken;
             })
             .addCase(loginAsync.fulfilled, (state, action) => {
@@ -59,13 +76,23 @@ export const userSlice = createSlice({
                 if (response === undefined) {
                     return;
                 }
+                state.userId = response?.user.id;
                 state.accessToken = response?.accessToken;
+            })
+            .addCase(getUserAsync.fulfilled, (state, action) => {
+                const response = action.payload?.data;
+                if (response === undefined) {
+                    return;
+                }
+                console.log(response);
             }),
 });
 
 export const { logout } = userSlice.actions;
 
 export const userSelector = (state: RootState): IUserState => state.user;
+
+export const userIdSelector = createSelector(userSelector, ({ userId }) => userId);
 
 export const isAuthorizedSelector = createSelector(userSelector, ({ accessToken }) => {
     if (accessToken.length > 0) {
