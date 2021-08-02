@@ -7,17 +7,23 @@ import Button from '@material-ui/core/Button';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import ClearIcon from '@material-ui/icons/Clear';
 import Typography from '@material-ui/core/Typography';
+import { useDispatch } from 'react-redux';
+import { logout } from 'store/user-slice';
 
 export const UserMenu: React.FC = () => {
     const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
     const open = Boolean(anchorEl);
-
+    const dispatch = useDispatch();
     const handleMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
         setAnchorEl(event.currentTarget);
     };
 
     const handleClose = () => {
         setAnchorEl(null);
+    };
+
+    const handleLogout = () => {
+        dispatch(logout());
     };
 
     return (
@@ -54,7 +60,9 @@ export const UserMenu: React.FC = () => {
                     <Button startIcon={<PersonOutlineIcon />}>Edit Profile</Button>
                 </MenuItem>
                 <MenuItem onClick={handleClose}>
-                    <Button startIcon={<ClearIcon />}>Logout</Button>
+                    <Button onClick={handleLogout} startIcon={<ClearIcon />}>
+                        Logout
+                    </Button>
                 </MenuItem>
             </Menu>
         </div>

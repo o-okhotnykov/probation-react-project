@@ -11,7 +11,6 @@ import './Navigation.scss';
 
 export const Navigation: React.FC = () => {
     const isAuthorized = useSelector(isAuthorizedSelector);
-
     return (
         <Grid item xs={12} className="header">
             <Navbar />

@@ -1,34 +1,61 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
-import { BASE_URL } from '../constants';
+import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
+import { Dispatch } from 'react';
+import { logout } from 'store/user-slice';
+import { BASE_URL } from 'constants/index';
 
-const service = axios.create({
-    baseURL: BASE_URL,
-});
+class HttpService {
+    baseUrl: string;
 
-service.interceptors.response.use(
-    (response) => response,
-    (error) => {
-        return error;
-    },
-);
+    service: AxiosInstance;
 
-export class HttpService {
-    static request<T>(params: AxiosRequestConfig) {
-        return service.request(params) as Promise<
+    constructor(baseUrl: string) {
+        this.baseUrl = baseUrl;
+        this.service = axios.create({ baseURL: baseUrl });
+    }
+
+    interceptorsInit(token: string, dispatch: Dispatch<unknown>): void {
+        this.service.interceptors.request.use(
+            async (config) => {
+                config.headers = {
+                    Authorization: `Bearer ${token}`,
+                };
+                return config;
+            },
+            (error) => {
+                Promise.reject(error);
+            },
+        );
+
+        this.service.interceptors.response.use(
+            (response) => {
+                return response;
+            },
+            async (error) => {
+                if (error.response.status === 401) {
+                    dispatch(logout());
+                    return error;
+                }
+
+                return Promise.reject(error.message);
+            },
+        );
+    }
+
+    request<T>(params: AxiosRequestConfig) {
+        return this.service.request(params) as Promise<
             AxiosResponse<T> | AxiosError<{ message: string }>
         >;
     }
 
-    static get<T>(path: string) {
-        return this.request<T>({
+    get(path: string) {
+        return this.request({
             method: 'GET',
             url: path,
             responseType: 'json',
         });
     }
 
-    static post<T>(path: string, payload: unknown) {
+    post<T>(path: string, payload: unknown) {
         return this.request<T>({
             method: 'POST',
             url: path,
@@ -36,3 +63,5 @@ export class HttpService {
         });
     }
 }
+
+export const httpService = new HttpService(BASE_URL);
