@@ -8,13 +8,14 @@ import Button from '@material-ui/core/Button';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import ClearIcon from '@material-ui/icons/Clear';
 import Typography from '@material-ui/core/Typography';
-import { getUserAsync, userIdSelector } from 'store/user-slice';
+import { getUserAsync, userDataSelector, userIdSelector } from 'store/user-slice';
 
 export const UserMenu: React.FC = () => {
     const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
     const open = Boolean(anchorEl);
     const dispatch = useDispatch();
     const userId = useSelector(userIdSelector);
+    const userData = useSelector(userDataSelector);
 
     const handleMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
         setAnchorEl(event.currentTarget);
@@ -37,8 +38,8 @@ export const UserMenu: React.FC = () => {
     return (
         <div className="user-menu">
             <div className="user-data">
-                <Typography>Name Name</Typography>
-                <Typography>Position</Typography>
+                <Typography>{`${userData?.name} ${userData?.surname}`}</Typography>
+                <Typography>{userData?.email}</Typography>
             </div>
             <IconButton
                 aria-label="account of current user"
