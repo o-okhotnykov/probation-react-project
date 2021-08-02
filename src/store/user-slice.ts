@@ -64,28 +64,27 @@ export const userSlice = createSlice({
     extraReducers: (builder) =>
         builder
             .addCase(registerAsync.fulfilled, (state, action) => {
-                const response = action.payload?.data;
-                if (response === undefined) {
+                const data = action.payload?.data;
+                if (data === undefined) {
                     return;
                 }
-                state.userId = response?.user.id;
-                state.accessToken = response?.accessToken;
+                state.userId = data.user.id;
+                state.accessToken = data.accessToken;
             })
             .addCase(loginAsync.fulfilled, (state, action) => {
-                const response = action.payload?.data;
-                if (response === undefined) {
+                const data = action.payload?.data;
+                if (data === undefined) {
                     return;
                 }
-                state.userId = response?.user.id;
-                state.accessToken = response?.accessToken;
+                state.userId = data.user.id;
+                state.accessToken = data.accessToken;
             })
             .addCase(getUserAsync.fulfilled, (state, action) => {
                 const data = action.payload?.data;
 
-                if (data === undefined) {
-                    return;
+                if (data) {
+                    state.userData = data;
                 }
-                state.userData = data;
             }),
 });
 

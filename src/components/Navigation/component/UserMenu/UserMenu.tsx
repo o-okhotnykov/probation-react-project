@@ -25,13 +25,9 @@ export const UserMenu: React.FC = () => {
     };
 
     useEffect(() => {
-        if (userId === undefined) {
-            return;
+        if (userId) {
+            dispatch(getUserAsync(userId));
         }
-        if (userId === null) {
-            return;
-        }
-        dispatch(getUserAsync(userId));
     }, [dispatch, userId]);
 
     const handleLogout = () => {
