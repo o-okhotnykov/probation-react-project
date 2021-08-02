@@ -47,11 +47,12 @@ class HttpService {
         >;
     }
 
-    get(path: string) {
-        return this.request({
+    get<T>(path: string, payload: unknown) {
+        return this.request<T>({
             method: 'GET',
             url: path,
             responseType: 'json',
+            params: payload,
         });
     }
 

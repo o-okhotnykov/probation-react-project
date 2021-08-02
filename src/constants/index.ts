@@ -1,5 +1,9 @@
 export const BASE_URL = 'http://localhost:3010/';
 
+export const LIMIT = 15;
+
+export const PAGE = 1;
+
 export const ROUTE_PATH = {
     main: '/',
     login: '/login',

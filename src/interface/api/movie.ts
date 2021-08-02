@@ -1,4 +1,4 @@
-export type MovieResponse = {
+export type Movie = {
     title: string;
     year: string;
     genres: string[];
@@ -14,3 +14,5 @@ export type MovieResponse = {
     imdbRating: number;
     posterurl: string;
 };
+
+export type MovieResponse = Movie[];

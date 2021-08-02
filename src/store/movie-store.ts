@@ -1,10 +1,11 @@
 import { createAsyncThunk, createSlice, createSelector } from '@reduxjs/toolkit';
 import { MovieResponse } from 'interface/api/movie';
+import { httpService } from 'api/HttpService';
+import { LIMIT, PAGE } from 'constants/index';
 import type { RootState } from './root-store';
-import { HttpService } from '../api/HttpService';
 
 interface IMovieState {
-    movies: Array<MovieResponse>;
+    movies: MovieResponse;
 }
 
 const initialState: IMovieState = {
@@ -12,7 +13,7 @@ const initialState: IMovieState = {
 };
 
 export const getMoviesAsync = createAsyncThunk('app/getMovies', async () => {
-    const data = await HttpService.get<MovieResponse[]>('movies?_page=1&_limit=15');
+    const data = await httpService.get<MovieResponse>('movies', { _page: PAGE, _limit: LIMIT });
 
     if ('isAxiosError' in data) {
         console.log('err', data.response);
