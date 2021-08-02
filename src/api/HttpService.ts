@@ -20,8 +20,8 @@ export class HttpService {
         >;
     }
 
-    static get(path: string) {
-        return this.request({
+    static get<T>(path: string) {
+        return this.request<T>({
             method: 'GET',
             url: path,
             responseType: 'json',
