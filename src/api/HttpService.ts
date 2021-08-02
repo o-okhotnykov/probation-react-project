@@ -31,16 +31,17 @@ class HttpService {
                 return response;
             },
             async (error) => {
-                let message = error.response.data;
-
-                if (message === '') {
-                    message = 'Error';
-                }
+                const message = error.response.data;
 
                 if (error.response.status === 401) {
                     dispatch(logout());
                     return error;
                 }
+
+                if (message === '') {
+                    return error;
+                }
+
                 return Promise.reject(message);
             },
         );
