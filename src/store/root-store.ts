@@ -8,6 +8,7 @@ import { userReducer } from './user-slice';
 const reducers = combineReducers({
     user: userReducer,
 });
+
 const saveSubsetFilter = createFilter('user', ['accessToken', 'userId']);
 
 const persistConfig = {

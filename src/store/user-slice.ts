@@ -42,7 +42,7 @@ export const loginAsync = createAsyncThunk('app/loginUser', async (user: ILoginF
 });
 
 export const getUserAsync = createAsyncThunk('app/getUser', async (userId: number) => {
-    const data = await HttpService.get<LoginResponse>(`users/${userId}`);
+    const data = await HttpService.get<IUserData>(`users/${userId}`);
 
     if ('isAxiosError' in data) {
         console.log('err', data.response);
@@ -80,11 +80,12 @@ export const userSlice = createSlice({
                 state.accessToken = response?.accessToken;
             })
             .addCase(getUserAsync.fulfilled, (state, action) => {
-                const response = action.payload?.data;
-                if (response === undefined) {
+                const data = action.payload?.data;
+
+                if (data === undefined) {
                     return;
                 }
-                console.log(response);
+                state.userData = data;
             }),
 });
 
@@ -93,6 +94,8 @@ export const { logout } = userSlice.actions;
 export const userSelector = (state: RootState): IUserState => state.user;
 
 export const userIdSelector = createSelector(userSelector, ({ userId }) => userId);
+
+export const userDataSelector = createSelector(userSelector, ({ userData }) => userData);
 
 export const isAuthorizedSelector = createSelector(userSelector, ({ accessToken }) => {
     if (accessToken.length > 0) {

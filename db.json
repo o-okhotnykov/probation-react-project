@@ -7,6 +7,14 @@
       "surname": "Under",
       "birthDate": "2021-08-05",
       "id": 1
+    },
+    {
+      "email": "oleksandr.okhotnykov@nure.ua",
+      "password": "$2a$10$zgtGfv25nKAbs4q2repOfefeiW1FPbIuuDrtILLv9vy7qTEC.zO/S",
+      "name": "Alex",
+      "surname": "Under",
+      "birthDate": "2021-08-05",
+      "id": 2
     }
   ]
 }
