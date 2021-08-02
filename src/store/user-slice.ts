@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, createSelector } from '@reduxjs/toolkit';
 import type { RootState } from './root-store';
-import { HttpService } from '../api/HttpService';
+import { httpService } from '../api/HttpService';
 import { IRegisterResponse, ILoginFormValues } from '../interface';
 import { LoginResponse, RegisterResponse } from '../interface/api/auth';
 
@@ -15,7 +15,7 @@ const initialState: IUserState = {
 export const registerAsync = createAsyncThunk(
     'app/registerUser',
     async (user: IRegisterResponse) => {
-        const data = await HttpService.post<RegisterResponse>('register', user);
+        const data = await httpService.post<RegisterResponse>('register', user);
         console.log(data);
         if ('isAxiosError' in data) {
             console.log('err', data.response);
@@ -27,7 +27,7 @@ export const registerAsync = createAsyncThunk(
 );
 
 export const loginAsync = createAsyncThunk('app/loginUser', async (user: ILoginFormValues) => {
-    const data = await HttpService.post<LoginResponse>('login', user);
+    const data = await httpService.post<LoginResponse>('login', user);
 
     if ('isAxiosError' in data) {
         console.log('err', data.response);
@@ -43,9 +43,6 @@ export const userSlice = createSlice({
     reducers: {
         logout(state: IUserState) {
             state.accessToken = '';
-        },
-        getToken(state: IUserState) {
-            return state;
         },
     },
     extraReducers: (builder) =>
@@ -66,7 +63,7 @@ export const userSlice = createSlice({
             }),
 });
 
-export const { logout, getToken } = userSlice.actions;
+export const { logout } = userSlice.actions;
 
 export const userSelector = (state: RootState): IUserState => state.user;
 

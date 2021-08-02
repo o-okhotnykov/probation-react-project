@@ -1,17 +1,20 @@
-/* eslint-disable class-methods-use-this */
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
+import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { Dispatch } from 'react';
 import { logout } from 'store/user-slice';
 import { BASE_URL } from 'constants/index';
 
-const service = axios.create({
-    baseURL: BASE_URL,
-});
+class HttpService {
+    baseUrl: string;
 
-export class HttpService {
+    service: AxiosInstance;
+
+    constructor(baseUrl: string) {
+        this.baseUrl = baseUrl;
+        this.service = axios.create({ baseURL: baseUrl });
+    }
+
     interceptorsInit(token: string, dispatch: Dispatch<unknown>): void {
-        service.interceptors.request.use(
+        this.service.interceptors.request.use(
             async (config) => {
                 config.headers = {
                     Authorization: `Bearer ${token}`,
@@ -23,7 +26,7 @@ export class HttpService {
             },
         );
 
-        service.interceptors.response.use(
+        this.service.interceptors.response.use(
             (response) => {
                 return response;
             },
@@ -38,17 +41,13 @@ export class HttpService {
         );
     }
 
-    static redirectTo() {
-        window.location.assign('/login');
-    }
-
-    static request<T>(params: AxiosRequestConfig) {
-        return service.request(params) as Promise<
+    request<T>(params: AxiosRequestConfig) {
+        return this.service.request(params) as Promise<
             AxiosResponse<T> | AxiosError<{ message: string }>
         >;
     }
 
-    static get(path: string) {
+    get(path: string) {
         return this.request({
             method: 'GET',
             url: path,
@@ -56,7 +55,7 @@ export class HttpService {
         });
     }
 
-    static post<T>(path: string, payload: unknown) {
+    post<T>(path: string, payload: unknown) {
         return this.request<T>({
             method: 'POST',
             url: path,
@@ -64,3 +63,5 @@ export class HttpService {
         });
     }
 }
+
+export const httpService = new HttpService(BASE_URL);
