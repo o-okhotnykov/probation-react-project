@@ -17,57 +17,55 @@ export const Form: React.FC<FormikProps<ILoginFormValues>> = (props) => {
     const isAuthorized = useSelector(isAuthorizedSelector);
     const classes = useStyles();
 
-    const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         dispatch(loginAsync(values));
     };
 
+    if (isAuthorized) {
+        return <Redirect to={ROUTE_PATH.main} />;
+    }
+
     return (
-        <>
-            {isAuthorized ? (
-                <Redirect to={ROUTE_PATH.main} />
-            ) : (
-                <div className="login-container">
-                    <form onSubmit={handleSubmit} className="form">
-                        <Card>
-                            <CardMedia className={classes.media} image={logo} title="Paella dish" />
-                            <CardContent>
-                                <TextField
-                                    id="email"
-                                    label="Email"
-                                    type="email"
-                                    value={values.email}
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                    helperText={touched.email ? errors.email : ''}
-                                    error={touched.email && Boolean(errors.email)}
-                                    margin="dense"
-                                    variant="outlined"
-                                    fullWidth
-                                />
+        <div className="login-container">
+            <form onSubmit={handleSubmit} className="form">
+                <Card>
+                    <CardMedia className={classes.media} image={logo} title="Paella dish" />
+                    <CardContent>
+                        <TextField
+                            id="email"
+                            label="Email"
+                            type="email"
+                            value={values.email}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            helperText={touched.email ? errors.email : ''}
+                            error={touched.email && Boolean(errors.email)}
+                            margin="dense"
+                            variant="outlined"
+                            fullWidth
+                        />
 
-                                <TextField
-                                    id="password"
-                                    label="Password"
-                                    type="password"
-                                    value={values.password}
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                    helperText={touched.password ? errors.password : ''}
-                                    error={touched.password && Boolean(errors.password)}
-                                    margin="dense"
-                                    variant="outlined"
-                                    fullWidth
-                                />
-                            </CardContent>
+                        <TextField
+                            id="password"
+                            label="Password"
+                            type="password"
+                            value={values.password}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            helperText={touched.password ? errors.password : ''}
+                            error={touched.password && Boolean(errors.password)}
+                            margin="dense"
+                            variant="outlined"
+                            fullWidth
+                        />
+                    </CardContent>
 
-                            <Button type="submit" color="primary" disabled={isSubmitting}>
-                                Login
-                            </Button>
-                        </Card>
-                    </form>
-                </div>
-            )}
-        </>
+                    <Button type="submit" color="primary" disabled={isSubmitting}>
+                        Login
+                    </Button>
+                </Card>
+            </form>
+        </div>
     );
 };
