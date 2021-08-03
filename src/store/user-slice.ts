@@ -14,7 +14,7 @@ interface IUserState {
 const initialState: IUserState = {
     accessToken: '',
     isAuthorized: false,
-    userData: { id: null },
+    userData: { email: '', name: '', id: null },
 };
 
 export const registerAsync = createAsyncThunk('app/registerUser', (user: IRegisterResponse) => {

@@ -34,8 +34,12 @@ export const UserMenu: React.FC = () => {
     return (
         <div className="user-menu">
             <div className="user-data">
-                <Typography>{`${userData?.name} ${userData?.surname}`}</Typography>
-                <Typography>{userData?.email}</Typography>
+                {userData.name ? (
+                    <>
+                        <Typography>{`${userData?.name} ${userData?.surname}`}</Typography>
+                        <Typography>{userData?.email}</Typography>
+                    </>
+                ) : null}
             </div>
             <IconButton
                 aria-label="account of current user"
