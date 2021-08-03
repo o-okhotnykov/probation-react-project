@@ -10,9 +10,9 @@ export type RegisterResponse = {
 };
 
 export type IUserData = {
-    birthDate: string;
-    email: string;
+    birthDate?: string;
+    email?: string;
     id: number | null;
-    name: string;
-    surname: string;
+    name?: string;
+    surname?: string;
 };

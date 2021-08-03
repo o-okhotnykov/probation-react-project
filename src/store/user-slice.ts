@@ -7,14 +7,14 @@ import type { RootState } from './root-store';
 
 interface IUserState {
     accessToken: string;
-    isAuthorized: boolean;
     userData: IUserData;
+    isAuthorized: boolean;
 }
 
 const initialState: IUserState = {
     accessToken: '',
     isAuthorized: false,
-    userData: { email: '', name: '', surname: '', birthDate: '', id: null },
+    userData: { id: null },
 };
 
 export const registerAsync = createAsyncThunk('app/registerUser', (user: IRegisterResponse) => {
@@ -45,14 +45,20 @@ export const userSlice = createSlice({
 
                 state.accessToken = data.accessToken;
                 state.isAuthorized = true;
-                successfulToastNotify('Successful register');
+                state.userData = { id: data.user.id };
+                successfulToastNotify('Successful Register');
             })
             .addCase(loginAsync.fulfilled, (state, action) => {
                 const { data } = action.payload;
 
                 state.accessToken = data.accessToken;
                 state.isAuthorized = true;
-                successfulToastNotify('Successful login');
+                state.userData = { id: data.user.id };
+                successfulToastNotify('Successful Login');
+            })
+            .addCase(getUserAsync.fulfilled, (state, action) => {
+                const { data } = action.payload;
+                state.userData = data;
             })
             .addCase(registerAsync.rejected, (state, action) => {
                 const { message } = action.error;
