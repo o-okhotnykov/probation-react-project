@@ -9,7 +9,7 @@ const reducers = combineReducers({
     user: userReducer,
 });
 
-const saveSubsetFilter = createFilter('user', ['accessToken', 'userData[id]']);
+const saveSubsetFilter = createFilter('user', ['accessToken', 'isAuthorized', 'userData[id]']);
 
 const persistConfig = {
     key: 'root',
@@ -22,10 +22,6 @@ const persistedReducer = persistReducer(persistConfig, reducers);
 
 export const store = configureStore({
     reducer: persistedReducer,
-    middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware({
-            serializableCheck: false,
-        }),
 });
 
 export const getStore = store.getState();

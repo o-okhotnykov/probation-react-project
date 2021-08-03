@@ -2,27 +2,11 @@
   "users": [
     {
       "email": "sashaohotni26@gmail.com",
-      "password": "$2a$10$DtkQUJZllR4DEf1L9YtJZuVpyFtrZ5m53OJfuvg1WDMDs96rd.q4e",
+      "password": "$2a$10$Jg.fZyWmBxq22udK/FP3VuPNk5UfM1eYhvY6UmMUHGazSKk.vKFyW",
       "name": "Alex",
       "surname": "Under",
-      "birthDate": "2021-08-05",
+      "birthDate": "2021-08-02",
       "id": 1
-    },
-    {
-      "email": "oleksandr.okhotnykov@nure.ua",
-      "password": "$2a$10$zgtGfv25nKAbs4q2repOfefeiW1FPbIuuDrtILLv9vy7qTEC.zO/S",
-      "name": "Alex",
-      "surname": "Under",
-      "birthDate": "2021-08-05",
-      "id": 2
-    },
-    {
-      "email": "1w@fwe.f",
-      "password": "$2a$10$GGQw/0Q41DJ8/Ok52CQ/RePBWt8w25s8FCUFvlXCqkln8SYIRr8dW",
-      "name": "Alex",
-      "surname": "Under",
-      "birthDate": "2021-08-06",
-      "id": 3
     }
   ]
 }

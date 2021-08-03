@@ -45,29 +45,20 @@ export const userSlice = createSlice({
 
                 state.accessToken = data.accessToken;
                 state.isAuthorized = true;
-                state.userData = {
-                    email: '',
-                    name: '',
-                    surname: '',
-                    birthDate: '',
-                    id: data.user.id,
-                };
+                state.userData = { id: data.user.id };
                 successfulToastNotify('Successful Register');
             })
-
             .addCase(loginAsync.fulfilled, (state, action) => {
                 const { data } = action.payload;
 
                 state.accessToken = data.accessToken;
                 state.isAuthorized = true;
-                state.userData = {
-                    email: '',
-                    name: '',
-                    surname: '',
-                    birthDate: '',
-                    id: data.user.id,
-                };
+                state.userData = { id: data.user.id };
                 successfulToastNotify('Successful Login');
+            })
+            .addCase(getUserAsync.fulfilled, (state, action) => {
+                const { data } = action.payload;
+                state.userData = data;
             })
             .addCase(registerAsync.rejected, (state, action) => {
                 const { message } = action.error;

@@ -23,6 +23,7 @@ export const UserMenu: React.FC = () => {
     };
 
     useEffect(() => {
+        console.log(userId);
         if (userId) {
             dispatch(getUserAsync(userId));
         }
