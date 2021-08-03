@@ -1,4 +1,4 @@
-import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { Dispatch } from 'react';
 import { logout } from 'store/user-slice';
 import { BASE_URL } from 'constants/index';
@@ -31,20 +31,24 @@ class HttpService {
                 return response;
             },
             async (error) => {
-                if (error.response.status === 401) {
+                const errorData = error.response?.data;
+                const errorStatus = error.response?.status;
+
+                if (errorStatus === 401) {
                     dispatch(logout());
-                    return error;
                 }
 
-                return Promise.reject(error.message);
+                if (errorData) {
+                    error.message = errorData;
+                }
+
+                return Promise.reject(error);
             },
         );
     }
 
     request<T>(params: AxiosRequestConfig) {
-        return this.service.request(params) as Promise<
-            AxiosResponse<T> | AxiosError<{ message: string }>
-        >;
+        return this.service.request(params) as Promise<AxiosResponse<T>>;
     }
 
     get<T>(path: string) {

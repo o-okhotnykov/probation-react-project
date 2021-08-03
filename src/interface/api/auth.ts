@@ -1,6 +1,7 @@
 export type LoginResponse = {
     accessToken: string;
     user: IUserData;
+    error: { message: string };
 };
 
 export type RegisterResponse = {
