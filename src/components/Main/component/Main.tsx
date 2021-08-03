@@ -12,11 +12,11 @@ export const Main: React.FC = () => {
     const loading = useSelector(loadingSelector);
     return (
         <>
-            {loading ? <Loading /> : null}
             <Grid container>
                 <Grid item xs={1} className="side-section-container">
                     <SideSection />
                 </Grid>
+                {loading ? <Loading /> : null}
                 <Grid item xs={11} className="main-section">
                     <Navigation />
                     <div>H1</div>

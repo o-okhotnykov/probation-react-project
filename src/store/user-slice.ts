@@ -1,54 +1,32 @@
 import { createAsyncThunk, createSlice, createSelector } from '@reduxjs/toolkit';
-import { httpService } from 'api/HttpService';
-import { IRegisterResponse, ILoginFormValues } from 'interface';
 import { LoginResponse, RegisterResponse, IUserData } from 'interface/api/auth';
+import { IRegisterResponse, ILoginFormValues } from 'interface';
+import { httpService } from 'api/HttpService';
+import { errorToastNotify, successfulToastNotify } from 'toasts';
 import type { RootState } from './root-store';
 
 interface IUserState {
     accessToken: string;
-    userId: number | null;
     userData: IUserData;
+    isAuthorized: boolean;
 }
 
 const initialState: IUserState = {
     accessToken: '',
-    userId: null,
-    userData: { email: '', name: '', surname: '', birthDate: '', id: null },
+    isAuthorized: false,
+    userData: { id: null },
 };
 
-export const registerAsync = createAsyncThunk(
-    'app/registerUser',
-    async (user: IRegisterResponse) => {
-        const data = await httpService.post<RegisterResponse>('register', user);
-        if ('isAxiosError' in data) {
-            console.log('err', data.response);
-            return;
-        }
-
-        return data;
-    },
-);
-
-export const loginAsync = createAsyncThunk('app/loginUser', async (user: ILoginFormValues) => {
-    const data = await httpService.post<LoginResponse>('login', user);
-
-    if ('isAxiosError' in data) {
-        console.log('err', data.response);
-        return;
-    }
-
-    return data;
+export const registerAsync = createAsyncThunk('app/registerUser', (user: IRegisterResponse) => {
+    return httpService.post<RegisterResponse>('register', user);
 });
 
-export const getUserAsync = createAsyncThunk('app/getUser', async (userId: number) => {
-    const data = await httpService.get<IUserData>(`users/${userId}`);
+export const loginAsync = createAsyncThunk('app/loginUser', (user: ILoginFormValues) => {
+    return httpService.post<LoginResponse>('login', user);
+});
 
-    if ('isAxiosError' in data) {
-        console.log('err', data.response);
-        return;
-    }
-
-    return data;
+export const getUserAsync = createAsyncThunk('app/getUser', (userId: number) => {
+    return httpService.get<IUserData>(`users/${userId}`, {});
 });
 
 export const userSlice = createSlice({
@@ -57,34 +35,42 @@ export const userSlice = createSlice({
     reducers: {
         logout(state: IUserState) {
             state.accessToken = '';
-            state.userId = null;
+            state.isAuthorized = false;
         },
     },
     extraReducers: (builder) =>
         builder
             .addCase(registerAsync.fulfilled, (state, action) => {
-                const response = action.payload?.data;
-                if (response === undefined) {
-                    return;
-                }
-                state.userId = response?.user.id;
-                state.accessToken = response?.accessToken;
+                const { data } = action.payload;
+
+                state.accessToken = data.accessToken;
+                state.isAuthorized = true;
+                state.userData = { id: data.user.id };
+                successfulToastNotify('Successful Register');
             })
             .addCase(loginAsync.fulfilled, (state, action) => {
-                const response = action.payload?.data;
-                if (response === undefined) {
-                    return;
-                }
-                state.userId = response?.user.id;
-                state.accessToken = response?.accessToken;
+                const { data } = action.payload;
+
+                state.accessToken = data.accessToken;
+                state.isAuthorized = true;
+                state.userData = { id: data.user.id };
+                successfulToastNotify('Successful Login');
             })
             .addCase(getUserAsync.fulfilled, (state, action) => {
-                const data = action.payload?.data;
-
-                if (data === undefined) {
-                    return;
-                }
+                const { data } = action.payload;
                 state.userData = data;
+            })
+            .addCase(registerAsync.rejected, (state, action) => {
+                const { message } = action.error;
+                if (message) {
+                    errorToastNotify(message);
+                }
+            })
+            .addCase(loginAsync.rejected, (state, action) => {
+                const { message } = action.error;
+                if (message) {
+                    errorToastNotify(message);
+                }
             }),
 });
 
@@ -92,17 +78,15 @@ export const { logout } = userSlice.actions;
 
 export const userSelector = (state: RootState): IUserState => state.user;
 
-export const userIdSelector = createSelector(userSelector, ({ userId }) => userId);
-
-export const userDataSelector = createSelector(userSelector, ({ userData }): IUserData => userData);
-
 export const accessTokenSelector = createSelector(userSelector, (user) => user.accessToken);
 
-export const isAuthorizedSelector = createSelector(userSelector, ({ accessToken }) => {
-    if (accessToken.length > 0) {
-        return true;
-    }
-    return false;
-});
+export const userIdSelector = createSelector(userSelector, ({ userData }) => userData.id);
+
+export const userDataSelector = createSelector(userSelector, ({ userData }) => userData);
+
+export const isAuthorizedSelector = createSelector(
+    userSelector,
+    ({ isAuthorized }) => isAuthorized,
+);
 
 export const userReducer = userSlice.reducer;
