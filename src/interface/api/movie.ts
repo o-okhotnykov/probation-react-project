@@ -16,3 +16,8 @@ export type Movie = {
 };
 
 export type MovieResponse = Movie[];
+
+export type GetMoviesParams = {
+    page?: number;
+    limit?: number;
+};
