@@ -6,7 +6,6 @@ import { Typography, Button, IconButton, Menu, MenuItem } from '@material-ui/cor
 import { useDispatch } from 'react-redux';
 import { logout } from 'store/user-slice';
 import { useStyles } from './style';
-import './UserMenu.scss';
 
 export const UserMenu: React.FC = () => {
     const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
