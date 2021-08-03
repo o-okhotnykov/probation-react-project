@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice, createSelector } from '@reduxjs/toolkit';
+import { httpService } from 'api/HttpService';
+import { IRegisterResponse, ILoginFormValues } from 'interface';
+import { LoginResponse, RegisterResponse, IUserData } from 'interface/api/auth';
 import type { RootState } from './root-store';
-import { HttpService } from '../api/HttpService';
-import { IRegisterResponse, ILoginFormValues } from '../interface';
-import { LoginResponse, RegisterResponse, IUserData } from '../interface/api/auth';
 
 interface IUserState {
     accessToken: string;
@@ -19,7 +19,7 @@ const initialState: IUserState = {
 export const registerAsync = createAsyncThunk(
     'app/registerUser',
     async (user: IRegisterResponse) => {
-        const data = await HttpService.post<RegisterResponse>('register', user);
+        const data = await httpService.post<RegisterResponse>('register', user);
 
         if ('isAxiosError' in data) {
             console.log('err', data.response);
@@ -31,7 +31,7 @@ export const registerAsync = createAsyncThunk(
 );
 
 export const loginAsync = createAsyncThunk('app/loginUser', async (user: ILoginFormValues) => {
-    const data = await HttpService.post<LoginResponse>('login', user);
+    const data = await httpService.post<LoginResponse>('login', user);
 
     if ('isAxiosError' in data) {
         console.log('err', data.response);
@@ -42,7 +42,7 @@ export const loginAsync = createAsyncThunk('app/loginUser', async (user: ILoginF
 });
 
 export const getUserAsync = createAsyncThunk('app/getUser', async (userId: number) => {
-    const data = await HttpService.get<IUserData>(`users/${userId}`);
+    const data = await httpService.get<IUserData>(`users/${userId}`);
 
     if ('isAxiosError' in data) {
         console.log('err', data.response);
