@@ -126,9 +126,9 @@ export const Form: React.FC<FormikProps<IRegisterFormValues>> = (props) => {
                 </Card>
             </form>
             <Typography className={classes.text}>
-                Don&apos;t have an account?{' '}
+                Already have an account?{' '}
                 <Link to={ROUTE_PATH.login} className={classes.link}>
-                    Register
+                    Login
                 </Link>
             </Typography>
         </div>
