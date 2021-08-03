@@ -3,11 +3,11 @@ import { configureStore } from '@reduxjs/toolkit';
 import storage from 'redux-persist/lib/storage';
 import { persistReducer } from 'redux-persist';
 import { userReducer } from './user-slice';
-import { movieReducer } from './project-store';
+import { projectsReducer } from './project-store';
 
 const reducers = combineReducers({
     user: userReducer,
-    movie: movieReducer,
+    projects: projectsReducer,
 });
 
 const persistConfig = {

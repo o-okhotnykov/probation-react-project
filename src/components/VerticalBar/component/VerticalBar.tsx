@@ -1,33 +1,32 @@
 import React, { useMemo } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { useSelector } from 'react-redux';
-import { moviesDataSelector } from 'store/movie-store';
+import { projectsDataSelector } from 'store/project-store';
 import { backgroundColor, borderColor, options } from './constant';
 import './VerticalBar.scss';
 
 export const VerticalBar: React.FC = () => {
-    const moviesData = useSelector(moviesDataSelector);
-
+    const projectData = useSelector(projectsDataSelector);
     const ratings = useMemo(
         () =>
-            moviesData.map(({ imdbRating }) => {
-                return imdbRating;
+            projectData.map(({ value }) => {
+                return Number(value);
             }),
-        [moviesData],
+        [projectData],
     );
     const titles = useMemo(
         () =>
-            moviesData.map(({ originalTitle }) => {
-                return originalTitle;
+            projectData.map(({ title }) => {
+                return title;
             }),
-        [moviesData],
+        [projectData],
     );
 
     const data = {
         labels: titles,
         datasets: [
             {
-                label: 'imdb rating',
+                label: 'Project price',
                 data: ratings,
                 backgroundColor,
                 borderColor,

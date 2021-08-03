@@ -13,27 +13,27 @@ const initialState: IProjectState = {
     projects: [],
 };
 
-export const getMoviesAsync = createAsyncThunk(
-    'app/getMovies',
+export const getProjectsAsync = createAsyncThunk(
+    'app/getProjects',
     ({ page = PAGE, limit = LIMIT }: GetProjectsParams = { page: PAGE, limit: LIMIT }) => {
         const params = { _page: page, _limit: limit };
-        return httpService.get<ProjectResponse>('movies', { params });
+        return httpService.get<ProjectResponse>('projects', { params });
     },
 );
 
-export const movieSlice = createSlice({
-    name: 'movie',
+export const projectSlice = createSlice({
+    name: 'project',
     initialState,
     reducers: {},
     extraReducers: (builder) =>
         builder
-            .addCase(getMoviesAsync.fulfilled, (state, action) => {
+            .addCase(getProjectsAsync.fulfilled, (state, action) => {
                 const { data } = action.payload;
                 if (data) {
-                    state.movies = data;
+                    state.projects = data;
                 }
             })
-            .addCase(getMoviesAsync.rejected, (state, action) => {
+            .addCase(getProjectsAsync.rejected, (state, action) => {
                 const { message } = action.error;
                 if (message) {
                     errorToastNotify(message);
@@ -41,8 +41,8 @@ export const movieSlice = createSlice({
             }),
 });
 
-export const movieSelector = (state: RootState): IProjectState => state.movie;
+export const projectsSelector = (state: RootState): IProjectState => state.projects;
 
-export const moviesDataSelector = createSelector(movieSelector, ({ movies }) => movies);
+export const projectsDataSelector = createSelector(projectsSelector, ({ projects }) => projects);
 
-export const movieReducer = movieSlice.reducer;
+export const projectsReducer = projectSlice.reducer;
