@@ -26,7 +26,7 @@ export const loginAsync = createAsyncThunk('app/loginUser', (user: ILoginFormVal
 });
 
 export const getUserAsync = createAsyncThunk('app/getUser', (userId: number) => {
-    return httpService.get<IUserData>(`users/${userId}`);
+    return httpService.get<IUserData>(`users/${userId}`, {});
 });
 
 export const userSlice = createSlice({
