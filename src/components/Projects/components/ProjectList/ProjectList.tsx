@@ -3,9 +3,12 @@ import React, { useEffect } from 'react';
 import { Table, TableBody, TableContainer, TableHead, TableRow } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { projectsDataSelector, getProjectsAsync } from 'store/project-store';
+import { ErrorComponent } from 'components/ErrorComponent';
+import { Project } from 'interface/api/project';
 import { useStyles, StyledTableCell, StyledTableRow } from './style';
+import { ProjectItem } from '../ProjectItem/ProjectItem';
 import './ProjectList.scss';
-import { ProjectItem } from '../ProjectItem/ProjectList';
+import { ProjectHeader } from '../ProjectHeader/ProjectHeader';
 
 export const ProjectList: React.FC = () => {
     const classes = useStyles();
@@ -16,10 +19,15 @@ export const ProjectList: React.FC = () => {
         dispatch(getProjectsAsync());
     }, [dispatch]);
 
+    if (moviesData.length === 0) {
+        return <ErrorComponent />;
+    }
+
     return (
         <div className="project-list">
             <>
-                {moviesData.map((project) => {
+                <ProjectHeader />
+                {moviesData.map((project: Project) => {
                     return <ProjectItem key={project.id} {...project} />;
                 })}
             </>
