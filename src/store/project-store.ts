@@ -1,23 +1,23 @@
 import { createAsyncThunk, createSlice, createSelector } from '@reduxjs/toolkit';
-import { GetMoviesParams, MovieResponse } from 'interface/api/movie';
+import { GetProjectsParams, ProjectResponse } from 'interface/api/project';
 import { httpService } from 'api/HttpService';
 import { LIMIT, PAGE } from 'constants/index';
 import { errorToastNotify } from 'toasts/component/errorToast';
 import type { RootState } from './root-store';
 
-interface IMovieState {
-    movies: MovieResponse;
+interface IProjectState {
+    projects: ProjectResponse;
 }
 
-const initialState: IMovieState = {
-    movies: [],
+const initialState: IProjectState = {
+    projects: [],
 };
 
 export const getMoviesAsync = createAsyncThunk(
     'app/getMovies',
-    ({ page = PAGE, limit = LIMIT }: GetMoviesParams = { page: PAGE, limit: LIMIT }) => {
+    ({ page = PAGE, limit = LIMIT }: GetProjectsParams = { page: PAGE, limit: LIMIT }) => {
         const params = { _page: page, _limit: limit };
-        return httpService.get<MovieResponse>('movies', { params });
+        return httpService.get<ProjectResponse>('movies', { params });
     },
 );
 
@@ -41,7 +41,7 @@ export const movieSlice = createSlice({
             }),
 });
 
-export const movieSelector = (state: RootState): IMovieState => state.movie;
+export const movieSelector = (state: RootState): IProjectState => state.movie;
 
 export const moviesDataSelector = createSelector(movieSelector, ({ movies }) => movies);
 

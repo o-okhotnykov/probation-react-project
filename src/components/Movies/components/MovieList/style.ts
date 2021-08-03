@@ -21,4 +21,7 @@ export const StyledTableRow = withStyles((theme) => ({
 
 export const useStyles = makeStyles({
     table: {},
+    row: {
+        margin: '15px 0',
+    },
 });
