@@ -1,5 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { accessTokenSelector } from 'store/user-slice';
 import { Layout } from 'components/Layout';
 import { Routes } from 'routes/Routes';
@@ -12,6 +14,7 @@ export const App: React.FC = () => {
 
     return (
         <div className="App">
+            <ToastContainer />
             <Layout>
                 <Routes />
             </Layout>

@@ -1,13 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import IconButton from '@material-ui/core/IconButton';
-import Button from '@material-ui/core/Button';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import ClearIcon from '@material-ui/icons/Clear';
-import Typography from '@material-ui/core/Typography';
+import { Typography, Button, IconButton, Menu, MenuItem } from '@material-ui/core';
+
 import { logout, getUserAsync, userDataSelector, userIdSelector } from 'store/user-slice';
 
 export const UserMenu: React.FC = () => {

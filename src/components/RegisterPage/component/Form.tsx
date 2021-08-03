@@ -1,18 +1,20 @@
 import React, { FormEvent } from 'react';
 import { Card, CardContent, CardMedia, TextField, Button } from '@material-ui/core';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { FormikProps } from 'formik';
-import logo from 'img/logo.png';
-import { registerAsync } from 'store/user-slice';
+import { Redirect } from 'react-router-dom';
+import { registerAsync, isAuthorizedSelector } from 'store/user-slice';
 import { IRegisterFormValues } from 'interface';
+import { ROUTE_PATH } from 'constants/index';
+import logo from 'img/logo.png';
 import { useStyles } from './styles';
 import './RegisterPage.scss';
 
 export const Form: React.FC<FormikProps<IRegisterFormValues>> = (props) => {
     const { values, touched, errors, isSubmitting, handleChange, handleBlur } = props;
-
     const dispatch = useDispatch();
     const classes = useStyles();
+    const isAuthorized = useSelector(isAuthorizedSelector);
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -26,6 +28,10 @@ export const Form: React.FC<FormikProps<IRegisterFormValues>> = (props) => {
             }),
         );
     };
+
+    if (isAuthorized) {
+        return <Redirect to={ROUTE_PATH.main} />;
+    }
 
     return (
         <div className="register-container">

@@ -1,23 +1,30 @@
 import React, { FormEvent } from 'react';
-import { useDispatch } from 'react-redux';
 import { Card, CardContent, CardMedia, TextField, Button } from '@material-ui/core';
+import { useDispatch, useSelector } from 'react-redux';
 import { FormikProps } from 'formik';
-import { loginAsync } from 'store/user-slice';
+import { Redirect } from 'react-router-dom';
+import { loginAsync, isAuthorizedSelector } from 'store/user-slice';
+import { ILoginFormValues } from 'interface';
+import { ROUTE_PATH } from 'constants/index';
 import logo from 'img/logo.png';
-import { ILoginFormValues } from 'interface/index';
 import { useStyles } from './styles';
 import './LoginPage.scss';
 
 export const Form: React.FC<FormikProps<ILoginFormValues>> = (props) => {
     const { values, touched, errors, isSubmitting, handleChange, handleBlur } = props;
-
     const dispatch = useDispatch();
+
+    const isAuthorized = useSelector(isAuthorizedSelector);
     const classes = useStyles();
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         dispatch(loginAsync(values));
     };
+
+    if (isAuthorized) {
+        return <Redirect to={ROUTE_PATH.main} />;
+    }
 
     return (
         <div className="login-container">
