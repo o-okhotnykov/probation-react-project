@@ -9,7 +9,7 @@ const reducers = combineReducers({
     user: userReducer,
 });
 
-const saveSubsetFilter = createFilter('user', ['accessToken', 'userId']);
+const saveSubsetFilter = createFilter('user', ['accessToken', 'userData[id]']);
 
 const persistConfig = {
     key: 'root',
@@ -24,11 +24,7 @@ export const store = configureStore({
     reducer: persistedReducer,
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({
-            serializableCheck: {
-                ignoredActions: ['payload.config.transformRequest'],
-                ignoredActionPaths: ['register', 'rehydrate', 'payload.config.transformRequest'],
-                ignoredPaths: ['register', 'rehydrate', 'payload.config.transformRequest'],
-            },
+            serializableCheck: false,
         }),
 });
 
