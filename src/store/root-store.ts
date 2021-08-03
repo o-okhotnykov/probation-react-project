@@ -9,7 +9,7 @@ const reducers = combineReducers({
     user: userReducer,
 });
 
-const saveSubsetFilter = createFilter('user', ['accessToken', 'userId']);
+const saveSubsetFilter = createFilter('user', ['accessToken', 'userData[id]']);
 
 const persistConfig = {
     key: 'root',

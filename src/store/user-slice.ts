@@ -6,14 +6,12 @@ import type { RootState } from './root-store';
 
 interface IUserState {
     accessToken: string;
-    userId: number | null;
-    userData: IUserData | null;
+    userData: IUserData;
 }
 
 const initialState: IUserState = {
     accessToken: '',
-    userId: null,
-    userData: null,
+    userData: { email: '', name: '', surname: '', birthDate: '', id: null },
 };
 
 export const registerAsync = createAsyncThunk(
@@ -58,7 +56,6 @@ export const userSlice = createSlice({
     reducers: {
         logout(state: IUserState) {
             state.accessToken = '';
-            state.userId = null;
         },
     },
     extraReducers: (builder) =>
@@ -68,7 +65,13 @@ export const userSlice = createSlice({
                 if (data === undefined) {
                     return;
                 }
-                state.userId = data.user.id;
+                state.userData = {
+                    email: '',
+                    name: '',
+                    surname: '',
+                    birthDate: '',
+                    id: data.user.id,
+                };
                 state.accessToken = data.accessToken;
             })
             .addCase(loginAsync.fulfilled, (state, action) => {
@@ -76,7 +79,13 @@ export const userSlice = createSlice({
                 if (data === undefined) {
                     return;
                 }
-                state.userId = data.user.id;
+                state.userData = {
+                    email: '',
+                    name: '',
+                    surname: '',
+                    birthDate: '',
+                    id: data.user.id,
+                };
                 state.accessToken = data.accessToken;
             })
             .addCase(getUserAsync.fulfilled, (state, action) => {
@@ -92,9 +101,9 @@ export const { logout } = userSlice.actions;
 
 export const userSelector = (state: RootState): IUserState => state.user;
 
-export const userIdSelector = createSelector(userSelector, ({ userId }) => userId);
-
 export const accessTokenSelector = createSelector(userSelector, (user) => user.accessToken);
+
+export const userIdSelector = createSelector(userSelector, ({ userData }) => userData.id);
 
 export const userDataSelector = createSelector(userSelector, ({ userData }) => userData);
 

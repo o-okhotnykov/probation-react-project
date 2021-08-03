@@ -15,7 +15,6 @@ export const UserMenu: React.FC = () => {
     const open = Boolean(anchorEl);
     const dispatch = useDispatch();
     const userId = useSelector(userIdSelector);
-
     const handleMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
         setAnchorEl(event.currentTarget);
     };
