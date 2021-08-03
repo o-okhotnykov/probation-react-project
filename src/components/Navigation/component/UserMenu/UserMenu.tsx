@@ -4,7 +4,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import ClearIcon from '@material-ui/icons/Clear';
 import { Typography, Button, IconButton, Menu, MenuItem } from '@material-ui/core';
-import { getUserAsync, userDataSelector, userIdSelector } from 'store/user-slice';
+import { logout, getUserAsync, userDataSelector, userIdSelector } from 'store/user-slice';
 
 export const UserMenu: React.FC = () => {
     const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
@@ -22,14 +22,14 @@ export const UserMenu: React.FC = () => {
     };
 
     useEffect(() => {
-        if (userId === undefined) {
-            return;
+        if (userId) {
+            dispatch(getUserAsync(userId));
         }
-        if (userId === null) {
-            return;
-        }
-        dispatch(getUserAsync(userId));
     }, [dispatch, userId]);
+
+    const handleLogout = () => {
+        dispatch(logout());
+    };
 
     return (
         <div className="user-menu">
@@ -65,7 +65,9 @@ export const UserMenu: React.FC = () => {
                     <Button startIcon={<PersonOutlineIcon />}>Edit Profile</Button>
                 </MenuItem>
                 <MenuItem onClick={handleClose}>
-                    <Button startIcon={<ClearIcon />}>Logout</Button>
+                    <Button onClick={handleLogout} startIcon={<ClearIcon />}>
+                        Logout
+                    </Button>
                 </MenuItem>
             </Menu>
         </div>

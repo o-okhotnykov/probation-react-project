@@ -20,7 +20,6 @@ export const registerAsync = createAsyncThunk(
     'app/registerUser',
     async (user: IRegisterResponse) => {
         const data = await httpService.post<RegisterResponse>('register', user);
-
         if ('isAxiosError' in data) {
             console.log('err', data.response);
             return;
@@ -56,7 +55,7 @@ export const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
-        logout: (state: IUserState) => {
+        logout(state: IUserState) {
             state.accessToken = '';
             state.userId = null;
         },
@@ -96,6 +95,8 @@ export const userSelector = (state: RootState): IUserState => state.user;
 export const userIdSelector = createSelector(userSelector, ({ userId }) => userId);
 
 export const userDataSelector = createSelector(userSelector, ({ userData }): IUserData => userData);
+
+export const accessTokenSelector = createSelector(userSelector, (user) => user.accessToken);
 
 export const isAuthorizedSelector = createSelector(userSelector, ({ accessToken }) => {
     if (accessToken.length > 0) {

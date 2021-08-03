@@ -1,5 +1,5 @@
 import * as yup from 'yup';
-import { PASSWORD_REGEXP } from '../../../constants';
+import { PASSWORD_REGEXP } from 'constants/index';
 
 export const loginValidator = yup.object().shape({
     password: yup
