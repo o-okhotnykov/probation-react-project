@@ -13,11 +13,5 @@ export const LoginPage = withFormik({
 
     validationSchema: loginValidator,
 
-    handleSubmit: (values, { setSubmitting }) => {
-        setTimeout(() => {
-            // submit to the server
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-        }, 1000);
-    },
+    handleSubmit: () => {},
 })(Form);
