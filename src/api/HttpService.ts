@@ -1,4 +1,4 @@
-import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { Dispatch } from 'react';
 import { logout } from 'store/user-slice';
 import { BASE_URL } from 'constants/index';
@@ -31,30 +31,28 @@ class HttpService {
                 return response;
             },
             async (error) => {
-                const message = error.response.data;
+                const errorData = error.response?.data;
+                const errorStatus = error.response?.status;
 
-                if (error.response.status === 401) {
+                if (errorStatus === 401) {
                     dispatch(logout());
-                    return error;
                 }
 
-                if (message === '') {
-                    return error;
+                if (errorData) {
+                    error.message = errorData;
                 }
 
-                return Promise.reject(message);
+                return Promise.reject(error);
             },
         );
     }
 
     request<T>(params: AxiosRequestConfig) {
-        return this.service.request(params) as Promise<
-            AxiosResponse<T> | AxiosError<{ message: string }>
-        >;
+        return this.service.request(params) as Promise<AxiosResponse<T>>;
     }
 
-    get(path: string) {
-        return this.request({
+    get<T>(path: string) {
+        return this.request<T>({
             method: 'GET',
             url: path,
             responseType: 'json',
