@@ -7,14 +7,14 @@ import type { RootState } from './root-store';
 
 interface IUserState {
     accessToken: string;
-    userData: IUserData;
+    userData: IUserData | null;
     isAuthorized: boolean;
 }
 
 const initialState: IUserState = {
     accessToken: '',
     isAuthorized: false,
-    userData: { id: null },
+    userData: null,
 };
 
 export const registerAsync = createAsyncThunk('app/registerUser', (user: IRegisterResponse) => {
@@ -25,8 +25,8 @@ export const loginAsync = createAsyncThunk('app/loginUser', (user: ILoginFormVal
     return httpService.post<LoginResponse>('login', user);
 });
 
-export const getUserAsync = createAsyncThunk('app/getUser', (userId: number) => {
-    return httpService.get<IUserData>(`users/${userId}`, {});
+export const getUserAsync = createAsyncThunk('app/getUser', () => {
+    return httpService.get<IUserData>(`my`, {});
 });
 
 export const userSlice = createSlice({
@@ -79,8 +79,6 @@ export const { logout } = userSlice.actions;
 export const userSelector = (state: RootState): IUserState => state.user;
 
 export const accessTokenSelector = createSelector(userSelector, (user) => user.accessToken);
-
-export const userIdSelector = createSelector(userSelector, ({ userData }) => userData.id);
 
 export const userDataSelector = createSelector(userSelector, ({ userData }) => userData);
 

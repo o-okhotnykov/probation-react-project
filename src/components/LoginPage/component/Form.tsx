@@ -11,7 +11,7 @@ import { useStyles } from './styles';
 import './LoginPage.scss';
 
 export const Form: React.FC<FormikProps<ILoginFormValues>> = (props) => {
-    const { values, touched, errors, isSubmitting, handleChange, handleBlur } = props;
+    const { values, touched, errors, isValid, dirty, handleChange, handleBlur } = props;
     const dispatch = useDispatch();
 
     const isAuthorized = useSelector(isAuthorizedSelector);
@@ -61,7 +61,7 @@ export const Form: React.FC<FormikProps<ILoginFormValues>> = (props) => {
                         />
                     </CardContent>
 
-                    <Button type="submit" color="primary" disabled={isSubmitting}>
+                    <Button type="submit" color="primary" disabled={!isValid || !dirty}>
                         Login
                     </Button>
                 </Card>
