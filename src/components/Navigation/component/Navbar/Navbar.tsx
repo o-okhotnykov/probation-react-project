@@ -1,53 +1,29 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
-import Link from '@material-ui/core/Link';
-import Typography from '@material-ui/core/Typography';
+import { Tabs, Tab, AppBar } from '@material-ui/core';
 import { useStyles } from './styles';
+
+function a11yProps(index: any) {
+    return {
+        id: `simple-tab-${index}`,
+        'aria-controls': `simple-tabpanel-${index}`,
+    };
+}
 
 export const Navbar: React.FC = () => {
     const classes = useStyles();
+    const [value, setValue] = React.useState(0);
+
+    const handleChange = (event: any, newValue: any) => {
+        setValue(newValue);
+    };
     return (
-        <Typography>
-            <Link
-                href="#"
-                classes={{
-                    root: classes.root,
-                }}
-            >
-                Dashboard
-            </Link>
-            <Link
-                href="#"
-                classes={{
-                    root: classes.root,
-                }}
-            >
-                All Projects
-            </Link>
-            <Link
-                href="#"
-                classes={{
-                    root: classes.root,
-                }}
-            >
-                Members
-            </Link>
-            <Link
-                href="#"
-                classes={{
-                    root: classes.root,
-                }}
-            >
-                Stats
-            </Link>
-            <Link
-                href="#"
-                classes={{
-                    root: classes.root,
-                }}
-            >
-                Help
-            </Link>
-        </Typography>
+        <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
+            <Tab className={classes.root} label="Dashboard" {...a11yProps(0)} />
+            <Tab className={classes.root} label="All Projects" {...a11yProps(1)} />
+            <Tab className={classes.root} label="Members" {...a11yProps(2)} />
+            <Tab className={classes.root} label="Stats" {...a11yProps(3)} />
+            <Tab className={classes.root} label="Help" {...a11yProps(4)} />
+        </Tabs>
     );
 };
