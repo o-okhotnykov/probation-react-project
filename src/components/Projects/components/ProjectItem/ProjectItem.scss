@@ -7,11 +7,19 @@
     align-items: center;
     border: solid 0.5px $border-primary;
     border-radius: 10px;
-    padding: 15px 15px;
+    padding: 0 15px;
     margin: 10px 0;
-    text-align: center;
+    text-align: left;
+}
+.recent-project {
+    display: flex;
 }
 .project-img {
     width: 27px;
     height: 27px;
+    padding-right: 25px;
+}
+.project-stats {
+    text-transform: uppercase;
+    padding: 5px 8px;
 }

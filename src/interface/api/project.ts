@@ -5,10 +5,15 @@ export type Project = {
     dateCreate: string;
     reporter: string;
     dateDue: string;
-    stats: string;
+    stats: ProjectState;
     value?: string;
 };
 
+enum ProjectState {
+    progress = 'progress',
+    done = 'done',
+    open = 'open',
+}
 export type ProjectResponse = Project[];
 
 export type GetProjectsParams = {
