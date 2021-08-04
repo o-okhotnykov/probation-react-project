@@ -1,18 +1,17 @@
-/* eslint-disable react/jsx-no-undef */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
-import { Grid, Paper, Typography } from '@material-ui/core';
+import { Grid, Paper, Typography, Menu, MenuItem, IconButton } from '@material-ui/core';
 import { Project } from 'interface/api/project';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import IconButton from '@material-ui/core/IconButton';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import { useStyles } from './styles';
 import './ProjectItem.scss';
 
-export const ProjectItem: React.FC<Project> = (props) => {
+type ProjectItemProps = {
+    project: Project;
+};
+
+export const ProjectItem: React.FC<ProjectItemProps> = ({ project }) => {
     const classes = useStyles();
-    const { title, dateCreate, dateDue, img, reporter, stats } = props;
+    const { title, dateCreate, dateDue, img, reporter, stats } = project;
     const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
     const open = Boolean(anchorEl);
 
