@@ -1,6 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
-import { Tabs, Tab, AppBar } from '@material-ui/core';
+import { Tabs, Tab } from '@material-ui/core';
 import { useStyles } from './styles';
 
 function a11yProps(index: any) {
