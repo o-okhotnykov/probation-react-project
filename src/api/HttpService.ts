@@ -51,11 +51,12 @@ class HttpService {
         return this.service.request(params) as Promise<AxiosResponse<T>>;
     }
 
-    get<T>(path: string) {
+    get<T>(path: string, payload: Partial<AxiosRequestConfig>) {
         return this.request<T>({
             method: 'GET',
             url: path,
             responseType: 'json',
+            ...payload,
         });
     }
 
