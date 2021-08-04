@@ -1,4 +1,5 @@
 .project-card {
+    font-family: 'Roboto' sans-serif;
     padding: 30px 20px;
     background-color: #cee8ca;
     border-radius: 15px;
@@ -15,9 +16,7 @@
 .member-photos {
     display: flex;
 }
-.member-logo {
-}
-.completion-headers{
+.completion-headers {
     display: flex;
     justify-content: space-between;
 }

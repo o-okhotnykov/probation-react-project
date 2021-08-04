@@ -2,6 +2,8 @@
 import React from 'react';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import './ProjectCard.scss';
+import { Typography } from '@material-ui/core';
+import { useStyles } from './styles';
 
 type ProjectCardProps = {
     bgColor: string;
@@ -14,13 +16,14 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
     defaultColor,
     completionValue,
 }) => {
+    const classes = useStyles();
     return (
         <div className="project-card" style={{ backgroundColor: bgColor, color: defaultColor }}>
             <div className="project-logo-container">
                 <img src="https://via.placeholder.com/35" alt="project-logo" />
             </div>
             <div className="project-members-container">
-                <p className="card-caption">Team Members</p>
+                <Typography className={classes.caption}>Team Members</Typography>
                 <div className="member-photos">
                     <img
                         src="https://via.placeholder.com/35"
@@ -31,8 +34,8 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
             </div>
             <div className="project-completion-container">
                 <div className="completion-headers">
-                    <p className="card-caption">Project Completion</p>
-                    <p className="card-caption">{`${completionValue}%`}</p>
+                    <Typography className={classes.caption}>Project Completion</Typography>
+                    <Typography className={classes.caption}>{`${completionValue}%`}</Typography>
                 </div>
                 <LinearProgress variant="determinate" value={completionValue} />
             </div>
