@@ -17,14 +17,15 @@ app.get('/my', auth, (req, res, next) => {
       const data = jwt.verify(token, JWT_SECRET_KEY);
       const { db } = req.app;
       let user = db.get('users').find({ email: data.email }).value();
-      res.json([user])
+      res.json([user]);
+
     }
     catch (error) {
-      res.json(error.message);
+      res.status(401).json(error.message);
     }
 
   } else {
-    res.json("User not authorized");
+    res.status(401).json("Missing authorization header");
   }
 });
 
