@@ -11,7 +11,7 @@ import { useStyles } from './styles';
 import './RegisterPage.scss';
 
 export const Form: React.FC<FormikProps<IRegisterFormValues>> = (props) => {
-    const { values, touched, errors, isSubmitting, handleChange, handleBlur } = props;
+    const { values, touched, errors, isValid, dirty, handleChange, handleBlur } = props;
     const dispatch = useDispatch();
     const classes = useStyles();
     const isAuthorized = useSelector(isAuthorizedSelector);
@@ -119,7 +119,7 @@ export const Form: React.FC<FormikProps<IRegisterFormValues>> = (props) => {
                         />
                     </CardContent>
 
-                    <Button type="submit" color="primary" disabled={isSubmitting}>
+                    <Button type="submit" color="primary" disabled={!isValid || !dirty}>
                         Register
                     </Button>
                 </Card>
