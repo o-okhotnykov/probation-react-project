@@ -58,8 +58,7 @@ export const userSlice = createSlice({
             })
             .addCase(getUserAsync.fulfilled, (state, action) => {
                 const { data } = action.payload;
-                console.log(action);
-                state.userData = { ...data };
+                state.userData = data;
             })
             .addCase(registerAsync.rejected, (state, action) => {
                 const { message } = action.error;
