@@ -3,5 +3,6 @@
         "source.fixAll.eslint": true
     },
     "typescript.tsdk": "node_modules/typescript/lib",
+
     "cSpell.words": ["Formik", "persistor", "serializable", "middlewares", "persistor"]
 }

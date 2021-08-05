@@ -7,14 +7,14 @@ import type { RootState } from './root-store';
 
 interface IUserState {
     accessToken: string;
-    userData: IUserData;
+    userData: IUserData | null;
     isAuthorized: boolean;
 }
 
 const initialState: IUserState = {
     accessToken: '',
     isAuthorized: false,
-    userData: { email: '', name: '', surname: '', birthDate: '', id: null },
+    userData: null,
 };
 
 export const registerAsync = createAsyncThunk('app/registerUser', (user: IRegisterResponse) => {
@@ -25,8 +25,8 @@ export const loginAsync = createAsyncThunk('app/loginUser', (user: ILoginFormVal
     return httpService.post<LoginResponse>('login', user);
 });
 
-export const getUserAsync = createAsyncThunk('app/getUser', (userId: number) => {
-    return httpService.get<IUserData>(`users/${userId}`);
+export const getUserAsync = createAsyncThunk('app/getUser', () => {
+    return httpService.get<IUserData>(`my`, {});
 });
 
 export const userSlice = createSlice({
@@ -45,7 +45,6 @@ export const userSlice = createSlice({
 
                 state.accessToken = data.accessToken;
                 state.isAuthorized = true;
-                state.userData = { id: data.user.id };
                 successfulToastNotify('Successful Register');
             })
             .addCase(loginAsync.fulfilled, (state, action) => {
@@ -53,7 +52,6 @@ export const userSlice = createSlice({
 
                 state.accessToken = data.accessToken;
                 state.isAuthorized = true;
-                state.userData = { id: data.user.id };
                 successfulToastNotify('Successful Login');
             })
             .addCase(getUserAsync.fulfilled, (state, action) => {
@@ -79,8 +77,6 @@ export const { logout } = userSlice.actions;
 export const userSelector = (state: RootState): IUserState => state.user;
 
 export const accessTokenSelector = createSelector(userSelector, (user) => user.accessToken);
-
-export const userIdSelector = createSelector(userSelector, ({ userData }) => userData.id);
 
 export const userDataSelector = createSelector(userSelector, ({ userData }) => userData);
 
