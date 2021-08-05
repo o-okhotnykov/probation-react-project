@@ -1,16 +1,25 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import Typography from '@material-ui/core/Typography';
 import { ROUTE_PATH } from 'constants/index';
 
 export const Navbar: React.FC = () => {
     return (
-        <Typography>
-            <NavLink to={ROUTE_PATH.dashboard}>Dashboard</NavLink>
-            <NavLink to={ROUTE_PATH.dashboard}>All Projects</NavLink>
-            <NavLink to={ROUTE_PATH.members}>Members</NavLink>
-            <NavLink to={ROUTE_PATH.dashboard}>Stats</NavLink>
-            <NavLink to={ROUTE_PATH.dashboard}>Help</NavLink>
-        </Typography>
+        <nav className="nav-list">
+            <NavLink to={ROUTE_PATH.dashboard} className="nav-item" activeClassName="nav-selected">
+                Dashboard
+            </NavLink>
+            <NavLink to={ROUTE_PATH.projects} className="nav-item" activeClassName="nav-selected">
+                All project
+            </NavLink>
+            <NavLink to={ROUTE_PATH.members} className="nav-item" activeClassName="nav-selected">
+                Members
+            </NavLink>
+            <NavLink to={ROUTE_PATH.stats} className="nav-item" activeClassName="nav-selected">
+                Stats
+            </NavLink>
+            <NavLink to={ROUTE_PATH.help} className="nav-item" activeClassName="nav-selected">
+                Help
+            </NavLink>
+        </nav>
     );
 };

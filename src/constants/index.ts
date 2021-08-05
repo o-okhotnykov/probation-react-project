@@ -9,7 +9,10 @@ export const PAGE = 1;
 export const ROUTE_PATH = {
     main: '/',
     dashboard: '/dashboard',
+    projects: '/projects',
     members: '/members',
+    stats: '/stats',
+    help: '/help',
     login: '/login',
     register: '/register',
 };
