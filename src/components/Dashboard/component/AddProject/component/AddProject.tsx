@@ -11,7 +11,6 @@ import {
 } from 'constants/colors';
 import { ProjectCard } from '../../ProjectCard';
 import { useStyles } from './styles';
-import './AddProject.scss';
 
 export const AddProject: React.FC = () => {
     const classes = useStyles();

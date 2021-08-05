@@ -3,7 +3,6 @@ import { Doughnut } from 'react-chartjs-2';
 import { useSelector } from 'react-redux';
 import { projectsDataSelector } from 'store/project-store';
 import { backgroundColor, borderColor } from './constant';
-import './DoughnutBar.scss';
 
 export const DoughnutBar: React.FC = () => {
     const projectData = useSelector(projectsDataSelector);

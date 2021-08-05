@@ -2,7 +2,6 @@ import React from 'react';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import { Typography } from '@material-ui/core';
 import { useStyles } from './styles';
-import './ProjectCard.scss';
 
 type ProjectCardProps = {
     bgColor: string;

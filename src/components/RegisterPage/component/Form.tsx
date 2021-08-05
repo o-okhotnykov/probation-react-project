@@ -8,7 +8,6 @@ import { IRegisterFormValues } from 'interface';
 import { ROUTE_PATH } from 'constants/index';
 import logo from 'img/logo.png';
 import { useStyles } from './styles';
-import './RegisterPage.scss';
 
 export const Form: React.FC<FormikProps<IRegisterFormValues>> = (props) => {
     const { values, touched, errors, isValid, dirty, handleChange, handleBlur } = props;

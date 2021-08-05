@@ -3,7 +3,6 @@ import { Line } from 'react-chartjs-2';
 import { useSelector } from 'react-redux';
 import { projectsDataSelector } from 'store/project-store';
 import { backgroundColor, borderColor, options } from './constant';
-import './LineBar.scss';
 
 export const LineBar: React.FC = () => {
     const projectData = useSelector(projectsDataSelector);

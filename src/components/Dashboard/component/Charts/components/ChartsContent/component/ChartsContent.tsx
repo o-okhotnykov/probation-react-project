@@ -3,7 +3,6 @@ import React from 'react';
 import { VerticalBar } from '../../VerticalBar';
 import { LineBar } from '../../LineBar';
 import { DoughnutBar } from '../../Doughnut';
-import './ChartContent.scss';
 
 export const ChartsContent: React.FC = () => {
     return (

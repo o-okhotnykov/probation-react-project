@@ -1,3 +1,15 @@
-@import "./abstracts/_variables";
-@import "./base/_reset";
+@import './abstracts/_variables';
 
+@import './base/_reset';
+
+@import './components/_addProject';
+@import './components/_chartContent';
+@import './components/_errorComponent';
+@import './components/_loginPage';
+@import './components/_main';
+@import './components/_navigation';
+@import './components/_projectCard';
+@import './components/_projectItem';
+@import './components/_projectList';
+@import './components/_registerPage';
+@import './components/_sideSection';
