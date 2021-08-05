@@ -2,6 +2,7 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid/Grid';
 import { SideSection } from 'components/SideSection';
 import { Navigation } from 'components/Navigation';
+import { DashboardMain } from 'components/Dashboard';
 import './Main.scss';
 
 export const Main: React.FC = () => {
@@ -13,7 +14,7 @@ export const Main: React.FC = () => {
                 </Grid>
                 <Grid item xs={11} className="main-section">
                     <Navigation />
-                    <div>H1</div>
+                    <DashboardMain />
                 </Grid>
             </Grid>
         </>

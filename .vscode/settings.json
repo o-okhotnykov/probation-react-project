@@ -5,7 +5,12 @@
     "typescript.tsdk": "node_modules/typescript/lib",
     "cSpell.words": [
         "Formik",
+<<<<<<< HEAD
         "persistor",
         "serializable"
+=======
+        "middlewares",
+        "persistor"
+>>>>>>> 4d3738ffe82693c7322415fafebbadae3e0567e8
     ]
 }

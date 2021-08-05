@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { Dispatch } from 'react';
 import { logout } from 'store/user-slice';
@@ -34,9 +35,9 @@ class HttpService {
                 const errorData = error.response?.data;
                 const errorStatus = error.response?.status;
 
-                if (errorStatus === 401) {
-                    dispatch(logout());
-                }
+                // if (errorStatus === 401) {
+                //     dispatch(logout());
+                // }
 
                 if (errorData) {
                     error.message = errorData;
