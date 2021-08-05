@@ -2,7 +2,7 @@ import React from 'react';
 import { Tabs, Tab } from '@material-ui/core';
 import { useStyles } from './styles';
 
-function a11yProps(index: any) {
+function a11yProps(index: number) {
     return {
         id: `simple-tab-${index}`,
         'aria-controls': `simple-tabpanel-${index}`,
@@ -13,7 +13,7 @@ export const Navbar: React.FC = () => {
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
 
-    const handleChange = (event: any, newValue: any) => {
+    const handleChange = (event: React.ChangeEvent<any>, newValue: number) => {
         setValue(newValue);
     };
     return (
