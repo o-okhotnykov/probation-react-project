@@ -6,4 +6,7 @@ export const useStyles = makeStyles(() => ({
         height: '15vh',
         width: '15vh',
     },
+    btn: {
+        fontWeight: 900,
+    },
 }));

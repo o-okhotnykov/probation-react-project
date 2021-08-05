@@ -36,7 +36,7 @@ export const Form: React.FC<FormikProps<IRegisterFormValues>> = (props) => {
     return (
         <div className="register-container">
             <form onSubmit={handleSubmit} className="form">
-                <Card>
+                <Card className="card-container">
                     <CardMedia className={classes.media} image={logo} title="Paella dish" />
                     <CardContent>
                         <TextField
@@ -119,7 +119,12 @@ export const Form: React.FC<FormikProps<IRegisterFormValues>> = (props) => {
                         />
                     </CardContent>
 
-                    <Button type="submit" color="primary" disabled={!isValid || !dirty}>
+                    <Button
+                        className={`${classes.btn} form-btn`}
+                        type="submit"
+                        color="primary"
+                        disabled={!isValid || !dirty}
+                    >
                         Register
                     </Button>
                 </Card>

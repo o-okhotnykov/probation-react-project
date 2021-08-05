@@ -29,7 +29,7 @@ export const Form: React.FC<FormikProps<ILoginFormValues>> = (props) => {
     return (
         <div className="login-container">
             <form onSubmit={handleSubmit} className="form">
-                <Card>
+                <Card className="card-container">
                     <CardMedia className={classes.media} image={logo} title="Paella dish" />
                     <CardContent>
                         <TextField
@@ -61,7 +61,12 @@ export const Form: React.FC<FormikProps<ILoginFormValues>> = (props) => {
                         />
                     </CardContent>
 
-                    <Button type="submit" color="primary" disabled={!isValid || !dirty}>
+                    <Button
+                        className={`${classes.btn} form-btn`}
+                        type="submit"
+                        color="primary"
+                        disabled={!isValid || !dirty}
+                    >
                         Login
                     </Button>
                 </Card>
