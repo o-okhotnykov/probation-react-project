@@ -8,6 +8,8 @@ export const PAGE = 1;
 
 export const ROUTE_PATH = {
     main: '/',
+    dashboard: '/dashboard',
+    members: '/members',
     login: '/login',
     register: '/register',
 };
