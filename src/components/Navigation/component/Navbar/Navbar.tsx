@@ -1,53 +1,17 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
-import Link from '@material-ui/core/Link';
+import { Link } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
+import { ROUTE_PATH } from 'constants/index';
 import { useStyles } from './styles';
 
 export const Navbar: React.FC = () => {
-    const classes = useStyles();
     return (
         <Typography>
-            <Link
-                href="#"
-                classes={{
-                    root: classes.root,
-                }}
-            >
-                Dashboard
-            </Link>
-            <Link
-                href="#"
-                classes={{
-                    root: classes.root,
-                }}
-            >
-                All Projects
-            </Link>
-            <Link
-                href="#"
-                classes={{
-                    root: classes.root,
-                }}
-            >
-                Members
-            </Link>
-            <Link
-                href="#"
-                classes={{
-                    root: classes.root,
-                }}
-            >
-                Stats
-            </Link>
-            <Link
-                href="#"
-                classes={{
-                    root: classes.root,
-                }}
-            >
-                Help
-            </Link>
+            <Link to={ROUTE_PATH.dashboard}>Dashboard</Link>
+            <Link to={ROUTE_PATH.dashboard}>All Projects</Link>
+            <Link to={ROUTE_PATH.members}>Members</Link>
+            <Link to={ROUTE_PATH.dashboard}>Stats</Link>
+            <Link to={ROUTE_PATH.dashboard}>Help</Link>
         </Typography>
     );
 };

@@ -23,7 +23,7 @@ export const Form: React.FC<FormikProps<ILoginFormValues>> = (props) => {
     };
 
     if (isAuthorized) {
-        return <Redirect to={ROUTE_PATH.main} />;
+        return <Redirect to={ROUTE_PATH.dashboard} />;
     }
 
     return (

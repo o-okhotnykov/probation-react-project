@@ -13,7 +13,7 @@ export const Routes: React.FC = () => {
             <Switch>
                 <Route path={ROUTE_PATH.login} component={LoginPage} />
                 <Route path={ROUTE_PATH.register} component={RegisterPage} />
-                <PrivateRoute exact path={ROUTE_PATH.main} component={Main} />
+                <PrivateRoute exact path={ROUTE_PATH.dashboard} component={Main} />
                 <Route component={ErrorComponent} />
             </Switch>
         </Router>
