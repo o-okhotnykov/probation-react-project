@@ -14,9 +14,11 @@ class HttpService {
         this.service = axios.create({ baseURL: baseUrl });
     }
 
-    interceptorsInit(token: string, dispatch: Dispatch<unknown>): void {
+    interceptorsInit(): void {
         this.service.interceptors.request.use(
             async (config) => {
+                const { store } = await import('store/root-store');
+                const token = store.getState().user.accessToken;
                 config.headers = {
                     Authorization: `Bearer ${token}`,
                 };
@@ -34,10 +36,11 @@ class HttpService {
             async (error) => {
                 const errorData = error.response?.data;
                 const errorStatus = error.response?.status;
+                const { store } = await import('store/root-store');
 
-                // if (errorStatus === 401) {
-                //     dispatch(logout());
-                // }
+                if (errorStatus === 401) {
+                    store.dispatch(logout());
+                }
 
                 if (errorData) {
                     error.message = errorData;
@@ -71,3 +74,5 @@ class HttpService {
 }
 
 export const httpService = new HttpService(BASE_URL);
+
+httpService.interceptorsInit();
