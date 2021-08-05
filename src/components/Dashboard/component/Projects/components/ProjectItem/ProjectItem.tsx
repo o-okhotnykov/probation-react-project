@@ -3,7 +3,6 @@ import { Grid, Paper, Typography, Menu, MenuItem, IconButton } from '@material-u
 import { Project } from 'interface/api/project';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import { useStyles } from './styles';
-import './ProjectItem.scss';
 
 type ProjectItemProps = {
     project: Project;

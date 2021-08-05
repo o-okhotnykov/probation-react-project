@@ -7,7 +7,6 @@ import { isAuthorizedSelector } from 'store/user-slice';
 import { ROUTE_PATH } from 'constants/index';
 import { UserMenu } from './UserMenu';
 import { Navbar } from './Navbar';
-import './Navigation.scss';
 
 export const Navigation: React.FC = () => {
     const isAuthorized = useSelector(isAuthorizedSelector);

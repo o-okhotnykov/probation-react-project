@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { projectsDataSelector, getProjectsAsync } from 'store/project-store';
 import { ErrorComponent } from 'components/ErrorComponent';
 import { ProjectItem } from '../ProjectItem/ProjectItem';
-import './ProjectList.scss';
 import { ProjectHeader } from '../ProjectHeader/ProjectHeader';
 
 export const ProjectList: React.FC = () => {
