@@ -3,7 +3,6 @@ import Grid from '@material-ui/core/Grid/Grid';
 import { SideSection } from 'components/SideSection';
 import { Navigation } from 'components/Navigation';
 import { DashboardMain } from 'components/Dashboard';
-import './Main.scss';
 
 export const Main: React.FC = () => {
     return (
