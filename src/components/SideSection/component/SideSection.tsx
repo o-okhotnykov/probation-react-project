@@ -1,6 +1,5 @@
 import React from 'react';
 import logo from 'img/logo.png';
-import './SideSection.scss';
 
 export const SideSection: React.FC = () => {
     return (

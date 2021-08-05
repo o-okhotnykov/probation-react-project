@@ -5,7 +5,7 @@ import { SideSection } from 'components/SideSection';
 import { Navigation } from 'components/Navigation';
 import { loadingSelector } from 'store/loading-slice';
 import { Loading } from 'components/Loading';
-
+import { DashboardMain } from 'components/Dashboard';
 import './Main.scss';
 
 export const Main: React.FC = () => {
@@ -19,7 +19,7 @@ export const Main: React.FC = () => {
                 {loading ? <Loading /> : null}
                 <Grid item xs={11} className="main-section">
                     <Navigation />
-                    <div>H1</div>
+                    <DashboardMain />
                 </Grid>
             </Grid>
         </>

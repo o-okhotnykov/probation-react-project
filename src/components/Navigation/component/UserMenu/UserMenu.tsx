@@ -5,10 +5,12 @@ import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import ClearIcon from '@material-ui/icons/Clear';
 import { Typography, Button, IconButton, Menu, MenuItem } from '@material-ui/core';
 import { logout, getUserAsync, userDataSelector, userIdSelector } from 'store/user-slice';
+import { useStyles } from './style';
 
 export const UserMenu: React.FC = () => {
     const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
     const open = Boolean(anchorEl);
+    const classes = useStyles();
     const dispatch = useDispatch();
     const userId = useSelector(userIdSelector);
     const userData = useSelector(userDataSelector);
@@ -65,11 +67,17 @@ export const UserMenu: React.FC = () => {
                 open={open}
                 onClose={handleClose}
             >
-                <MenuItem onClick={handleClose}>
-                    <Button startIcon={<PersonOutlineIcon />}>Edit Profile</Button>
+                <MenuItem onClick={handleClose} className={classes.menu}>
+                    <Button startIcon={<PersonOutlineIcon />} className={classes.btn}>
+                        Edit Profile
+                    </Button>
                 </MenuItem>
-                <MenuItem onClick={handleClose}>
-                    <Button onClick={handleLogout} startIcon={<ClearIcon />}>
+                <MenuItem onClick={handleClose} className={classes.menu}>
+                    <Button
+                        onClick={handleLogout}
+                        startIcon={<ClearIcon />}
+                        className={classes.btn}
+                    >
                         Logout
                     </Button>
                 </MenuItem>

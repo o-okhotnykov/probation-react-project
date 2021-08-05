@@ -6,6 +6,8 @@
     "cSpell.words": [
         "Formik",
         "persistor",
-        "serializable"
+        "serializable",
+        "middlewares",
+        "persistor"
     ]
 }
