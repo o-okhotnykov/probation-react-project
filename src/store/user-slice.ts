@@ -45,7 +45,6 @@ export const userSlice = createSlice({
 
                 state.accessToken = data.accessToken;
                 state.isAuthorized = true;
-                state.userData = data.user;
                 successfulToastNotify('Successful Register');
             })
             .addCase(loginAsync.fulfilled, (state, action) => {
@@ -53,7 +52,6 @@ export const userSlice = createSlice({
 
                 state.accessToken = data.accessToken;
                 state.isAuthorized = true;
-                state.userData = data.user;
                 successfulToastNotify('Successful Login');
             })
             .addCase(getUserAsync.fulfilled, (state, action) => {
