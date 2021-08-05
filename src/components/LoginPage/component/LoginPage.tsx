@@ -13,5 +13,7 @@ export const LoginPage = withFormik({
 
     validationSchema: loginValidator,
 
-    handleSubmit: () => {},
+    handleSubmit: (value, { setSubmitting }) => {
+        setSubmitting(false);
+    },
 })(Form);
