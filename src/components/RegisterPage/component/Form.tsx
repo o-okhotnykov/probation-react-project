@@ -35,7 +35,7 @@ export const Form: React.FC<FormikProps<IRegisterFormValues>> = (props) => {
     }
 
     return (
-        <div className="register-container">
+        <div className="form-container">
             <form onSubmit={handleSubmit} className="form">
                 <Card className="card-container">
                     <CardMedia className={classes.media} image={logo} title="Paella dish" />
