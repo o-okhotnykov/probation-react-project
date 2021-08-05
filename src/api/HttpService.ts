@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { Dispatch } from 'react';
 import { logout } from 'store/user-slice';
@@ -13,9 +14,11 @@ class HttpService {
         this.service = axios.create({ baseURL: baseUrl });
     }
 
-    interceptorsInit(token: string, dispatch: Dispatch<unknown>): void {
+    interceptorsInit(): void {
         this.service.interceptors.request.use(
             async (config) => {
+                const { store } = await import('store/root-store');
+                const token = store.getState().user.accessToken;
                 config.headers = {
                     Authorization: `Bearer ${token}`,
                 };
@@ -33,9 +36,10 @@ class HttpService {
             async (error) => {
                 const errorData = error.response?.data;
                 const errorStatus = error.response?.status;
+                const { store } = await import('store/root-store');
 
                 if (errorStatus === 401) {
-                    dispatch(logout());
+                    store.dispatch(logout());
                 }
 
                 if (errorData) {
@@ -70,3 +74,5 @@ class HttpService {
 }
 
 export const httpService = new HttpService(BASE_URL);
+
+httpService.interceptorsInit();

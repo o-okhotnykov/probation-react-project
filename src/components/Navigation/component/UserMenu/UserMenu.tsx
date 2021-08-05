@@ -1,17 +1,22 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import ClearIcon from '@material-ui/icons/Clear';
 import { Typography, Button, IconButton, Menu, MenuItem } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
-import { logout } from 'store/user-slice';
+import { getUserAsync, logout } from 'store/user-slice';
 import { useStyles } from './style';
 
 export const UserMenu: React.FC = () => {
-    const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getUserAsync());
+    }, [dispatch]);
+
+    const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
     const open = Boolean(anchorEl);
     const classes = useStyles();
-    const dispatch = useDispatch();
 
     const handleMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
         setAnchorEl(event.currentTarget);
