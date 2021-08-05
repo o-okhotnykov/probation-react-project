@@ -1,11 +1,8 @@
-@import '../../../styles/variables.scss';
-
 .header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid $border-primary;
-    padding: 16px;
 }
 .user-menu {
     display: flex;
