@@ -14,11 +14,7 @@ interface IUserState {
 const initialState: IUserState = {
     accessToken: '',
     isAuthorized: false,
-<<<<<<< HEAD
-    userData: { email: '', name: '', id: null },
-=======
     userData: null,
->>>>>>> c610b3344678368e8b409b425b847d34ce1ba84c
 };
 
 export const registerAsync = createAsyncThunk('app/registerUser', (user: IRegisterResponse) => {
@@ -29,13 +25,8 @@ export const loginAsync = createAsyncThunk('app/loginUser', (user: ILoginFormVal
     return httpService.post<LoginResponse>('login', user);
 });
 
-<<<<<<< HEAD
-export const getUserAsync = createAsyncThunk('app/getUser', (userId: number) => {
-    return httpService.get<IUserData>(`users/${userId}`, {});
-=======
 export const getUserAsync = createAsyncThunk('app/getUser', () => {
     return httpService.get<IUserData>(`my`, {});
->>>>>>> c610b3344678368e8b409b425b847d34ce1ba84c
 });
 
 export const userSlice = createSlice({
@@ -54,10 +45,6 @@ export const userSlice = createSlice({
 
                 state.accessToken = data.accessToken;
                 state.isAuthorized = true;
-<<<<<<< HEAD
-                state.userData = { id: data.user.id };
-=======
->>>>>>> c610b3344678368e8b409b425b847d34ce1ba84c
                 successfulToastNotify('Successful Register');
             })
             .addCase(loginAsync.fulfilled, (state, action) => {
@@ -65,10 +52,6 @@ export const userSlice = createSlice({
 
                 state.accessToken = data.accessToken;
                 state.isAuthorized = true;
-<<<<<<< HEAD
-                state.userData = { id: data.user.id };
-=======
->>>>>>> c610b3344678368e8b409b425b847d34ce1ba84c
                 successfulToastNotify('Successful Login');
             })
             .addCase(getUserAsync.fulfilled, (state, action) => {

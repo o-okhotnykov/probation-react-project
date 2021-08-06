@@ -4,19 +4,11 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import ClearIcon from '@material-ui/icons/Clear';
 import { Typography, Button, IconButton, Menu, MenuItem } from '@material-ui/core';
-<<<<<<< HEAD
-import { logout, getUserAsync, userDataSelector, userIdSelector } from 'store/user-slice';
-=======
 import { logout, getUserAsync, userDataSelector } from 'store/user-slice';
->>>>>>> c610b3344678368e8b409b425b847d34ce1ba84c
 import { useStyles } from './style';
 
 export const UserMenu: React.FC = () => {
     const dispatch = useDispatch();
-<<<<<<< HEAD
-    const userId = useSelector(userIdSelector);
-    const userData = useSelector(userDataSelector);
-=======
     const classes = useStyles();
     const userData = useSelector(userDataSelector);
 
@@ -26,7 +18,6 @@ export const UserMenu: React.FC = () => {
 
     const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
     const open = Boolean(anchorEl);
->>>>>>> c610b3344678368e8b409b425b847d34ce1ba84c
 
     const handleMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
         setAnchorEl(event.currentTarget);
@@ -43,7 +34,7 @@ export const UserMenu: React.FC = () => {
     return (
         <div className="user-menu">
             <div className="user-data">
-                {userData.name ? (
+                {userData?.name ? (
                     <>
                         <Typography>{`${userData?.name} ${userData?.surname}`}</Typography>
                         <Typography>{userData?.email}</Typography>

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { startLoading, finishLoading } from './loading-slice';
 
 export const loadingHandler = (store: any) => (next: any) => (action: any) => {
