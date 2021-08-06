@@ -1,5 +1,7 @@
-.MuiTableCell-head{
+.table-container {
     display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .MuiTableCell-body {
     text-align: center;
