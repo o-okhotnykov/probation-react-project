@@ -4,6 +4,7 @@ export const useStyles = makeStyles(() => ({
     table: {
         borderCollapse: 'separate',
         borderSpacing: '0 20px',
+        fontWeight: 500,
     },
     tableHead: {
         textAlign: 'center',
