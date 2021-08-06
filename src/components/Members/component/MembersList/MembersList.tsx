@@ -3,6 +3,7 @@ import React, { useEffect, useMemo } from 'react';
 import { Table } from 'components/Table';
 import { getUsersAsync, usersDataSelector } from 'store/user-slice';
 import { useDispatch, useSelector } from 'react-redux';
+import { ActionMenu } from '../ActionMenu/ActionMenu';
 
 export const MembersList: React.FC = () => {
     const dispatch = useDispatch();
@@ -34,6 +35,11 @@ export const MembersList: React.FC = () => {
             {
                 Header: 'Status',
                 accessor: 'status',
+            },
+            {
+                Header: 'Action',
+                accessor: 'action',
+                Cell: <ActionMenu />,
             },
         ],
         [],
