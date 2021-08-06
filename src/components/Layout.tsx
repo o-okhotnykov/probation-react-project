@@ -11,17 +11,17 @@ export interface ILayoutProps {
 export const Layout: React.FC<ILayoutProps> = ({ children }) => {
     return (
         <>
-            <Grid container>
-                <Grid item xs={1} className="side-section-container">
-                    <SideSection />
-                </Grid>
-                <Grid item xs={11} className="main-section">
-                    <Router>
+            <Router>
+                <Grid container>
+                    <Grid item xs={1} className="side-section-container">
+                        <SideSection />
+                    </Grid>
+                    <Grid item xs={11} className="main-section">
                         <Navigation />
                         <div className="wrapper">{children}</div>
-                    </Router>
+                    </Grid>
                 </Grid>
-            </Grid>
+            </Router>
         </>
     );
 };

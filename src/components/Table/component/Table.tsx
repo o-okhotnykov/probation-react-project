@@ -72,7 +72,7 @@ export const TableComponent = ({ columns, data }: any) => {
                     })}
                 </TableBody>
             </Table>
-            <Pagination count={10} />
+            <Pagination count={10} onChange={(page: any) => console.log(page)} />
         </div>
     );
 };

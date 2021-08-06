@@ -15,7 +15,7 @@ export const MembersList: React.FC = () => {
     }, [dispatch]);
 
     const usersData = useSelector(usersDataSelector);
-
+    console.log(usersData);
     const columns = useMemo(
         () => [
             {
