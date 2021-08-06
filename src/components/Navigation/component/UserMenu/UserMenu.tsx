@@ -15,7 +15,7 @@ export const UserMenu: React.FC = () => {
     useEffect(() => {
         dispatch(getUserAsync());
     }, [dispatch]);
-    console.log(userData);
+
     const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
     const open = Boolean(anchorEl);
 
