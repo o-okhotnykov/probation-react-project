@@ -1,7 +1,6 @@
 export type LoginResponse = {
     accessToken: string;
     user: IUserData;
-    error: { message: string };
 };
 
 export type RegisterResponse = {
@@ -10,9 +9,9 @@ export type RegisterResponse = {
 };
 
 export type IUserData = {
-    birthDate?: string;
-    email?: string;
-    id: number | null;
-    name?: string;
-    surname?: string;
+    birthDate: string;
+    email: string;
+    id: number;
+    name: string;
+    surname: string;
 };
