@@ -1,6 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
-import { Dispatch } from 'react';
 import { logout } from 'store/user-slice';
 import { BASE_URL } from 'constants/index';
 

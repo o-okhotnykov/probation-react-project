@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import ClearIcon from '@material-ui/icons/Clear';
 import { Typography, Button, IconButton, Menu, MenuItem } from '@material-ui/core';
-import { useDispatch } from 'react-redux';
-import { getUserAsync, logout } from 'store/user-slice';
+import { logout, getUserAsync, userDataSelector } from 'store/user-slice';
 import { useStyles } from './style';
 
 export const UserMenu: React.FC = () => {
     const dispatch = useDispatch();
+    const classes = useStyles();
+    const userData = useSelector(userDataSelector);
 
     useEffect(() => {
         dispatch(getUserAsync());
@@ -16,7 +18,6 @@ export const UserMenu: React.FC = () => {
 
     const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
     const open = Boolean(anchorEl);
-    const classes = useStyles();
 
     const handleMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
         setAnchorEl(event.currentTarget);
@@ -33,8 +34,8 @@ export const UserMenu: React.FC = () => {
     return (
         <div className="user-menu">
             <div className="user-data">
-                <Typography>Name Name</Typography>
-                <Typography>Position</Typography>
+                <Typography>{`${userData?.name} ${userData?.surname}`}</Typography>
+                <Typography>{userData?.email}</Typography>
             </div>
             <IconButton
                 aria-label="account of current user"

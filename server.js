@@ -17,7 +17,7 @@ app.get('/my', auth, (req, res, next) => {
       const data = jwt.verify(token, JWT_SECRET_KEY);
       const { db } = req.app;
       let user = db.get('users').find({ email: data.email }).value();
-      res.json([user]);
+      res.json(user);
 
     }
     catch (error) {
