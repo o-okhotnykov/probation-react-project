@@ -32,7 +32,10 @@ export const TableComponent = ({ columns, data }: any) => {
                         <TableRow {...row.getRowProps()} className={classes.tableRow}>
                             {row.cells.map((cell) => {
                                 return (
-                                    <TableCell {...cell.getCellProps()}>
+                                    <TableCell
+                                        {...cell.getCellProps()}
+                                        className={classes.tableData}
+                                    >
                                         {cell.render('Cell')}
                                     </TableCell>
                                 );

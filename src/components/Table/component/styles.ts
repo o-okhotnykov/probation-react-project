@@ -4,14 +4,15 @@ export const useStyles = makeStyles(() => ({
     table: {
         borderCollapse: 'separate',
         borderSpacing: '0 20px',
-        fontWeight: 500,
     },
     tableHead: {
         textAlign: 'center',
         fontWeight: 900,
+        borderBottom: 0,
     },
-    tableRow: {
-        border: '1px solid red',
+    tableRow: {},
+    tableData: {
+        textAlign: 'center',
+        fontWeight: 500,
     },
-    tableData: {},
 }));

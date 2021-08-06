@@ -1,8 +1,10 @@
+/* eslint-disable react/display-name */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useMemo } from 'react';
 import { TableComponent } from 'components/Table';
 import { getUsersAsync, usersDataSelector } from 'store/user-slice';
 import { useDispatch, useSelector } from 'react-redux';
+import { Paper } from '@material-ui/core';
 import { ActionMenu } from '../ActionMenu/ActionMenu';
 
 export const MembersList: React.FC = () => {
@@ -35,6 +37,9 @@ export const MembersList: React.FC = () => {
             {
                 Header: 'Status',
                 accessor: 'status',
+                Cell: ({ value }: any) => (
+                    <div className={`member-status member-${value}`}>{value}</div>
+                ),
             },
             {
                 Header: 'Action',
