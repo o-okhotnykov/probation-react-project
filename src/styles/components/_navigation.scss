@@ -15,10 +15,12 @@
 .nav-list {
     display: flex;
 }
-
 .nav-item {
     text-decoration: none;
     padding: 35px 30px;
+}
+.nav-item:visited {
+    color: $default-black;
 }
 .nav-selected {
     background-color: #cccccc1f;
