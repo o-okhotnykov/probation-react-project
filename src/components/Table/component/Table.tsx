@@ -1,14 +1,10 @@
 /* eslint-disable react/jsx-key */
 import React from 'react';
-import MaUTable from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
+import { Table, TableBody, TableCell, TableHead, TableRow } from '@material-ui/core';
 import { useTable } from 'react-table';
 import { useStyles } from './styles';
 
-export const Table = ({ columns, data }: any) => {
+export const TableComponent = ({ columns, data }: any) => {
     const classes = useStyles();
 
     const { getTableProps, headerGroups, rows, prepareRow } = useTable({
@@ -17,7 +13,7 @@ export const Table = ({ columns, data }: any) => {
     });
 
     return (
-        <MaUTable {...getTableProps()}>
+        <Table {...getTableProps()} className={classes.table}>
             <TableHead>
                 {headerGroups.map((headerGroup) => (
                     <TableRow {...headerGroup.getHeaderGroupProps()}>
@@ -33,10 +29,13 @@ export const Table = ({ columns, data }: any) => {
                 {rows.map((row) => {
                     prepareRow(row);
                     return (
-                        <TableRow {...row.getRowProps()}>
+                        <TableRow {...row.getRowProps()} className={classes.tableRow}>
                             {row.cells.map((cell) => {
                                 return (
-                                    <TableCell {...cell.getCellProps()}>
+                                    <TableCell
+                                        {...cell.getCellProps()}
+                                        className={classes.tableData}
+                                    >
                                         {cell.render('Cell')}
                                     </TableCell>
                                 );
@@ -45,6 +44,6 @@ export const Table = ({ columns, data }: any) => {
                     );
                 })}
             </TableBody>
-        </MaUTable>
+        </Table>
     );
 };

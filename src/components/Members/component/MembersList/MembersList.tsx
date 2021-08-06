@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useMemo } from 'react';
-import { Table } from 'components/Table';
+import { TableComponent } from 'components/Table';
 import { getUsersAsync, usersDataSelector } from 'store/user-slice';
 import { useDispatch, useSelector } from 'react-redux';
 import { ActionMenu } from '../ActionMenu/ActionMenu';
@@ -50,7 +50,7 @@ export const MembersList: React.FC = () => {
     return (
         <>
             <div className="members-list-container">
-                <Table columns={columns} data={data} />
+                <TableComponent columns={columns} data={data} />
             </div>
         </>
     );
