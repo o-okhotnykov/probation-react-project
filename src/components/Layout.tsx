@@ -5,5 +5,9 @@ export interface ILayoutProps {
 }
 
 export const Layout: React.FC<ILayoutProps> = ({ children }) => {
-    return <div className="wrapper">{children}</div>;
+    return (
+        <>
+            <div className="wrapper">{children}</div>
+        </>
+    );
 };

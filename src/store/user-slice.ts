@@ -1,20 +1,27 @@
 import { createAsyncThunk, createSlice, createSelector } from '@reduxjs/toolkit';
-import { LoginResponse, RegisterResponse, IUserData } from 'interface/api/auth';
+import { IUserData, LoginResponse, RegisterResponse, UsersGetResponse } from 'interface/api/auth';
 import { IRegisterResponse, ILoginFormValues } from 'interface';
 import { httpService } from 'api/HttpService';
 import { errorToastNotify, successfulToastNotify } from 'toasts';
+import { GetProjectsParams } from 'interface/api/project';
+import { LIMIT, PAGE } from 'constants/index';
+
 import type { RootState } from './root-store';
 
 interface IUserState {
     accessToken: string;
-    userData: IUserData | null;
     isAuthorized: boolean;
+    userData: IUserData | null;
+    usersData: IUserData[] | null;
+    total: number;
 }
 
 const initialState: IUserState = {
     accessToken: '',
-    isAuthorized: false,
+    isAuthorized: true,
     userData: null,
+    usersData: null,
+    total: 0,
 };
 
 export const registerAsync = createAsyncThunk('app/registerUser', (user: IRegisterResponse) => {
@@ -25,6 +32,13 @@ export const loginAsync = createAsyncThunk('app/loginUser', (user: ILoginFormVal
     return httpService.post<LoginResponse>('login', user);
 });
 
+export const getUsersAsync = createAsyncThunk(
+    'app/getUsers',
+    ({ page = PAGE, limit = LIMIT }: GetProjectsParams = { page: PAGE, limit: LIMIT }) => {
+        const params = { _page: page, _limit: limit };
+        return httpService.get<UsersGetResponse>('users', { params });
+    },
+);
 export const getUserAsync = createAsyncThunk('app/getUser', () => {
     return httpService.get<IUserData>(`my`, {});
 });
@@ -58,6 +72,13 @@ export const userSlice = createSlice({
                 const { data } = action.payload;
                 state.userData = data;
             })
+            .addCase(getUsersAsync.fulfilled, (state, action) => {
+                const { data, headers } = action.payload;
+                if (data) {
+                    state.total = headers['x-total-count'];
+                    state.usersData = data;
+                }
+            })
             .addCase(registerAsync.rejected, (state, action) => {
                 const { message } = action.error;
                 if (message) {
@@ -77,6 +98,10 @@ export const { logout } = userSlice.actions;
 export const userSelector = (state: RootState): IUserState => state.user;
 
 export const accessTokenSelector = createSelector(userSelector, (user) => user.accessToken);
+
+export const totalUsersSelector = createSelector(userSelector, ({ total }) => total);
+
+export const usersDataSelector = createSelector(userSelector, ({ usersData }) => usersData);
 
 export const userDataSelector = createSelector(userSelector, ({ userData }) => userData);
 

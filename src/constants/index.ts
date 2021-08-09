@@ -2,12 +2,17 @@ import { ToastOptions } from 'react-toastify';
 
 export const BASE_URL = 'http://localhost:3010/';
 
-export const LIMIT = 15;
+export const LIMIT = 10;
 
 export const PAGE = 1;
 
 export const ROUTE_PATH = {
     main: '/',
+    dashboard: '/dashboard',
+    projects: '/projects',
+    members: '/members',
+    stats: '/stats',
+    help: '/help',
     login: '/login',
     register: '/register',
 };

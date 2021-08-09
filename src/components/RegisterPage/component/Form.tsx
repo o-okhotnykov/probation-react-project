@@ -31,7 +31,7 @@ export const Form: React.FC<FormikProps<IRegisterFormValues>> = (props) => {
     };
 
     if (isAuthorized) {
-        return <Redirect to={ROUTE_PATH.main} />;
+        return <Redirect to={ROUTE_PATH.dashboard} />;
     }
 
     return (
