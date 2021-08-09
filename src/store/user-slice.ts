@@ -16,7 +16,7 @@ interface IUserState {
 
 const initialState: IUserState = {
     accessToken: '',
-    isAuthorized: false,
+    isAuthorized: true,
     usersData: null,
 };
 

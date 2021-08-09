@@ -10,28 +10,29 @@ const middlewares = jsonServer.defaults();
 
 app.use(cors());
 
-app.get('/my', auth, (req, res, next) => {
-  const token = req.header('Authorization') ? req.header('Authorization').replace('Bearer ', '') : null;
-  if (token) {
-    try {
-      const data = jwt.verify(token, JWT_SECRET_KEY);
-      const { db } = req.app;
-      let user = db.get('users').find({ email: data.email }).value();
-      res.json([user]);
 
-    }
-    catch (error) {
-      res.status(401).json(error.message);
-    }
 
-  } else {
-    res.status(401).json("Missing authorization header");
-  }
-});
+// app.get('/my', auth, (req, res, next) => {
+//     const token = req.header('Authorization')
+//         ? req.header('Authorization').replace('Bearer ', '')
+//         : null;
+//     if (token) {
+//         try {
+//             const data = jwt.verify(token, JWT_SECRET_KEY);
+//             const { db } = req.app;
+//             let user = db.get('users').find({ email: data.email }).value();
+//             res.json(user);
+//         } catch (error) {
+//             res.status(401).json(error.message);
+//         }
+//     } else {
+//         res.status(401).json('Missing authorization header');
+//     }
+// });
 
 app.db = router.db;
 app.use(middlewares);
-app.use(auth);
 app.use(router);
+app.use(auth);
 
 app.listen(3010);
