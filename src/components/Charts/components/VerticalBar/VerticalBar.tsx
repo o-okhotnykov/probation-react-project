@@ -3,7 +3,6 @@ import { Bar } from 'react-chartjs-2';
 import { useSelector } from 'react-redux';
 import { projectsDataSelector } from 'store/project-store';
 import { backgroundColor, borderColor, options } from './constant';
-import './VerticalBar.scss';
 
 export const VerticalBar: React.FC = () => {
     const projectData = useSelector(projectsDataSelector);

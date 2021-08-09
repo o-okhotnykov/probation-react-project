@@ -1,7 +1,7 @@
 import { withFormik } from 'formik';
 import { IRegisterFormValues } from 'interface/index';
-import { registerValidator } from './validation';
-import { Form } from './Form';
+import { registerValidator } from './component/validation';
+import { Form } from './component/Form';
 
 export const RegisterPage = withFormik({
     mapPropsToValues: ({

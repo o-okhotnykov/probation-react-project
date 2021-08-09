@@ -1,7 +1,7 @@
 import React from 'react';
-import { AddProject } from '../../AddProject';
-import { ChartsContent } from '../../Charts';
-import { ProjectList } from '../../Projects';
+import { ChartsContent } from 'components/Charts';
+import { AddProject } from './components/AddProject';
+import { ProjectList } from './components/Projects';
 
 export const DashboardMain: React.FC = () => {
     return (

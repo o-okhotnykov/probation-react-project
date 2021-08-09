@@ -1,8 +1,8 @@
 import Grid from '@material-ui/core/Grid';
 import React from 'react';
-import { VerticalBar } from '../../VerticalBar';
-import { LineBar } from '../../LineBar';
-import { DoughnutBar } from '../../Doughnut';
+import { VerticalBar } from '../VerticalBar';
+import { LineBar } from '../LineBar';
+import { DoughnutBar } from '../Doughnut';
 
 export const ChartsContent: React.FC = () => {
     return (

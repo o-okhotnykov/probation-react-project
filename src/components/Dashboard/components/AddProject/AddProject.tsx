@@ -9,7 +9,7 @@ import {
     SUCCESS_COLOR_BG,
     SUCCESS_COLOR_DEFAULT,
 } from 'constants/colors';
-import { ProjectCard } from '../../ProjectCard';
+import { ProjectCard } from '../ProjectCard';
 import { useStyles } from './styles';
 
 export const AddProject: React.FC = () => {
