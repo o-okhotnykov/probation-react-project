@@ -12,12 +12,14 @@ interface IUserState {
     accessToken: string;
     isAuthorized: boolean;
     usersData: IUser[] | null;
+    total: number;
 }
 
 const initialState: IUserState = {
     accessToken: '',
     isAuthorized: true,
     usersData: null,
+    total: 0,
 };
 
 export const registerAsync = createAsyncThunk('app/registerUser', (user: IRegisterResponse) => {
@@ -62,8 +64,9 @@ export const userSlice = createSlice({
                 successfulToastNotify('Successful login');
             })
             .addCase(getUsersAsync.fulfilled, (state, action) => {
-                const { data } = action.payload;
+                const { data, headers } = action.payload;
                 if (data) {
+                    state.total = headers['x-total-count'];
                     state.usersData = data;
                 }
             })
@@ -86,6 +89,8 @@ export const { logout } = userSlice.actions;
 export const userSelector = (state: RootState): IUserState => state.user;
 
 export const accessTokenSelector = createSelector(userSelector, (user) => user.accessToken);
+
+export const totalUsersSelector = createSelector(userSelector, ({ total }) => total);
 
 export const usersDataSelector = createSelector(userSelector, ({ usersData }) => usersData);
 

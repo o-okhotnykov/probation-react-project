@@ -1,10 +1,8 @@
 /* eslint-disable react/display-name */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useEffect, useMemo } from 'react';
+import React, { ChangeEvent, useEffect, useMemo } from 'react';
 import { TableComponent } from 'components/Table';
-import { getUsersAsync, usersDataSelector } from 'store/user-slice';
+import { getUsersAsync, usersDataSelector, totalUsersSelector } from 'store/user-slice';
 import { useDispatch, useSelector } from 'react-redux';
-import { Paper } from '@material-ui/core';
 import { Pagination } from '@material-ui/lab';
 import { LIMIT } from 'constants/index';
 import { ActionMenu } from './ActionMenu/ActionMenu';
@@ -17,6 +15,7 @@ export const MembersList: React.FC = () => {
     }, [dispatch]);
 
     const usersData = useSelector(usersDataSelector);
+    const totalUsers = useSelector(totalUsersSelector);
 
     const columns = useMemo(
         () => [
@@ -39,9 +38,9 @@ export const MembersList: React.FC = () => {
             {
                 Header: 'Status',
                 accessor: 'status',
-                Cell: ({ value }: any) => (
-                    <div className={`member-status member-${value}`}>{value}</div>
-                ),
+                Cell: ({ value }: any) => {
+                    return <div className={`member-status member-${value}`}>{value}</div>;
+                },
             },
             {
                 Header: 'Action',
@@ -59,8 +58,8 @@ export const MembersList: React.FC = () => {
             <div className="members-list-container">
                 <TableComponent columns={columns} data={data} />
                 <Pagination
-                    count={10}
-                    onChange={(event: any, page: number) =>
+                    count={Math.ceil(totalUsers / LIMIT)}
+                    onChange={(event: ChangeEvent<unknown>, page: number) =>
                         dispatch(getUsersAsync({ page, limit: LIMIT }))
                     }
                 />
