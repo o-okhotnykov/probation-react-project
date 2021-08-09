@@ -1,4 +1,4 @@
-.members-container{
+.members-container {
     padding: 35px 0;
 }
 .members-header {
@@ -9,4 +9,7 @@
 .members-list-container {
     margin: 0 auto;
     width: 90%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
 }

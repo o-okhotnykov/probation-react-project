@@ -4,13 +4,11 @@ import { Table, TableBody, TableCell, TableHead, TableRow } from '@material-ui/c
 import { useSortBy, useTable } from 'react-table';
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import Pagination from '@material-ui/lab/Pagination';
 import shortid from 'shortid';
 import { useStyles } from './styles';
 
 export const TableComponent = ({ columns, data }: any) => {
     const classes = useStyles();
-
     const { getTableProps, headerGroups, rows, prepareRow } = useTable(
         {
             columns,
@@ -72,7 +70,6 @@ export const TableComponent = ({ columns, data }: any) => {
                     })}
                 </TableBody>
             </Table>
-            <Pagination count={10} onChange={(page: any) => console.log(page)} />
         </div>
     );
 };
