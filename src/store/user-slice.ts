@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice, createSelector } from '@reduxjs/toolkit';
-import { IUser, LoginResponse, RegisterResponse, UsersGetResponse } from 'interface/api/auth';
+import { IUserData, LoginResponse, RegisterResponse, UsersGetResponse } from 'interface/api/auth';
 import { IRegisterResponse, ILoginFormValues } from 'interface';
 import { httpService } from 'api/HttpService';
 import { errorToastNotify, successfulToastNotify } from 'toasts';
@@ -11,13 +11,15 @@ import type { RootState } from './root-store';
 interface IUserState {
     accessToken: string;
     isAuthorized: boolean;
-    usersData: IUser[] | null;
+    userData: IUserData | null;
+    usersData: IUserData[] | null;
     total: number;
 }
 
 const initialState: IUserState = {
     accessToken: '',
     isAuthorized: true,
+    userData: null,
     usersData: null,
     total: 0,
 };
@@ -37,6 +39,9 @@ export const getUsersAsync = createAsyncThunk(
         return httpService.get<UsersGetResponse>('users', { params });
     },
 );
+export const getUserAsync = createAsyncThunk('app/getUser', () => {
+    return httpService.get<IUserData>(`my`, {});
+});
 
 export const userSlice = createSlice({
     name: 'user',
@@ -54,14 +59,18 @@ export const userSlice = createSlice({
 
                 state.accessToken = data.accessToken;
                 state.isAuthorized = true;
-                successfulToastNotify('Successful register');
+                successfulToastNotify('Successful Register');
             })
             .addCase(loginAsync.fulfilled, (state, action) => {
                 const { data } = action.payload;
 
                 state.accessToken = data.accessToken;
                 state.isAuthorized = true;
-                successfulToastNotify('Successful login');
+                successfulToastNotify('Successful Login');
+            })
+            .addCase(getUserAsync.fulfilled, (state, action) => {
+                const { data } = action.payload;
+                state.userData = data;
             })
             .addCase(getUsersAsync.fulfilled, (state, action) => {
                 const { data, headers } = action.payload;
@@ -93,6 +102,8 @@ export const accessTokenSelector = createSelector(userSelector, (user) => user.a
 export const totalUsersSelector = createSelector(userSelector, ({ total }) => total);
 
 export const usersDataSelector = createSelector(userSelector, ({ usersData }) => usersData);
+
+export const userDataSelector = createSelector(userSelector, ({ userData }) => userData);
 
 export const isAuthorizedSelector = createSelector(
     userSelector,

@@ -1,17 +1,17 @@
 export type LoginResponse = {
     accessToken: string;
     error: { message: string };
-    user: IUser;
+    user: IUserData;
 };
 
 export type RegisterResponse = {
     accessToken: string;
-    user: IUser;
+    user: IUserData;
 };
 
-export type UsersGetResponse = IUser[];
+export type UsersGetResponse = IUserData[];
 
-export type IUser = {
+export type IUserData = {
     birthDate: string;
     email: string;
     id: number;
