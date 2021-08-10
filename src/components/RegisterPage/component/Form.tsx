@@ -3,19 +3,20 @@ import { Card, CardContent, CardMedia, TextField, Button } from '@material-ui/co
 import { useDispatch, useSelector } from 'react-redux';
 import { FormikProps } from 'formik';
 import { Link, Redirect } from 'react-router-dom';
+import { format } from 'date-fns';
 import { registerAsync, isAuthorizedSelector } from 'store/user-slice';
 import { IRegisterFormValues } from 'interface';
 import { ROUTE_PATH } from 'constants/index';
 import logo from 'img/logo.png';
 import Typography from '@material-ui/core/Typography';
 import { useStyles } from './styles';
-import './RegisterPage.scss';
 
 export const Form: React.FC<FormikProps<IRegisterFormValues>> = (props) => {
-    const { values, touched, errors, isSubmitting, handleChange, handleBlur } = props;
+    const { values, touched, errors, isValid, dirty, handleChange, handleBlur } = props;
     const dispatch = useDispatch();
     const classes = useStyles();
     const isAuthorized = useSelector(isAuthorizedSelector);
+    const currentDay = format(new Date(), 'yyyy-MM-dd');
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -35,9 +36,9 @@ export const Form: React.FC<FormikProps<IRegisterFormValues>> = (props) => {
     }
 
     return (
-        <div className="register-container">
+        <div className="form-container">
             <form onSubmit={handleSubmit} className="form">
-                <Card className={classes.card}>
+                <Card className="card-container">
                     <CardMedia className={classes.media} image={logo} title="Paella dish" />
                     <CardContent>
                         <TextField
@@ -105,9 +106,11 @@ export const Form: React.FC<FormikProps<IRegisterFormValues>> = (props) => {
                             variant="outlined"
                             fullWidth
                         />
+
                         <TextField
                             id="birthDate"
                             type="date"
+                            InputProps={{ inputProps: { max: currentDay } }}
                             defaultValue="2017-05-24"
                             value={values.birthDate}
                             onChange={handleChange}
@@ -120,7 +123,12 @@ export const Form: React.FC<FormikProps<IRegisterFormValues>> = (props) => {
                         />
                     </CardContent>
 
-                    <Button type="submit" color="primary" disabled={isSubmitting}>
+                    <Button
+                        className={`${classes.btn} form-btn`}
+                        type="submit"
+                        color="primary"
+                        disabled={!isValid || !dirty}
+                    >
                         Register
                     </Button>
                 </Card>
