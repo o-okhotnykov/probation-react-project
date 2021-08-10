@@ -7,7 +7,11 @@ import {
     DialogTitle,
 } from '@material-ui/core';
 
-export const RetireModal = () => {
+interface RetireModalProps {
+    id: number;
+}
+
+export const RetireModal: React.FC<RetireModalProps> = ({ id }) => {
     return (
         <>
             <DialogTitle id="alert-dialog-title">Retire User</DialogTitle>
@@ -20,7 +24,7 @@ export const RetireModal = () => {
                 <Button onClick={() => console.log('cancel')} color="primary">
                     Cancel
                 </Button>
-                <Button onClick={() => console.log('confirm')} color="primary" autoFocus>
+                <Button onClick={() => console.log(id)} color="primary" autoFocus>
                     Confirm
                 </Button>
             </DialogActions>

@@ -5,7 +5,11 @@ import { DialogComponent } from 'components/DialogComponent';
 import { useStyles } from './styles';
 import { RetireModal } from '../../RetireModal';
 
-export const ActionMenu = () => {
+interface ActionMenuProps {
+    id: number;
+}
+
+export const ActionMenu: React.FC<ActionMenuProps> = ({ id }) => {
     const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
     const [modalState, setModalState] = useState(false);
 
@@ -59,7 +63,7 @@ export const ActionMenu = () => {
                 </MenuItem>
             </Menu>
             <DialogComponent isOpen={modalState} onClose={() => setModalState(false)}>
-                <RetireModal />
+                <RetireModal id={id} />
             </DialogComponent>
         </>
     );

@@ -47,8 +47,10 @@ export const MembersList: React.FC = () => {
             },
             {
                 Header: 'Action',
-                accessor: 'action',
-                Cell: <ActionMenu />,
+                accessor: 'id',
+                Cell: ({ value }) => {
+                    return <ActionMenu id={value} />;
+                },
             },
         ],
         [],

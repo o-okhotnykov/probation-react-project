@@ -39,9 +39,14 @@ export const getUsersAsync = createAsyncThunk(
         return httpService.get<UsersGetResponse>('users', { params });
     },
 );
+
 export const getUserAsync = createAsyncThunk('app/getUser', () => {
     return httpService.get<IUserData>(`my`, {});
 });
+
+// export const deleteUserAsync = createAsyncThunk('app/deleteUserAsync', () => {
+//     return httpService.get<IUserData>(``, {});
+// });
 
 export const userSlice = createSlice({
     name: 'user',
