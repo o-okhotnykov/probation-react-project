@@ -5,11 +5,14 @@ import { getUsersAsync, usersDataSelector, totalUsersSelector } from 'store/user
 import { useDispatch, useSelector } from 'react-redux';
 import { Pagination } from '@material-ui/lab';
 import { LIMIT } from 'constants/index';
+import { isRequestPendingSelector } from 'store/loading-slice';
+import { Loading } from 'components/Loading';
 import { ActionMenu } from './ActionMenu/ActionMenu';
 
 export const MembersList: React.FC = () => {
     const dispatch = useDispatch();
     const usersData = useSelector(usersDataSelector);
+    const loading = useSelector(isRequestPendingSelector(getUsersAsync.typePrefix));
 
     useEffect(() => {
         dispatch(getUsersAsync());
@@ -52,6 +55,10 @@ export const MembersList: React.FC = () => {
     );
 
     const data = useMemo(() => usersData, [usersData]);
+
+    if (loading) {
+        return <Loading />;
+    }
 
     return (
         <div className="members-list-container">
