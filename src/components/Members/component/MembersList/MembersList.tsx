@@ -13,6 +13,7 @@ export const MembersList: React.FC = () => {
     const dispatch = useDispatch();
     const usersData = useSelector(usersDataSelector);
     const loading = useSelector(isRequestPendingSelector(getUsersAsync.typePrefix));
+    const [pageState, setPageState] = React.useState(1);
 
     useEffect(() => {
         dispatch(getUsersAsync());
@@ -68,10 +69,12 @@ export const MembersList: React.FC = () => {
                 <>
                     <TableComponent columns={columns} data={data} />
                     <Pagination
+                        page={pageState}
                         count={Math.ceil(totalUsers / LIMIT)}
-                        onChange={(event: ChangeEvent<unknown>, page: number) =>
-                            dispatch(getUsersAsync({ page, limit: LIMIT }))
-                        }
+                        onChange={(event: ChangeEvent<unknown>, page: number) => {
+                            setPageState(page);
+                            dispatch(getUsersAsync({ page, limit: LIMIT }));
+                        }}
                     />
                 </>
             )}

@@ -183,14 +183,6 @@
       "birthDate": "2021-07-16",
       "id": 16,
       "status": "registred"
-    },
-    {
-      "email": "sashaohotni2fwfq6@gmail.com",
-      "password": "$2a$10$prPvv.1knYpdHKeLUI6q8.z9CoUbqzqYYEbIiB7rs/fw5eAzwqkHW",
-      "name": "Alex",
-      "surname": "Under",
-      "birthDate": "2021-08-03",
-      "id": 17
     }
   ]
 }
