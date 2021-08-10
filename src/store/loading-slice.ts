@@ -24,6 +24,9 @@ export const loadingSlice = createSlice({
         addRequest: (state, action) => {
             state.requests.add(action.payload);
         },
+        removeRequest: (state, action) => {
+            state.requests.delete(action.payload);
+        },
     },
 });
 
@@ -33,6 +36,6 @@ export const loadingSelector = createSelector(uiStateSelector, ({ isLoading }) =
 
 export const requestsSelector = createSelector(uiStateSelector, ({ requests }) => requests);
 
-export const { startLoading, finishLoading, addRequest } = loadingSlice.actions;
+export const { startLoading, finishLoading, addRequest, removeRequest } = loadingSlice.actions;
 
 export const loadingReducer = loadingSlice.reducer;
