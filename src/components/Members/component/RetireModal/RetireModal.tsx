@@ -6,12 +6,15 @@ import {
     DialogContentText,
     DialogTitle,
 } from '@material-ui/core';
+import { useDispatch } from 'react-redux';
+import { deleteUserAsync } from 'store/user-slice';
 
 interface RetireModalProps {
     id: number;
 }
 
 export const RetireModal: React.FC<RetireModalProps> = ({ id }) => {
+    const dispatch = useDispatch();
     return (
         <>
             <DialogTitle id="alert-dialog-title">Retire User</DialogTitle>
@@ -24,7 +27,7 @@ export const RetireModal: React.FC<RetireModalProps> = ({ id }) => {
                 <Button onClick={() => console.log('cancel')} color="primary">
                     Cancel
                 </Button>
-                <Button onClick={() => console.log(id)} color="primary" autoFocus>
+                <Button onClick={() => dispatch(deleteUserAsync(id))} color="primary" autoFocus>
                     Confirm
                 </Button>
             </DialogActions>

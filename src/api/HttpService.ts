@@ -69,6 +69,14 @@ class HttpService {
             data: payload,
         });
     }
+
+    delete<T>(path: string, payload: unknown) {
+        return this.request<T>({
+            method: 'delete',
+            url: path,
+            data: payload,
+        });
+    }
 }
 
 export const httpService = new HttpService(BASE_URL);

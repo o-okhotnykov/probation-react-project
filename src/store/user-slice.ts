@@ -44,9 +44,9 @@ export const getUserAsync = createAsyncThunk('app/getUser', () => {
     return httpService.get<IUserData>(`my`, {});
 });
 
-// export const deleteUserAsync = createAsyncThunk('app/deleteUserAsync', () => {
-//     return httpService.get<IUserData>(``, {});
-// });
+export const deleteUserAsync = createAsyncThunk('app/deleteUserAsync', (id: number) => {
+    return httpService.delete<IUserData>(`/users/${id}`, {});
+});
 
 export const userSlice = createSlice({
     name: 'user',
@@ -83,6 +83,10 @@ export const userSlice = createSlice({
                     state.total = headers['x-total-count'];
                     state.usersData = data;
                 }
+            })
+            .addCase(deleteUserAsync.fulfilled, (state, action) => {
+                const { data } = action.payload;
+                console.log(data);
             })
             .addCase(registerAsync.rejected, (state, action) => {
                 const { message } = action.error;
