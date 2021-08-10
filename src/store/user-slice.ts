@@ -12,7 +12,7 @@ interface IUserState {
     accessToken: string;
     isAuthorized: boolean;
     userData: IUserData | null;
-    usersData: IUserData[] | null;
+    usersData: IUserData[];
     total: number;
 }
 
@@ -20,7 +20,7 @@ const initialState: IUserState = {
     accessToken: '',
     isAuthorized: true,
     userData: null,
-    usersData: null,
+    usersData: [],
     total: 0,
 };
 

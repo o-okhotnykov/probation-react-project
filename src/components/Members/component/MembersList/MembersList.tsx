@@ -9,12 +9,12 @@ import { ActionMenu } from './ActionMenu/ActionMenu';
 
 export const MembersList: React.FC = () => {
     const dispatch = useDispatch();
+    const usersData = useSelector(usersDataSelector);
 
     useEffect(() => {
         dispatch(getUsersAsync());
     }, [dispatch]);
 
-    const usersData = useSelector(usersDataSelector);
     const totalUsers = useSelector(totalUsersSelector);
 
     const columns = useMemo(
@@ -54,16 +54,18 @@ export const MembersList: React.FC = () => {
     const data = useMemo(() => usersData, [usersData]);
 
     return (
-        <>
-            <div className="members-list-container">
-                <TableComponent columns={columns} data={data} />
-                <Pagination
-                    count={Math.ceil(totalUsers / LIMIT)}
-                    onChange={(event: ChangeEvent<unknown>, page: number) =>
-                        dispatch(getUsersAsync({ page, limit: LIMIT }))
-                    }
-                />
-            </div>
-        </>
+        <div className="members-list-container">
+            {data && (
+                <>
+                    <TableComponent columns={columns} data={data} />
+                    <Pagination
+                        count={Math.ceil(totalUsers / LIMIT)}
+                        onChange={(event: ChangeEvent<unknown>, page: number) =>
+                            dispatch(getUsersAsync({ page, limit: LIMIT }))
+                        }
+                    />
+                </>
+            )}
+        </div>
     );
 };
