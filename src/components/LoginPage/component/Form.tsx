@@ -1,8 +1,8 @@
 import React, { FormEvent } from 'react';
-import { Card, CardContent, CardMedia, TextField, Button } from '@material-ui/core';
+import { Card, CardContent, CardMedia, TextField, Button, Typography } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { FormikProps } from 'formik';
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { loginAsync, isAuthorizedSelector } from 'store/user-slice';
 import { ILoginFormValues } from 'interface';
 import { ROUTE_PATH } from 'constants/index';
@@ -33,7 +33,7 @@ export const Form: React.FC<FormikProps<ILoginFormValues>> = (props) => {
                     <CardContent>
                         <TextField
                             id="email"
-                            label="Email"
+                            label="email"
                             type="email"
                             value={values.email}
                             onChange={handleChange}
@@ -47,7 +47,7 @@ export const Form: React.FC<FormikProps<ILoginFormValues>> = (props) => {
 
                         <TextField
                             id="password"
-                            label="Password"
+                            label="password"
                             type="password"
                             value={values.password}
                             onChange={handleChange}
@@ -70,6 +70,12 @@ export const Form: React.FC<FormikProps<ILoginFormValues>> = (props) => {
                     </Button>
                 </Card>
             </form>
+            <Typography className={classes.text}>
+                Don&apos;t have an account?{' '}
+                <Link to={ROUTE_PATH.register} className={classes.link}>
+                    Register
+                </Link>
+            </Typography>
         </div>
     );
 };

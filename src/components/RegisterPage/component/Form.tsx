@@ -2,12 +2,13 @@ import React, { FormEvent } from 'react';
 import { Card, CardContent, CardMedia, TextField, Button } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { FormikProps } from 'formik';
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { format } from 'date-fns';
 import { registerAsync, isAuthorizedSelector } from 'store/user-slice';
 import { IRegisterFormValues } from 'interface';
 import { ROUTE_PATH } from 'constants/index';
 import logo from 'img/logo.png';
+import Typography from '@material-ui/core/Typography';
 import { useStyles } from './styles';
 
 export const Form: React.FC<FormikProps<IRegisterFormValues>> = (props) => {
@@ -132,6 +133,12 @@ export const Form: React.FC<FormikProps<IRegisterFormValues>> = (props) => {
                     </Button>
                 </Card>
             </form>
+            <Typography className={classes.text}>
+                Already have an account?{' '}
+                <Link to={ROUTE_PATH.login} className={classes.link}>
+                    Login
+                </Link>
+            </Typography>
         </div>
     );
 };
