@@ -23,7 +23,6 @@ module.exports = {
         project: './tsconfig.json',
     },
     rules: {
-        'import/no-extraneous-dependencies': 'off',
         'react/jsx-props-no-spreading': 'off',
         'consistent-return': 'off',
         'react/prop-types': 'off',
