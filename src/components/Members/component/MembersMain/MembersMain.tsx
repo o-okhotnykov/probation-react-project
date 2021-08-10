@@ -3,7 +3,6 @@ import { Navigation } from 'components/Navigation';
 import { SideSection } from 'components/SideSection';
 import React from 'react';
 import { MembersHeader } from '../MembersHeader/MembersHeader';
-
 import { MembersList } from '../MembersList/MembersList';
 
 export const MembersMain: React.FC = () => {

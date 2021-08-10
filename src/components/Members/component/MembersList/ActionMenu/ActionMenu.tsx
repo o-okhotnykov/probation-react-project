@@ -1,10 +1,13 @@
 import { IconButton, Menu, MenuItem } from '@material-ui/core';
-import React from 'react';
+import React, { useState } from 'react';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
+import { DialogComponent } from 'components/DialogComponent';
 import { useStyles } from './styles';
+import { RetireModal } from '../../RetireModal';
 
 export const ActionMenu = () => {
-    const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
+    const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
+    const [modalState, setModalState] = useState(false);
 
     const handleMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
         setAnchorEl(event.currentTarget);
@@ -46,8 +49,18 @@ export const ActionMenu = () => {
                 onClose={handleClose}
             >
                 <MenuItem onClick={handleClose}>Edit</MenuItem>
-                <MenuItem onClick={handleClose}>Retire</MenuItem>
+                <MenuItem
+                    onClick={() => {
+                        setModalState(true);
+                        handleClose();
+                    }}
+                >
+                    Retire
+                </MenuItem>
             </Menu>
+            <DialogComponent isOpen={modalState} onClose={() => setModalState(false)}>
+                <RetireModal />
+            </DialogComponent>
         </>
     );
 };
