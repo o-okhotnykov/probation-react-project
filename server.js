@@ -10,7 +10,6 @@ const middlewares = jsonServer.defaults();
 
 app.use(cors());
 
-
 app.get('/my', auth, (req, res, next) => {
     const token = req.header('Authorization')
         ? req.header('Authorization').replace('Bearer ', '')
