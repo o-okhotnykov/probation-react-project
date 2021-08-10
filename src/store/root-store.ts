@@ -3,10 +3,13 @@ import { configureStore } from '@reduxjs/toolkit';
 import storage from 'redux-persist/lib/storage';
 import createFilter from 'redux-persist-transform-filter';
 import { persistReducer } from 'redux-persist';
+import { enableMapSet } from 'immer';
 import { projectsReducer } from './project-store';
 import { userReducer } from './user-slice';
 import { loadingReducer } from './loading-slice';
 import { loadingHandler } from './middleware';
+
+enableMapSet();
 
 const reducers = combineReducers({
     user: userReducer,

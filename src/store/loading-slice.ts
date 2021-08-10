@@ -3,10 +3,12 @@ import type { RootState } from './root-store';
 
 interface ILoadingState {
     isLoading: boolean;
+    requests: Set<string>;
 }
 
 const initialState: ILoadingState = {
     isLoading: false,
+    requests: new Set(),
 };
 
 export const loadingSlice = createSlice({
@@ -19,6 +21,9 @@ export const loadingSlice = createSlice({
         finishLoading: (state) => {
             state.isLoading = false;
         },
+        addRequest: (state, action) => {
+            state.requests.add(action.payload);
+        },
     },
 });
 
@@ -26,6 +31,8 @@ export const uiStateSelector = (state: RootState): ILoadingState => state.loadin
 
 export const loadingSelector = createSelector(uiStateSelector, ({ isLoading }) => isLoading);
 
-export const { startLoading, finishLoading } = loadingSlice.actions;
+export const requestsSelector = createSelector(uiStateSelector, ({ requests }) => requests);
+
+export const { startLoading, finishLoading, addRequest } = loadingSlice.actions;
 
 export const loadingReducer = loadingSlice.reducer;

@@ -5,12 +5,15 @@ import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import ClearIcon from '@material-ui/icons/Clear';
 import { Typography, Button, IconButton, Menu, MenuItem } from '@material-ui/core';
 import { logout, getUserAsync, userDataSelector } from 'store/user-slice';
+import { requestsSelector } from 'store/loading-slice';
 import { useStyles } from './style';
 
 export const UserMenu: React.FC = () => {
     const dispatch = useDispatch();
     const classes = useStyles();
     const userData = useSelector(userDataSelector);
+    const loadaing = useSelector(requestsSelector);
+    console.log(loadaing);
 
     useEffect(() => {
         dispatch(getUserAsync());
