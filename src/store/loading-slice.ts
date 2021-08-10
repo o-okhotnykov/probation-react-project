@@ -1,4 +1,4 @@
-import { createSlice, createSelector } from '@reduxjs/toolkit';
+import { createSlice, createSelector, OutputSelector } from '@reduxjs/toolkit';
 import type { RootState } from './root-store';
 
 interface ILoadingState {
@@ -34,7 +34,11 @@ export const uiStateSelector = (state: RootState): ILoadingState => state.loadin
 
 export const loadingSelector = createSelector(uiStateSelector, ({ isLoading }) => isLoading);
 
-export const requestsSelector = createSelector(uiStateSelector, ({ requests }) => requests);
+export const isRequestPendingSelector = (
+    type: string,
+): OutputSelector<any, boolean, (res: ILoadingState) => boolean> => {
+    return createSelector(uiStateSelector, ({ requests }) => requests.has(type));
+};
 
 export const { startLoading, finishLoading, addRequest, removeRequest } = loadingSlice.actions;
 
