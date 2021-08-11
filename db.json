@@ -59,44 +59,6 @@
       "surname": "Under",
       "confirmPassword": "123456Aa",
       "birthDate": "2021-07-14",
-      "id": 1,
-      "status": "progress"
-    },
-    {
-      "email": "fwqef@fwe.asfd",
-      "password": "$2a$10$10REahosrIslJ53A5jPfVOLLQPbIGqHpVEflufIq7TQ1G4X/X130y",
-      "name": "Alex",
-      "surname": "Under",
-      "confirmPassword": "123456Aa",
-      "birthDate": "2021-07-07",
-      "id": 2,
-      "status": "progress"
-    },
-    {
-      "email": "ss@f.f",
-      "password": "$2a$10$eUGdLLqpDYVOq7pqvGHS3OVem9WZV.EC9scJKP7RbxUZjSPEP7f46",
-      "name": "gg",
-      "surname": "gg",
-      "birthDate": "2021-07-16",
-      "id": 4,
-      "status": "progress"
-    },
-    {
-      "email": "fwqfqwfsashaohotni26@gmail.com",
-      "password": "$2a$10$4XTmvCgET97EuV4H/K/MvOnVBOIbYrruodmagOmxCRmI5XT.mCmMW",
-      "name": "Alex",
-      "surname": "Under",
-      "birthDate": "2021-07-16",
-      "id": 6,
-      "status": "progress"
-    },
-    {
-      "email": "sashaohotni26@gmail.com",
-      "password": "$2a$10$Zs4H9Le2hukmfzd7x3HZ.ObzGnVif9Xh7hHpoF4FBSKbCDRpfyP.G",
-      "name": "Alex",
-      "surname": "Under",
-      "confirmPassword": "123456Aa",
-      "birthDate": "2021-07-14",
       "id": 7,
       "status": "progress"
     },
@@ -119,15 +81,6 @@
       "birthDate": "2021-07-08",
       "id": 9,
       "status": "progress"
-    },
-    {
-      "email": "fffff",
-      "password": "$2a$10$eUGdLLqpDYVOq7pqvGHS3OVem9WZV.EC9scJKP7RbxUZjSPEP7f46",
-      "name": "ffff",
-      "surname": "gg",
-      "birthDate": "2021-07-16",
-      "id": 10,
-      "status": "registred"
     },
     {
       "email": "ddddd",
@@ -158,15 +111,6 @@
       "status": "progress"
     },
     {
-      "email": "ss@f.f",
-      "password": "$2a$10$eUGdLLqpDYVOq7pqvGHS3OVem9WZV.EC9scJKP7RbxUZjSPEP7f46",
-      "name": "gg",
-      "surname": "gg",
-      "birthDate": "2021-07-16",
-      "id": 14,
-      "status": "registred"
-    },
-    {
       "email": "1fw@fwe.f",
       "password": "$2a$10$jxfyJtIa.zY1IRV7N93NkuoRfJe9Z3fhQ35uCM.vq8T8DzMXkO0qa",
       "name": "Alex",
@@ -174,15 +118,6 @@
       "birthDate": "2021-07-02",
       "id": 15,
       "status": "progress"
-    },
-    {
-      "email": "fwqfqwfsashaohotni26@gmail.com",
-      "password": "$2a$10$4XTmvCgET97EuV4H/K/MvOnVBOIbYrruodmagOmxCRmI5XT.mCmMW",
-      "name": "Alex",
-      "surname": "Under",
-      "birthDate": "2021-07-16",
-      "id": 16,
-      "status": "registred"
     }
   ]
 }

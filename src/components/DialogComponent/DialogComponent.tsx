@@ -7,7 +7,11 @@ interface DialogProps {
     onClose: any;
 }
 
-export const DialogComponent: React.FC<any> = ({ children, isOpen, onClose }: DialogProps) => {
+export const DialogComponent: React.FC<DialogProps> = ({
+    children,
+    isOpen,
+    onClose,
+}: DialogProps) => {
     return (
         <div>
             <Dialog

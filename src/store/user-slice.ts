@@ -84,9 +84,8 @@ export const userSlice = createSlice({
                     state.usersData = data;
                 }
             })
-            .addCase(deleteUserAsync.fulfilled, (state, action) => {
-                const { data } = action.payload;
-                console.log(data);
+            .addCase(deleteUserAsync.fulfilled, () => {
+                successfulToastNotify('Successful Delete');
             })
             .addCase(registerAsync.rejected, (state, action) => {
                 const { message } = action.error;

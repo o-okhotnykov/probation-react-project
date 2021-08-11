@@ -25,6 +25,9 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({ id }) => {
 
     const open = Boolean(anchorEl);
 
+    const handleCloseModal = (): void => {
+        setModalState(false);
+    };
     return (
         <>
             <IconButton
@@ -62,8 +65,8 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({ id }) => {
                     Retire
                 </MenuItem>
             </Menu>
-            <DialogComponent isOpen={modalState} onClose={() => setModalState(false)}>
-                <RetireModal id={id} />
+            <DialogComponent isOpen={modalState} onClose={handleCloseModal}>
+                <RetireModal id={id} handleCloseModal={handleCloseModal} />
             </DialogComponent>
         </>
     );
