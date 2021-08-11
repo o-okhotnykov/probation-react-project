@@ -1,9 +1,10 @@
-import { IconButton, Menu, MenuItem } from '@material-ui/core';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { IconButton, Menu, MenuItem, Modal } from '@material-ui/core';
 import React, { useState } from 'react';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
-import { DialogComponent } from 'components/DialogComponent';
-import { useStyles } from './styles';
+import { useModal, ModalComponent } from 'components/ModalComponent';
 import { RetireModal } from '../../RetireModal';
+import { useStyles } from './styles';
 
 interface ActionMenuProps {
     id: number;
@@ -11,7 +12,7 @@ interface ActionMenuProps {
 
 export const ActionMenu: React.FC<ActionMenuProps> = ({ id }) => {
     const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
-    const [modalState, setModalState] = useState(false);
+    const { isOpen, openModal, closeModal } = useModal();
 
     const handleMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
         setAnchorEl(event.currentTarget);
@@ -25,9 +26,6 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({ id }) => {
 
     const open = Boolean(anchorEl);
 
-    const handleCloseModal = (): void => {
-        setModalState(false);
-    };
     return (
         <>
             <IconButton
@@ -56,18 +54,12 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({ id }) => {
                 onClose={handleClose}
             >
                 <MenuItem onClick={handleClose}>Edit</MenuItem>
-                <MenuItem
-                    onClick={() => {
-                        setModalState(true);
-                        handleClose();
-                    }}
-                >
-                    Retire
-                </MenuItem>
+                <MenuItem onClick={openModal}>Retire</MenuItem>
+
+                <ModalComponent open={isOpen} close={closeModal}>
+                    <RetireModal id={id} handleCloseModal={closeModal} />
+                </ModalComponent>
             </Menu>
-            <DialogComponent isOpen={modalState} onClose={handleCloseModal}>
-                <RetireModal id={id} handleCloseModal={handleCloseModal} />
-            </DialogComponent>
         </>
     );
 };
