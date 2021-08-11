@@ -1,4 +1,3 @@
-/* eslint-disable no-nested-ternary */
 import React from 'react';
 import { Table, TableBody, TableCell, TableHead, TableRow } from '@material-ui/core';
 import { useSortBy, useTable } from 'react-table';
@@ -7,7 +6,12 @@ import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import shortid from 'shortid';
 import { useStyles } from './styles';
 
-export const TableComponent = ({ columns, data }: any) => {
+interface IDataTableProps {
+    columns: any;
+    data: any;
+}
+
+export const TableComponent: React.FC<IDataTableProps> = ({ columns, data }) => {
     const classes = useStyles();
     const { getTableProps, headerGroups, rows, prepareRow } = useTable(
         {
@@ -31,15 +35,12 @@ export const TableComponent = ({ columns, data }: any) => {
                                 >
                                     {column.render('Header')}
 
-                                    {column.isSorted ? (
-                                        column.isSortedDesc ? (
+                                    {column.isSorted &&
+                                        (column.isSortedDesc ? (
                                             <ArrowDropDownIcon />
                                         ) : (
                                             <ArrowDropUpIcon />
-                                        )
-                                    ) : (
-                                        ''
-                                    )}
+                                        ))}
                                 </TableCell>
                             ))}
                         </TableRow>
