@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Pagination } from '@material-ui/lab';
 import { TableComponent } from 'components/Table';
@@ -11,6 +11,7 @@ import { columns } from './columns';
 export const MembersList: React.FC = () => {
     const dispatch = useDispatch();
     const loading = useSelector(isRequestPendingSelector(getUsersAsync.typePrefix));
+    const [pageState, setPageState] = useState(1);
 
     useEffect(() => {
         dispatch(getUsersAsync());
@@ -29,10 +30,12 @@ export const MembersList: React.FC = () => {
                 <>
                     <TableComponent columns={columns} data={usersData} />
                     <Pagination
+                        page={pageState}
                         count={Math.ceil(totalUsers / LIMIT)}
-                        onChange={(event: ChangeEvent<unknown>, page: number) =>
-                            dispatch(getUsersAsync({ page, limit: LIMIT }))
-                        }
+                        onChange={(event: ChangeEvent<unknown>, page: number) => {
+                            setPageState(page);
+                            dispatch(getUsersAsync({ page, limit: LIMIT }));
+                        }}
                     />
                 </>
             )}
