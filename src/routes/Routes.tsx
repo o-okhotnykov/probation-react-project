@@ -15,11 +15,10 @@ export const Routes: React.FC = () => {
                 <Route path={ROUTE_PATH.login} component={LoginPage} />
                 <Route path={ROUTE_PATH.register} component={RegisterPage} />
                 <PrivateRoute exact path={ROUTE_PATH.dashboard} component={DashboardMain} />
-                <Route path={ROUTE_PATH.main}>
-                    <Redirect to={ROUTE_PATH.dashboard} />
-                </Route>
-
                 <PrivateRoute exact path={ROUTE_PATH.members} component={MembersMain} />
+                <Route path={ROUTE_PATH.main}>
+                    <Redirect to={ROUTE_PATH.login} />
+                </Route>
                 <Route component={ErrorComponent} />
             </Switch>
         </Router>
