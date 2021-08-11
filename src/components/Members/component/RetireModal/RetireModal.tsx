@@ -8,6 +8,7 @@ import {
 } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import { deleteUserAsync, getUsersAsync } from 'store/user-slice';
+import { useStyles } from './styles';
 
 interface RetireModalProps {
     id: number;
@@ -16,6 +17,7 @@ interface RetireModalProps {
 
 export const RetireModal: React.FC<RetireModalProps> = ({ id, handleCloseModal }) => {
     const dispatch = useDispatch();
+    const classes = useStyles();
 
     return (
         <>
@@ -25,11 +27,16 @@ export const RetireModal: React.FC<RetireModalProps> = ({ id, handleCloseModal }
                     Are you sure you want to retire this user?
                 </DialogContentText>
             </DialogContent>
-            <DialogActions>
-                <Button onClick={handleCloseModal} color="primary">
+            <DialogActions className={classes.action}>
+                <Button
+                    className={`${classes.btn} ${classes.btnCancel}`}
+                    onClick={handleCloseModal}
+                    color="primary"
+                >
                     Cancel
                 </Button>
                 <Button
+                    className={`${classes.btn} ${classes.btnConfirm}`}
                     onClick={() => {
                         dispatch(deleteUserAsync(id));
                         dispatch(getUsersAsync());
