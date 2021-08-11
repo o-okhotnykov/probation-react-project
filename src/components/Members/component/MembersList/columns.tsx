@@ -1,7 +1,7 @@
-import React from 'react';
+import { Column } from 'react-table';
 import { ActionMenu } from './ActionMenu/ActionMenu';
 
-export const columns = [
+export const columns: Column[] = [
     {
         Header: 'Name',
         accessor: 'name',

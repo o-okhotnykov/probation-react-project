@@ -27,9 +27,11 @@ export const Form: React.FC<FormikProps<ILoginFormValues>> = (props) => {
     if (isAuthorized) {
         return <Redirect to={ROUTE_PATH.dashboard} />;
     }
+
     if (loading) {
         return <Loading />;
     }
+
     return (
         <div className="form-container">
             <form onSubmit={handleSubmit} className="form">
