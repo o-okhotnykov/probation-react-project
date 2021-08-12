@@ -1,10 +1,9 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect } from 'react';
-import { Button, Grid, TextField } from '@material-ui/core';
-
+import { Button, Grid, MenuItem, Select, TextField } from '@material-ui/core';
 import { format } from 'date-fns';
-import { Formik } from 'formik';
-import { currentUserSelector, getUserByIdAsync } from 'store/user-slice';
+import { Field, Formik } from 'formik';
+import { currentUserSelector, getUserByIdAsync, patchUserAsync } from 'store/user-slice';
 import { useDispatch, useSelector } from 'react-redux';
 import { UserStatus } from 'types/api/auth';
 import { isRequestPendingSelector } from 'store/loading-slice';
@@ -25,6 +24,7 @@ export const EditForm: React.FC<{ id: number }> = ({ id }) => {
     }, [dispatch, id]);
 
     const currentUser = useSelector(currentUserSelector);
+
     if (loading) {
         return <Loading />;
     }
@@ -39,7 +39,7 @@ export const EditForm: React.FC<{ id: number }> = ({ id }) => {
                         confirmPassword: '',
                         birthDate: currentUser?.birthDate,
                         status: UserStatus.progress,
-                        img: '',
+                        img: currentUser.img,
                     }}
                     validateOnBlur
                     onSubmit={(value) => console.log(value)}
@@ -52,10 +52,11 @@ export const EditForm: React.FC<{ id: number }> = ({ id }) => {
                         handleChange,
                         handleBlur,
                         isValid,
+                        handleSubmit,
                         setFieldValue,
                         dirty,
                     }) => (
-                        <form className="form">
+                        <form className="form" onSubmit={handleSubmit}>
                             <Grid container>
                                 <Grid item xs={6}>
                                     <TextField
@@ -98,7 +99,7 @@ export const EditForm: React.FC<{ id: number }> = ({ id }) => {
                                     <TextField
                                         id="confirmPassword"
                                         label="Confirm Password"
-                                        type="current-password"
+                                        type="password"
                                         value={values.confirmPassword}
                                         onChange={handleChange}
                                         onBlur={handleBlur}
@@ -129,7 +130,11 @@ export const EditForm: React.FC<{ id: number }> = ({ id }) => {
                                     />
                                 </Grid>
                                 <Grid item xs={6} className={classes.formPart}>
-                                    <img src={values.img} alt="" />
+                                    <img
+                                        src={values.img}
+                                        alt="user-img"
+                                        className={classes.userImg}
+                                    />
                                     <Button variant="contained" component="label">
                                         Upload File
                                         <input
@@ -144,8 +149,24 @@ export const EditForm: React.FC<{ id: number }> = ({ id }) => {
                                                 setFieldValue('img', data);
                                             }}
                                         />
-                                        {console.log(values)}
                                     </Button>
+                                    <Select
+                                        id="status"
+                                        value={values.status}
+                                        onChange={(event) =>
+                                            setFieldValue('status', event.target.value)
+                                        }
+                                    >
+                                        <MenuItem id="status" value={UserStatus.progress}>
+                                            Progress
+                                        </MenuItem>
+                                        <MenuItem id="status" value={UserStatus.register}>
+                                            Register
+                                        </MenuItem>
+                                        <MenuItem id="status" value={UserStatus.expired}>
+                                            Expired
+                                        </MenuItem>
+                                    </Select>
                                 </Grid>
                             </Grid>
 
@@ -153,6 +174,20 @@ export const EditForm: React.FC<{ id: number }> = ({ id }) => {
                                 className={`${classes.btn} form-btn`}
                                 type="submit"
                                 color="primary"
+                                onClick={() =>
+                                    dispatch(
+                                        patchUserAsync({
+                                            id,
+                                            values: {
+                                                name: values.name,
+                                                surname: values.surname,
+                                                birthDate: values.birthDate,
+                                                img: values.img,
+                                                status: values.status,
+                                            },
+                                        }),
+                                    )
+                                }
                                 disabled={!isValid || !dirty}
                             >
                                 Confirm

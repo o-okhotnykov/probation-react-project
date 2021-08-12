@@ -70,6 +70,14 @@ class HttpService {
         });
     }
 
+    patch<T>(path: string, payload: unknown) {
+        return this.request<T>({
+            method: 'PATCH',
+            url: path,
+            data: payload,
+        });
+    }
+
     delete<T>(path: string, payload: unknown) {
         return this.request<T>({
             method: 'delete',

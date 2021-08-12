@@ -29,7 +29,13 @@ export interface IEditForm {
     img: string;
     status: UserStatus;
 }
-
+export interface IEditFormResponse {
+    name: string;
+    surname: string;
+    birthDate: string;
+    img: string;
+    status: UserStatus;
+}
 export enum UserStatus {
     progress = 'progress',
     register = 'register',

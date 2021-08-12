@@ -1,16 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useEffect } from 'react';
-import {
-    Button,
-    DialogActions,
-    DialogContent,
-    DialogContentText,
-    DialogTitle,
-    Grid,
-} from '@material-ui/core';
-import { useDispatch, useSelector } from 'react-redux';
-import { IEditForm, UserStatus } from 'types/api/auth';
-import { currentUserSelector, getUserAsync, getUserByIdAsync } from 'store/user-slice';
+import React from 'react';
+import { DialogActions, DialogContent, DialogTitle } from '@material-ui/core';
 import { EditForm } from './EditForm';
 import { useStyles } from './styles';
 
@@ -19,7 +8,7 @@ interface EditModalProps {
     handleCloseModal: any;
 }
 
-export const EditModal: React.FC<EditModalProps> = ({ id, handleCloseModal }) => {
+export const EditModal: React.FC<EditModalProps> = ({ id }) => {
     const classes = useStyles();
 
     return (

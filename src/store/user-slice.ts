@@ -1,5 +1,11 @@
 import { createAsyncThunk, createSlice, createSelector } from '@reduxjs/toolkit';
-import { IUserData, LoginResponse, RegisterResponse, UsersGetResponse } from 'types/api/auth';
+import {
+    IEditFormResponse,
+    IUserData,
+    LoginResponse,
+    RegisterResponse,
+    UsersGetResponse,
+} from 'types/api/auth';
 import { IRegisterResponse, ILoginFormValues } from 'types';
 import { httpService } from 'services/HttpService';
 import { errorToastNotify, successfulToastNotify } from 'toasts';
@@ -54,6 +60,13 @@ export const deleteUserAsync = createAsyncThunk('app/deleteUserAsync', (id: numb
     return httpService.delete<IUserData>(`/users/${id}`, {});
 });
 
+export const patchUserAsync = createAsyncThunk(
+    'app/patchUserAsync',
+    ({ id, values }: { id: number; values: IEditFormResponse }) => {
+        return httpService.patch<IUserData>(`/users/${id}`, { ...values });
+    },
+);
+
 export const userSlice = createSlice({
     name: 'user',
     initialState,
@@ -92,6 +105,9 @@ export const userSlice = createSlice({
             })
             .addCase(deleteUserAsync.fulfilled, () => {
                 successfulToastNotify('Successful Delete');
+            })
+            .addCase(patchUserAsync.fulfilled, () => {
+                successfulToastNotify('Successful Edit');
             })
             .addCase(getUserByIdAsync.fulfilled, (state, action) => {
                 const { data } = action.payload;

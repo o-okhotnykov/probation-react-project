@@ -20,6 +20,6 @@ export interface IRegisterResponse {
     surname: string;
     password: string;
     birthDate: string;
-    img: string;
     status: UserStatus;
+    img: string;
 }
