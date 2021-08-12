@@ -1,6 +1,6 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { FormEvent, useEffect } from 'react';
-import { Button, Card, CardContent, Grid, TextField } from '@material-ui/core';
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+import React, { useEffect } from 'react';
+import { Button, Grid, TextField } from '@material-ui/core';
 
 import { format } from 'date-fns';
 import { Formik } from 'formik';
@@ -9,12 +9,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { UserStatus } from 'types/api/auth';
 import { isRequestPendingSelector } from 'store/loading-slice';
 import { Loading } from 'components/Loading';
+import { fileToBase64 } from 'helper/base64';
 import { editFormValidator } from './validation';
 import { useStyles } from './styles';
 
 export const EditForm: React.FC<{ id: number }> = ({ id }) => {
     const classes = useStyles();
     const currentDay = format(new Date(), 'yyyy-MM-dd');
+
     const dispatch = useDispatch();
     const loading = useSelector(isRequestPendingSelector(getUserByIdAsync.typePrefix));
 
@@ -50,7 +52,7 @@ export const EditForm: React.FC<{ id: number }> = ({ id }) => {
                         handleChange,
                         handleBlur,
                         isValid,
-                        handleSubmit,
+                        setFieldValue,
                         dirty,
                     }) => (
                         <form className="form">
@@ -126,8 +128,24 @@ export const EditForm: React.FC<{ id: number }> = ({ id }) => {
                                         fullWidth
                                     />
                                 </Grid>
-                                <Grid item xs={6}>
-                                    img
+                                <Grid item xs={6} className={classes.formPart}>
+                                    <img src={values.img} alt="" />
+                                    <Button variant="contained" component="label">
+                                        Upload File
+                                        <input
+                                            style={{ display: 'none' }}
+                                            id="file"
+                                            name="file"
+                                            type="file"
+                                            onChange={async (event) => {
+                                                const data = await fileToBase64(
+                                                    event.currentTarget.files![0],
+                                                );
+                                                setFieldValue('img', data);
+                                            }}
+                                        />
+                                        {console.log(values)}
+                                    </Button>
                                 </Grid>
                             </Grid>
 

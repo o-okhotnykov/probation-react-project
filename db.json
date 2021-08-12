@@ -85,6 +85,16 @@
       "status": "register",
       "img": "",
       "id": 4
+    },
+    {
+      "email": "fqwffqewf@fqwef.rt",
+      "password": "$2a$10$ivn8rT9g/ioluG8woHjKeuD1t3EeR/DaN1foXOCzvT1BG5AVb.0qK",
+      "name": "1",
+      "surname": "2",
+      "birthDate": "2021-08-04",
+      "status": "register",
+      "img": "",
+      "id": 5
     }
   ]
 }

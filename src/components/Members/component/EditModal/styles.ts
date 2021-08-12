@@ -33,4 +33,9 @@ export const useStyles = makeStyles({
         textDecoration: 'none',
         textTransform: 'uppercase',
     },
+    formPart: {
+        display: 'flex',
+        alignItems: 'center',
+        flexDirection: 'column',
+    },
 });
