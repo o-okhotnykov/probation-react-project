@@ -67,6 +67,24 @@
       "surname": "Under",
       "birthDate": "2021-08-04",
       "id": 2
+    },
+    {
+      "email": "gg@f.a",
+      "password": "$2a$10$WIoKSV1FbBkeE3z8fu/CFemwfl1nIOXEKgFHhhSv.276YMWDDifoq",
+      "name": "gg",
+      "surname": "wp",
+      "birthDate": "2021-08-05",
+      "id": 3
+    },
+    {
+      "email": "new@test.ru",
+      "password": "$2a$10$eH9KT6mLkF1IPPJ7LxBFvezna0T4hYc7kIcwBie6UDFma3vqF6Ks2",
+      "name": "New",
+      "surname": "Test",
+      "birthDate": "2021-08-05",
+      "status": "register",
+      "img": "",
+      "id": 4
     }
   ]
 }

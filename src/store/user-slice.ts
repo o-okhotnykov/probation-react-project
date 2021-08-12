@@ -1,9 +1,9 @@
 import { createAsyncThunk, createSlice, createSelector } from '@reduxjs/toolkit';
-import { IUserData, LoginResponse, RegisterResponse, UsersGetResponse } from 'interface/api/auth';
-import { IRegisterResponse, ILoginFormValues } from 'interface';
+import { IUserData, LoginResponse, RegisterResponse, UsersGetResponse } from 'types/api/auth';
+import { IRegisterResponse, ILoginFormValues } from 'types';
 import { httpService } from 'services/HttpService';
 import { errorToastNotify, successfulToastNotify } from 'toasts';
-import { GetProjectsParams } from 'interface/api/project';
+import { GetProjectsParams } from 'types/api/project';
 import { LIMIT, PAGE } from 'constants/index';
 
 import type { RootState } from './root-store';

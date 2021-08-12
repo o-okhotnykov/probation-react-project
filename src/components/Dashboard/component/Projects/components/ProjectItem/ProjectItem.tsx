@@ -1,6 +1,6 @@
 import React from 'react';
 import { Grid, Paper, Typography, Menu, MenuItem, IconButton } from '@material-ui/core';
-import { Project } from 'interface/api/project';
+import { Project } from 'types/api/project';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import { useStyles } from './styles';
 

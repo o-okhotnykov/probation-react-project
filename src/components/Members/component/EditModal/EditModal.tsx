@@ -9,7 +9,7 @@ import {
     Grid,
 } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
-import { IEditForm, UserStatus } from 'interface/api/auth';
+import { IEditForm, UserStatus } from 'types/api/auth';
 import { currentUserSelector, getUserAsync, getUserByIdAsync } from 'store/user-slice';
 import { EditForm } from './EditForm';
 import { useStyles } from './styles';
@@ -28,18 +28,7 @@ export const EditModal: React.FC<EditModalProps> = ({ id, handleCloseModal }) =>
             <DialogContent>
                 <EditForm id={id} />
             </DialogContent>
-            <DialogActions className={classes.action}>
-                <Button
-                    className={`${classes.btn} ${classes.btnConfirm}`}
-                    onClick={() => {
-                        handleCloseModal();
-                    }}
-                    color="primary"
-                    autoFocus
-                >
-                    Confirm
-                </Button>
-            </DialogActions>
+            <DialogActions className={classes.action} />
         </>
     );
 };

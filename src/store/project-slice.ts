@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice, createSelector } from '@reduxjs/toolkit';
-import { GetProjectsParams, ProjectResponse } from 'interface/api/project';
+import { GetProjectsParams, ProjectResponse } from 'types/api/project';
 import { httpService } from 'services/HttpService';
 import { LIMIT, PAGE } from 'constants/index';
 import { errorToastNotify } from 'toasts/component/errorToast';

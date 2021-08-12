@@ -5,10 +5,12 @@ import { FormikProps } from 'formik';
 import { Link, Redirect } from 'react-router-dom';
 import { format } from 'date-fns';
 import { registerAsync, isAuthorizedSelector } from 'store/user-slice';
-import { IRegisterFormValues } from 'interface';
+import { UserStatus } from 'types/api/auth';
 import { ROUTE_PATH } from 'constants/index';
-import logo from 'img/logo.png';
+import logo from 'assets/logo.png';
 import Typography from '@material-ui/core/Typography';
+
+import { IRegisterFormValues } from 'types';
 import { useStyles } from './styles';
 
 export const Form: React.FC<FormikProps<IRegisterFormValues>> = (props) => {
@@ -27,6 +29,8 @@ export const Form: React.FC<FormikProps<IRegisterFormValues>> = (props) => {
                 surname: values.surname,
                 password: values.password,
                 birthDate: values.birthDate,
+                status: UserStatus.register,
+                img: '',
             }),
         );
     };

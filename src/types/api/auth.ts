@@ -1,6 +1,5 @@
 export type LoginResponse = {
     accessToken: string;
-    error: { message: string };
     user: IUserData;
 };
 
@@ -17,6 +16,7 @@ export type IUserData = {
     id: number;
     name: string;
     surname: string;
+    img: string;
     status: UserStatus;
 };
 

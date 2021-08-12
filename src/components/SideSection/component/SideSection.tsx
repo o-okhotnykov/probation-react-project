@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from 'img/logo.png';
+import logo from 'assets/logo.png';
 
 export const SideSection: React.FC = () => {
     return (

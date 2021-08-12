@@ -4,9 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { FormikProps } from 'formik';
 import { Link, Redirect } from 'react-router-dom';
 import { loginAsync, isAuthorizedSelector } from 'store/user-slice';
-import { ILoginFormValues } from 'interface';
+import { ILoginFormValues } from 'types';
 import { ROUTE_PATH } from 'constants/index';
-import logo from 'img/logo.png';
+import logo from 'assets/logo.png';
 import { useStyles } from './styles';
 
 export const Form: React.FC<FormikProps<ILoginFormValues>> = (props) => {
