@@ -3,7 +3,13 @@ import React, { useEffect } from 'react';
 import { Button, Grid, MenuItem, Select, TextField } from '@material-ui/core';
 import { format } from 'date-fns';
 import { Field, Formik } from 'formik';
-import { currentUserSelector, getUserByIdAsync, patchUserAsync } from 'store/user-slice';
+import {
+    currentUserSelector,
+    getUserAsync,
+    getUserByIdAsync,
+    getUsersAsync,
+    patchUserAsync,
+} from 'store/user-slice';
 import { useDispatch, useSelector } from 'react-redux';
 import { UserStatus } from 'types/api/auth';
 import { isRequestPendingSelector } from 'store/loading-slice';
@@ -42,7 +48,22 @@ export const EditForm: React.FC<{ id: number }> = ({ id }) => {
                         img: currentUser.img,
                     }}
                     validateOnBlur
-                    onSubmit={(value) => console.log(value)}
+                    onSubmit={async (values) => {
+                        await dispatch(
+                            patchUserAsync({
+                                id,
+                                values: {
+                                    name: values.name,
+                                    surname: values.surname,
+                                    birthDate: values.birthDate,
+                                    img: values.img,
+                                    status: values.status,
+                                },
+                            }),
+                        );
+                        await dispatch(getUserAsync());
+                        await dispatch(getUsersAsync());
+                    }}
                     validationSchema={editFormValidator}
                 >
                     {({
@@ -174,20 +195,6 @@ export const EditForm: React.FC<{ id: number }> = ({ id }) => {
                                 className={`${classes.btn} form-btn`}
                                 type="submit"
                                 color="primary"
-                                onClick={() =>
-                                    dispatch(
-                                        patchUserAsync({
-                                            id,
-                                            values: {
-                                                name: values.name,
-                                                surname: values.surname,
-                                                birthDate: values.birthDate,
-                                                img: values.img,
-                                                status: values.status,
-                                            },
-                                        }),
-                                    )
-                                }
                                 disabled={!isValid || !dirty}
                             >
                                 Confirm
