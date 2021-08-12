@@ -1,100 +1,66 @@
 {
-  "projects": [
-    {
-      "id": 0,
-      "img": "https://cdn.zeplin.io/5ecffa8aeffff9282307b8d6/assets/54213317-12A5-4D0B-A08F-69315E732CCE.png",
-      "title": "Collabee Private Co.",
-      "dateCreate": "2021-07-14",
-      "reporter": "Christian Matthews",
-      "dateDue": "2021-07-14",
-      "stats": "progress",
-      "value": "400"
-    },
-    {
-      "id": 1,
-      "img": "https://cdn.zeplin.io/5ecffa8aeffff9282307b8d6/assets/7DABEF07-A2FB-4F10-B5DD-F46B95B3C937.svg",
-      "title": "Cambr Card",
-      "dateCreate": "2021-07-25",
-      "reporter": "Arthur Cook",
-      "dateDue": "2021-07-10",
-      "stats": "open",
-      "value": "450"
-    },
-    {
-      "id": 2,
-      "img": "data:image/jpeg;base64,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",
-      "title": "Target",
-      "dateCreate": "2021-07-12",
-      "reporter": "Evelyn Tucker",
-      "dateDue": "2021-07-03",
-      "stats": "progress",
-      "value": "200"
-    },
-    {
-      "id": 3,
-      "img": "https://cdn.zeplin.io/5ecffa8aeffff9282307b8d6/assets/2086FA6E-1C7F-4413-95C6-4AEDD95DD5DD.png",
-      "title": "Gramma Limited",
-      "dateCreate": "2021-07-13",
-      "reporter": "Donald Curtis",
-      "dateDue": "2021-07-12",
-      "stats": "done",
-      "value": "500"
-    },
-    {
-      "id": 4,
-      "img": "https://cdn.zeplin.io/5ecffa8aeffff9282307b8d6/assets/54213317-12A5-4D0B-A08F-69315E732CCE.png",
-      "title": "project1",
-      "dateCreate": "2021-07-14",
-      "reporter": "Alex Under",
-      "dateDue": "2020-1-1",
-      "stats": "progress",
-      "value": "550"
-    }
-  ],
-  "users": [
-    {
-      "email": "sashaohotni26@gmail.com",
-      "password": "$2a$10$UTB1sbiBYlu2jP7WhBkcWOfKuHfu.WvFsmM5thOEvwCk0c4lxrg/u",
-      "name": "Alex",
-      "surname": "Under",
-      "birthDate": "2021-08-04",
-      "id": 1
-    },
-    {
-      "email": "1w@fwe.f",
-      "password": "$2a$10$/xOG0aQahUG23YrvGMA1mOxeDHiSqb8U.jxepwdb4M0x0REjVlwhq",
-      "name": "Alex",
-      "surname": "Under",
-      "birthDate": "2021-08-04",
-      "id": 2
-    },
-    {
-      "email": "gg@f.a",
-      "password": "$2a$10$WIoKSV1FbBkeE3z8fu/CFemwfl1nIOXEKgFHhhSv.276YMWDDifoq",
-      "name": "gg",
-      "surname": "wp",
-      "birthDate": "2021-08-05",
-      "id": 3
-    },
-    {
-      "email": "new@test.ru",
-      "password": "$2a$10$eH9KT6mLkF1IPPJ7LxBFvezna0T4hYc7kIcwBie6UDFma3vqF6Ks2",
-      "name": "New",
-      "surname": "Test",
-      "birthDate": "2021-08-05",
-      "status": "register",
-      "img": "",
-      "id": 4
-    },
-    {
-      "email": "fqwffqewf@fqwef.rt",
-      "password": "$2a$10$ivn8rT9g/ioluG8woHjKeuD1t3EeR/DaN1foXOCzvT1BG5AVb.0qK",
-      "name": "1",
-      "surname": "2",
-      "birthDate": "2021-08-04",
-      "status": "register",
-      "img": "",
-      "id": 5
-    }
-  ]
+    "projects": [
+        {
+            "id": 0,
+            "img": "https://cdn.zeplin.io/5ecffa8aeffff9282307b8d6/assets/54213317-12A5-4D0B-A08F-69315E732CCE.png",
+            "title": "Collabee Private Co.",
+            "dateCreate": "2021-07-14",
+            "reporter": "Christian Matthews",
+            "dateDue": "2021-07-14",
+            "stats": "progress",
+            "value": "400"
+        },
+        {
+            "id": 1,
+            "img": "https://cdn.zeplin.io/5ecffa8aeffff9282307b8d6/assets/7DABEF07-A2FB-4F10-B5DD-F46B95B3C937.svg",
+            "title": "Cambr Card",
+            "dateCreate": "2021-07-25",
+            "reporter": "Arthur Cook",
+            "dateDue": "2021-07-10",
+            "stats": "open",
+            "value": "450"
+        },
+        {
+            "id": 2,
+            "img": "data:image/jpeg;base64,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",
+            "title": "Target",
+            "dateCreate": "2021-07-12",
+            "reporter": "Evelyn Tucker",
+            "dateDue": "2021-07-03",
+            "stats": "progress",
+            "value": "200"
+        },
+        {
+            "id": 3,
+            "img": "https://cdn.zeplin.io/5ecffa8aeffff9282307b8d6/assets/2086FA6E-1C7F-4413-95C6-4AEDD95DD5DD.png",
+            "title": "Gramma Limited",
+            "dateCreate": "2021-07-13",
+            "reporter": "Donald Curtis",
+            "dateDue": "2021-07-12",
+            "stats": "done",
+            "value": "500"
+        },
+        {
+            "id": 4,
+            "img": "https://cdn.zeplin.io/5ecffa8aeffff9282307b8d6/assets/54213317-12A5-4D0B-A08F-69315E732CCE.png",
+            "title": "project1",
+            "dateCreate": "2021-07-14",
+            "reporter": "Alex Under",
+            "dateDue": "2020-1-1",
+            "stats": "progress",
+            "value": "550"
+        }
+    ],
+    "users": [
+        {
+            "email": "fff@fqwef.rt",
+            "password": "$2a$10$sU83JqXykZKeHuGWU38Av.7v.eZYM3.WFowx4bsT1BZ.0ppxodBXW",
+            "name": "fqwefqw",
+            "surname": "fqwefqwef",
+            "birthDate": "2021-08-02",
+            "status": "register",
+            "img": "/static/media/default-user.fba28acd.png",
+            "id": 1
+        }
+    ]
 }

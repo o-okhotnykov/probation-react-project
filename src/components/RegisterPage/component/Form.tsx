@@ -11,6 +11,7 @@ import logo from 'assets/logo.png';
 import Typography from '@material-ui/core/Typography';
 
 import { IRegisterFormValues } from 'types';
+import defaultUser from 'assets/default-user.png';
 import { useStyles } from './styles';
 
 export const Form: React.FC<FormikProps<IRegisterFormValues>> = (props) => {
@@ -30,7 +31,7 @@ export const Form: React.FC<FormikProps<IRegisterFormValues>> = (props) => {
                 password: values.password,
                 birthDate: values.birthDate,
                 status: UserStatus.register,
-                img: '',
+                img: defaultUser,
             }),
         );
     };
