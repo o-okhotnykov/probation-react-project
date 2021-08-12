@@ -31,7 +31,8 @@ app.get('/my', auth, (req, res, next) => {
 
 app.db = router.db;
 app.use(middlewares);
-app.use(router);
 app.use(auth);
+app.use(router);
+
 
 app.listen(3010);

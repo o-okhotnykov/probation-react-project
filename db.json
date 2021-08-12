@@ -54,70 +54,19 @@
   "users": [
     {
       "email": "sashaohotni26@gmail.com",
-      "password": "$2a$10$Zs4H9Le2hukmfzd7x3HZ.ObzGnVif9Xh7hHpoF4FBSKbCDRpfyP.G",
+      "password": "$2a$10$UTB1sbiBYlu2jP7WhBkcWOfKuHfu.WvFsmM5thOEvwCk0c4lxrg/u",
       "name": "Alex",
       "surname": "Under",
-      "confirmPassword": "123456Aa",
-      "birthDate": "2021-07-14",
-      "id": 7,
-      "status": "progress"
-    },
-    {
-      "email": "fwqef@fwe.asfd",
-      "password": "$2a$10$10REahosrIslJ53A5jPfVOLLQPbIGqHpVEflufIq7TQ1G4X/X130y",
-      "name": "Alex",
-      "surname": "Under",
-      "confirmPassword": "123456Aa",
-      "birthDate": "2021-07-07",
-      "id": 8,
-      "status": "registred"
+      "birthDate": "2021-08-04",
+      "id": 1
     },
     {
       "email": "1w@fwe.f",
-      "password": "$2a$10$r5kdnnfsUSCguHHZvwyXCelCUBJUTiPH9TMc9iGdepb3pEpCwlWEi",
+      "password": "$2a$10$/xOG0aQahUG23YrvGMA1mOxeDHiSqb8U.jxepwdb4M0x0REjVlwhq",
       "name": "Alex",
       "surname": "Under",
-      "confirmPassword": "123456Aa",
-      "birthDate": "2021-07-08",
-      "id": 9,
-      "status": "progress"
-    },
-    {
-      "email": "ddddd",
-      "password": "$2a$10$jxfyJtIa.zY1IRV7N93NkuoRfJe9Z3fhQ35uCM.vq8T8DzMXkO0qa",
-      "name": "ddddd",
-      "surname": "dddd",
-      "birthDate": "2021-07-02",
-      "id": 11,
-      "status": "progress"
-    },
-    {
-      "email": "cccccc",
-      "password": "$2a$10$4XTmvCgET97EuV4H/K/MvOnVBOIbYrruodmagOmxCRmI5XT.mCmMW",
-      "name": "bbbbb",
-      "surname": "bbbb",
-      "birthDate": "2021-07-16",
-      "id": 12,
-      "status": "registred"
-    },
-    {
-      "email": "1qqqqqqq",
-      "password": "$2a$10$r5kdnnfsUSCguHHZvwyXCelCUBJUTiPH9TMc9iGdepb3pEpCwlWEi",
-      "name": "qqqqqq",
-      "surname": "qqqq",
-      "confirmPassword": "123456Aa",
-      "birthDate": "2021-07-08",
-      "id": 13,
-      "status": "progress"
-    },
-    {
-      "email": "1fw@fwe.f",
-      "password": "$2a$10$jxfyJtIa.zY1IRV7N93NkuoRfJe9Z3fhQ35uCM.vq8T8DzMXkO0qa",
-      "name": "Alex",
-      "surname": "Under",
-      "birthDate": "2021-07-02",
-      "id": 15,
-      "status": "progress"
+      "birthDate": "2021-08-04",
+      "id": 2
     }
   ]
 }

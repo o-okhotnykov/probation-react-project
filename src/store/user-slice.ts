@@ -12,6 +12,7 @@ interface IUserState {
     accessToken: string;
     isAuthorized: boolean;
     userData: IUserData | null;
+    currentUser: IUserData | null;
     usersData: IUserData[];
     total: number;
 }
@@ -20,6 +21,7 @@ const initialState: IUserState = {
     accessToken: '',
     isAuthorized: true,
     userData: null,
+    currentUser: null,
     usersData: [],
     total: 0,
 };
@@ -42,6 +44,10 @@ export const getUsersAsync = createAsyncThunk(
 
 export const getUserAsync = createAsyncThunk('app/getUser', () => {
     return httpService.get<IUserData>(`my`, {});
+});
+
+export const getUserByIdAsync = createAsyncThunk('app/getUserById', (id: number) => {
+    return httpService.get<IUserData>(`users/${id}`, {});
 });
 
 export const deleteUserAsync = createAsyncThunk('app/deleteUserAsync', (id: number) => {
@@ -87,6 +93,13 @@ export const userSlice = createSlice({
             .addCase(deleteUserAsync.fulfilled, () => {
                 successfulToastNotify('Successful Delete');
             })
+            .addCase(getUserByIdAsync.fulfilled, (state, action) => {
+                const { data } = action.payload;
+
+                if (data) {
+                    state.currentUser = data;
+                }
+            })
             .addCase(registerAsync.rejected, (state, action) => {
                 const { message } = action.error;
                 if (message) {
@@ -112,6 +125,8 @@ export const totalUsersSelector = createSelector(userSelector, ({ total }) => to
 export const usersDataSelector = createSelector(userSelector, ({ usersData }) => usersData);
 
 export const userDataSelector = createSelector(userSelector, ({ userData }) => userData);
+
+export const currentUserSelector = createSelector(userSelector, ({ currentUser }) => currentUser);
 
 export const isAuthorizedSelector = createSelector(
     userSelector,

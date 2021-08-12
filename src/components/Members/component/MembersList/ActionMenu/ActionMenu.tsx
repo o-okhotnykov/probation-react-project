@@ -1,9 +1,11 @@
-import { IconButton, Menu, MenuItem } from '@material-ui/core';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { IconButton, Menu, MenuItem, Modal } from '@material-ui/core';
 import React, { useState } from 'react';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
-import { DialogComponent } from 'components/DialogComponent';
-import { useStyles } from './styles';
+import { ModalComponent } from 'components/ModalComponent';
 import { RetireModal } from '../../RetireModal';
+import { useStyles } from './styles';
+import { EditModal } from '../../EditModal';
 
 interface ActionMenuProps {
     id: number;
@@ -11,7 +13,16 @@ interface ActionMenuProps {
 
 export const ActionMenu: React.FC<ActionMenuProps> = ({ id }) => {
     const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
-    const [modalState, setModalState] = useState(false);
+    const [isOpenEdit, setIsSOpenEdit] = useState(false);
+    const [isOpenRetire, setIsSOpenRetire] = useState(false);
+
+    const toggleModalEdit = () => {
+        setIsSOpenEdit(!isOpenEdit);
+    };
+
+    const toggleModalRetire = () => {
+        setIsSOpenRetire(!isOpenRetire);
+    };
 
     const handleMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
         setAnchorEl(event.currentTarget);
@@ -25,9 +36,6 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({ id }) => {
 
     const open = Boolean(anchorEl);
 
-    const handleCloseModal = (): void => {
-        setModalState(false);
-    };
     return (
         <>
             <IconButton
@@ -55,19 +63,20 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({ id }) => {
                 open={open}
                 onClose={handleClose}
             >
-                <MenuItem onClick={handleClose}>Edit</MenuItem>
-                <MenuItem
-                    onClick={() => {
-                        setModalState(true);
-                        handleClose();
-                    }}
-                >
-                    Retire
-                </MenuItem>
+                <MenuItem onClick={toggleModalEdit}>Edit</MenuItem>
+                <MenuItem onClick={toggleModalRetire}>Retire</MenuItem>
+
+                {isOpenEdit && (
+                    <ModalComponent open={isOpenEdit} close={toggleModalEdit}>
+                        <EditModal id={id} handleCloseModal={toggleModalEdit} />
+                    </ModalComponent>
+                )}
+                {isOpenRetire && (
+                    <ModalComponent open={isOpenRetire} close={toggleModalRetire}>
+                        <RetireModal id={id} handleCloseModal={toggleModalRetire} />
+                    </ModalComponent>
+                )}
             </Menu>
-            <DialogComponent isOpen={modalState} onClose={handleCloseModal}>
-                <RetireModal id={id} handleCloseModal={handleCloseModal} />
-            </DialogComponent>
         </>
     );
 };
