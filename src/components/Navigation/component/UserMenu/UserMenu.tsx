@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import AccountCircle from '@material-ui/icons/AccountCircle';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import ClearIcon from '@material-ui/icons/Clear';
 import { Typography, Button, IconButton, Menu, MenuItem } from '@material-ui/core';
@@ -49,13 +48,14 @@ export const UserMenu: React.FC = () => {
                 )}
             </div>
             <IconButton
+                className={classes.menu}
                 aria-label="account of current user"
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
                 onClick={handleMenu}
                 color="inherit"
             >
-                <AccountCircle style={{ fontSize: 40, padding: 0 }} />
+                <img className={classes.userLogo} src={userData?.img} alt="user-avatar" />
             </IconButton>
             <Menu
                 id="menu-appbar"
