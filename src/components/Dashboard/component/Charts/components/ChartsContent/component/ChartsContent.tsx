@@ -3,7 +3,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { isRequestPendingSelector } from 'store/loading-slice';
 import { Loading } from 'components/Loading';
-import { getProjectsAsync } from 'store/project-store';
+import { getProjectsAsync } from 'store/project-slice';
 import { VerticalBar } from '../../VerticalBar';
 import { LineBar } from '../../LineBar';
 import { DoughnutBar } from '../../Doughnut';

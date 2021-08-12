@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { projectsDataSelector, getProjectsAsync } from 'store/project-store';
+import { projectsDataSelector, getProjectsAsync } from 'store/project-slice';
 import { isRequestPendingSelector } from 'store/loading-slice';
 import { Loading } from 'components/Loading';
 import { ProjectItem } from '../ProjectItem/ProjectItem';
