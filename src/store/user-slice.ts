@@ -113,10 +113,8 @@ export const userSlice = createSlice({
             .addCase(patchUserAsync.fulfilled, () => {
                 successfulToastNotify('Successful Edit');
             })
-            .addCase(addUserAsync.fulfilled, (state, action) => {
-                const { data } = action.payload;
-
-                console.log(data);
+            .addCase(addUserAsync.fulfilled, () => {
+                successfulToastNotify('Successful Adding');
             })
             .addCase(getUserByIdAsync.fulfilled, (state, action) => {
                 const { data } = action.payload;
@@ -132,6 +130,13 @@ export const userSlice = createSlice({
                 }
             })
             .addCase(loginAsync.rejected, (state, action) => {
+                const { message } = action.error;
+                if (message) {
+                    errorToastNotify(message);
+                }
+            })
+            .addCase(addUserAsync.rejected, (state, action) => {
+                console.log(1);
                 const { message } = action.error;
                 if (message) {
                     errorToastNotify(message);

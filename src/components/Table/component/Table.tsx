@@ -1,4 +1,3 @@
-/* eslint-disable no-nested-ternary */
 import React from 'react';
 import { Table, TableBody, TableCell, TableHead, TableRow } from '@material-ui/core';
 import { useSortBy, useTable } from 'react-table';
@@ -31,15 +30,12 @@ export const TableComponent = ({ columns, data }: any) => {
                                 >
                                     {column.render('Header')}
 
-                                    {column.isSorted ? (
-                                        column.isSortedDesc ? (
+                                    {column.isSorted &&
+                                        (column.isSortedDesc ? (
                                             <ArrowDropDownIcon />
                                         ) : (
                                             <ArrowDropUpIcon />
-                                        )
-                                    ) : (
-                                        ''
-                                    )}
+                                        ))}
                                 </TableCell>
                             ))}
                         </TableRow>

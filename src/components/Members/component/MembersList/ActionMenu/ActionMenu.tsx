@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { IconButton, Menu, MenuItem, Modal } from '@material-ui/core';
+import { IconButton, Menu, MenuItem } from '@material-ui/core';
 import React, { useState } from 'react';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import { ModalComponent } from 'components/ModalComponent';
@@ -71,7 +70,7 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({ id }) => {
                     <ModalComponent open={isOpenEdit} close={toggleModalEdit}>
                         <FieldsModal
                             id={id}
-                            header="f User"
+                            header="Edit User"
                             submit={patchUserAsync}
                             handleCloseModal={toggleModalEdit}
                         />

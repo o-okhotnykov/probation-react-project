@@ -5,7 +5,7 @@ import { useStyles } from './styles';
 
 interface FieldsModalProps {
     id: number | null;
-    handleCloseModal: any;
+    handleCloseModal: () => void;
     submit: any;
     header: string;
 }

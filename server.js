@@ -11,7 +11,7 @@ const middlewares = jsonServer.defaults();
 app.use(cors());
 
 app.use(function (req, res, next) {
-    setTimeout(next, 3000);
+    setTimeout(next, 1000);
 });
 
 app.get('/my', auth, (req, res, next) => {

@@ -1,4 +1,3 @@
-/* eslint-disable react/display-name */
 import React, { ChangeEvent, useEffect, useMemo } from 'react';
 import { TableComponent } from 'components/Table';
 import { getUsersAsync, usersDataSelector, totalUsersSelector } from 'store/user-slice';
@@ -41,14 +40,14 @@ export const MembersList: React.FC = () => {
             {
                 Header: 'Status',
                 accessor: 'status',
-                Cell: ({ value }: any) => {
+                Cell: function name(value: string) {
                     return <div className={`member-status member-${value}`}>{value}</div>;
                 },
             },
             {
                 Header: 'Action',
                 accessor: 'id',
-                Cell: ({ value }) => {
+                Cell: function name(value: number) {
                     return <ActionMenu id={value} />;
                 },
             },
