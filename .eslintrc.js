@@ -23,6 +23,7 @@ module.exports = {
         project: './tsconfig.json',
     },
     rules: {
+        'react-hooks/exhaustive-deps': 'warn',
         '@typescript-eslint/no-non-null-assertion': 'off',
         'react/jsx-props-no-spreading': 'off',
         'consistent-return': 'off',
