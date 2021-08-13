@@ -4,6 +4,7 @@ import { getUsersAsync, usersDataSelector, totalUsersSelector } from 'store/user
 import { useDispatch, useSelector } from 'react-redux';
 import { Pagination } from '@material-ui/lab';
 import { LIMIT } from 'constants/index';
+
 import { Loading } from 'components/Loading';
 import { ActionMenu } from './ActionMenu/ActionMenu';
 
@@ -40,14 +41,14 @@ export const MembersList: React.FC = () => {
             {
                 Header: 'Status',
                 accessor: 'status',
-                Cell: function name(value: string) {
+                Cell: function Progress({ value }: { value: string }) {
                     return <div className={`member-status member-${value}`}>{value}</div>;
                 },
             },
             {
                 Header: 'Action',
                 accessor: 'id',
-                Cell: function name(value: number) {
+                Cell: function Action(value: number) {
                     return <ActionMenu id={value} />;
                 },
             },
