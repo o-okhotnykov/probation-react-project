@@ -6,7 +6,6 @@ import { ModalComponent } from 'components/ModalComponent';
 import { patchUserAsync } from 'store/user-slice';
 import { RetireModal } from '../../RetireModal';
 import { useStyles } from './styles';
-import { EditModal } from '../../EditModal';
 import { FieldsModal } from '../../FieldsModal';
 
 interface ActionMenuProps {

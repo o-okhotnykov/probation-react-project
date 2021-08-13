@@ -5,14 +5,13 @@ import { getUsersAsync, usersDataSelector, totalUsersSelector } from 'store/user
 import { useDispatch, useSelector } from 'react-redux';
 import { Pagination } from '@material-ui/lab';
 import { LIMIT } from 'constants/index';
-import { isRequestPendingSelector } from 'store/loading-slice';
 import { Loading } from 'components/Loading';
 import { ActionMenu } from './ActionMenu/ActionMenu';
 
 export const MembersList: React.FC = () => {
     const dispatch = useDispatch();
     const usersData = useSelector(usersDataSelector);
-    const loading = useSelector(isRequestPendingSelector(getUsersAsync.typePrefix));
+
     const [pageState, setPageState] = React.useState(1);
 
     useEffect(() => {
@@ -59,25 +58,23 @@ export const MembersList: React.FC = () => {
 
     const data = useMemo(() => usersData, [usersData]);
 
-    if (loading) {
-        return <Loading />;
-    }
-
     return (
-        <div className="members-list-container">
-            {data && (
-                <>
-                    <TableComponent columns={columns} data={data} />
-                    <Pagination
-                        page={pageState}
-                        count={Math.ceil(totalUsers / LIMIT)}
-                        onChange={(event: ChangeEvent<unknown>, page: number) => {
-                            setPageState(page);
-                            dispatch(getUsersAsync({ page, limit: LIMIT }));
-                        }}
-                    />
-                </>
-            )}
-        </div>
+        <Loading apiCall={getUsersAsync}>
+            <div className="members-list-container">
+                {data && (
+                    <>
+                        <TableComponent columns={columns} data={data} />
+                        <Pagination
+                            page={pageState}
+                            count={Math.ceil(totalUsers / LIMIT)}
+                            onChange={(event: ChangeEvent<unknown>, page: number) => {
+                                setPageState(page);
+                                dispatch(getUsersAsync({ page, limit: LIMIT }));
+                            }}
+                        />
+                    </>
+                )}
+            </div>
+        </Loading>
     );
 };
