@@ -1,5 +1,5 @@
 import { Column } from 'react-table';
-import { ActionMenu } from './ActionMenu/ActionMenu';
+import { ActionMenu } from '../ActionMenu';
 
 export const columns: Column[] = [
     {
