@@ -1,4 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
+import { ACCENT_PRIMARY, DARK_GREY } from 'constants/colors';
 
 export const useStyles = makeStyles(() => ({
     header: { fontWeight: 900 },
@@ -12,12 +13,12 @@ export const useStyles = makeStyles(() => ({
         alignItems: 'left',
     },
     subTitle: {
-        color: '#8f9198',
+        color: DARK_GREY,
     },
     btn: {
         padding: 0,
         margin: '15px 0',
         fontWeight: 900,
-        color: '#ec4e6e',
+        color: ACCENT_PRIMARY,
     },
 }));

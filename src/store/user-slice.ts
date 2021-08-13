@@ -12,15 +12,15 @@ interface IUserState {
     accessToken: string;
     isAuthorized: boolean;
     userData: IUserData | null;
-    usersData: IUserData[] | null;
+    usersData: IUserData[];
     total: number;
 }
 
 const initialState: IUserState = {
     accessToken: '',
-    isAuthorized: true,
+    isAuthorized: false,
     userData: null,
-    usersData: null,
+    usersData: [],
     total: 0,
 };
 
@@ -74,8 +74,9 @@ export const userSlice = createSlice({
             })
             .addCase(getUsersAsync.fulfilled, (state, action) => {
                 const { data, headers } = action.payload;
-                if (data) {
-                    state.total = headers['x-total-count'];
+                const totalCount = parseInt(headers['x-total-count'], 10);
+                if (data && !Number.isNaN(totalCount)) {
+                    state.total = totalCount;
                     state.usersData = data;
                 }
             })

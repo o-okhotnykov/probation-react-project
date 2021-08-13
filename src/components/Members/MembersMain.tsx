@@ -1,9 +1,9 @@
+import React from 'react';
 import { Grid } from '@material-ui/core';
 import { Navigation } from 'components/Navigation';
 import { SideSection } from 'components/SideSection';
-import React from 'react';
-import { MembersHeader } from './component/MembersHeader/MembersHeader';
-import { MembersList } from './component/MembersList/MembersList';
+import { MembersHeader } from './component/MembersHeader';
+import { MembersList } from './component/MembersList';
 
 export const MembersMain: React.FC = () => {
     return (
