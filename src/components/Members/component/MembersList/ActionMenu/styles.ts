@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles({
-    tab: {
-        padding: '25px 0',
+    menu: {
+        margin: '8px 10px',
     },
 });
