@@ -5,7 +5,7 @@ import { useStyles } from './styles';
 
 interface EditModalProps {
     id: number;
-    handleCloseModal: any;
+    handleCloseModal: () => void;
 }
 
 export const EditModal: React.FC<EditModalProps> = ({ id }) => {

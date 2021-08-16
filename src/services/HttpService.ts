@@ -78,11 +78,11 @@ class HttpService {
         });
     }
 
-    delete<T>(path: string, payload: unknown) {
+    delete<T>(path: string, payload: Partial<AxiosRequestConfig> = {}) {
         return this.request<T>({
             method: 'delete',
             url: path,
-            data: payload,
+            ...payload,
         });
     }
 }
