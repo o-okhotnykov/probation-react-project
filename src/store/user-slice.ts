@@ -1,9 +1,15 @@
 import { createAsyncThunk, createSlice, createSelector } from '@reduxjs/toolkit';
-import { IUserData, LoginResponse, RegisterResponse, UsersGetResponse } from 'interface/api/auth';
-import { IRegisterResponse, ILoginFormValues } from 'interface';
-import { httpService } from 'api/HttpService';
+import {
+    IEditFormResponse,
+    IUserData,
+    LoginResponse,
+    RegisterResponse,
+    UsersGetResponse,
+} from 'types/api/auth';
+import { IRegisterResponse, ILoginFormValues } from 'types';
+import { httpService } from 'services/HttpService';
 import { errorToastNotify, successfulToastNotify } from 'toasts';
-import { GetProjectsParams } from 'interface/api/project';
+import { GetProjectsParams } from 'types/api/project';
 import { LIMIT, PAGE } from 'constants/index';
 
 import type { RootState } from './root-store';
@@ -12,6 +18,7 @@ interface IUserState {
     accessToken: string;
     isAuthorized: boolean;
     userData: IUserData | null;
+    currentUser: IUserData | null;
     usersData: IUserData[];
     total: number;
 }
@@ -20,6 +27,7 @@ const initialState: IUserState = {
     accessToken: '',
     isAuthorized: false,
     userData: null,
+    currentUser: null,
     usersData: [],
     total: 0,
 };
@@ -39,8 +47,28 @@ export const getUsersAsync = createAsyncThunk(
         return httpService.get<UsersGetResponse>('users', { params });
     },
 );
+
 export const getUserAsync = createAsyncThunk('app/getUser', () => {
     return httpService.get<IUserData>(`my`, {});
+});
+
+export const getUserByIdAsync = createAsyncThunk('app/getUserById', (id: number) => {
+    return httpService.get<IUserData>(`users/${id}`, {});
+});
+
+export const deleteUserAsync = createAsyncThunk('app/deleteUserAsync', (id: number) => {
+    return httpService.delete<IUserData>(`/users/${id}`, {});
+});
+
+export const patchUserAsync = createAsyncThunk(
+    'app/patchUserAsync',
+    ({ id, values }: { id: number; values: IEditFormResponse }) => {
+        return httpService.patch<IUserData>(`/users/${id}`, { ...values });
+    },
+);
+
+export const addUserAsync = createAsyncThunk('app/addUser', (user: IRegisterResponse) => {
+    return httpService.post<RegisterResponse>('users', user);
 });
 
 export const userSlice = createSlice({
@@ -80,6 +108,22 @@ export const userSlice = createSlice({
                     state.usersData = data;
                 }
             })
+            .addCase(deleteUserAsync.fulfilled, () => {
+                successfulToastNotify('Successful Delete');
+            })
+            .addCase(patchUserAsync.fulfilled, () => {
+                successfulToastNotify('Successful Edit');
+            })
+            .addCase(addUserAsync.fulfilled, () => {
+                successfulToastNotify('Successful Adding');
+            })
+            .addCase(getUserByIdAsync.fulfilled, (state, action) => {
+                const { data } = action.payload;
+
+                if (data) {
+                    state.currentUser = data;
+                }
+            })
             .addCase(registerAsync.rejected, (state, action) => {
                 const { message } = action.error;
                 if (message) {
@@ -87,6 +131,13 @@ export const userSlice = createSlice({
                 }
             })
             .addCase(loginAsync.rejected, (state, action) => {
+                const { message } = action.error;
+                if (message) {
+                    errorToastNotify(message);
+                }
+            })
+            .addCase(addUserAsync.rejected, (state, action) => {
+                console.log(1);
                 const { message } = action.error;
                 if (message) {
                     errorToastNotify(message);
@@ -105,6 +156,8 @@ export const totalUsersSelector = createSelector(userSelector, ({ total }) => to
 export const usersDataSelector = createSelector(userSelector, ({ usersData }) => usersData);
 
 export const userDataSelector = createSelector(userSelector, ({ userData }) => userData);
+
+export const currentUserSelector = createSelector(userSelector, ({ currentUser }) => currentUser);
 
 export const isAuthorizedSelector = createSelector(
     userSelector,

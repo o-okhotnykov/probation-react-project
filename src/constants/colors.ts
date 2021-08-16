@@ -9,3 +9,4 @@ export const OPEN_COLOR_BG = '#92c7e8';
 
 export const ACCENT_PRIMARY = '#ec4e6e';
 export const DARK_GREY = '#8f9198';
+export const DEFAULT_LIGHT = '#fff';

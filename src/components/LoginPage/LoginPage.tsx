@@ -1,5 +1,5 @@
 import { withFormik } from 'formik';
-import { ILoginFormValues } from 'interface/index';
+import { ILoginFormValues } from 'types/index';
 import { loginValidator } from './component/validation';
 import { Form } from './component/Form';
 

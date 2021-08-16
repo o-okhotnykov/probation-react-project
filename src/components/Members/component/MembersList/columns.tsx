@@ -28,6 +28,8 @@ export const columns: Column[] = [
     {
         Header: 'Action',
         accessor: 'action',
-        Cell: <ActionMenu />,
+        Cell: function Progress({ value }: { value: number }) {
+            return <ActionMenu id={value} />;
+        },
     },
 ];
