@@ -101,6 +101,16 @@
       "status": "register",
       "img": "/static/media/default-user.fba28acd.png",
       "id": 9
+    },
+    {
+      "email": "sashaohotn333i26@gmail.com",
+      "password": "$2a$10$bSTpuuNyJCadOD/8afR7DectfdLIqD6m8NdTl4uyfd1/rq70HDM0C",
+      "name": "Alex",
+      "surname": "Under",
+      "birthDate": "2021-08-05",
+      "status": "register",
+      "img": "/static/media/default-user.fba28acd.png",
+      "id": 10
     }
   ]
 }
