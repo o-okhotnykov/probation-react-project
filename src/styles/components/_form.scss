@@ -9,17 +9,6 @@
     }
 }
 
-.form-btn {
-    color: $default-light;
-    background-color: $accent-primary;
-    padding: 5px 25px;
-}
-.form-btn:hover {
-    background-color: $accent-primary-transparent;
-}
-.form-btn:disabled {
-    background-color: $default-light-transparent;
-}
 .card-container {
     display: flex;
     flex-direction: column;

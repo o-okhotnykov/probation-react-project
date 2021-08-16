@@ -13,6 +13,7 @@ interface ActionMenuProps {
 
 export const ActionMenu: React.FC<ActionMenuProps> = ({ id }) => {
     const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
+
     const [isOpenEdit, setIsSOpenEdit] = useState(false);
     const [isOpenRetire, setIsSOpenRetire] = useState(false);
 

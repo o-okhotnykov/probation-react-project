@@ -23,16 +23,6 @@
   ],
   "users": [
     {
-      "email": "default@test.test",
-      "password": "$2a$10$JU4J.plH6PSr87dVoZmfVeuH1tsgC2TxnoLuVRFpfBFZjAYu9Ho/i",
-      "name": "Alex",
-      "surname": "Under",
-      "birthDate": "2021-08-05",
-      "img": "/static/media/default-user.fba28acd.png",
-      "status": "progress",
-      "id": 2
-    },
-    {
       "email": "123@default.test",
       "password": "$2a$10$acfcQPFzY.GS/x468D94cu7FasdeH8P3NfQM5K3z/4IwwHhMChpLC",
       "name": "123",
@@ -101,6 +91,36 @@
       "status": "register",
       "img": "/static/media/default-user.fba28acd.png",
       "id": 9
+    },
+    {
+      "email": "sashaohotn333i26@gmail.com",
+      "password": "$2a$10$bSTpuuNyJCadOD/8afR7DectfdLIqD6m8NdTl4uyfd1/rq70HDM0C",
+      "name": "Alex",
+      "surname": "Under",
+      "birthDate": "2021-08-05",
+      "status": "register",
+      "img": "/static/media/default-user.fba28acd.png",
+      "id": 10
+    },
+    {
+      "email": "sashaohotni326@gmail.com",
+      "password": "$2a$10$lWCcdA8KWVcedUMmOaq9JuPDLfhM7sV9eZRrjZUbSTLn84tMCUUkq",
+      "name": "Alex",
+      "surname": "www",
+      "birthDate": "2021-08-03",
+      "status": "register",
+      "img": "/static/media/default-user.fba28acd.png",
+      "id": 11
+    },
+    {
+      "email": "F@qq.qq",
+      "password": "$2a$10$AQslNov/mDZv7R0O9lertOfOsAQV3i5iebmeGX3QfkefCH6cplguy",
+      "name": "qq",
+      "surname": "fqqq",
+      "birthDate": "2021-08-04",
+      "status": "register",
+      "img": "/static/media/default-user.fba28acd.png",
+      "id": 12
     }
   ]
 }
