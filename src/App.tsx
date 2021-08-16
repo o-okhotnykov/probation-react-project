@@ -1,16 +1,19 @@
-import React from 'react';
 import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { Layout } from 'components/Layout';
+import { BrowserRouter as Router } from 'react-router-dom';
+import 'react-toastify/dist/ReactToastify.css';
+
 import { Routes } from 'routes/Routes';
 
 export const App: React.FC = () => {
     return (
         <div className="App">
             <ToastContainer />
-            <Layout>
-                <Routes />
-            </Layout>
+            <Router>
+                <Layout>
+                    <Routes />
+                </Layout>
+            </Router>
         </div>
     );
 };
