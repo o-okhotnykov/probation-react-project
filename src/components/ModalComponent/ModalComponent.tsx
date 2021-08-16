@@ -1,6 +1,6 @@
 import React, { ReactChild } from 'react';
 import Modal from '@material-ui/core/Dialog';
-import { Portal } from 'components/Portal/Portal';
+import { Portal } from '@material-ui/core';
 
 interface ModalComponentProps {
     children: ReactChild;
@@ -9,8 +9,9 @@ interface ModalComponentProps {
 }
 
 export const ModalComponent: React.FC<ModalComponentProps> = ({ children, open, close }) => {
+    const container = React.useRef(null);
     return (
-        <Portal>
+        <Portal container={container.current}>
             <Modal
                 open={open}
                 onClose={close}
