@@ -8,4 +8,6 @@ export const OPEN_COLOR_DEFAULT = '#3a7295';
 export const OPEN_COLOR_BG = '#92c7e8';
 
 export const ACCENT_PRIMARY = '#ec4e6e';
+export const DEFAULT_LIGHT = '#fff';
 export const DARK_GREY = '#8f9198';
+export const ACCENT_LIGHT_TRANSPARENT = '#ec4f6ecc';

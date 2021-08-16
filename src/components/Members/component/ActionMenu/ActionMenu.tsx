@@ -1,11 +1,20 @@
 import { IconButton, Menu, MenuItem } from '@material-ui/core';
-import React from 'react';
+import React, { useState } from 'react';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
+import { ModalComponent } from 'components/ModalComponent';
+import { RetireModal } from '../RetireModal';
 import { useStyles } from './styles';
 
-export const ActionMenu = () => {
-    const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
+interface ActionMenuProps {
+    id: number;
+}
 
+export const ActionMenu: React.FC<ActionMenuProps> = ({ id }) => {
+    const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
+    const [isOpen, setOpen] = useState(false);
+    const toggleModal = () => {
+        setOpen(!isOpen);
+    };
     const handleMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
         setAnchorEl(event.currentTarget);
     };
@@ -46,7 +55,11 @@ export const ActionMenu = () => {
                 onClose={handleClose}
             >
                 <MenuItem onClick={handleClose}>Edit</MenuItem>
-                <MenuItem onClick={handleClose}>Retire</MenuItem>
+                <MenuItem onClick={toggleModal}>Retire</MenuItem>
+
+                <ModalComponent open={isOpen} close={toggleModal}>
+                    <RetireModal id={id} handleCloseModal={toggleModal} />
+                </ModalComponent>
             </Menu>
         </>
     );

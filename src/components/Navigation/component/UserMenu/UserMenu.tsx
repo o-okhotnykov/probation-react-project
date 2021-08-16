@@ -43,8 +43,8 @@ export const UserMenu: React.FC = () => {
             <div className="user-data">
                 {userData && (
                     <>
-                        <Typography>{`${userData?.name} ${userData?.surname}`}</Typography>
-                        <Typography>{userData?.email}</Typography>
+                        <Typography variant="h5">{`${userData?.name} ${userData?.surname}`}</Typography>
+                        <Typography variant="caption">{userData?.email}</Typography>
                     </>
                 )}
             </div>

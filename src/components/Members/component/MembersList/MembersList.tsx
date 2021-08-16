@@ -10,6 +10,7 @@ import { columns } from './columns';
 
 export const MembersList: React.FC = () => {
     const dispatch = useDispatch();
+    const usersData = useSelector(usersDataSelector);
     const loading = useSelector(isRequestPendingSelector(getUsersAsync.typePrefix));
     const [pageState, setPageState] = useState(1);
 
@@ -17,7 +18,6 @@ export const MembersList: React.FC = () => {
         dispatch(getUsersAsync());
     }, [dispatch]);
 
-    const usersData = useSelector(usersDataSelector);
     const totalUsers = useSelector(totalUsersSelector);
 
     if (loading) {

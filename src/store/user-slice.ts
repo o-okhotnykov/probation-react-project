@@ -39,8 +39,13 @@ export const getUsersAsync = createAsyncThunk(
         return httpService.get<UsersGetResponse>('users', { params });
     },
 );
+
 export const getUserAsync = createAsyncThunk('app/getUser', () => {
     return httpService.get<IUserData>(`my`, {});
+});
+
+export const deleteUserAsync = createAsyncThunk('app/deleteUserAsync', (id: number) => {
+    return httpService.delete<IUserData>(`/users/${id}`, {});
 });
 
 export const userSlice = createSlice({
@@ -79,6 +84,9 @@ export const userSlice = createSlice({
                     state.total = totalCount;
                     state.usersData = data;
                 }
+            })
+            .addCase(deleteUserAsync.fulfilled, () => {
+                successfulToastNotify('Successful Delete');
             })
             .addCase(registerAsync.rejected, (state, action) => {
                 const { message } = action.error;
