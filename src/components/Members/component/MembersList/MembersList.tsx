@@ -48,7 +48,7 @@ export const MembersList: React.FC = () => {
             {
                 Header: 'Action',
                 accessor: 'id',
-                Cell: function Action(value: number) {
+                Cell: function Action({ value }: { value: number }) {
                     return <ActionMenu id={value} />;
                 },
             },
