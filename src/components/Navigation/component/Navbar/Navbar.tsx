@@ -1,28 +1,25 @@
 import React from 'react';
-import { Tabs, Tab } from '@material-ui/core';
+import { useHistory } from 'react-router-dom';
+import { ROUTE_PATH } from 'constants/index';
+import { Tab, Tabs } from '@material-ui/core';
 import { useStyles } from './styles';
 
-function a11yProps(index: number) {
-    return {
-        id: `simple-tab-${index}`,
-        'aria-controls': `simple-tabpanel-${index}`,
-    };
-}
-
 export const Navbar: React.FC = () => {
+    const history = useHistory();
     const classes = useStyles();
-    const [value, setValue] = React.useState(0);
+    const { pathname } = history.location;
 
-    const handleChange = (event: React.ChangeEvent<any>, newValue: number) => {
-        setValue(newValue);
+    const handleChange = (event: React.ChangeEvent<any>, value: string) => {
+        history.push(value);
     };
+
     return (
-        <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
-            <Tab className={classes.root} label="Dashboard" {...a11yProps(0)} />
-            <Tab className={classes.root} label="All Projects" {...a11yProps(1)} />
-            <Tab className={classes.root} label="Members" {...a11yProps(2)} />
-            <Tab className={classes.root} label="Stats" {...a11yProps(3)} />
-            <Tab className={classes.root} label="Help" {...a11yProps(4)} />
+        <Tabs value={pathname} onChange={handleChange}>
+            <Tab className={classes.tab} label="Dashboard" value={ROUTE_PATH.dashboard} />
+            <Tab className={classes.tab} label="All projects" value={ROUTE_PATH.projects} />
+            <Tab className={classes.tab} label="Members" value={ROUTE_PATH.members} />
+            <Tab className={classes.tab} label="Stats" value={ROUTE_PATH.stats} />
+            <Tab className={classes.tab} label="Help" value={ROUTE_PATH.help} />
         </Tabs>
     );
 };

@@ -1,1 +1,1 @@
-export { DashboardMain } from './component/DashboardMain';
+export { DashboardMain } from './DashboardMain';

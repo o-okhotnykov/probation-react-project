@@ -1,10 +1,11 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Switch, Route, BrowserRouter as Router, Redirect } from 'react-router-dom';
 import { LoginPage } from 'components/LoginPage';
 import { RegisterPage } from 'components/RegisterPage';
-import { Main } from 'components/Main';
-import { ErrorComponent } from 'components/ErrorComponent';
+import { DashboardMain } from 'components/Dashboard';
+import { MembersMain } from 'components/Members';
 import { ROUTE_PATH } from 'constants/index';
+import { ErrorComponent } from 'components/ErrorComponent';
 import { PrivateRoute } from './PrivateRoute';
 
 export const Routes: React.FC = () => {
@@ -13,7 +14,11 @@ export const Routes: React.FC = () => {
             <Switch>
                 <Route path={ROUTE_PATH.login} component={LoginPage} />
                 <Route path={ROUTE_PATH.register} component={RegisterPage} />
-                <PrivateRoute exact path={ROUTE_PATH.main} component={Main} />
+                <PrivateRoute exact path={ROUTE_PATH.dashboard} component={DashboardMain} />
+                <PrivateRoute exact path={ROUTE_PATH.members} component={MembersMain} />
+                <Route exact path={ROUTE_PATH.main}>
+                    <Redirect to={ROUTE_PATH.dashboard} />
+                </Route>
                 <Route component={ErrorComponent} />
             </Switch>
         </Router>
