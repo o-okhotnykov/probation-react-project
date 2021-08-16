@@ -3,7 +3,7 @@ import React from 'react';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import { useStyles } from './styles';
 
-export const ActionMenu = () => {
+export const ActionMenu: React.FC = () => {
     const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
 
     const handleMenu = (event: React.MouseEvent<HTMLButtonElement>) => {

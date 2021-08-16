@@ -1,3 +1,5 @@
+import React, { ReactElement } from 'react';
+
 import { Column } from 'react-table';
 import { ActionMenu } from '../ActionMenu';
 
@@ -21,7 +23,7 @@ export const columns: Column[] = [
     {
         Header: 'Status',
         accessor: 'status',
-        Cell: function Progress({ value }: { value: string }) {
+        Cell: function Progress({ value }: { value: string }): ReactElement {
             return <div className={`member-status member-${value}`}>{value}</div>;
         },
     },

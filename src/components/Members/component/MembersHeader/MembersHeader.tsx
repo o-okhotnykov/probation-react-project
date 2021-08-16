@@ -3,7 +3,7 @@ import { Button, Typography } from '@material-ui/core';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import { useStyles } from './styles';
 
-export const MembersHeader = () => {
+export const MembersHeader: React.FC = () => {
     const classes = useStyles();
     return (
         <div className="members-header">

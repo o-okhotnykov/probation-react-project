@@ -36,7 +36,7 @@ export const loadingSelector = createSelector(uiStateSelector, ({ isLoading }) =
 
 export const isRequestPendingSelector = (
     type: string,
-): OutputSelector<any, boolean, (res: ILoadingState) => boolean> => {
+): OutputSelector<number, boolean, (res: ILoadingState) => boolean> => {
     return createSelector(uiStateSelector, ({ requests }) => requests.has(type));
 };
 
