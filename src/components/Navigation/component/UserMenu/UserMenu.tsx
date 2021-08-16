@@ -49,6 +49,7 @@ export const UserMenu: React.FC = () => {
                 )}
             </div>
             <IconButton
+                className={classes.root}
                 aria-label="account of current user"
                 aria-controls="menu-appbar"
                 aria-haspopup="true"

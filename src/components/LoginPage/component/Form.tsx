@@ -7,11 +7,14 @@ import { loginAsync, isAuthorizedSelector } from 'store/user-slice';
 import { ILoginFormValues } from 'interface';
 import { ROUTE_PATH } from 'constants/index';
 import logo from 'img/logo.png';
+import { isRequestPendingSelector } from 'store/loading-slice';
+import { Loading } from 'components/Loading';
 import { useStyles } from './styles';
 
 export const Form: React.FC<FormikProps<ILoginFormValues>> = (props) => {
     const { values, touched, errors, isValid, dirty, handleChange, handleBlur } = props;
     const dispatch = useDispatch();
+    const loading = useSelector(isRequestPendingSelector(loginAsync.typePrefix));
 
     const isAuthorized = useSelector(isAuthorizedSelector);
     const classes = useStyles();
@@ -23,6 +26,10 @@ export const Form: React.FC<FormikProps<ILoginFormValues>> = (props) => {
 
     if (isAuthorized) {
         return <Redirect to={ROUTE_PATH.dashboard} />;
+    }
+
+    if (loading) {
+        return <Loading />;
     }
 
     return (

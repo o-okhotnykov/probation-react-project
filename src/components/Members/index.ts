@@ -1,1 +1,1 @@
-export { MembersMain } from './component/MembersMain/MembersMain';
+export { MembersMain } from './MembersMain';

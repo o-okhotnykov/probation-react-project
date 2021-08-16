@@ -1,6 +1,5 @@
 export type LoginResponse = {
     accessToken: string;
-    error: { message: string };
     user: IUserData;
 };
 
