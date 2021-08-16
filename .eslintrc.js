@@ -25,6 +25,7 @@ module.exports = {
     rules: {
         'react-hooks/exhaustive-deps': 'warn',
         '@typescript-eslint/no-non-null-assertion': 'off',
+        'react/react-in-jsx-scope': 'off',
         'react/jsx-props-no-spreading': 'off',
         'consistent-return': 'off',
         'react/prop-types': 'off',

@@ -24,6 +24,6 @@
     color: $default-black;
 }
 .nav-selected {
-    background-color: #cccccc1f;
-    border-bottom: 1px solid red;
+    background-color: $grey-light;
+    border-bottom: 1px solid $accent-primary;
 }

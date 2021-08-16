@@ -12,6 +12,7 @@ import Typography from '@material-ui/core/Typography';
 
 import { IRegisterFormValues } from 'types';
 import defaultUser from 'assets/default-user.png';
+import { Loading } from 'components/Loading';
 import { useStyles } from './styles';
 
 export const Form: React.FC<FormikProps<IRegisterFormValues>> = (props) => {
@@ -42,108 +43,110 @@ export const Form: React.FC<FormikProps<IRegisterFormValues>> = (props) => {
 
     return (
         <div className="form-container">
-            <form onSubmit={handleSubmit} className="form">
-                <Card className="card-container">
-                    <CardMedia className={classes.media} image={logo} title="Paella dish" />
-                    <CardContent>
-                        <TextField
-                            id="email"
-                            label="Email"
-                            type="email"
-                            value={values.email}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            helperText={touched.email ? errors.email : ''}
-                            error={touched.email && Boolean(errors.email)}
-                            margin="dense"
-                            variant="outlined"
-                            fullWidth
-                        />
+            <Loading apiCall={registerAsync}>
+                <form onSubmit={handleSubmit} className="form">
+                    <Card className="card-container">
+                        <CardMedia className={classes.media} image={logo} title="Paella dish" />
+                        <CardContent>
+                            <TextField
+                                id="email"
+                                label="Email"
+                                type="email"
+                                value={values.email}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                helperText={touched.email ? errors.email : ''}
+                                error={touched.email && Boolean(errors.email)}
+                                margin="dense"
+                                variant="outlined"
+                                fullWidth
+                            />
 
-                        <TextField
-                            id="name"
-                            label="First Name"
-                            value={values.name}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            helperText={touched.name ? errors.name : ''}
-                            error={touched.name && Boolean(errors.name)}
-                            margin="dense"
-                            variant="outlined"
-                            fullWidth
-                        />
-                        <TextField
-                            id="surname"
-                            label="Surname"
-                            value={values.surname}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            helperText={touched.surname ? errors.surname : ''}
-                            error={touched.surname && Boolean(errors.surname)}
-                            margin="dense"
-                            variant="outlined"
-                            fullWidth
-                        />
+                            <TextField
+                                id="name"
+                                label="First Name"
+                                value={values.name}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                helperText={touched.name ? errors.name : ''}
+                                error={touched.name && Boolean(errors.name)}
+                                margin="dense"
+                                variant="outlined"
+                                fullWidth
+                            />
+                            <TextField
+                                id="surname"
+                                label="Surname"
+                                value={values.surname}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                helperText={touched.surname ? errors.surname : ''}
+                                error={touched.surname && Boolean(errors.surname)}
+                                margin="dense"
+                                variant="outlined"
+                                fullWidth
+                            />
 
-                        <TextField
-                            id="password"
-                            label="Password"
-                            type="password"
-                            value={values.password}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            helperText={touched.password ? errors.password : ''}
-                            error={touched.password && Boolean(errors.password)}
-                            margin="dense"
-                            variant="outlined"
-                            fullWidth
-                        />
-                        <TextField
-                            id="confirmPassword"
-                            label="Confirm Password"
-                            type="password"
-                            value={values.confirmPassword}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            helperText={touched.confirmPassword ? errors.confirmPassword : ''}
-                            error={touched.confirmPassword && Boolean(errors.confirmPassword)}
-                            margin="dense"
-                            variant="outlined"
-                            fullWidth
-                        />
+                            <TextField
+                                id="password"
+                                label="Password"
+                                type="password"
+                                value={values.password}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                helperText={touched.password ? errors.password : ''}
+                                error={touched.password && Boolean(errors.password)}
+                                margin="dense"
+                                variant="outlined"
+                                fullWidth
+                            />
+                            <TextField
+                                id="confirmPassword"
+                                label="Confirm Password"
+                                type="password"
+                                value={values.confirmPassword}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                helperText={touched.confirmPassword ? errors.confirmPassword : ''}
+                                error={touched.confirmPassword && Boolean(errors.confirmPassword)}
+                                margin="dense"
+                                variant="outlined"
+                                fullWidth
+                            />
 
-                        <TextField
-                            id="birthDate"
-                            type="date"
-                            InputProps={{ inputProps: { max: currentDay } }}
-                            defaultValue="2017-05-24"
-                            value={values.birthDate}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            helperText={touched.birthDate ? errors.birthDate : ''}
-                            error={touched.birthDate && Boolean(errors.birthDate)}
-                            margin="dense"
-                            variant="outlined"
-                            fullWidth
-                        />
-                    </CardContent>
+                            <TextField
+                                id="birthDate"
+                                type="date"
+                                InputProps={{ inputProps: { max: currentDay } }}
+                                defaultValue="2017-05-24"
+                                value={values.birthDate}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                helperText={touched.birthDate ? errors.birthDate : ''}
+                                error={touched.birthDate && Boolean(errors.birthDate)}
+                                margin="dense"
+                                variant="outlined"
+                                fullWidth
+                            />
+                        </CardContent>
 
-                    <Button
-                        className={`${classes.btn} form-btn`}
-                        type="submit"
-                        color="primary"
-                        disabled={!isValid || !dirty}
-                    >
-                        Register
-                    </Button>
-                </Card>
-            </form>
-            <Typography className={classes.text}>
-                Already have an account?{' '}
-                <Link to={ROUTE_PATH.login} className={classes.link}>
-                    Login
-                </Link>
-            </Typography>
+                        <Button
+                            className={`${classes.btn} form-btn`}
+                            type="submit"
+                            color="primary"
+                            disabled={!isValid || !dirty}
+                        >
+                            Register
+                        </Button>
+                    </Card>
+                </form>
+                <Typography className={classes.text}>
+                    Already have an account?{' '}
+                    <Link to={ROUTE_PATH.login} className={classes.link}>
+                        Login
+                    </Link>
+                </Typography>
+            </Loading>
         </div>
     );
 };
