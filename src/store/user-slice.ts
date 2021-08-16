@@ -25,7 +25,7 @@ interface IUserState {
 
 const initialState: IUserState = {
     accessToken: '',
-    isAuthorized: true,
+    isAuthorized: false,
     userData: null,
     currentUser: null,
     usersData: [],
@@ -102,8 +102,9 @@ export const userSlice = createSlice({
             })
             .addCase(getUsersAsync.fulfilled, (state, action) => {
                 const { data, headers } = action.payload;
-                if (data) {
-                    state.total = headers['x-total-count'];
+                const totalCount = parseInt(headers['x-total-count'], 10);
+                if (data && !Number.isNaN(totalCount)) {
+                    state.total = totalCount;
                     state.usersData = data;
                 }
             })
@@ -136,7 +137,6 @@ export const userSlice = createSlice({
                 }
             })
             .addCase(addUserAsync.rejected, (state, action) => {
-                console.log(1);
                 const { message } = action.error;
                 if (message) {
                     errorToastNotify(message);

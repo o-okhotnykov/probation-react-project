@@ -111,6 +111,26 @@
       "status": "register",
       "img": "/static/media/default-user.fba28acd.png",
       "id": 10
+    },
+    {
+      "email": "sashaohotni326@gmail.com",
+      "password": "$2a$10$lWCcdA8KWVcedUMmOaq9JuPDLfhM7sV9eZRrjZUbSTLn84tMCUUkq",
+      "name": "Alex",
+      "surname": "www",
+      "birthDate": "2021-08-03",
+      "status": "register",
+      "img": "/static/media/default-user.fba28acd.png",
+      "id": 11
+    },
+    {
+      "email": "F@qq.qq",
+      "password": "$2a$10$AQslNov/mDZv7R0O9lertOfOsAQV3i5iebmeGX3QfkefCH6cplguy",
+      "name": "qq",
+      "surname": "fqqq",
+      "birthDate": "2021-08-04",
+      "status": "register",
+      "img": "/static/media/default-user.fba28acd.png",
+      "id": 12
     }
   ]
 }

@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux';
 
 export const Loading: React.FC<{ apiCall: any }> = ({ apiCall, children }) => {
     const loading = useSelector(isRequestPendingSelector(apiCall.typePrefix));
-
     return (
         <>
             {loading ? (

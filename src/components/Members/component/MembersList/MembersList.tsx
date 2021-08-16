@@ -1,18 +1,17 @@
-import React, { ChangeEvent, useEffect, useMemo } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import { TableComponent } from 'components/Table';
 import { getUsersAsync, usersDataSelector, totalUsersSelector } from 'store/user-slice';
 import { useDispatch, useSelector } from 'react-redux';
 import { Pagination } from '@material-ui/lab';
 import { LIMIT } from 'constants/index';
-
 import { Loading } from 'components/Loading';
-import { ActionMenu } from './ActionMenu/ActionMenu';
+import { columns } from './columns';
 
 export const MembersList: React.FC = () => {
     const dispatch = useDispatch();
     const usersData = useSelector(usersDataSelector);
 
-    const [pageState, setPageState] = React.useState(1);
+    const [pageState, setPageState] = useState(1);
 
     useEffect(() => {
         dispatch(getUsersAsync());
@@ -20,50 +19,12 @@ export const MembersList: React.FC = () => {
 
     const totalUsers = useSelector(totalUsersSelector);
 
-    const columns = useMemo(
-        () => [
-            {
-                Header: 'Name',
-                accessor: 'name', // accessor is the "key" in the data
-            },
-            {
-                Header: 'Last Name',
-                accessor: 'surname',
-            },
-            {
-                Header: 'Email',
-                accessor: 'email',
-            },
-            {
-                Header: 'Birth Date',
-                accessor: 'birthDate',
-            },
-            {
-                Header: 'Status',
-                accessor: 'status',
-                Cell: function Progress({ value }: { value: string }) {
-                    return <div className={`member-status member-${value}`}>{value}</div>;
-                },
-            },
-            {
-                Header: 'Action',
-                accessor: 'id',
-                Cell: function Action({ value }: { value: number }) {
-                    return <ActionMenu id={value} />;
-                },
-            },
-        ],
-        [],
-    );
-
-    const data = useMemo(() => usersData, [usersData]);
-
     return (
         <Loading apiCall={getUsersAsync}>
             <div className="members-list-container">
-                {data && (
+                {usersData && (
                     <>
-                        <TableComponent columns={columns} data={data} />
+                        <TableComponent columns={columns} data={usersData} />
                         <Pagination
                             page={pageState}
                             count={Math.ceil(totalUsers / LIMIT)}
