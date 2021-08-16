@@ -10,6 +10,9 @@ const middlewares = jsonServer.defaults();
 
 app.use(cors());
 
+app.use(function (req, res, next) {
+    setTimeout(next, 1000);
+});
 
 app.get('/my', auth, (req, res, next) => {
     const token = req.header('Authorization')
@@ -33,5 +36,9 @@ app.db = router.db;
 app.use(middlewares);
 app.use(auth);
 app.use(router);
+<<<<<<< HEAD
+=======
+
+>>>>>>> abf66809b7d62abcf9d31ebb7b10fca7d55c481e
 
 app.listen(3010);
