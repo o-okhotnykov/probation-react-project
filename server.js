@@ -36,9 +36,5 @@ app.db = router.db;
 app.use(middlewares);
 app.use(auth);
 app.use(router);
-<<<<<<< HEAD
-=======
-
->>>>>>> abf66809b7d62abcf9d31ebb7b10fca7d55c481e
 
 app.listen(3010);
