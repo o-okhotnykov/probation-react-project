@@ -4,7 +4,7 @@ import Modal from '@material-ui/core/Dialog';
 interface ModalComponentProps {
     children: ReactChild;
     open: boolean;
-    close: any;
+    close: () => void;
 }
 
 export const ModalComponent: React.FC<ModalComponentProps> = ({ children, open, close }) => {
