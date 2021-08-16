@@ -14,7 +14,7 @@ export const Navbar: React.FC = () => {
         setRouteState(value);
         history.push(value);
     };
-    console.log(routeState);
+
     return (
         <Tabs value={routeState} onChange={handleChange}>
             <Tab className={classes.tab} label="Dashboard" value={ROUTE_PATH.dashboard} />

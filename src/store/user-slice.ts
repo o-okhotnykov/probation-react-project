@@ -137,7 +137,6 @@ export const userSlice = createSlice({
                 }
             })
             .addCase(addUserAsync.rejected, (state, action) => {
-                console.log(1);
                 const { message } = action.error;
                 if (message) {
                     errorToastNotify(message);
