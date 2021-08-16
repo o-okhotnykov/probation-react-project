@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import {
     Button,
@@ -7,12 +6,11 @@ import {
     DialogContentText,
     DialogTitle,
 } from '@material-ui/core';
-import { useDispatch } from 'react-redux';
 import { useStyles } from './styles';
 
 interface EditModalProps {
     id: number;
-    handleCloseModal: any;
+    handleCloseModal: () => void;
 }
 
 export const EditModal: React.FC<EditModalProps> = ({ id, handleCloseModal }) => {
