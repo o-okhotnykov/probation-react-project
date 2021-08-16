@@ -180,7 +180,11 @@ export const Form: React.FC<FormProps> = ({ id, submit }) => {
                     </Grid>
                     <Grid item xs={6} className={classes.formPart}>
                         <img src={values.img} alt="user-img" className={classes.userImg} />
-                        <Button variant="contained" component="label">
+                        <Button
+                            variant="contained"
+                            component="label"
+                            className={`${classes.btn} ${classes.btnUpload}`}
+                        >
                             Upload File
                             <input
                                 style={{ display: 'none' }}
@@ -210,15 +214,16 @@ export const Form: React.FC<FormProps> = ({ id, submit }) => {
                         </Select>
                     </Grid>
                 </Grid>
-
-                <Button
-                    className={`${classes.btn} form-btn`}
-                    type="submit"
-                    color="primary"
-                    disabled={!isValid || !dirty}
-                >
-                    Confirm
-                </Button>
+                <div className={classes.action}>
+                    <Button
+                        className={`${classes.btn} form-btn`}
+                        type="submit"
+                        color="primary"
+                        disabled={!isValid || !dirty}
+                    >
+                        Confirm
+                    </Button>
+                </div>
             </form>
         </Loading>
     );
