@@ -1,4 +1,4 @@
-import { Button, Grid } from '@material-ui/core';
+import { Box, Grid } from '@material-ui/core';
 import { Navigation } from 'components/Navigation';
 import { SideSection } from 'components/SideSection';
 import React from 'react';
@@ -15,15 +15,11 @@ export const DashboardMain: React.FC = () => {
                 </Grid>
                 <Grid item xs={11} className="main-section">
                     <Navigation />
-                    <AddProject />
-                    <ProjectList />
-                    <ChartsContent />
-                    <Button variant="contained" color="primary">
-                        Test
-                    </Button>
-                    <Button variant="contained" color="secondary">
-                        Test
-                    </Button>
+                    <Box padding="25px">
+                        <AddProject />
+                        <ProjectList />
+                        <ChartsContent />
+                    </Box>
                 </Grid>
             </Grid>
         </>

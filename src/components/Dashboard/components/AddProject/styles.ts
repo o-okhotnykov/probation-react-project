@@ -1,7 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles(() => ({
-    header: { fontWeight: 900 },
     container: {
         alignItems: 'center',
         justifyContent: 'center',
@@ -9,10 +8,11 @@ export const useStyles = makeStyles(() => ({
     addProject: {
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'left',
+        paddingLeft: '20%',
     },
-    subTitle: {
-        color: '#8f9198',
+
+    icon: {
+        fontSize: 30,
     },
     btn: {
         padding: 0,

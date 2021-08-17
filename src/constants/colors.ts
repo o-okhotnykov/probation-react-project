@@ -1,8 +1,8 @@
 export const WARNING_MAIN = '#885a40';
 export const WARNING_LIGHT = '#f2bc9e';
 
-export const INFO_MAIN = '#4a7745';
-export const INFO_LIGHT = '#cee8ca';
+export const INFO_MAIN = '#3a7295';
+export const INFO_LIGHT = '#92c7e8';
 
 export const ERROR_MAIN = '#3a7295';
 export const ERROR_LIGHT = '#92c7e8';

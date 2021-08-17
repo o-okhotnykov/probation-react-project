@@ -26,9 +26,13 @@ export const theme = createTheme({
             fontSize: '2em',
             color: '#000000',
         },
+        body2: {
+            fontWeight: 900,
+            fontSize: '.8em',
+        },
         subtitle1: {
             fontWeight: 900,
-            fontSize: '1em',
+            fontSize: '.9em',
             color: '#8f9198',
         },
     },
