@@ -2,6 +2,7 @@
 import { createTheme } from '@material-ui/core';
 import { red } from '@material-ui/core/colors';
 import {
+    DARK_DEFAULT,
     DARK_GREY,
     DEFAULT_LIGHT,
     ERROR_LIGHT,
@@ -24,7 +25,12 @@ export const theme = createTheme({
         h2: {
             fontWeight: 900,
             fontSize: '2em',
-            color: '#000000',
+            color: DARK_DEFAULT,
+        },
+        h3: {
+            fontWeight: 500,
+            fontSize: '1em',
+            color: DARK_GREY,
         },
         body2: {
             fontWeight: 900,

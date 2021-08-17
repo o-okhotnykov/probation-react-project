@@ -17,4 +17,7 @@ export const SECONDARY_MAIN = '#000';
 export const SECONDARY_LIGHT = '#8f9198';
 
 export const DEFAULT_LIGHT = '#fff';
-export const DARK_GREY = '#8f9198';
+export const LIGHT_GREY = '#8f9198';
+export const DARK_GREY = '#484848';
+export const DARK_DEFAULT = '#000';
+export const BORDER_DEFAULT = '#d5e3d6';
