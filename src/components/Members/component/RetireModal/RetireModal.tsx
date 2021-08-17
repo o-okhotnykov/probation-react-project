@@ -27,26 +27,19 @@ export const RetireModal: React.FC<RetireModalProps> = ({ id, handleCloseModal }
 
     return (
         <>
-            <DialogTitle id="alert-dialog-title">Retire User</DialogTitle>
+            <DialogTitle id="alert-dialog-title" color="primary">
+                Retire User
+            </DialogTitle>
             <DialogContent>
-                <DialogContentText id="alert-dialog-description">
+                <DialogContentText id="alert-dialog-description" color="primary">
                     Are you sure you want to retire this user?
                 </DialogContentText>
             </DialogContent>
             <DialogActions className={classes.action}>
-                <Button
-                    className={`${classes.btn} ${classes.btnCancel}`}
-                    onClick={handleCloseModal}
-                    color="primary"
-                >
+                <Button onClick={handleCloseModal} color="secondary" variant="contained">
                     Cancel
                 </Button>
-                <Button
-                    className={`${classes.btn} ${classes.btnConfirm}`}
-                    onClick={handleClick}
-                    color="primary"
-                    autoFocus
-                >
+                <Button variant="contained" onClick={handleClick} color="primary" autoFocus>
                     Confirm
                 </Button>
             </DialogActions>

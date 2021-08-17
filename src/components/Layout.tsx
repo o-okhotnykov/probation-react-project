@@ -1,14 +1,9 @@
-import { ThemeProvider, createTheme } from '@material-ui/core';
-import React from 'react';
+import { ThemeProvider } from '@material-ui/core';
+import { theme } from './theme';
 
 export interface ILayoutProps {
     children: React.ReactNode;
 }
-const theme = createTheme({
-    typography: {
-        fontFamily: 'Poppins, sans-serif',
-    },
-});
 
 export const Layout: React.FC<ILayoutProps> = ({ children }) => {
     return (

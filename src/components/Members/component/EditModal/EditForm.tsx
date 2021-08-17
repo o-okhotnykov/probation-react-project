@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Button, Grid, MenuItem, Select, TextField } from '@material-ui/core';
+import { Box, Button, Grid, MenuItem, Select, TextField } from '@material-ui/core';
 import { format } from 'date-fns';
 import { Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
@@ -175,7 +175,7 @@ export const EditForm: React.FC<{ id: number }> = ({ id }) => {
                                         alt="user-img"
                                         className={classes.userImg}
                                     />
-                                    <Button variant="contained" component="label">
+                                    <Button variant="contained" color="primary" component="label">
                                         Upload File
                                         <input
                                             style={{ display: 'none' }}
@@ -202,15 +202,16 @@ export const EditForm: React.FC<{ id: number }> = ({ id }) => {
                                     </Select>
                                 </Grid>
                             </Grid>
-
-                            <Button
-                                className={`${classes.btn} form-btn`}
-                                type="submit"
-                                color="primary"
-                                disabled={!isValid || !dirty}
-                            >
-                                Confirm
-                            </Button>
+                            <Box display="flex" paddingTop="25px" justifyContent="center">
+                                <Button
+                                    variant="contained"
+                                    type="submit"
+                                    color="primary"
+                                    disabled={!isValid || !dirty}
+                                >
+                                    Confirm
+                                </Button>
+                            </Box>
                         </form>
                     )}
                 </Formik>

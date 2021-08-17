@@ -1,4 +1,4 @@
-import { Grid } from '@material-ui/core';
+import { Button, Grid } from '@material-ui/core';
 import { Navigation } from 'components/Navigation';
 import { SideSection } from 'components/SideSection';
 import React from 'react';
@@ -18,6 +18,12 @@ export const DashboardMain: React.FC = () => {
                     <AddProject />
                     <ProjectList />
                     <ChartsContent />
+                    <Button variant="contained" color="primary">
+                        Test
+                    </Button>
+                    <Button variant="contained" color="secondary">
+                        Test
+                    </Button>
                 </Grid>
             </Grid>
         </>

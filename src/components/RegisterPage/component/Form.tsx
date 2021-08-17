@@ -136,7 +136,7 @@ export const Form: React.FC<FormikProps<IRegisterFormValues>> = (props) => {
                     </CardContent>
 
                     <Button
-                        className={`${classes.btn} form-btn`}
+                        variant="contained"
                         type="submit"
                         color="primary"
                         disabled={!isValid || !dirty}

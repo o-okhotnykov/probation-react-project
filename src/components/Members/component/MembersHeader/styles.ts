@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
-import { ACCENT_PRIMARY, DARK_GREY } from 'constants/colors';
+import { PRIMARY_MAIN, DARK_GREY } from 'constants/colors';
 
 export const useStyles = makeStyles(() => ({
     header: { fontWeight: 900 },
@@ -19,6 +19,6 @@ export const useStyles = makeStyles(() => ({
         padding: 0,
         margin: '15px 0',
         fontWeight: 900,
-        color: ACCENT_PRIMARY,
+        color: PRIMARY_MAIN,
     },
 }));

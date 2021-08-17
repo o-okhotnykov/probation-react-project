@@ -1,17 +1,17 @@
 import { makeStyles } from '@material-ui/core/styles';
-import { DEFAULT_LIGHT, ACCENT_PRIMARY, ACCENT_LIGHT_TRANSPARENT } from 'constants/colors';
+import { DEFAULT_LIGHT, PRIMARY_MAIN, PRIMARY_LIGHT } from 'constants/colors';
 
 export const useStyles = makeStyles({
     btn: {
         color: DEFAULT_LIGHT,
-        backgroundColor: ACCENT_PRIMARY,
+        backgroundColor: PRIMARY_MAIN,
         padding: '5px 25px',
         fontWeight: 900,
         '&:hover': {
-            backgroundColor: ACCENT_LIGHT_TRANSPARENT,
+            backgroundColor: PRIMARY_LIGHT,
         },
         '&:disabled': {
-            backgroundColor: ACCENT_LIGHT_TRANSPARENT,
+            backgroundColor: PRIMARY_LIGHT,
         },
     },
     btnUpload: {

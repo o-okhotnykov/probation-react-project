@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
-import { DEFAULT_LIGHT, ACCENT_PRIMARY } from 'constants/colors';
+import { DEFAULT_LIGHT, PRIMARY_MAIN } from 'constants/colors';
 
 export const useStyles = makeStyles({
     btn: {
@@ -8,7 +8,7 @@ export const useStyles = makeStyles({
     },
     btnCancel: {
         backgroundColor: '#fff',
-        color: ACCENT_PRIMARY,
+        color: PRIMARY_MAIN,
     },
     btnConfirm: {
         backgroundColor: '#ec4e6e',
