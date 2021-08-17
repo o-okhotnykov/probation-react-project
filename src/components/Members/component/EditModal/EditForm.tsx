@@ -1,8 +1,8 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect } from 'react';
 import { Button, Grid, MenuItem, Select, TextField } from '@material-ui/core';
 import { format } from 'date-fns';
-import { Field, Formik } from 'formik';
+import { Formik } from 'formik';
+import { useDispatch, useSelector } from 'react-redux';
 import {
     currentUserSelector,
     getUserAsync,
@@ -10,8 +10,7 @@ import {
     getUsersAsync,
     patchUserAsync,
 } from 'store/user-slice';
-import { useDispatch, useSelector } from 'react-redux';
-import { UserStatus } from 'types/api/auth';
+import { IEditForm, UserStatus } from 'types/api/auth';
 import { isRequestPendingSelector } from 'store/loading-slice';
 import { Loading } from 'components/Loading';
 import { fileToBase64 } from 'helper/base64';
@@ -31,39 +30,60 @@ export const EditForm: React.FC<{ id: number }> = ({ id }) => {
 
     const currentUser = useSelector(currentUserSelector);
 
+    const handleUpload = async (
+        event: React.ChangeEvent<HTMLInputElement>,
+        setFieldValue: (field: string, value: unknown) => void,
+    ) => {
+        const data = await fileToBase64(event.currentTarget.files![0]);
+        setFieldValue('img', data);
+    };
+
+    const handleSelect = (
+        event: React.ChangeEvent<{
+            name?: string | undefined;
+            value: unknown;
+        }>,
+        setFieldValue: (field: string, value: unknown) => void,
+    ) => {
+        setFieldValue('status', event.target.value);
+    };
+
+    const onSubmit = async (values: IEditForm) => {
+        await dispatch(
+            patchUserAsync({
+                id,
+                values: {
+                    name: values.name,
+                    surname: values.surname,
+                    birthDate: values.birthDate,
+                    img: values.img,
+                    status: values.status,
+                },
+            }),
+        );
+        dispatch(getUserAsync());
+        dispatch(getUsersAsync());
+    };
+
     if (loading) {
         return <Loading />;
     }
+
     return (
         <>
             {currentUser && (
                 <Formik
                     initialValues={{
-                        name: currentUser?.name,
-                        surname: currentUser?.surname,
+                        name: currentUser.name,
+                        surname: currentUser.surname,
                         password: '',
                         confirmPassword: '',
-                        birthDate: currentUser?.birthDate,
+                        birthDate: currentUser.birthDate,
                         status: UserStatus.progress,
                         img: currentUser.img,
                     }}
                     validateOnBlur
-                    onSubmit={async (values) => {
-                        await dispatch(
-                            patchUserAsync({
-                                id,
-                                values: {
-                                    name: values.name,
-                                    surname: values.surname,
-                                    birthDate: values.birthDate,
-                                    img: values.img,
-                                    status: values.status,
-                                },
-                            }),
-                        );
-                        await dispatch(getUserAsync());
-                        await dispatch(getUsersAsync());
-                    }}
+                    onSubmit={(values) => onSubmit(values)}
                     validationSchema={editFormValidator}
                 >
                     {({
@@ -139,7 +159,6 @@ export const EditForm: React.FC<{ id: number }> = ({ id }) => {
                                         id="birthDate"
                                         type="date"
                                         InputProps={{ inputProps: { max: currentDay } }}
-                                        defaultValue="2017-05-24"
                                         value={values.birthDate}
                                         onChange={handleChange}
                                         onBlur={handleBlur}
@@ -163,20 +182,13 @@ export const EditForm: React.FC<{ id: number }> = ({ id }) => {
                                             id="file"
                                             name="file"
                                             type="file"
-                                            onChange={async (event) => {
-                                                const data = await fileToBase64(
-                                                    event.currentTarget.files![0],
-                                                );
-                                                setFieldValue('img', data);
-                                            }}
+                                            onChange={(event) => handleUpload(event, setFieldValue)}
                                         />
                                     </Button>
                                     <Select
                                         id="status"
                                         value={values.status}
-                                        onChange={(event) =>
-                                            setFieldValue('status', event.target.value)
-                                        }
+                                        onChange={(event) => handleSelect(event, setFieldValue)}
                                     >
                                         <MenuItem id="status" value={UserStatus.progress}>
                                             Progress

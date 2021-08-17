@@ -70,11 +70,12 @@ class HttpService {
         });
     }
 
-    patch<T>(path: string, payload: unknown) {
+    patch<T>(path: string, payload: Partial<AxiosRequestConfig> = {}) {
+        console.log(payload);
         return this.request<T>({
             method: 'PATCH',
             url: path,
-            data: payload,
+            ...payload,
         });
     }
 
