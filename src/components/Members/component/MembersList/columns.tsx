@@ -28,7 +28,7 @@ export const columns: Column[] = [
     },
     {
         Header: 'Action',
-        accessor: 'action',
+        accessor: 'id',
         Cell: function Action({ value }: { value: number }): ReactElement {
             return <ActionMenu id={value} />;
         },
