@@ -3,7 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import { useSelector } from 'react-redux';
 import { isRequestPendingSelector } from 'store/loading-slice';
 import { Loading } from 'components/Loading';
-import { getProjectsAsync } from 'store/project-store';
+import { getProjectsAsync } from 'store/project-slice';
 import { VerticalBar, LineBar, DoughnutBar } from 'components/Charts';
 
 export const ChartsContent: React.FC = () => {

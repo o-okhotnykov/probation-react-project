@@ -1,3 +1,4 @@
+import { ReactElement } from 'react';
 import { Column } from 'react-table';
 import { ActionMenu } from '../ActionMenu';
 
@@ -21,14 +22,14 @@ export const columns: Column[] = [
     {
         Header: 'Status',
         accessor: 'status',
-        Cell: function Progress({ value }: { value: string }) {
+        Cell: function Progress({ value }: { value: string }): ReactElement {
             return <div className={`member-status member-${value}`}>{value}</div>;
         },
     },
     {
         Header: 'Action',
-        accessor: 'action',
-        Cell: function Progress({ value }: { value: number }) {
+        accessor: 'id',
+        Cell: function Action({ value }: { value: number }): ReactElement {
             return <ActionMenu id={value} />;
         },
     },

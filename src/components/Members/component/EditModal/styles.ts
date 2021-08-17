@@ -18,4 +18,30 @@ export const useStyles = makeStyles({
         alignItems: 'center',
         justifyContent: 'space-between',
     },
+    card: {
+        boxShadow: 'none',
+    },
+    media: {
+        margin: '10px auto',
+        height: '15vh',
+        width: '15vh',
+    },
+    text: {
+        padding: '15px 0px',
+    },
+    link: {
+        textDecoration: 'none',
+        textTransform: 'uppercase',
+    },
+    formPart: {
+        display: 'flex',
+        alignItems: 'center',
+        flexDirection: 'column',
+    },
+    userImg: {
+        width: 100,
+        height: 100,
+        marginBottom: 25,
+        borderRadius: '50%',
+    },
 });

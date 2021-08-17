@@ -16,10 +16,27 @@ export type IUserData = {
     id: number;
     name: string;
     surname: string;
+    img: string;
     status: UserStatus;
 };
 
-enum UserStatus {
+export interface IEditForm {
+    name: string;
+    surname: string;
+    password: string;
+    confirmPassword: string;
+    birthDate: string;
+    img: string;
+    status: UserStatus;
+}
+export interface IEditFormResponse {
+    name: string;
+    surname: string;
+    birthDate: string;
+    img: string;
+    status: UserStatus;
+}
+export enum UserStatus {
     progress = 'progress',
     register = 'register',
     expired = 'expired',

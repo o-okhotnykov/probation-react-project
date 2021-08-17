@@ -37,5 +37,4 @@ app.use(middlewares);
 app.use(auth);
 app.use(router);
 
-
 app.listen(3010);

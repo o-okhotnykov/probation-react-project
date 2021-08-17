@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import { ModalComponent } from 'components/ModalComponent';
 import { RetireModal } from '../RetireModal';
+import { EditModal } from '../EditModal';
 import { useStyles } from './styles';
 
 interface ActionMenuProps {
@@ -11,10 +12,17 @@ interface ActionMenuProps {
 
 export const ActionMenu: React.FC<ActionMenuProps> = ({ id }) => {
     const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
-    const [isOpen, setOpen] = useState(false);
-    const toggleModal = () => {
-        setOpen(!isOpen);
+    const [isOpenEdit, setIsSOpenEdit] = useState(false);
+    const [isOpenRetire, setIsSOpenRetire] = useState(false);
+
+    const toggleModalEdit = () => {
+        setIsSOpenEdit(!isOpenEdit);
     };
+
+    const toggleModalRetire = () => {
+        setIsSOpenRetire(!isOpenRetire);
+    };
+
     const handleMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
         setAnchorEl(event.currentTarget);
     };
@@ -54,12 +62,19 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({ id }) => {
                 open={open}
                 onClose={handleClose}
             >
-                <MenuItem onClick={handleClose}>Edit</MenuItem>
-                <MenuItem onClick={toggleModal}>Retire</MenuItem>
+                <MenuItem onClick={toggleModalEdit}>Edit</MenuItem>
+                <MenuItem onClick={toggleModalRetire}>Retire</MenuItem>
 
-                <ModalComponent open={isOpen} close={toggleModal}>
-                    <RetireModal id={id} handleCloseModal={toggleModal} />
-                </ModalComponent>
+                {isOpenEdit && (
+                    <ModalComponent open={isOpenEdit} close={toggleModalEdit}>
+                        <EditModal id={id} handleCloseModal={toggleModalEdit} />
+                    </ModalComponent>
+                )}
+                {isOpenRetire && (
+                    <ModalComponent open={isOpenRetire} close={toggleModalRetire}>
+                        <RetireModal id={id} handleCloseModal={toggleModalRetire} />
+                    </ModalComponent>
+                )}
             </Menu>
         </>
     );

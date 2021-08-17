@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { Line } from 'react-chartjs-2';
 import { useSelector } from 'react-redux';
-import { projectsDataSelector } from 'store/project-store';
+import { projectsDataSelector } from 'store/project-slice';
 import { backgroundColor, borderColor, options } from './constant';
 
 export const LineBar: React.FC = () => {
