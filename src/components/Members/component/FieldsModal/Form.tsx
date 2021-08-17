@@ -17,7 +17,7 @@ import { useStyles } from './styles';
 
 interface FormProps {
     id?: number | null;
-    submit: any;
+    submit: (data: unknown) => void;
 }
 
 export const Form: React.FC<FormProps> = ({ id, submit }) => {
@@ -56,7 +56,7 @@ export const Form: React.FC<FormProps> = ({ id, submit }) => {
         }
     }, [currentUser]);
 
-    const handleeSubmit = async (values: IEditForm) => {
+    const onSubmit = async (values: IEditForm) => {
         if (id) {
             await dispatch(
                 submit({
@@ -71,8 +71,8 @@ export const Form: React.FC<FormProps> = ({ id, submit }) => {
                 }),
             );
 
-            await dispatch(getUserAsync());
-            await dispatch(getUsersAsync());
+            dispatch(getUserAsync());
+            dispatch(getUsersAsync());
         } else {
             await dispatch(
                 submit({
@@ -86,14 +86,32 @@ export const Form: React.FC<FormProps> = ({ id, submit }) => {
                 }),
             );
 
-            await dispatch(getUsersAsync());
+            dispatch(getUsersAsync());
         }
+    };
+
+    const handleUpload = async (
+        event: React.ChangeEvent<HTMLInputElement>,
+        setFieldValue: (field: string, value: unknown) => void,
+    ) => {
+        const data = await fileToBase64(event.currentTarget.files![0]);
+        setFieldValue('img', data);
+    };
+
+    const handleSelect = (
+        event: React.ChangeEvent<{
+            name?: string | undefined;
+            value: unknown;
+        }>,
+        setFieldValue: (field: string, value: unknown) => void,
+    ) => {
+        setFieldValue('status', event.target.value);
     };
 
     const formik = useFormik({
         initialValues: value,
         enableReinitialize: true,
-        onSubmit: handleeSubmit,
+        onSubmit,
     });
 
     const {
@@ -191,16 +209,13 @@ export const Form: React.FC<FormProps> = ({ id, submit }) => {
                                 id="file"
                                 name="file"
                                 type="file"
-                                onChange={async (event) => {
-                                    const data = await fileToBase64(event.currentTarget.files![0]);
-                                    setFieldValue('img', data);
-                                }}
+                                onChange={(event) => handleUpload(event, setFieldValue)}
                             />
                         </Button>
                         <Select
                             id="status"
                             value={values.status}
-                            onChange={(event) => setFieldValue('status', event.target.value)}
+                            onChange={(event) => handleSelect(event, setFieldValue)}
                         >
                             <MenuItem id="status" value={UserStatus.progress}>
                                 Progress

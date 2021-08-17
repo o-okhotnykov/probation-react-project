@@ -63,7 +63,7 @@ export const deleteUserAsync = createAsyncThunk('app/deleteUserAsync', (id: numb
 export const patchUserAsync = createAsyncThunk(
     'app/patchUserAsync',
     ({ id, values }: { id: number; values: IEditFormResponse }) => {
-        return httpService.patch<IUserData>(`/users/${id}`, { ...values });
+        return httpService.patch<IUserData>(`/users/${id}`, { data: values });
     },
 );
 
