@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import ClearIcon from '@material-ui/icons/Clear';
-import { Typography, Button, IconButton, Menu, MenuItem } from '@material-ui/core';
+import { Typography, Button, IconButton, Menu, MenuItem, Box } from '@material-ui/core';
 import { logout, getUserAsync, userDataSelector } from 'store/user-slice';
 import { isRequestPendingSelector } from 'store/loading-slice';
 import { Loading } from 'components/Loading';
@@ -39,15 +39,15 @@ export const UserMenu: React.FC = () => {
     }
 
     return (
-        <div className="user-menu">
-            <div className="user-data">
+        <Box display="flex">
+            <Box display="flex" flexDirection="column">
                 {userData && (
                     <>
                         <Typography variant="h5">{`${userData?.name} ${userData?.surname}`}</Typography>
                         <Typography variant="caption">{userData?.email}</Typography>
                     </>
                 )}
-            </div>
+            </Box>
             <IconButton
                 className={classes.root}
                 aria-label="account of current user"
@@ -92,6 +92,6 @@ export const UserMenu: React.FC = () => {
                     </Button>
                 </MenuItem>
             </Menu>
-        </div>
+        </Box>
     );
 };
