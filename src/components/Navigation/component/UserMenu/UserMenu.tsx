@@ -5,6 +5,7 @@ import ClearIcon from '@material-ui/icons/Clear';
 import { Typography, Button, IconButton, Menu, MenuItem } from '@material-ui/core';
 import { logout, getUserAsync, userDataSelector } from 'store/user-slice';
 import { Loading } from 'components/Loading';
+import { AccountCircle } from '@material-ui/icons';
 import { useStyles } from './style';
 
 export const UserMenu: React.FC = () => {
@@ -50,7 +51,9 @@ export const UserMenu: React.FC = () => {
                     onClick={handleMenu}
                     color="inherit"
                 >
-                    {userData && (
+                    {userData === null ? (
+                        <AccountCircle style={{ fontSize: 40, padding: 0 }} />
+                    ) : (
                         <img className={classes.userLogo} src={userData?.img} alt="user-avatar" />
                     )}
                 </IconButton>

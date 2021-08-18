@@ -1,16 +1,4 @@
 import { makeStyles } from '@material-ui/core/styles';
-<<<<<<< HEAD
-import { DEFAULT_LIGHT, ACCENT_PRIMARY } from 'constants/colors';
-
-export const useStyles = makeStyles({
-    btn: {
-        fontWeight: 900,
-        border: '1px solid #d5e3d6',
-    },
-    btnCancel: {
-        backgroundColor: '#fff',
-        color: ACCENT_PRIMARY,
-=======
 import { DEFAULT_LIGHT, ACCENT_PRIMARY, ACCENT_LIGHT_TRANSPARENT } from 'constants/colors';
 
 export const useStyles = makeStyles({
@@ -28,22 +16,16 @@ export const useStyles = makeStyles({
     },
     btnUpload: {
         margin: '11% 0',
->>>>>>> 0424978a603a8996e0f64851643009b951099305
     },
     btnConfirm: {
         backgroundColor: '#ec4e6e',
         color: DEFAULT_LIGHT,
     },
     action: {
-<<<<<<< HEAD
-        alignItems: 'center',
-        justifyContent: 'space-between',
-=======
         paddingTop: '15px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
->>>>>>> 0424978a603a8996e0f64851643009b951099305
     },
     card: {
         boxShadow: 'none',
