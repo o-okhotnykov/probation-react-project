@@ -1,12 +1,13 @@
 import React from 'react';
 import { DialogActions, DialogContent, DialogTitle } from '@material-ui/core';
+import { AsyncThunk } from '@reduxjs/toolkit';
 import { Form } from './Form';
 import { useStyles } from './styles';
 
 interface EditModalProps {
-    id: number | null;
+    id: number;
     handleCloseModal: () => void;
-    submit: any;
+    submit: AsyncThunk<any, any, any>;
     header: string;
 }
 

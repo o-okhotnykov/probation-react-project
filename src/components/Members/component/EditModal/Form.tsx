@@ -16,7 +16,7 @@ import { Loading } from 'components/Loading';
 import { useStyles } from './styles';
 
 interface FormProps {
-    id?: number | null;
+    id: number;
     submit: (data: unknown) => void;
 }
 
@@ -57,37 +57,21 @@ export const Form: React.FC<FormProps> = ({ id, submit }) => {
     }, [currentUser]);
 
     const onSubmit = async (values: IEditForm) => {
-        if (id) {
-            await dispatch(
-                submit({
-                    id,
-                    values: {
-                        name: values.name,
-                        surname: values.surname,
-                        birthDate: values.birthDate,
-                        img: values.img,
-                        status: values.status,
-                    },
-                }),
-            );
-
-            dispatch(getUserAsync());
-            dispatch(getUsersAsync());
-        } else {
-            await dispatch(
-                submit({
-                    email: `${values.name}@default.test`,
-                    password: values.password,
+        await dispatch(
+            submit({
+                id,
+                values: {
                     name: values.name,
                     surname: values.surname,
                     birthDate: values.birthDate,
                     img: values.img,
                     status: values.status,
-                }),
-            );
+                },
+            }),
+        );
 
-            dispatch(getUsersAsync());
-        }
+        dispatch(getUserAsync());
+        dispatch(getUsersAsync());
     };
 
     const handleUpload = async (
