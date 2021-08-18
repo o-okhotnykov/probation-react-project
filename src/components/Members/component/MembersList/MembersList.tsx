@@ -6,6 +6,7 @@ import { Pagination } from '@material-ui/lab';
 import { LIMIT } from 'constants/index';
 import { Loading } from 'components/Loading';
 import { isRequestPendingSelector } from 'store/loading-slice';
+import { Box } from '@material-ui/core';
 import { columns } from './columns';
 
 export const MembersList: React.FC = () => {
@@ -25,7 +26,14 @@ export const MembersList: React.FC = () => {
     }
 
     return (
-        <div className="members-list-container">
+        <Box
+            display="flex"
+            flexDirection="column"
+            margin="0 auto"
+            alignItems="center"
+            width="100%"
+            padding="30px 0"
+        >
             {usersData && (
                 <>
                     <TableComponent columns={columns} data={usersData} />
@@ -39,6 +47,6 @@ export const MembersList: React.FC = () => {
                     />
                 </>
             )}
-        </div>
+        </Box>
     );
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid } from '@material-ui/core';
+import { Box, Grid } from '@material-ui/core';
 import { Navigation } from 'components/Navigation';
 import { SideSection } from 'components/SideSection';
 import { MembersHeader } from './component/MembersHeader';
@@ -8,15 +8,15 @@ import { MembersList } from './component/MembersList';
 export const MembersMain: React.FC = () => {
     return (
         <Grid container>
-            <Grid item xs={1} className="side-section-container">
+            <Grid item xs={1}>
                 <SideSection />
             </Grid>
-            <Grid item xs={11} className="main-section">
+            <Grid item xs={11}>
                 <Navigation />
-                <div className="members-container">
+                <Box padding="30px">
                     <MembersHeader />
                     <MembersList />
-                </div>
+                </Box>
             </Grid>
         </Grid>
     );

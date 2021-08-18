@@ -13,7 +13,7 @@ const memberStatus = {
 };
 
 const progressStyle: {
-    [key in UserStatus]: CSSProperties | undefined;
+    [key in UserStatus]: CSSProperties;
 } = {
     register: {
         color: INFO_MAIN,

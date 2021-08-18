@@ -97,7 +97,7 @@ export const EditForm: React.FC<{ id: number }> = ({ id }) => {
                         setFieldValue,
                         dirty,
                     }) => (
-                        <form className="form" onSubmit={handleSubmit}>
+                        <form onSubmit={handleSubmit}>
                             <Grid container>
                                 <Grid item xs={6}>
                                     <TextField

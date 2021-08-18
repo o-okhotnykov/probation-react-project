@@ -10,10 +10,10 @@ export const DashboardMain: React.FC = () => {
     return (
         <>
             <Grid container>
-                <Grid item xs={1} className="side-section-container">
+                <Grid item xs={1}>
                     <SideSection />
                 </Grid>
-                <Grid item xs={11} className="main-section">
+                <Grid item xs={11}>
                     <Navigation />
                     <Box padding="25px">
                         <AddProject />

@@ -1,4 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
+import { BORDER_DEFAULT } from 'constants/colors';
 
 export const useStyles = makeStyles(() => ({
     register: {},
@@ -11,7 +12,10 @@ export const useStyles = makeStyles(() => ({
         fontWeight: 900,
         borderBottom: 0,
     },
-    tableRow: {},
+    tableRow: {
+        border: `1px solid ${BORDER_DEFAULT}`,
+    },
+
     tableData: {
         textAlign: 'center',
         fontWeight: 500,
