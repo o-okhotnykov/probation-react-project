@@ -10,7 +10,6 @@ import { columns } from './columns';
 export const MembersList: React.FC = () => {
     const dispatch = useDispatch();
     const usersData = useSelector(usersDataSelector);
-
     const [pageState, setPageState] = useState(1);
 
     useEffect(() => {
@@ -20,8 +19,8 @@ export const MembersList: React.FC = () => {
     const totalUsers = useSelector(totalUsersSelector);
 
     return (
-        <Loading apiCall={getUsersAsync}>
-            <div className="members-list-container">
+        <div className="members-list-container">
+            <Loading apiCall={getUsersAsync}>
                 {usersData && (
                     <>
                         <TableComponent columns={columns} data={usersData} />
@@ -35,7 +34,7 @@ export const MembersList: React.FC = () => {
                         />
                     </>
                 )}
-            </div>
-        </Loading>
+            </Loading>
+        </div>
     );
 };

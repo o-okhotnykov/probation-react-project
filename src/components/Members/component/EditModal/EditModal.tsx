@@ -1,16 +1,17 @@
 import React from 'react';
 import { DialogActions, DialogContent, DialogTitle } from '@material-ui/core';
+import { AsyncThunk } from '@reduxjs/toolkit';
 import { Form } from './Form';
 import { useStyles } from './styles';
 
-interface FieldsModalProps {
-    id: number | null;
+interface EditModalProps {
+    id: number;
     handleCloseModal: () => void;
-    submit: any;
+    submit: AsyncThunk<any, any, any>;
     header: string;
 }
 
-export const FieldsModal: React.FC<FieldsModalProps> = ({ id, header, submit }) => {
+export const EditModal: React.FC<EditModalProps> = ({ id, header, submit }) => {
     const classes = useStyles();
 
     return (

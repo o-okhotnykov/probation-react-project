@@ -1,33 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Button, Grid, MenuItem, Select, TextField } from '@material-ui/core';
 import { format } from 'date-fns';
 import { useFormik } from 'formik';
-import {
-    currentUserSelector,
-    getUserAsync,
-    getUserByIdAsync,
-    getUsersAsync,
-} from 'store/user-slice';
-import { useDispatch, useSelector } from 'react-redux';
+import { getUserAsync, getUserByIdAsync, getUsersAsync } from 'store/user-slice';
+import { useDispatch } from 'react-redux';
 import { IEditForm, UserStatus } from 'types/api/auth';
 import { fileToBase64 } from 'helper/base64';
 import defaultUser from 'assets/default-user.png';
 import { Loading } from 'components/Loading';
-import { editFormValidator } from './validation';
 import { useStyles } from './styles';
 
 interface FormProps {
-    id?: number | null;
-    submit: any;
+    submit: (data: unknown) => void;
 }
 
-export const Form: React.FC<FormProps> = ({ id, submit }) => {
+export const Form: React.FC<FormProps> = ({ submit }) => {
     const classes = useStyles();
     const dispatch = useDispatch();
     const currentDay = format(new Date(), 'yyyy-MM-dd');
-    const currentUser = useSelector(currentUserSelector);
 
-    const [value, setValue] = useState({
+    const initialState = {
         name: '',
         surname: '',
         password: '',
@@ -35,67 +27,44 @@ export const Form: React.FC<FormProps> = ({ id, submit }) => {
         birthDate: '',
         status: UserStatus.progress,
         img: defaultUser,
-    });
+    };
 
-    useEffect(() => {
-        if (id) {
-            dispatch(getUserByIdAsync(id));
-        }
-    }, [id, dispatch]);
+    const onSubmit = async (values: IEditForm) => {
+        await dispatch(
+            submit({
+                name: values.name,
+                surname: values.surname,
+                birthDate: values.birthDate,
+                img: values.img,
+                status: values.status,
+            }),
+        );
 
-    useEffect(() => {
-        if (currentUser) {
-            setValue({
-                name: currentUser.name,
-                surname: currentUser.surname,
-                password: '',
-                confirmPassword: '',
-                birthDate: currentUser.birthDate,
-                status: currentUser.status,
-                img: currentUser.img,
-            });
-        }
-    }, [currentUser]);
+        dispatch(getUserAsync());
+        dispatch(getUsersAsync());
+    };
 
-    const handleeSubmit = async (values: IEditForm) => {
-        if (id) {
-            await dispatch(
-                submit({
-                    id,
-                    values: {
-                        name: values.name,
-                        surname: values.surname,
-                        birthDate: values.birthDate,
-                        img: values.img,
-                        status: values.status,
-                    },
-                }),
-            );
+    const handleUpload = async (
+        event: React.ChangeEvent<HTMLInputElement>,
+        setFieldValue: (field: string, value: unknown) => void,
+    ) => {
+        const data = await fileToBase64(event.currentTarget.files![0]);
+        setFieldValue('img', data);
+    };
 
-            await dispatch(getUserAsync());
-            await dispatch(getUsersAsync());
-        } else {
-            await dispatch(
-                submit({
-                    email: `${values.name}@default.test`,
-                    password: values.password,
-                    name: values.name,
-                    surname: values.surname,
-                    birthDate: values.birthDate,
-                    img: values.img,
-                    status: values.status,
-                }),
-            );
-
-            await dispatch(getUsersAsync());
-        }
+    const handleSelect = (
+        event: React.ChangeEvent<{
+            name?: string | undefined;
+            value: unknown;
+        }>,
+        setFieldValue: (field: string, value: unknown) => void,
+    ) => {
+        setFieldValue('status', event.target.value);
     };
 
     const formik = useFormik({
-        initialValues: value,
-        enableReinitialize: true,
-        validationSchema: editFormValidator,
-        onSubmit: handleeSubmit,
+        initialValues: initialState,
+        onSubmit,
     });
 
     const {
@@ -182,23 +151,24 @@ export const Form: React.FC<FormProps> = ({ id, submit }) => {
                     </Grid>
                     <Grid item xs={6} className={classes.formPart}>
                         <img src={values.img} alt="user-img" className={classes.userImg} />
-                        <Button variant="contained" component="label">
+                        <Button
+                            variant="contained"
+                            component="label"
+                            className={`${classes.btn} ${classes.btnUpload}`}
+                        >
                             Upload File
                             <input
                                 style={{ display: 'none' }}
                                 id="file"
                                 name="file"
                                 type="file"
-                                onChange={async (event) => {
-                                    const data = await fileToBase64(event.currentTarget.files![0]);
-                                    setFieldValue('img', data);
-                                }}
+                                onChange={(event) => handleUpload(event, setFieldValue)}
                             />
                         </Button>
                         <Select
                             id="status"
                             value={values.status}
-                            onChange={(event) => setFieldValue('status', event.target.value)}
+                            onChange={(event) => handleSelect(event, setFieldValue)}
                         >
                             <MenuItem id="status" value={UserStatus.progress}>
                                 Progress
@@ -212,15 +182,16 @@ export const Form: React.FC<FormProps> = ({ id, submit }) => {
                         </Select>
                     </Grid>
                 </Grid>
-
-                <Button
-                    className={`${classes.btn} form-btn`}
-                    type="submit"
-                    color="primary"
-                    disabled={!isValid || !dirty}
-                >
-                    Confirm
-                </Button>
+                <div className={classes.action}>
+                    <Button
+                        className={`${classes.btn} form-btn`}
+                        type="submit"
+                        color="primary"
+                        disabled={!isValid || !dirty}
+                    >
+                        Confirm
+                    </Button>
+                </div>
             </form>
         </Loading>
     );

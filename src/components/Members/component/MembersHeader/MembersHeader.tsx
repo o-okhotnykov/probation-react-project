@@ -4,7 +4,7 @@ import AddCircleIcon from '@material-ui/icons/AddCircle';
 import { ModalComponent } from 'components/ModalComponent';
 import { addUserAsync } from 'store/user-slice';
 import { useStyles } from './styles';
-import { FieldsModal } from '../FieldsModal';
+import { AddModal } from '../AddModal';
 
 export const MembersHeader = () => {
     const classes = useStyles();
@@ -30,8 +30,7 @@ export const MembersHeader = () => {
             </Typography>
             {isOpen && (
                 <ModalComponent open={isOpen} close={toggleModal}>
-                    <FieldsModal
-                        id={null}
+                    <AddModal
                         header="Create user"
                         handleCloseModal={toggleModal}
                         submit={addUserAsync}

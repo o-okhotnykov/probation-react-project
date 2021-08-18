@@ -12,12 +12,18 @@ import { useStyles } from './styles';
 
 interface RetireModalProps {
     id: number;
-    handleCloseModal: any;
+    handleCloseModal: () => void;
 }
 
 export const RetireModal: React.FC<RetireModalProps> = ({ id, handleCloseModal }) => {
     const dispatch = useDispatch();
     const classes = useStyles();
+
+    const handleClick = () => {
+        dispatch(deleteUserAsync(id));
+        dispatch(getUsersAsync());
+        handleCloseModal();
+    };
 
     return (
         <>
@@ -37,11 +43,7 @@ export const RetireModal: React.FC<RetireModalProps> = ({ id, handleCloseModal }
                 </Button>
                 <Button
                     className={`${classes.btn} ${classes.btnConfirm}`}
-                    onClick={() => {
-                        dispatch(deleteUserAsync(id));
-                        dispatch(getUsersAsync());
-                        handleCloseModal();
-                    }}
+                    onClick={handleClick}
                     color="primary"
                     autoFocus
                 >

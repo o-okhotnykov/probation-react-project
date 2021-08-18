@@ -72,7 +72,6 @@ export const Form: React.FC<FormikProps<ILoginFormValues>> = (props) => {
                         </Button>
                     </Card>
                 </form>
-
                 <Typography className={classes.text}>
                     Don&apos;t have an account?{' '}
                     <Link to={ROUTE_PATH.register} className={classes.link}>
