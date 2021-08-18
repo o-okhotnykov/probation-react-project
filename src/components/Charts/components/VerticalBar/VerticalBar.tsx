@@ -1,3 +1,4 @@
+import { Box } from '@material-ui/core';
 import React, { useMemo } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { useSelector } from 'react-redux';
@@ -35,8 +36,8 @@ export const VerticalBar: React.FC = () => {
     };
 
     return (
-        <div className="bar-container">
+        <Box>
             <Bar data={data} options={options} />
-        </div>
+        </Box>
     );
 };

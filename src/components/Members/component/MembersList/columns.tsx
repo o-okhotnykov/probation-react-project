@@ -1,6 +1,36 @@
-import { ReactElement } from 'react';
+import { Paper } from '@material-ui/core';
+import { INFO_LIGHT, INFO_MAIN, WARNING_LIGHT, WARNING_MAIN } from 'constants/colors';
+import { CSSProperties, ReactElement } from 'react';
 import { Column } from 'react-table';
+import { UserStatus } from 'types/api/auth';
 import { ActionMenu } from '../ActionMenu';
+
+const memberStatus = {
+    'text-transform': 'uppercase',
+    padding: '10px',
+    borderRadius: '5px',
+    'text-align': 'center',
+};
+
+const progressStyle: {
+    [key in UserStatus]: CSSProperties | undefined;
+} = {
+    register: {
+        color: INFO_MAIN,
+        backgroundColor: INFO_LIGHT,
+        ...memberStatus,
+    },
+    expired: {
+        color: INFO_MAIN,
+        backgroundColor: INFO_LIGHT,
+        ...memberStatus,
+    },
+    progress: {
+        color: WARNING_MAIN,
+        backgroundColor: WARNING_LIGHT,
+        ...memberStatus,
+    },
+};
 
 export const columns: Column[] = [
     {
@@ -22,8 +52,8 @@ export const columns: Column[] = [
     {
         Header: 'Status',
         accessor: 'status',
-        Cell: function Progress({ value }: { value: string }): ReactElement {
-            return <div className={`member-status member-${value}`}>{value}</div>;
+        Cell: function Progress({ value }: { value: UserStatus }): ReactElement {
+            return <Paper style={progressStyle[value]}>{value}</Paper>;
         },
     },
     {

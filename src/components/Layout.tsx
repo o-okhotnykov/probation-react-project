@@ -1,4 +1,4 @@
-import { ThemeProvider } from '@material-ui/core';
+import { Box, ThemeProvider } from '@material-ui/core';
 import { theme } from './theme';
 
 export interface ILayoutProps {
@@ -8,7 +8,7 @@ export interface ILayoutProps {
 export const Layout: React.FC<ILayoutProps> = ({ children }) => {
     return (
         <ThemeProvider theme={theme}>
-            <div className="wrapper">{children}</div>
+            <Box>{children}</Box>
         </ThemeProvider>
     );
 };

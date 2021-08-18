@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, TableBody, TableCell, TableHead, TableRow } from '@material-ui/core';
+import { Box, Table, TableBody, TableCell, TableHead, TableRow } from '@material-ui/core';
 import { useSortBy, useTable } from 'react-table';
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
@@ -22,7 +22,7 @@ export const TableComponent: React.FC<IDataTableProps> = ({ columns, data }) => 
     );
 
     return (
-        <div className="table-container">
+        <Box>
             <Table {...getTableProps()} className={classes.table}>
                 <TableHead>
                     {headerGroups.map((headerGroup) => (
@@ -71,6 +71,6 @@ export const TableComponent: React.FC<IDataTableProps> = ({ columns, data }) => 
                     })}
                 </TableBody>
             </Table>
-        </div>
+        </Box>
     );
 };

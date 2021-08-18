@@ -4,6 +4,7 @@ export const useStyles = makeStyles(() => ({
     container: {
         alignItems: 'center',
         justifyContent: 'center',
+        padding: '30px 0',
     },
     addProject: {
         display: 'flex',

@@ -1,5 +1,5 @@
 import React, { FormEvent } from 'react';
-import { Card, CardContent, CardMedia, TextField, Button } from '@material-ui/core';
+import { CardContent, CardMedia, TextField, Button, Box } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { FormikProps } from 'formik';
 import { Link, Redirect } from 'react-router-dom';
@@ -48,9 +48,9 @@ export const Form: React.FC<FormikProps<IRegisterFormValues>> = (props) => {
     }
 
     return (
-        <div className="form-container">
+        <Box className={classes.formContainer}>
             <form onSubmit={handleSubmit} className="form">
-                <Card className="card-container">
+                <Box className={classes.formContent}>
                     <CardMedia className={classes.media} image={logo} title="Paella dish" />
                     <CardContent>
                         <TextField
@@ -143,7 +143,7 @@ export const Form: React.FC<FormikProps<IRegisterFormValues>> = (props) => {
                     >
                         Register
                     </Button>
-                </Card>
+                </Box>
             </form>
             <Typography className={classes.text}>
                 Already have an account?{' '}
@@ -151,6 +151,6 @@ export const Form: React.FC<FormikProps<IRegisterFormValues>> = (props) => {
                     Login
                 </Link>
             </Typography>
-        </div>
+        </Box>
     );
 };

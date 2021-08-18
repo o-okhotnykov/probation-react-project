@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { projectsDataSelector, getProjectsAsync } from 'store/project-slice';
 import { isRequestPendingSelector } from 'store/loading-slice';
 import { Loading } from 'components/Loading';
+import { Box } from '@material-ui/core';
 import { ProjectItem } from '../ProjectItem/ProjectItem';
 import { ProjectHeader } from '../ProjectHeader/ProjectHeader';
 
@@ -19,13 +20,13 @@ export const ProjectList: React.FC = () => {
         return <Loading />;
     }
     return (
-        <div className="project-list">
+        <Box padding="30px 0">
             <>
                 <ProjectHeader />
                 {projectsData.map((project) => {
                     return <ProjectItem key={project.id} project={project} />;
                 })}
             </>
-        </div>
+        </Box>
     );
 };
