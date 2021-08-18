@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import { TableComponent } from 'components/Table';
 import { getUsersAsync, usersDataSelector, totalUsersSelector } from 'store/user-slice';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,8 +10,7 @@ import { columns } from './columns';
 export const MembersList: React.FC = () => {
     const dispatch = useDispatch();
     const usersData = useSelector(usersDataSelector);
-
-    const [pageState, setPageState] = React.useState(1);
+    const [pageState, setPageState] = useState(1);
 
     useEffect(() => {
         dispatch(getUsersAsync());
@@ -20,8 +19,8 @@ export const MembersList: React.FC = () => {
     const totalUsers = useSelector(totalUsersSelector);
 
     return (
-        <Loading apiCall={getUsersAsync}>
-            <div className="members-list-container">
+        <div className="members-list-container">
+            <Loading apiCall={getUsersAsync}>
                 {usersData && (
                     <>
                         <TableComponent columns={columns} data={usersData} />
@@ -35,7 +34,7 @@ export const MembersList: React.FC = () => {
                         />
                     </>
                 )}
-            </div>
-        </Loading>
+            </Loading>
+        </div>
     );
 };

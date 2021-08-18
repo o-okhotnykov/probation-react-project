@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import ClearIcon from '@material-ui/icons/Clear';
+import { AccountCircle } from '@material-ui/icons';
 import { Typography, Button, IconButton, Menu, MenuItem } from '@material-ui/core';
 import { logout, getUserAsync, userDataSelector } from 'store/user-slice';
 import { Loading } from 'components/Loading';
-import { AccountCircle } from '@material-ui/icons';
 import { useStyles } from './style';
 
 export const UserMenu: React.FC = () => {

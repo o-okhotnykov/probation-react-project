@@ -27,8 +27,8 @@ export const Form: React.FC<FormikProps<ILoginFormValues>> = (props) => {
     }
 
     return (
-        <Loading apiCall={loginAsync}>
-            <div className="form-container">
+        <div className="form-container">
+            <Loading apiCall={loginAsync}>
                 <form onSubmit={handleSubmit} className="form">
                     <Card className="card-container">
                         <CardMedia className={classes.media} image={logo} title="Paella dish" />
@@ -78,7 +78,7 @@ export const Form: React.FC<FormikProps<ILoginFormValues>> = (props) => {
                         Register
                     </Link>
                 </Typography>
-            </div>
-        </Loading>
+            </Loading>
+        </div>
     );
 };

@@ -1,5 +1,6 @@
 import React, { FormEvent } from 'react';
 import { Card, CardContent, CardMedia, TextField, Button } from '@material-ui/core';
+import Typography from '@material-ui/core/Typography';
 import { useDispatch, useSelector } from 'react-redux';
 import { FormikProps } from 'formik';
 import { Link, Redirect } from 'react-router-dom';
@@ -8,7 +9,6 @@ import { registerAsync, isAuthorizedSelector } from 'store/user-slice';
 import { UserStatus } from 'types/api/auth';
 import { ROUTE_PATH } from 'constants/index';
 import logo from 'assets/logo.png';
-import Typography from '@material-ui/core/Typography';
 import { IRegisterFormValues } from 'types';
 import defaultUser from 'assets/default-user.png';
 import { Loading } from 'components/Loading';
@@ -41,8 +41,8 @@ export const Form: React.FC<FormikProps<IRegisterFormValues>> = (props) => {
     }
 
     return (
-        <Loading apiCall={registerAsync}>
-            <div className="form-container">
+        <div className="form-container">
+            <Loading apiCall={registerAsync}>
                 <form onSubmit={handleSubmit} className="form">
                     <Card className="card-container">
                         <CardMedia className={classes.media} image={logo} title="Paella dish" />
@@ -145,7 +145,7 @@ export const Form: React.FC<FormikProps<IRegisterFormValues>> = (props) => {
                         Login
                     </Link>
                 </Typography>
-            </div>
-        </Loading>
+            </Loading>
+        </div>
     );
 };
