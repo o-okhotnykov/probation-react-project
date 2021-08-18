@@ -9,5 +9,5 @@ export const OPEN_COLOR_BG = '#92c7e8';
 
 export const ACCENT_PRIMARY = '#ec4e6e';
 export const DEFAULT_LIGHT = '#fff';
+export const ACCENT_LIGHT_TRANSPARENT = '#e5e5e5';
 export const DARK_GREY = '#8f9198';
-export const ACCENT_LIGHT_TRANSPARENT = '#ec4f6ecc';

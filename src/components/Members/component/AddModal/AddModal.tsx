@@ -4,21 +4,20 @@ import { AsyncThunk } from '@reduxjs/toolkit';
 import { Form } from './Form';
 import { useStyles } from './styles';
 
-interface EditModalProps {
-    id: number;
+interface AddModalProps {
     handleCloseModal: () => void;
     submit: AsyncThunk<any, any, any>;
     header: string;
 }
 
-export const EditModal: React.FC<EditModalProps> = ({ id, header, submit }) => {
+export const AddModal: React.FC<AddModalProps> = ({ header, submit }) => {
     const classes = useStyles();
 
     return (
         <>
             <DialogTitle id="alert-dialog-title">{header}</DialogTitle>
             <DialogContent>
-                <Form id={id} submit={submit} />
+                <Form submit={submit} />
             </DialogContent>
             <DialogActions className={classes.action} />
         </>

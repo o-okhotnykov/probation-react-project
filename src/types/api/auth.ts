@@ -30,6 +30,7 @@ export interface IEditForm {
     status: UserStatus;
 }
 export interface IEditFormResponse {
+    email?: string;
     name: string;
     surname: string;
     birthDate: string;

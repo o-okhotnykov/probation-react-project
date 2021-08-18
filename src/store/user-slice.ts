@@ -67,6 +67,10 @@ export const patchUserAsync = createAsyncThunk(
     },
 );
 
+export const addUserAsync = createAsyncThunk('app/addUser', (user: IRegisterResponse) => {
+    return httpService.post<RegisterResponse>('users', user);
+});
+
 export const userSlice = createSlice({
     name: 'user',
     initialState,
@@ -110,6 +114,9 @@ export const userSlice = createSlice({
             .addCase(patchUserAsync.fulfilled, () => {
                 successfulToastNotify('Successful Edit');
             })
+            .addCase(addUserAsync.fulfilled, () => {
+                successfulToastNotify('Successful Adding');
+            })
             .addCase(getUserByIdAsync.fulfilled, (state, action) => {
                 const { data } = action.payload;
 
@@ -124,6 +131,12 @@ export const userSlice = createSlice({
                 }
             })
             .addCase(loginAsync.rejected, (state, action) => {
+                const { message } = action.error;
+                if (message) {
+                    errorToastNotify(message);
+                }
+            })
+            .addCase(addUserAsync.rejected, (state, action) => {
                 const { message } = action.error;
                 if (message) {
                     errorToastNotify(message);
