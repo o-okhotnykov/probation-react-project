@@ -9,7 +9,6 @@ export const Loading: React.FC<{ apiCall: AsyncThunk<any, any, any> }> = ({
     children,
 }) => {
     const loading = useSelector(isRequestPendingSelector(apiCall.typePrefix));
-
     return (
         <>
             {loading ? (

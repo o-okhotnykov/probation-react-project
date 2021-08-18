@@ -13,6 +13,7 @@ import { IEditForm, UserStatus } from 'types/api/auth';
 import { fileToBase64 } from 'helper/base64';
 import defaultUser from 'assets/default-user.png';
 import { Loading } from 'components/Loading';
+import { editFormValidator } from './validation';
 import { useStyles } from './styles';
 
 interface FormProps {
@@ -95,6 +96,7 @@ export const Form: React.FC<FormProps> = ({ id, submit }) => {
     const formik = useFormik({
         initialValues: value,
         enableReinitialize: true,
+        validationSchema: editFormValidator,
         onSubmit,
     });
 
