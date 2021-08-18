@@ -1,11 +1,11 @@
 import { IconButton, Menu, MenuItem } from '@material-ui/core';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import { ModalComponent } from 'components/ModalComponent';
 import { patchUserAsync } from 'store/user-slice';
 import { RetireModal } from '../RetireModal';
+import { EditModal } from '../EditModal';
 import { useStyles } from './styles';
-import { FieldsModal } from '../FieldsModal';
 
 interface ActionMenuProps {
     id: number;
@@ -68,7 +68,7 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({ id }) => {
 
                 {isOpenEdit && (
                     <ModalComponent open={isOpenEdit} close={toggleModalEdit}>
-                        <FieldsModal
+                        <EditModal
                             id={id}
                             header="Edit User"
                             submit={patchUserAsync}

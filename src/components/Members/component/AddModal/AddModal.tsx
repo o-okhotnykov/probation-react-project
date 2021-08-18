@@ -3,21 +3,20 @@ import { DialogActions, DialogContent, DialogTitle } from '@material-ui/core';
 import { Form } from './Form';
 import { useStyles } from './styles';
 
-interface FieldsModalProps {
-    id: number | null;
+interface AddModalProps {
     handleCloseModal: () => void;
     submit: any;
     header: string;
 }
 
-export const FieldsModal: React.FC<FieldsModalProps> = ({ id, header, submit }) => {
+export const AddModal: React.FC<AddModalProps> = ({ header, submit }) => {
     const classes = useStyles();
 
     return (
         <>
             <DialogTitle id="alert-dialog-title">{header}</DialogTitle>
             <DialogContent>
-                <Form id={id} submit={submit} />
+                <Form submit={submit} />
             </DialogContent>
             <DialogActions className={classes.action} />
         </>
