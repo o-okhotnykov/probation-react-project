@@ -1,5 +1,4 @@
-import React, { ReactElement } from 'react';
-
+import { ReactElement } from 'react';
 import { Column } from 'react-table';
 import { ActionMenu } from '../ActionMenu';
 
@@ -29,7 +28,9 @@ export const columns: Column[] = [
     },
     {
         Header: 'Action',
-        accessor: 'action',
-        Cell: <ActionMenu />,
+        accessor: 'id',
+        Cell: function Action({ value }: { value: number }): ReactElement {
+            return <ActionMenu id={value} />;
+        },
     },
 ];

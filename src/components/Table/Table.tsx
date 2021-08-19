@@ -4,7 +4,7 @@ import { Column, useSortBy, useTable } from 'react-table';
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import shortid from 'shortid';
-import { IUserData } from 'interface/api/auth';
+import { IUserData } from 'types/api/auth';
 import { useStyles } from './styles';
 
 interface IDataTableProps {

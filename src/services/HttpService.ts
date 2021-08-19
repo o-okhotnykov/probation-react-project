@@ -69,6 +69,22 @@ class HttpService {
             data: payload,
         });
     }
+
+    patch<T>(path: string, payload: Partial<AxiosRequestConfig> = {}) {
+        return this.request<T>({
+            method: 'PATCH',
+            url: path,
+            ...payload,
+        });
+    }
+
+    delete<T>(path: string, payload: Partial<AxiosRequestConfig> = {}) {
+        return this.request<T>({
+            method: 'delete',
+            url: path,
+            ...payload,
+        });
+    }
 }
 
 export const httpService = new HttpService(BASE_URL);
