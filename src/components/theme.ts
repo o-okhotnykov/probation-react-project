@@ -78,6 +78,7 @@ export const theme = createTheme({
                 fontFamily: 'Poppins,sans-serif',
                 color: '#000',
                 fontWeight: 900,
+                padding: '5px 35px',
             },
         },
     },

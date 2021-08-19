@@ -62,6 +62,7 @@ export const Form: React.FC<FormikProps<ILoginFormValues>> = (props) => {
                             helperText={touched.password ? errors.password : ''}
                             error={touched.password && Boolean(errors.password)}
                             margin="dense"
+                            color="primary"
                             variant="outlined"
                             fullWidth
                         />
