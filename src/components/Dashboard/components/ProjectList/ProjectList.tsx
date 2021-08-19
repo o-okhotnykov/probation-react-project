@@ -15,7 +15,13 @@ export const ProjectList: React.FC = () => {
     }, [dispatch]);
 
     return (
-        <Box padding="30px 0">
+        <Box
+            padding="30px 0"
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            justifyContent="center"
+        >
             <Loading apiCall={getProjectsAsync}>
                 <ProjectHeader />
 

@@ -1,4 +1,3 @@
-import { Box } from '@material-ui/core';
 import React, { useMemo } from 'react';
 import { Line } from 'react-chartjs-2';
 import { useSelector } from 'react-redux';
@@ -35,9 +34,5 @@ export const LineBar: React.FC = () => {
         ],
     };
 
-    return (
-        <Box>
-            <Line data={data} options={options} />
-        </Box>
-    );
+    return <Line data={data} options={options} />;
 };

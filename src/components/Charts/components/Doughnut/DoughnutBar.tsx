@@ -1,9 +1,8 @@
-import { Box } from '@material-ui/core';
 import React, { useMemo } from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import { useSelector } from 'react-redux';
 import { projectsDataSelector } from 'store/project-slice';
-import { backgroundColor, borderColor } from './constant';
+import { backgroundColor, borderColor, options } from './constant';
 
 export const DoughnutBar: React.FC = () => {
     const projectData = useSelector(projectsDataSelector);
@@ -35,9 +34,5 @@ export const DoughnutBar: React.FC = () => {
         ],
     };
 
-    return (
-        <Box>
-            <Doughnut data={data} />
-        </Box>
-    );
+    return <Doughnut data={data} options={options} />;
 };
