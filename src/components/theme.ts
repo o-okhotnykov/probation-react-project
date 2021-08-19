@@ -30,11 +30,19 @@ export const theme = createTheme({
             fontWeight: 500,
             fontSize: '1em',
             color: DARK_GREY,
+            textAlign: 'center',
         },
         h5: {
             fontWeight: 500,
             fontSize: '1em',
             color: '#1f2026',
+        },
+        body1: {
+            color: '#000',
+            fontWeight: 500,
+            textTransform: 'capitalize',
+            fontSize: '.9em',
+            textAlign: 'center',
         },
         body2: {
             fontWeight: 900,

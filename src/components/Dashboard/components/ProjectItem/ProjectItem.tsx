@@ -35,22 +35,24 @@ export const ProjectItem: React.FC<ProjectItemProps> = ({ project }) => {
             <Grid item xs={3}>
                 <Box display="flex" alignItems="center">
                     <CardMedia className={classes.logoContainer} image={img} title="project-logo" />
-                    <Typography>{title}</Typography>
+                    <Typography className={classes.titleProject} variant="body1">
+                        {title}
+                    </Typography>
                 </Box>
             </Grid>
             <Grid item xs={2}>
-                <Typography>{dateCreate}</Typography>
+                <Typography variant="body1">{dateCreate}</Typography>
             </Grid>
             <Grid item xs={2}>
-                <Typography>{reporter}</Typography>
+                <Typography variant="body1">{reporter}</Typography>
             </Grid>
             <Grid item xs={2}>
-                <Typography>{dateDue}</Typography>
+                <Typography variant="body1">{dateDue}</Typography>
             </Grid>
-            <Grid item xs={2}>
+            <Grid item xs={2} className={classes.stateContainer}>
                 <Paper className={`${classes[stats]}`}>{stats}</Paper>
             </Grid>
-            <Grid item xs={1} style={{ alignItems: 'center' }}>
+            <Grid item xs={1} className={classes.stateContainer}>
                 <IconButton
                     aria-label="account of current user"
                     aria-controls="menu-appbar"

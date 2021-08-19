@@ -1,13 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
-import {
-    BORDER_DEFAULT,
-    INFO_LIGHT,
-    INFO_MAIN,
-    SUCCESS_LIGHT,
-    SUCCESS_MAIN,
-    WARNING_LIGHT,
-    WARNING_MAIN,
-} from 'constants/colors';
+import { BORDER_DEFAULT } from 'constants/colors';
 
 const stats = {
     width: '50%',
@@ -27,32 +19,33 @@ export const useStyles = makeStyles((theme) => ({
         textAlign: 'left',
     },
     logoContainer: {
-        padding: '0 15px',
-        height: 35,
+        padding: '25px 25px',
     },
-    paper: {
-        padding: theme.spacing(2),
-        textAlign: 'center',
-        color: theme.palette.text.secondary,
+    titleProject: {
+        paddingLeft: 25,
+    },
+    stateContainer: {
+        display: 'flex',
+        justifyContent: 'center',
     },
     progress: {
         textAlign: 'center',
-        color: WARNING_MAIN,
-        backgroundColor: WARNING_LIGHT,
+        color: theme.palette.warning.main,
+        backgroundColor: theme.palette.warning.light,
         textTransform: 'uppercase',
         ...stats,
     },
     open: {
         textAlign: 'center',
-        color: INFO_MAIN,
-        backgroundColor: INFO_LIGHT,
+        color: theme.palette.info.main,
+        backgroundColor: theme.palette.info.light,
         textTransform: 'uppercase',
         ...stats,
     },
     done: {
         textAlign: 'center',
-        color: SUCCESS_MAIN,
-        backgroundColor: SUCCESS_LIGHT,
+        color: theme.palette.success.main,
+        backgroundColor: theme.palette.success.light,
         textTransform: 'uppercase',
         ...stats,
     },
