@@ -58,9 +58,9 @@ export const TableComponent: React.FC<IDataTableProps> = ({ columns, data }) => 
                             {row.cells.map((cell) => {
                                 return (
                                     <TableCell
+                                        className={classes.tableCell}
                                         {...cell.getCellProps()}
                                         key={shortid.generate()}
-                                        className={classes.tableData}
                                     >
                                         {cell.render('Cell')}
                                     </TableCell>

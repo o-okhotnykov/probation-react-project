@@ -1,8 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
-import { PRIMARY_MAIN, DARK_GREY } from 'constants/colors';
 
 export const useStyles = makeStyles(() => ({
-    header: { fontWeight: 900 },
     container: {
         alignItems: 'center',
         justifyContent: 'center',
@@ -11,14 +9,5 @@ export const useStyles = makeStyles(() => ({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'left',
-    },
-    subTitle: {
-        color: DARK_GREY,
-    },
-    btn: {
-        padding: 0,
-        margin: '15px 0',
-        fontWeight: 900,
-        color: PRIMARY_MAIN,
     },
 }));

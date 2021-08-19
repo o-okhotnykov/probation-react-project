@@ -1,30 +1,13 @@
-// .MuiTableCell-body {
-//     text-align: center;
-//     border-top: 1px solid $border-primary;
-// }
-// .MuiTableCell-body:nth-child(1) {
-//     border-radius: 10px 0 0 10px;
-//     border-left: 1px solid $border-primary;
-// }
-// .MuiTableCell-body:nth-last-child(1) {
-//     border-radius: 0 10px 10px 0;
-//     border-right: 1px solid $border-primary;
-// }
-// .member-status {
-//     text-transform: uppercase;
-//     padding: 10px;
-//     border-radius: 5px;
-//     text-align: center;
-// }
-// .member-progress {
-//     color: $progress-default;
-//     background-color: $progress-light;
-// }
-// .member-register {
-//     color: $register-default;
-//     background-color: $register-light;
-// }
-// .member-expired {
-//     color: $expired-default;
-//     background-color: $expired-light;
-// }
+$border-primary: #d5e3d6;
+.MuiTableCell-body {
+    text-align: center;
+    border-top: 1px solid $border-primary;
+}
+.MuiTableCell-body:nth-child(1) {
+    border-radius: 10px 0 0 10px;
+    border-left: 1px solid $border-primary;
+}
+.MuiTableCell-body:nth-last-child(1) {
+    border-radius: 0 10px 10px 0;
+    border-right: 1px solid $border-primary;
+}

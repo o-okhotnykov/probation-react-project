@@ -15,9 +15,7 @@ export const useStyles = makeStyles(() => ({
     tableRow: {
         border: `1px solid ${BORDER_DEFAULT}`,
     },
-
-    tableData: {
+    tableCell: {
         textAlign: 'center',
-        fontWeight: 500,
     },
 }));
