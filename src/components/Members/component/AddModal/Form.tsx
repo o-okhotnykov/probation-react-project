@@ -4,10 +4,11 @@ import { format } from 'date-fns';
 import { useFormik } from 'formik';
 import { getUserAsync, getUserByIdAsync, getUsersAsync } from 'store/user-slice';
 import { useDispatch } from 'react-redux';
-import { IEditForm, UserStatus } from 'types/api/auth';
+import { UserStatus } from 'types/api/auth';
 import { fileToBase64 } from 'helper/base64';
 import defaultUser from 'assets/default-user.png';
 import { Loading } from 'components/Loading';
+import { IRegisterResponse } from 'types';
 import { useStyles } from './styles';
 
 interface FormProps {
@@ -20,6 +21,7 @@ export const Form: React.FC<FormProps> = ({ submit }) => {
     const currentDay = format(new Date(), 'yyyy-MM-dd');
 
     const initialState = {
+        email: '',
         name: '',
         surname: '',
         password: '',
@@ -29,11 +31,13 @@ export const Form: React.FC<FormProps> = ({ submit }) => {
         img: defaultUser,
     };
 
-    const onSubmit = async (values: IEditForm) => {
+    const onSubmit = async (values: IRegisterResponse) => {
         await dispatch(
             submit({
+                email: values.email,
                 name: values.name,
                 surname: values.surname,
+                password: values.password,
                 birthDate: values.birthDate,
                 img: values.img,
                 status: values.status,
@@ -84,6 +88,19 @@ export const Form: React.FC<FormProps> = ({ submit }) => {
             <form className="form" onSubmit={handleSubmit}>
                 <Grid container>
                     <Grid item xs={6}>
+                        <TextField
+                            id="email"
+                            label="email"
+                            type="email"
+                            value={values.email}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            helperText={touched.email ? errors.email : ''}
+                            error={touched.email && Boolean(errors.email)}
+                            margin="dense"
+                            variant="outlined"
+                            fullWidth
+                        />
                         <TextField
                             id="name"
                             label="First Name"
@@ -184,7 +201,7 @@ export const Form: React.FC<FormProps> = ({ submit }) => {
                 </Grid>
                 <div className={classes.action}>
                     <Button
-                        className={`${classes.btn} form-btn`}
+                        variant="contained"
                         type="submit"
                         color="primary"
                         disabled={!isValid || !dirty}
