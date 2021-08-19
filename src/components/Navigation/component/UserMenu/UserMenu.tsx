@@ -40,7 +40,7 @@ export const UserMenu: React.FC = () => {
 
     return (
         <Box display="flex">
-            <Box display="flex" flexDirection="column">
+            <Box display="flex" flexDirection="column" textAlign="right">
                 {userData && (
                     <>
                         <Typography variant="h5">{`${userData?.name} ${userData?.surname}`}</Typography>

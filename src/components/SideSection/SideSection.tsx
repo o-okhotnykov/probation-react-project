@@ -5,7 +5,7 @@ import { useStyles } from './styles';
 export const SideSection: React.FC = () => {
     const classes = useStyles();
     return (
-        <Box className={classes.sideSection}>
+        <Box>
             <CardMedia image={logo} className={classes.logo} title="logo" />
         </Box>
     );

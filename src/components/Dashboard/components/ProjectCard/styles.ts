@@ -6,8 +6,8 @@ export const useStyles = makeStyles(() => ({
         borderRadius: 15,
     },
     logoContainer: {
-        height: 35,
-        width: 35,
+        height: 45,
+        width: 45,
     },
     cardTeam: {
         paddingTop: 120,

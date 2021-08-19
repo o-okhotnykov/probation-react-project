@@ -9,7 +9,7 @@ export const useStyles = makeStyles(() => ({
     addProject: {
         display: 'flex',
         flexDirection: 'column',
-        paddingLeft: '20%',
+        paddingLeft: '15%',
     },
 
     icon: {

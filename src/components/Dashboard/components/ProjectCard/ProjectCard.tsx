@@ -4,21 +4,23 @@ import { Box, CardMedia, Typography } from '@material-ui/core';
 import { useStyles } from './styles';
 
 type ProjectCardProps = {
+    img: string;
     bgColor: string;
     color: string;
     completionValue: number;
 };
 
-export const ProjectCard: React.FC<ProjectCardProps> = ({ bgColor, color, completionValue }) => {
+export const ProjectCard: React.FC<ProjectCardProps> = ({
+    img,
+    bgColor,
+    color,
+    completionValue,
+}) => {
     const classes = useStyles();
 
     return (
         <Box className={classes.cardContainer} color={color} bgcolor={bgColor}>
-            <CardMedia
-                className={classes.logoContainer}
-                image="https://via.placeholder.com/35"
-                title="project-logo"
-            />
+            <CardMedia className={classes.logoContainer} image={img} title="project-logo" />
             <Box className={classes.cardTeam}>
                 <Typography variant="body2">Team Members</Typography>
                 <Box>
