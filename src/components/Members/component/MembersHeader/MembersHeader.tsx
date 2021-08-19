@@ -6,7 +6,7 @@ import { addUserAsync } from 'store/user-slice';
 import { useStyles } from './styles';
 import { AddModal } from '../AddModal';
 
-export const MembersHeader = () => {
+export const MembersHeader: React.FC = () => {
     const classes = useStyles();
     const [isOpen, seIsOpen] = useState(false);
 

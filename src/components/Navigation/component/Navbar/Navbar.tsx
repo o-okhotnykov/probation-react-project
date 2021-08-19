@@ -9,7 +9,7 @@ export const Navbar: React.FC = () => {
     const classes = useStyles();
     const { pathname } = history.location;
 
-    const handleChange = (event: React.ChangeEvent<any>, value: string) => {
+    const handleChange = (event: React.ChangeEvent<unknown>, value: string) => {
         history.push(value);
     };
 
