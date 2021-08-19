@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Grid, MenuItem, Select, TextField } from '@material-ui/core';
+import { Box, Button, Grid, MenuItem, Select, TextField } from '@material-ui/core';
 import { format } from 'date-fns';
 import { useFormik } from 'formik';
 import {
@@ -114,7 +114,7 @@ export const Form: React.FC<FormProps> = ({ id, submit }) => {
 
     return (
         <Loading apiCall={getUserByIdAsync}>
-            <form className="form" onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit}>
                 <Grid container>
                     <Grid item xs={6}>
                         <TextField
@@ -211,7 +211,7 @@ export const Form: React.FC<FormProps> = ({ id, submit }) => {
                         </Select>
                     </Grid>
                 </Grid>
-                <div className={classes.action}>
+                <Box className={classes.action}>
                     <Button
                         color="primary"
                         type="submit"
@@ -220,7 +220,7 @@ export const Form: React.FC<FormProps> = ({ id, submit }) => {
                     >
                         Confirm
                     </Button>
-                </div>
+                </Box>
             </form>
         </Loading>
     );

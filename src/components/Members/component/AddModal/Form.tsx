@@ -85,7 +85,7 @@ export const Form: React.FC<FormProps> = ({ submit }) => {
 
     return (
         <Loading apiCall={getUserByIdAsync}>
-            <form className="form" onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit}>
                 <Grid container>
                     <Grid item xs={6}>
                         <TextField
