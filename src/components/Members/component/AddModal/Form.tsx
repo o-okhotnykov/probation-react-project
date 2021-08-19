@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Grid, MenuItem, Select, TextField } from '@material-ui/core';
+import { Box, Button, Grid, MenuItem, Select, TextField } from '@material-ui/core';
 import { format } from 'date-fns';
 import { useFormik } from 'formik';
 import { getUserAsync, getUserByIdAsync, getUsersAsync } from 'store/user-slice';
@@ -199,7 +199,7 @@ export const Form: React.FC<FormProps> = ({ submit }) => {
                         </Select>
                     </Grid>
                 </Grid>
-                <div className={classes.action}>
+                <Box className={classes.action}>
                     <Button
                         variant="contained"
                         type="submit"
@@ -208,7 +208,7 @@ export const Form: React.FC<FormProps> = ({ submit }) => {
                     >
                         Confirm
                     </Button>
-                </div>
+                </Box>
             </form>
         </Loading>
     );

@@ -1,5 +1,12 @@
 import { Paper, Typography } from '@material-ui/core';
-import { INFO_LIGHT, INFO_MAIN, WARNING_LIGHT, WARNING_MAIN } from 'constants/colors';
+import {
+    ERROR_LIGHT,
+    ERROR_MAIN,
+    INFO_LIGHT,
+    INFO_MAIN,
+    WARNING_LIGHT,
+    WARNING_MAIN,
+} from 'constants/colors';
 import { CSSProperties, ReactElement } from 'react';
 import { Column } from 'react-table';
 import { UserStatus } from 'types/api/auth';
@@ -20,8 +27,8 @@ const progressStyle: {
         ...memberStatus,
     },
     expired: {
-        color: INFO_MAIN,
-        backgroundColor: INFO_LIGHT,
+        color: ERROR_MAIN,
+        backgroundColor: ERROR_LIGHT,
         textTransform: 'uppercase',
         ...memberStatus,
     },

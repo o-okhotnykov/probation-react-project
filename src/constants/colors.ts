@@ -4,10 +4,10 @@ export const WARNING_LIGHT = '#f2bc9e';
 export const INFO_MAIN = '#3a7295';
 export const INFO_LIGHT = '#92c7e8';
 
-export const ERROR_MAIN = '#3a7295';
-export const ERROR_LIGHT = '#92c7e8';
+export const ERROR_MAIN = '#f44336';
+export const ERROR_LIGHT = '#e57373';
 
-export const SUCCESS_MAIN = '#4a7745';
+export const SUCCESS_MAIN = '#d32f2f';
 export const SUCCESS_LIGHT = '#cee8ca';
 
 export const PRIMARY_MAIN = '#ec4e6e';
