@@ -1,6 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { createTheme } from '@material-ui/core';
-import { red } from '@material-ui/core/colors';
+
 import {
     DARK_DEFAULT,
     DARK_GREY,
@@ -60,7 +59,7 @@ export const theme = createTheme({
             contrastText: DEFAULT_LIGHT,
         },
         secondary: {
-            main: DEFAULT_LIGHT,
+            main: SECONDARY_MAIN,
             light: SECONDARY_LIGHT,
             dark: DARK_GREY,
             contrastText: PRIMARY_MAIN,

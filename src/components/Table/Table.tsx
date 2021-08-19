@@ -1,14 +1,15 @@
 import React from 'react';
 import { Table, TableBody, TableCell, TableHead, TableRow } from '@material-ui/core';
-import { useSortBy, useTable } from 'react-table';
+import { Column, useSortBy, useTable } from 'react-table';
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import shortid from 'shortid';
+import { IUserData } from 'types/api/auth';
 import { useStyles } from './styles';
 
 interface IDataTableProps {
-    columns: any;
-    data: any;
+    columns: Column[];
+    data: IUserData[];
 }
 
 export const TableComponent: React.FC<IDataTableProps> = ({ columns, data }) => {

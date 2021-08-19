@@ -12,6 +12,11 @@ export const loadingHandler: Middleware = (store) => (next) => (action) => {
         store.dispatch(removeRequest(type.substr(0, type.length - 10)));
     }
 
+    if (action && action.meta && action.meta.requestStatus === 'rejected') {
+        const { type } = action;
+
+        store.dispatch(removeRequest(type.substr(0, type.length - 9)));
+    }
     const nextMiddleware = next(action);
 
     return nextMiddleware;

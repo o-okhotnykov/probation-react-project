@@ -9,12 +9,12 @@ export const Navbar: React.FC = () => {
     const classes = useStyles();
     const { pathname } = history.location;
 
-    const handleChange = (event: React.ChangeEvent<any>, value: string) => {
+    const handleChange = (event: React.ChangeEvent<unknown>, value: string) => {
         history.push(value);
     };
 
     return (
-        <Tabs value={pathname} onChange={handleChange}>
+        <Tabs value={pathname} onChange={handleChange} indicatorColor="primary">
             <Tab className={classes.tab} label="Dashboard" value={ROUTE_PATH.dashboard} />
             <Tab className={classes.tab} label="All projects" value={ROUTE_PATH.projects} />
             <Tab className={classes.tab} label="Members" value={ROUTE_PATH.members} />

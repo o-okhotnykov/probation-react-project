@@ -21,3 +21,4 @@ export const LIGHT_GREY = '#8f9198';
 export const DARK_GREY = '#484848';
 export const DARK_DEFAULT = '#000';
 export const BORDER_DEFAULT = '#d5e3d6';
+export const ACCENT_LIGHT_TRANSPARENT = '#e5e5e5';

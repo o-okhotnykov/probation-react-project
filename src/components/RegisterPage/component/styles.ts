@@ -32,7 +32,4 @@ export const useStyles = makeStyles(() => ({
         textDecoration: 'none',
         textTransform: 'uppercase',
     },
-    btn: {
-        fontWeight: 900,
-    },
 }));

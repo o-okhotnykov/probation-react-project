@@ -1,22 +1,14 @@
 import { makeStyles } from '@material-ui/core/styles';
-import { DEFAULT_LIGHT, PRIMARY_MAIN } from 'constants/colors';
 
 export const useStyles = makeStyles({
-    btn: {
-        fontWeight: 900,
-        border: '1px solid #d5e3d6',
-    },
-    btnCancel: {
-        backgroundColor: '#fff',
-        color: PRIMARY_MAIN,
-    },
-    btnConfirm: {
-        backgroundColor: '#ec4e6e',
-        color: DEFAULT_LIGHT,
+    btnUpload: {
+        margin: '11% 0',
     },
     action: {
+        paddingTop: '15px',
+        display: 'flex',
         alignItems: 'center',
-        justifyContent: 'space-between',
+        justifyContent: 'center',
     },
     card: {
         boxShadow: 'none',
