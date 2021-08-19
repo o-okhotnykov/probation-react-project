@@ -10,7 +10,7 @@ export const Navbar: React.FC = () => {
     const classes = useStyles();
     const [routeState, setRouteState] = useState(history.location.pathname);
 
-    const handleChange = (event: React.ChangeEvent<any>, value: string) => {
+    const handleChange = (event: React.ChangeEvent<unknown>, value: string) => {
         setRouteState(value);
         history.push(value);
     };
