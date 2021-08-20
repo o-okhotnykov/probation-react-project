@@ -42,7 +42,7 @@ export const Form: React.FC<FormikProps<IRegisterFormValues>> = (props) => {
     return (
         <Box className={classes.formContainer}>
             <Loading apiCall={registerAsync}>
-                <form onSubmit={handleSubmit} className="form">
+                <form onSubmit={handleSubmit}>
                     <Box className={classes.formContent}>
                         <CardMedia className={classes.media} image={logo} title="Paella dish" />
                         <CardContent>

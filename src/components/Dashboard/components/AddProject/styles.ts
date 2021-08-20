@@ -11,7 +11,6 @@ export const useStyles = makeStyles(() => ({
         flexDirection: 'column',
         alignItems: 'flex-start',
     },
-
     icon: {
         fontSize: 30,
     },
