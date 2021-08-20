@@ -13,7 +13,7 @@ export const ChartsContent: React.FC = () => {
             <Typography variant="h3" className={classes.headerText}>
                 PROJECT OVERVIEW
             </Typography>
-            <Grid container alignItems="stretch" justifyContent="space-between" spacing={1}>
+            <Grid container alignItems="stretch" justifyContent="space-between">
                 <Loading apiCall={getProjectsAsync}>
                     <Grid item xs={4} className={classes.chartContent}>
                         <VerticalBar />

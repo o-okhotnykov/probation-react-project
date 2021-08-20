@@ -20,7 +20,7 @@ export const AddProject: React.FC = () => {
                         local projects
                     </Typography>
 
-                    <Button color="primary" className={classes.btn}>
+                    <Button color="primary">
                         <AddCircleIcon className={classes.icon} />
                         CREATE New Project
                     </Button>

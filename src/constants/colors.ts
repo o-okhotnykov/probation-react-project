@@ -16,6 +16,8 @@ export const PRIMARY_LIGHT = '#ec4f6ecc';
 export const SECONDARY_MAIN = '#000';
 export const SECONDARY_LIGHT = '#8f9198';
 
+export const ACCENT_PRIMARY = '#ec4e6e';
+
 export const DEFAULT_LIGHT = '#fff';
 export const LIGHT_GREY = '#8f9198';
 export const DARK_GREY = '#484848';

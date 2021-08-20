@@ -14,10 +14,4 @@ export const useStyles = makeStyles(() => ({
     icon: {
         fontSize: 30,
     },
-    btn: {
-        padding: 0,
-        margin: '15px 0',
-        fontWeight: 900,
-        color: '#ec4e6e',
-    },
 }));
