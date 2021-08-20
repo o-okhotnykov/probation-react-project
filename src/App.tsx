@@ -1,5 +1,4 @@
 import { ToastContainer } from 'react-toastify';
-import { Layout } from 'components/Layout';
 import { BrowserRouter as Router } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -10,9 +9,7 @@ export const App: React.FC = () => {
         <div className="App">
             <ToastContainer />
             <Router>
-                <Layout>
-                    <Routes />
-                </Layout>
+                <Routes />
             </Router>
         </div>
     );

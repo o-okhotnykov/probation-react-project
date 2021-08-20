@@ -1,31 +1,21 @@
 import { ThemeProvider, createTheme, Grid } from '@material-ui/core';
-import React from 'react';
-import { useSelector } from 'react-redux';
-import { BrowserRouter as Router } from 'react-router-dom';
-import { isAuthorizedSelector } from 'store/user-slice';
+import { Switch, Route, Redirect } from 'react-router-dom';
+// import { useSelector } from 'react-redux';
+// import { isAuthorizedSelector } from 'store/user-slice';
+import { PrivateRoute } from 'routes/PrivateRoute';
+import { ROUTE_PATH } from 'constants/index';
 import { Navigation } from './Navigation';
 import { SideSection } from './SideSection';
+import { DashboardMain } from './Dashboard';
+import { MembersMain } from './Members';
 
-export interface ILayoutProps {
-    children: React.ReactNode;
-}
 const theme = createTheme({
     typography: {
         fontFamily: 'Poppins, sans-serif',
     },
 });
 
-export const Layout: React.FC<ILayoutProps> = ({ children }) => {
-    const isAuthorized = useSelector(isAuthorizedSelector);
-
-    if (!isAuthorized) {
-        return (
-            <div className="main-container">
-                <div className="wrapper">{children}</div>
-            </div>
-        );
-    }
-
+export const Layout: React.FC = () => {
     return (
         <ThemeProvider theme={theme}>
             <Grid container>
@@ -33,13 +23,14 @@ export const Layout: React.FC<ILayoutProps> = ({ children }) => {
                     <SideSection />
                 </Grid>
                 <Grid item xs={11} className="main-section">
-                    <Router>
-                        <Navigation />
-
-                        <div className="main-container">
-                            <div className="wrapper">{children}</div>
-                        </div>
-                    </Router>
+                    <Navigation />
+                    <Switch>
+                        <PrivateRoute exact path={ROUTE_PATH.dashboard} component={DashboardMain} />
+                        <PrivateRoute exact path={ROUTE_PATH.members} component={MembersMain} />
+                        <Route exact path={ROUTE_PATH.main}>
+                            <Redirect to={ROUTE_PATH.dashboard} />
+                        </Route>
+                    </Switch>
                 </Grid>
             </Grid>
         </ThemeProvider>
