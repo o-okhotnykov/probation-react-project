@@ -1,14 +1,10 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
-import { Switch, Route, Redirect, BrowserRouter as Router } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import { LoginPage } from 'components/LoginPage';
 import { RegisterPage } from 'components/RegisterPage';
-import { DashboardMain } from 'components/Dashboard';
-import { MembersMain } from 'components/Members';
 import { ROUTE_PATH } from 'constants/index';
 import { ErrorComponent } from 'components/ErrorComponent';
 import { Layout } from 'components/Layout';
-import { PrivateRoute } from './PrivateRoute';
 
 export const Routes: React.FC = () => {
     return (

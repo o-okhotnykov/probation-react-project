@@ -1,7 +1,5 @@
 import { ThemeProvider, createTheme, Grid } from '@material-ui/core';
 import { Switch, Route, Redirect } from 'react-router-dom';
-// import { useSelector } from 'react-redux';
-// import { isAuthorizedSelector } from 'store/user-slice';
 import { PrivateRoute } from 'routes/PrivateRoute';
 import { ROUTE_PATH } from 'constants/index';
 import { Navigation } from './Navigation';
