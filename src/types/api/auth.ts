@@ -1,3 +1,5 @@
+import { AsyncThunk } from '@reduxjs/toolkit';
+
 export type LoginResponse = {
     accessToken: string;
     user: IUserData;
@@ -42,3 +44,6 @@ export enum UserStatus {
     register = 'register',
     expired = 'expired',
 }
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type AsyncThunkProp = AsyncThunk<any, any, any>;

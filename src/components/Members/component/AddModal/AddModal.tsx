@@ -1,12 +1,12 @@
 import React from 'react';
 import { DialogActions, DialogContent, DialogTitle } from '@material-ui/core';
-import { AsyncThunk } from '@reduxjs/toolkit';
+import { AsyncThunkProp } from 'types/api/auth';
 import { Form } from './Form';
 import { useStyles } from './styles';
 
 interface AddModalProps {
     handleCloseModal: () => void;
-    submit: AsyncThunk<any, any, any>;
+    submit: AsyncThunkProp;
     header: string;
 }
 

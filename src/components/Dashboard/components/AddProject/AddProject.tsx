@@ -16,7 +16,7 @@ export const AddProject: React.FC = () => {
     const classes = useStyles();
     return (
         <div className="add-container">
-            <Grid container spacing={1} className={classes.container}>
+            <Grid container className={classes.container}>
                 <Grid item xs={5} className={classes.addProject}>
                     <Typography variant="h5" className={classes.header}>
                         Add Project

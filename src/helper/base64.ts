@@ -25,7 +25,7 @@ export const fileURLtoBase64 = (url: string): Promise<unknown> => {
     });
 };
 
-export const base64ToFile = (dataurl: string, filename: string) => {
+export const base64ToFile = (dataurl: string, filename: string): File | null => {
     const arr = dataurl.split(',');
     if (arr.length !== 2) {
         return null;
