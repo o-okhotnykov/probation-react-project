@@ -6,6 +6,7 @@ import { Navigation } from './Navigation';
 import { SideSection } from './SideSection';
 import { DashboardMain } from './Dashboard';
 import { MembersMain } from './Members';
+import { ProjectsPage } from './ProjectsPage';
 
 const theme = createTheme({
     typography: {
@@ -25,6 +26,7 @@ export const Layout: React.FC = () => {
                     <Switch>
                         <PrivateRoute exact path={ROUTE_PATH.dashboard} component={DashboardMain} />
                         <PrivateRoute exact path={ROUTE_PATH.members} component={MembersMain} />
+                        <PrivateRoute exact path={ROUTE_PATH.projects} component={ProjectsPage} />
                         <Route exact path={ROUTE_PATH.main}>
                             <Redirect to={ROUTE_PATH.dashboard} />
                         </Route>

@@ -5,14 +5,18 @@ import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import shortid from 'shortid';
 import { IUserData } from 'types/api/auth';
+import { Project } from 'types/api/project';
 import { useStyles } from './styles';
 
-interface IDataTableProps {
+interface IDataTableProps<T> {
     columns: Column[];
-    data: IUserData[];
+    data: T[];
 }
 
-export const TableComponent: React.FC<IDataTableProps> = ({ columns, data }) => {
+export const TableComponent: React.FC<IDataTableProps<IUserData | Project>> = ({
+    columns,
+    data,
+}) => {
     const classes = useStyles();
     const { getTableProps, headerGroups, rows, prepareRow } = useTable(
         {
