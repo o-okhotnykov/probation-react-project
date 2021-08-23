@@ -14,7 +14,7 @@ export const MembersHeader: React.FC = () => {
 
     return (
         <Box display="flex" flexDirection="column" alignItems="flex-start">
-            <Typography variant="h2">Members</Typography>
+            <Typography variant="h1">Members</Typography>
             <Typography variant="subtitle1">
                 List of members where you can get list of members
             </Typography>

@@ -14,13 +14,13 @@ export const AddProject: React.FC = () => {
             <Grid item xs={1} />
             <Grid item xs={3}>
                 <Box className={classes.addProject}>
-                    <Typography variant="h2">Add Project</Typography>
+                    <Typography variant="h1">Add Project</Typography>
                     <Typography variant="subtitle1">
                         Create a new project on ProManage. Collaborate your work. Directory to your
                         local projects
                     </Typography>
 
-                    <Button color="primary">
+                    <Button color="primary" className={classes.btn}>
                         <AddCircleIcon className={classes.icon} />
                         CREATE New Project
                     </Button>
