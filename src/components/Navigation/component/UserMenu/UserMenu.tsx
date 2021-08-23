@@ -33,7 +33,7 @@ export const UserMenu: React.FC = () => {
     };
 
     return (
-        <Box display="flex">
+        <Box display="flex" alignItems="center">
             <Loading apiCall={getUserAsync}>
                 <Box display="flex" flexDirection="column" textAlign="right">
                     {userData && (
