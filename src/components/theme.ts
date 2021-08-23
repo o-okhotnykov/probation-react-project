@@ -1,22 +1,29 @@
 import { createTheme } from '@material-ui/core';
 
-import {
-    DARK_DEFAULT,
-    DARK_GREY,
-    DEFAULT_LIGHT,
-    ERROR_LIGHT,
-    ERROR_MAIN,
-    INFO_LIGHT,
-    INFO_MAIN,
-    PRIMARY_LIGHT,
-    PRIMARY_MAIN,
-    SECONDARY_LIGHT,
-    SECONDARY_MAIN,
-    SUCCESS_LIGHT,
-    SUCCESS_MAIN,
-    WARNING_LIGHT,
-    WARNING_MAIN,
-} from 'constants/colors';
+const WARNING_MAIN = '#885a40';
+const WARNING_LIGHT = '#f2bc9e';
+
+const INFO_MAIN = '#3a7295';
+const INFO_LIGHT = '#92c7e8';
+
+const ERROR_MAIN = '#f44336';
+const ERROR_LIGHT = '#e57373';
+
+const SUCCESS_MAIN = '#4a7745';
+const SUCCESS_LIGHT = '#cee8ca';
+
+const PRIMARY_MAIN = '#ec4e6e';
+const PRIMARY_LIGHT = '#ec4f6ecc';
+
+const SECONDARY_LIGHT = '#8f9198';
+
+const DEFAULT_LIGHT = '#fff';
+const DARK_GREY = '#484848';
+const DARK_DEFAULT = '#000';
+
+export const LIGHT_GREY = '#8f9198';
+export const BORDER_DEFAULT = '#d5e3d6';
+export const ACCENT_LIGHT_TRANSPARENT = '#e5e5e5';
 
 export const theme = createTheme({
     typography: {
@@ -60,21 +67,25 @@ export const theme = createTheme({
         },
     },
     palette: {
+        background: {
+            default: DEFAULT_LIGHT,
+        },
         primary: {
             main: PRIMARY_MAIN,
             light: PRIMARY_LIGHT,
-            dark: PRIMARY_MAIN,
+            dark: DEFAULT_LIGHT,
             contrastText: DEFAULT_LIGHT,
         },
         secondary: {
-            main: SECONDARY_MAIN,
+            main: DEFAULT_LIGHT,
             light: SECONDARY_LIGHT,
-            dark: DARK_GREY,
+            dark: PRIMARY_LIGHT,
             contrastText: PRIMARY_MAIN,
         },
         warning: {
             main: WARNING_MAIN,
             light: WARNING_LIGHT,
+            dark: BORDER_DEFAULT,
         },
         info: {
             main: INFO_MAIN,
@@ -96,6 +107,16 @@ export const theme = createTheme({
                 color: '#000',
                 fontWeight: 900,
                 padding: '5px 35px',
+            },
+            containedSecondary: {
+                '&:hover': {
+                    color: DEFAULT_LIGHT,
+                },
+            },
+            containedPrimary: {
+                '&:hover': {
+                    color: PRIMARY_LIGHT,
+                },
             },
         },
     },

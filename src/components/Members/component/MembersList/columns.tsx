@@ -1,12 +1,5 @@
 import { Paper, Typography } from '@material-ui/core';
-import {
-    ERROR_LIGHT,
-    ERROR_MAIN,
-    INFO_LIGHT,
-    INFO_MAIN,
-    WARNING_LIGHT,
-    WARNING_MAIN,
-} from 'constants/colors';
+import { theme } from 'components/theme';
 import { CSSProperties, ReactElement } from 'react';
 import { Column } from 'react-table';
 import { UserStatus } from 'types/api/auth';
@@ -21,20 +14,20 @@ const progressStyle: {
     [key in UserStatus]: CSSProperties;
 } = {
     register: {
-        color: INFO_MAIN,
-        backgroundColor: INFO_LIGHT,
+        color: theme.palette.info.main,
+        backgroundColor: theme.palette.info.light,
         textTransform: 'uppercase',
         ...memberStatus,
     },
     expired: {
-        color: ERROR_MAIN,
-        backgroundColor: ERROR_LIGHT,
+        color: theme.palette.error.main,
+        backgroundColor: theme.palette.error.light,
         textTransform: 'uppercase',
         ...memberStatus,
     },
     progress: {
-        color: WARNING_MAIN,
-        backgroundColor: WARNING_LIGHT,
+        color: theme.palette.warning.main,
+        backgroundColor: theme.palette.warning.light,
         textTransform: 'uppercase',
         ...memberStatus,
     },

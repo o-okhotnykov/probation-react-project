@@ -1,5 +1,4 @@
 import { makeStyles } from '@material-ui/core/styles';
-import { BORDER_DEFAULT } from 'constants/colors';
 
 const stats = {
     width: '50%',
@@ -12,7 +11,7 @@ export const useStyles = makeStyles((theme) => ({
         width: '100%',
         justifyContent: 'space-between',
         alignItems: 'center',
-        border: `solid 0.5px ${BORDER_DEFAULT}`,
+
         borderRadius: '10px',
         padding: '0 15px',
         margin: '10px 0',

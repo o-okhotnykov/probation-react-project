@@ -1,7 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
-import { BORDER_DEFAULT } from 'constants/colors';
 
-export const useStyles = makeStyles(() => ({
+export const useStyles = makeStyles((theme) => ({
     register: {},
     table: {
         borderCollapse: 'separate',
@@ -12,10 +11,17 @@ export const useStyles = makeStyles(() => ({
         fontWeight: 900,
         borderBottom: 0,
     },
-    tableRow: {
-        border: `1px solid ${BORDER_DEFAULT}`,
-    },
+    tableRow: {},
     tableCell: {
         textAlign: 'center',
+        borderTop: `1px solid ${theme.palette.warning.dark}`,
+        '&:nth-child(1)': {
+            borderRadius: '10px 0 0 10px',
+            borderLeft: `1px solid  ${theme.palette.warning.dark}`,
+        },
+        '&:nth-last-child(1)': {
+            borderRadius: '0 10px 10px 0',
+            borderRight: `1px solid  ${theme.palette.warning.dark}`,
+        },
     },
 }));

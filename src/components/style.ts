@@ -1,11 +1,11 @@
 import { makeStyles } from '@material-ui/core/styles';
-import { BORDER_DEFAULT } from 'constants/colors';
 
-export const useStyles = makeStyles(() => ({
+export const useStyles = makeStyles((theme) => ({
     sideSection: {
         display: 'flex',
         justifyContent: 'center',
+        minHeight: '100vh',
         paddingTop: 15,
-        borderRight: `1px solid ${BORDER_DEFAULT}`,
+        borderRight: `1px solid ${theme.palette.warning.dark}`,
     },
 }));

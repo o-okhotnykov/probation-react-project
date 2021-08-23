@@ -168,11 +168,7 @@ export const Form: React.FC<FormProps> = ({ submit }) => {
                     </Grid>
                     <Grid item xs={6} className={classes.formPart}>
                         <img src={values.img} alt="user-img" className={classes.userImg} />
-                        <Button
-                            variant="contained"
-                            component="label"
-                            className={`${classes.btn} ${classes.btnUpload}`}
-                        >
+                        <Button variant="contained" component="label">
                             Upload File
                             <input
                                 style={{ display: 'none' }}
