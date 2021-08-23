@@ -11,7 +11,7 @@ export const useStyles = makeStyles((theme) => ({
         width: '100%',
         justifyContent: 'space-between',
         alignItems: 'center',
-
+        border: `1px solid ${theme.palette.warning.dark}`,
         borderRadius: '10px',
         padding: '0 15px',
         margin: '10px 0',
