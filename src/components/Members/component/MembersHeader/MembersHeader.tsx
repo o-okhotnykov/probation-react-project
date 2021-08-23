@@ -1,13 +1,11 @@
-import React, { useState } from 'react';
-import { Button, Typography } from '@material-ui/core';
+import { useState } from 'react';
+import { Box, Button, Typography } from '@material-ui/core';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import { ModalComponent } from 'components/ModalComponent';
-import { addUserAsync } from 'store/user-slice';
-import { useStyles } from './styles';
+import { registerAsync } from 'store/user-slice';
 import { AddModal } from '../AddModal';
 
 export const MembersHeader: React.FC = () => {
-    const classes = useStyles();
     const [isOpen, seIsOpen] = useState(false);
 
     const toggleModal = () => {
@@ -15,28 +13,26 @@ export const MembersHeader: React.FC = () => {
     };
 
     return (
-        <div className="members-header">
-            <Typography variant="h5" className={classes.header}>
-                Members
-            </Typography>
-            <Typography variant="body2" className={classes.subTitle}>
+        <Box display="flex" flexDirection="column" alignItems="flex-start">
+            <Typography variant="h2">Members</Typography>
+            <Typography variant="subtitle1">
                 List of members where you can get list of members
             </Typography>
-            <Typography>
-                <Button className={classes.btn} onClick={toggleModal}>
-                    <AddCircleIcon style={{ fontSize: 40 }} className="plus-icon" />
-                    ADD NEW USER
-                </Button>
-            </Typography>
+
+            <Button color="primary" onClick={toggleModal} style={{ margin: '25px 0', padding: 0 }}>
+                <AddCircleIcon style={{ fontSize: 40 }} />
+                ADD NEW USER
+            </Button>
+
             {isOpen && (
                 <ModalComponent open={isOpen} close={toggleModal}>
                     <AddModal
                         header="Create user"
                         handleCloseModal={toggleModal}
-                        submit={addUserAsync}
+                        submit={registerAsync}
                     />
                 </ModalComponent>
             )}
-        </div>
+        </Box>
     );
 };

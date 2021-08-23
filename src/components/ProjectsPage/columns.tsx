@@ -1,35 +1,36 @@
-import { ReactElement } from 'react';
+import { CSSProperties, ReactElement } from 'react';
 import { CardMedia, Paper, Typography } from '@material-ui/core';
 import { Column } from 'react-table';
-import { UserStatus } from 'types/api/auth';
+import { theme } from 'components/theme';
+import { ProjectState } from 'types/api/project';
 
-// const memberStatus = {
-//     padding: '10px',
-//     borderRadius: '5px',
-// };
+const memberStatus = {
+    padding: '10px',
+    borderRadius: '5px',
+};
 
-// const progressStyle: {
-//     [key in UserStatus]: CSSProperties;
-// } = {
-//     register: {
-//         color: theme.palette.info.main,
-//         backgroundColor: theme.palette.info.light,
-//         textTransform: 'uppercase',
-//         ...memberStatus,
-//     },
-//     expired: {
-//         color: theme.palette.error.main,
-//         backgroundColor: theme.palette.error.light,
-//         textTransform: 'uppercase',
-//         ...memberStatus,
-//     },
-//     progress: {
-//         color: theme.palette.warning.main,
-//         backgroundColor: theme.palette.warning.light,
-//         textTransform: 'uppercase',
-//         ...memberStatus,
-//     },
-// };
+const progressStyle: {
+    [key in ProjectState]: CSSProperties;
+} = {
+    open: {
+        color: theme.palette.info.main,
+        backgroundColor: theme.palette.info.light,
+        textTransform: 'uppercase',
+        ...memberStatus,
+    },
+    done: {
+        color: theme.palette.success.main,
+        backgroundColor: theme.palette.success.light,
+        textTransform: 'uppercase',
+        ...memberStatus,
+    },
+    progress: {
+        color: theme.palette.warning.main,
+        backgroundColor: theme.palette.warning.light,
+        textTransform: 'uppercase',
+        ...memberStatus,
+    },
+};
 
 export const columns: Column[] = [
     {
@@ -82,8 +83,8 @@ export const columns: Column[] = [
             return <Typography variant="h3">Action</Typography>;
         },
         accessor: 'stats',
-        Cell: function Progress({ value }: { value: UserStatus }): ReactElement {
-            return <Paper>{value}</Paper>;
+        Cell: function Progress({ value }: { value: ProjectState }): ReactElement {
+            return <Paper style={progressStyle[value]}>{value}</Paper>;
         },
     },
 ];

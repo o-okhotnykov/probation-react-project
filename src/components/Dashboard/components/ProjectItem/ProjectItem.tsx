@@ -1,5 +1,14 @@
 import React from 'react';
-import { Grid, Paper, Typography, Menu, MenuItem, IconButton } from '@material-ui/core';
+import {
+    Grid,
+    Typography,
+    Menu,
+    MenuItem,
+    IconButton,
+    Paper,
+    CardMedia,
+    Box,
+} from '@material-ui/core';
 import { Project } from 'types/api/project';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import { useStyles } from './styles';
@@ -22,24 +31,28 @@ export const ProjectItem: React.FC<ProjectItemProps> = ({ project }) => {
         setAnchorEl(null);
     };
     return (
-        <Grid container className="project-item">
-            <Grid item xs={3} className="recent-project">
-                <img className="project-img" src={img} alt="project-img" />
-                <Typography>{title}</Typography>
+        <Grid container className={classes.root}>
+            <Grid item xs={3}>
+                <Box display="flex" alignItems="center">
+                    <CardMedia className={classes.logoContainer} image={img} title="project-logo" />
+                    <Typography className={classes.titleProject} variant="body1">
+                        {title}
+                    </Typography>
+                </Box>
             </Grid>
             <Grid item xs={2}>
-                <Typography>{dateCreate}</Typography>
+                <Typography variant="body1">{dateCreate}</Typography>
             </Grid>
             <Grid item xs={2}>
-                <Typography>{reporter}</Typography>
+                <Typography variant="body1">{reporter}</Typography>
             </Grid>
             <Grid item xs={2}>
-                <Typography>{dateDue}</Typography>
+                <Typography variant="body1">{dateDue}</Typography>
             </Grid>
-            <Grid item xs={2}>
-                <Paper className={`${classes[stats]} project-stats`}>{stats}</Paper>
+            <Grid item xs={2} className={classes.stateContainer}>
+                <Paper className={`${classes[stats]}`}>{stats}</Paper>
             </Grid>
-            <Grid item xs={1} className={classes.action}>
+            <Grid item xs={1} className={classes.stateContainer}>
                 <IconButton
                     aria-label="account of current user"
                     aria-controls="menu-appbar"

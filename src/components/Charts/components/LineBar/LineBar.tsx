@@ -34,9 +34,5 @@ export const LineBar: React.FC = () => {
         ],
     };
 
-    return (
-        <div className="bar-container">
-            <Line data={data} options={options} />
-        </div>
-    );
+    return <Line data={data} options={options} />;
 };

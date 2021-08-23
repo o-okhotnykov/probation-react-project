@@ -9,7 +9,7 @@ export type Project = {
     value?: string;
 };
 
-enum ProjectState {
+export enum ProjectState {
     progress = 'progress',
     done = 'done',
     open = 'open',

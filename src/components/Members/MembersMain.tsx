@@ -1,12 +1,12 @@
-import React from 'react';
+import { Box } from '@material-ui/core';
 import { MembersHeader } from './component/MembersHeader';
 import { MembersList } from './component/MembersList';
 
 export const MembersMain: React.FC = () => {
     return (
-        <div className="main-container">
+        <Box padding="30px">
             <MembersHeader />
             <MembersList />
-        </div>
+        </Box>
     );
 };

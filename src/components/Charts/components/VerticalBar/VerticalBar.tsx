@@ -34,9 +34,5 @@ export const VerticalBar: React.FC = () => {
         ],
     };
 
-    return (
-        <div className="bar-container">
-            <Bar data={data} options={options} />
-        </div>
-    );
+    return <Bar data={data} options={options} />;
 };

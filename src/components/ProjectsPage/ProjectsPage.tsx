@@ -6,6 +6,7 @@ import { getProjectsAsync, projectsDataSelector } from 'store/project-slice';
 import { Pagination } from '@material-ui/lab';
 import { LIMIT } from 'constants/index';
 import { Loading } from 'components/Loading';
+import { Box } from '@material-ui/core';
 import { columns } from './columns';
 
 export const ProjectsPage: React.FC = () => {
@@ -20,7 +21,7 @@ export const ProjectsPage: React.FC = () => {
     // const totalUsers = useSelector(totalUsersSelector);
 
     return (
-        <div className="members-list-container">
+        <Box padding="30px">
             <Loading apiCall={getProjectsAsync}>
                 {projectData && (
                     <>
@@ -36,6 +37,6 @@ export const ProjectsPage: React.FC = () => {
                     </>
                 )}
             </Loading>
-        </div>
+        </Box>
     );
 };

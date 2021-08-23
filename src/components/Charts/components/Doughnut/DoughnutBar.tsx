@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import { useSelector } from 'react-redux';
 import { projectsDataSelector } from 'store/project-slice';
-import { backgroundColor, borderColor } from './constant';
+import { backgroundColor, borderColor, options } from './constant';
 
 export const DoughnutBar: React.FC = () => {
     const projectData = useSelector(projectsDataSelector);
@@ -34,9 +34,5 @@ export const DoughnutBar: React.FC = () => {
         ],
     };
 
-    return (
-        <div className="bar-container">
-            <Doughnut data={data} />
-        </div>
-    );
+    return <Doughnut data={data} options={options} />;
 };
