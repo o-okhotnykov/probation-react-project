@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ChangeEvent, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { TableComponent } from 'components/Table';
@@ -10,7 +9,7 @@ import { Box, Typography } from '@material-ui/core';
 import { columns } from './columns';
 import { useStyles } from './styles';
 
-export const ProjectsPage: React.FC = () => {
+export const Projects: React.FC = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
