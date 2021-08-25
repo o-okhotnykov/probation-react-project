@@ -203,7 +203,6 @@ export const Form: React.FC<FormProps> = ({ submit }) => {
                     color="primary"
                     disabled={!isValid || !dirty}
                 >
-                    {console.log(dirty)}
                     Confirm
                 </Button>
             </Box>
