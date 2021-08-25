@@ -1,14 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import {
-    Box,
-    Button,
-    CardMedia,
-    Grid,
-    ImageList,
-    ImageListItem,
-    ListSubheader,
-    Typography,
-} from '@material-ui/core';
+import { Box, Button, CardMedia, Grid, Typography } from '@material-ui/core';
 import { Loading } from 'components/Loading';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -73,8 +63,12 @@ export const ProjectPage: React.FC = () => {
                         </Grid>
                         <Grid container className={classes.galleryContainer}>
                             {currentProject.projectAssets?.map((item) => (
-                                <Grid item xs={4} key={item}>
-                                    <img src={item} alt="gallery item" className={classes.image} />
+                                <Grid item xs={3} key={item} className={classes.media}>
+                                    <img
+                                        src={item}
+                                        alt="gallery item"
+                                        className={classes.mediaContent}
+                                    />
                                 </Grid>
                             ))}
                         </Grid>

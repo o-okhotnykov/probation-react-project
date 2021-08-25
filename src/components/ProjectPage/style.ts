@@ -13,8 +13,21 @@ export const useStyles = makeStyles(() => ({
     info: {
         padding: '10px 0',
     },
-    imageList: { width: '100%' },
-    image: { width: '100%', maxWidth: 450, height: 450 },
+    media: { width: '100%', height: 0, paddingBottom: '30%', position: 'relative' },
+    mediaContent: {
+        position: 'absolute',
+        top: 0,
+        bottom: 0,
+        right: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        objectFit: 'cover',
+        padding: 10,
+        '&:hover': {
+            transform: 'scale(1.1)',
+        },
+    },
     galleryContainer: {
         display: 'flex',
         flexWrap: 'wrap',
