@@ -1,5 +1,8 @@
-import React from 'react';
+import { Box } from '@material-ui/core';
+import { useStyles } from './styles';
 
 export const ErrorComponent: React.FC = () => {
-    return <div className="hit-the-floor">404</div>;
+    const classes = useStyles();
+
+    return <Box className={classes.errorContent}>404</Box>;
 };

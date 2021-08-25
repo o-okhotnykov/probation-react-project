@@ -1,42 +1,44 @@
 import React from 'react';
 import LinearProgress from '@material-ui/core/LinearProgress';
-import { Typography } from '@material-ui/core';
+import { Box, CardMedia, Typography } from '@material-ui/core';
 import { useStyles } from './styles';
 
 type ProjectCardProps = {
+    img: string;
     bgColor: string;
-    defaultColor: string;
+    color: string;
     completionValue: number;
 };
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({
+    img,
     bgColor,
-    defaultColor,
+    color,
     completionValue,
 }) => {
     const classes = useStyles();
+
     return (
-        <div className="project-card" style={{ backgroundColor: bgColor, color: defaultColor }}>
-            <div className="project-logo-container">
-                <img src="https://via.placeholder.com/35" alt="project-logo" />
-            </div>
-            <div className="project-members-container">
-                <Typography className={classes.caption}>Team Members</Typography>
-                <div className="member-photos">
-                    <img
-                        src="https://via.placeholder.com/35"
-                        alt="member-logo"
-                        className="member-logo"
+        <Box className={classes.cardContainer} color={color} bgcolor={bgColor}>
+            <CardMedia className={classes.logoContainer} image={img} title="project-logo" />
+            <Box className={classes.cardTeam}>
+                <Typography variant="body2">Team Members</Typography>
+                <Box>
+                    <CardMedia
+                        className={classes.logoContainer}
+                        image="https://via.placeholder.com/35"
+                        title="project-logo"
                     />
-                </div>
-            </div>
-            <div className="project-completion-container">
-                <div className="completion-headers">
-                    <Typography className={classes.caption}>Project Completion</Typography>
-                    <Typography className={classes.caption}>{`${completionValue}%`}</Typography>
-                </div>
+                </Box>
+            </Box>
+
+            <Box paddingTop="20px">
+                <Box display="flex" justifyContent="space-between" flexWrap="wrap">
+                    <Typography variant="body2">Project Completion</Typography>
+                    <Typography variant="body2">{`${completionValue}%`}</Typography>
+                </Box>
                 <LinearProgress variant="determinate" value={completionValue} />
-            </div>
-        </div>
+            </Box>
+        </Box>
     );
 };

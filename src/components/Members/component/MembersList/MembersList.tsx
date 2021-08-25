@@ -1,8 +1,9 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
+import { Box } from '@material-ui/core';
+import { Pagination } from '@material-ui/lab';
+import { useDispatch, useSelector } from 'react-redux';
 import { TableComponent } from 'components/Table';
 import { getUsersAsync, usersDataSelector, totalUsersSelector } from 'store/user-slice';
-import { useDispatch, useSelector } from 'react-redux';
-import { Pagination } from '@material-ui/lab';
 import { LIMIT } from 'constants/index';
 import { Loading } from 'components/Loading';
 import { columns } from './columns';
@@ -19,7 +20,14 @@ export const MembersList: React.FC = () => {
     const totalUsers = useSelector(totalUsersSelector);
 
     return (
-        <div className="members-list-container">
+        <Box
+            display="flex"
+            flexDirection="column"
+            margin="0 auto"
+            alignItems="center"
+            width="100%"
+            padding="30px 0"
+        >
             <Loading apiCall={getUsersAsync}>
                 {usersData && (
                     <>
@@ -35,6 +43,6 @@ export const MembersList: React.FC = () => {
                     </>
                 )}
             </Loading>
-        </div>
+        </Box>
     );
 };

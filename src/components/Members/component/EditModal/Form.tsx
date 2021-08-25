@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Grid, MenuItem, Select, TextField } from '@material-ui/core';
+import { Box, Button, Grid, MenuItem, Select, TextField } from '@material-ui/core';
 import { format } from 'date-fns';
 import { useFormik } from 'formik';
 import {
@@ -114,7 +114,7 @@ export const Form: React.FC<FormProps> = ({ id, submit }) => {
 
     return (
         <Loading apiCall={getUserByIdAsync}>
-            <form className="form" onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit}>
                 <Grid container>
                     <Grid item xs={6}>
                         <TextField
@@ -184,11 +184,7 @@ export const Form: React.FC<FormProps> = ({ id, submit }) => {
                     </Grid>
                     <Grid item xs={6} className={classes.formPart}>
                         <img src={values.img} alt="user-img" className={classes.userImg} />
-                        <Button
-                            variant="contained"
-                            component="label"
-                            className={`${classes.btn} ${classes.btnUpload}`}
-                        >
+                        <Button variant="contained" component="label" color="primary">
                             Upload File
                             <input
                                 style={{ display: 'none' }}
@@ -215,16 +211,16 @@ export const Form: React.FC<FormProps> = ({ id, submit }) => {
                         </Select>
                     </Grid>
                 </Grid>
-                <div className={classes.action}>
+                <Box className={classes.action}>
                     <Button
-                        className={`${classes.btn} form-btn`}
-                        type="submit"
                         color="primary"
+                        type="submit"
+                        variant="contained"
                         disabled={!isValid || !dirty}
                     >
                         Confirm
                     </Button>
-                </div>
+                </Box>
             </form>
         </Loading>
     );

@@ -13,7 +13,12 @@ export const Navbar: React.FC = () => {
     };
 
     return (
-        <Tabs value={history.location.pathname} onChange={handleChange}>
+        <Tabs
+            indicatorColor="primary"
+            textColor="primary"
+            value={history.location.pathname}
+            onChange={handleChange}
+        >
             <Tab className={classes.tab} label="Dashboard" value={ROUTE_PATH.dashboard} />
             <Tab className={classes.tab} label="All projects" value={ROUTE_PATH.projects} />
             <Tab className={classes.tab} label="Members" value={ROUTE_PATH.members} />

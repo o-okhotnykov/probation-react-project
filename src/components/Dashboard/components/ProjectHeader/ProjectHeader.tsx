@@ -3,24 +3,24 @@ import { Grid, Typography } from '@material-ui/core';
 
 export const ProjectHeader: React.FC = () => {
     return (
-        <Grid container className="project-header">
+        <Grid container>
             <Grid item xs={3}>
-                <Typography>RECENT PROJECTS</Typography>
+                <Typography variant="h3">RECENT PROJECTS</Typography>
             </Grid>
             <Grid item xs={2}>
-                <Typography>CREATED</Typography>
+                <Typography variant="h3">CREATED</Typography>
             </Grid>
             <Grid item xs={2}>
-                <Typography>REPORTER</Typography>
+                <Typography variant="h3">REPORTER</Typography>
             </Grid>
             <Grid item xs={2}>
-                <Typography>DUE</Typography>
+                <Typography variant="h3">DUE</Typography>
             </Grid>
             <Grid item xs={2}>
-                <Typography>STATS</Typography>
+                <Typography variant="h3">STATS</Typography>
             </Grid>
             <Grid item xs={1}>
-                <Typography>ACTIONS</Typography>
+                <Typography variant="h3">ACTIONS</Typography>
             </Grid>
         </Grid>
     );

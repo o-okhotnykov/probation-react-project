@@ -1,5 +1,5 @@
 import React from 'react';
-import { CircularProgress } from '@material-ui/core';
+import { Box, CircularProgress } from '@material-ui/core';
 import { isRequestPendingSelector } from 'store/loading-slice';
 import { useSelector } from 'react-redux';
 import { AsyncThunkProp } from 'types/api/auth';
@@ -9,9 +9,9 @@ export const Loading: React.FC<{ apiCall: AsyncThunkProp }> = ({ apiCall, childr
     return (
         <>
             {loading ? (
-                <div className="loading">
+                <Box>
                     <CircularProgress />
-                </div>
+                </Box>
             ) : (
                 children
             )}

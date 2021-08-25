@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import ClearIcon from '@material-ui/icons/Clear';
-import { AccountCircle } from '@material-ui/icons';
-import { Typography, Button, IconButton, Menu, MenuItem } from '@material-ui/core';
+import { Typography, Button, IconButton, Menu, MenuItem, Box } from '@material-ui/core';
 import { logout, getUserAsync, userDataSelector } from 'store/user-slice';
 import { Loading } from 'components/Loading';
+import { AccountCircle } from '@material-ui/icons';
 import { useStyles } from './style';
 
 export const UserMenu: React.FC = () => {
@@ -33,18 +33,18 @@ export const UserMenu: React.FC = () => {
     };
 
     return (
-        <Loading apiCall={getUserAsync}>
-            <div className="user-menu">
-                <div className="user-data">
+        <Box display="flex" alignItems="center">
+            <Loading apiCall={getUserAsync}>
+                <Box display="flex" flexDirection="column" textAlign="right">
                     {userData && (
                         <>
                             <Typography variant="h5">{`${userData?.name} ${userData?.surname}`}</Typography>
                             <Typography variant="caption">{userData?.email}</Typography>
                         </>
                     )}
-                </div>
+                </Box>
                 <IconButton
-                    className={classes.menu}
+                    className={classes.root}
                     aria-label="account of current user"
                     aria-controls="menu-appbar"
                     aria-haspopup="true"
@@ -87,7 +87,7 @@ export const UserMenu: React.FC = () => {
                         </Button>
                     </MenuItem>
                 </Menu>
-            </div>
-        </Loading>
+            </Loading>
+        </Box>
     );
 };

@@ -23,55 +23,53 @@ export const TableComponent: React.FC<IDataTableProps> = ({ columns, data }) => 
     );
 
     return (
-        <div className="table-container">
-            <Table {...getTableProps()} className={classes.table}>
-                <TableHead>
-                    {headerGroups.map((headerGroup) => (
-                        <TableRow {...headerGroup.getHeaderGroupProps()} key={shortid.generate()}>
-                            {headerGroup.headers.map((column) => (
-                                <TableCell
-                                    {...column.getHeaderProps(column.getSortByToggleProps())}
-                                    key={shortid.generate()}
-                                    className={classes.tableHead}
-                                >
-                                    {column.render('Header')}
-
-                                    {column.isSorted &&
-                                        (column.isSortedDesc ? (
-                                            <ArrowDropDownIcon />
-                                        ) : (
-                                            <ArrowDropUpIcon />
-                                        ))}
-                                </TableCell>
-                            ))}
-                        </TableRow>
-                    ))}
-                </TableHead>
-                <TableBody>
-                    {rows.map((row) => {
-                        prepareRow(row);
-                        return (
-                            <TableRow
-                                {...row.getRowProps()}
-                                className={classes.tableRow}
+        <Table {...getTableProps()} className={classes.table}>
+            <TableHead>
+                {headerGroups.map((headerGroup) => (
+                    <TableRow {...headerGroup.getHeaderGroupProps()} key={shortid.generate()}>
+                        {headerGroup.headers.map((column) => (
+                            <TableCell
+                                {...column.getHeaderProps(column.getSortByToggleProps())}
                                 key={shortid.generate()}
+                                className={classes.tableHead}
                             >
-                                {row.cells.map((cell) => {
-                                    return (
-                                        <TableCell
-                                            {...cell.getCellProps()}
-                                            key={shortid.generate()}
-                                            className={classes.tableData}
-                                        >
-                                            {cell.render('Cell')}
-                                        </TableCell>
-                                    );
-                                })}
-                            </TableRow>
-                        );
-                    })}
-                </TableBody>
-            </Table>
-        </div>
+                                {column.render('Header')}
+
+                                {column.isSorted &&
+                                    (column.isSortedDesc ? (
+                                        <ArrowDropDownIcon />
+                                    ) : (
+                                        <ArrowDropUpIcon />
+                                    ))}
+                            </TableCell>
+                        ))}
+                    </TableRow>
+                ))}
+            </TableHead>
+            <TableBody>
+                {rows.map((row) => {
+                    prepareRow(row);
+                    return (
+                        <TableRow
+                            {...row.getRowProps()}
+                            className={classes.tableRow}
+                            key={shortid.generate()}
+                        >
+                            {row.cells.map((cell) => {
+                                return (
+                                    <TableCell
+                                        className={classes.tableCell}
+                                        {...cell.getCellProps()}
+                                        key={shortid.generate()}
+                                    >
+                                        {cell.render('Cell')}
+                                    </TableCell>
+                                );
+                            })}
+                        </TableRow>
+                    );
+                })}
+            </TableBody>
+        </Table>
     );
 };
