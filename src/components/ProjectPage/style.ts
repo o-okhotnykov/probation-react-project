@@ -13,4 +13,12 @@ export const useStyles = makeStyles(() => ({
     info: {
         padding: '10px 0',
     },
+    imageList: { width: '100%' },
+    image: { width: '100%', maxWidth: 450, height: 450 },
+    galleryContainer: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+    },
 }));
