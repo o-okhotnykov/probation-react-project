@@ -29,7 +29,7 @@ export const Projects: React.FC = () => {
             <Loading apiCall={getProjectsAsync}>
                 {projectData && (
                     <>
-                        <TableComponent columns={columns} data={projectData} />
+                        <TableComponent columns={columns} data={projectData} isDetailedPage />
                         <Pagination
                             page={pageState}
                             count={Math.ceil(totalUsers / LIMIT)}

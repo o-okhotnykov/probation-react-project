@@ -31,7 +31,7 @@ export const MembersList: React.FC = () => {
             <Loading apiCall={getUsersAsync}>
                 {usersData && (
                     <>
-                        <TableComponent columns={columns} data={usersData} />
+                        <TableComponent columns={columns} data={usersData} isDetailedPage={false} />
                         <Pagination
                             page={pageState}
                             count={Math.ceil(totalUsers / LIMIT)}

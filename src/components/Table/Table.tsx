@@ -15,11 +15,13 @@ import { useStyles } from './styles';
 interface IDataTableProps<T> {
     columns: Column[];
     data: T[];
+    isDetailedPage: boolean;
 }
 
 export const TableComponent: React.FC<IDataTableProps<IUserData | Project>> = ({
     columns,
     data,
+    isDetailedPage,
 }) => {
     const classes = useStyles();
     const history = useHistory();
@@ -33,9 +35,11 @@ export const TableComponent: React.FC<IDataTableProps<IUserData | Project>> = ({
     );
 
     const handleRedirect = (row: any) => {
-        const { id } = row.original;
+        if (isDetailedPage) {
+            const { id } = row.original;
 
-        history.push(`${ROUTE_PATH.projects}/${id}`);
+            history.push(`${ROUTE_PATH.projects}/${id}`);
+        }
     };
 
     return (
@@ -68,7 +72,7 @@ export const TableComponent: React.FC<IDataTableProps<IUserData | Project>> = ({
                     return (
                         <TableRow
                             {...row.getRowProps()}
-                            className={classes.tableRow}
+                            className={isDetailedPage ? classes.tableRowClicked : classes.tableRow}
                             key={shortid.generate()}
                             onClick={() => handleRedirect(row)}
                         >

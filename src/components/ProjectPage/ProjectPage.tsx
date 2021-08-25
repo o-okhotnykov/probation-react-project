@@ -17,7 +17,7 @@ export const ProjectPage: React.FC = () => {
     const currentProject = useSelector(currentProjectSelector);
 
     return (
-        <Box padding="30px 10px">
+        <Box padding="30px 10px" display="flex" flexDirection="column" alignItems="center">
             <Loading apiCall={getProjectByIdAsync}>
                 {currentProject && (
                     <>
