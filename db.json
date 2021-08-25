@@ -28,7 +28,8 @@
             "reporter": "Arthur Cook",
             "dateDue": "2021-07-10",
             "stats": "open",
-            "value": "450"
+            "value": "450",
+            "projectAssets": []
         },
         {
             "id": 3,
@@ -38,7 +39,17 @@
             "reporter": "Christian Matthews",
             "dateDue": "2021-07-14",
             "stats": "progress",
-            "value": "400"
+            "value": "400",
+            "projectAssets": [
+                "https://cdn.theatlantic.com/thumbor/qf3OZxABtwdkxsPxNl_l-pbFyYY=/2733x1:4028x1296/1080x1080/media/img/mt/2020/10/Dwight_comop/original.jpg",
+                "https://i.pinimg.com/originals/82/52/94/825294e09c5e6eed6fcaa5354f47c2a8.jpg",
+                "https://static0.srcdn.com/wordpress/wp-content/uploads/2019/09/The-Office-Dwight-Feature.jpg",
+                "https://www.sostav.ru/images/news/2018/06/15/zc9zvfgd.jpg",
+                "https://memepedia.ru/wp-content/uploads/2016/03/garold-skryvaet-bol.jpg",
+                "https://memepedia.ru/wp-content/uploads/2016/03/ffc073891b259c.jpg",
+                "https://memepedia.ru/wp-content/uploads/2016/03/large_p19d7nh1hm1i37tnuim11ebqo5c1.jpg",
+                "https://memepedia.ru/wp-content/uploads/2016/03/ded-ulybaetsya-foto.jpg"
+            ]
         },
         {
             "id": 4,
@@ -48,7 +59,17 @@
             "reporter": "Arthur Cook",
             "dateDue": "2021-07-10",
             "stats": "open",
-            "value": "450"
+            "value": "450",
+            "projectAssets": [
+                "https://cdn.theatlantic.com/thumbor/qf3OZxABtwdkxsPxNl_l-pbFyYY=/2733x1:4028x1296/1080x1080/media/img/mt/2020/10/Dwight_comop/original.jpg",
+                "https://i.pinimg.com/originals/82/52/94/825294e09c5e6eed6fcaa5354f47c2a8.jpg",
+                "https://static0.srcdn.com/wordpress/wp-content/uploads/2019/09/The-Office-Dwight-Feature.jpg",
+                "https://www.sostav.ru/images/news/2018/06/15/zc9zvfgd.jpg",
+                "https://memepedia.ru/wp-content/uploads/2016/03/garold-skryvaet-bol.jpg",
+                "https://memepedia.ru/wp-content/uploads/2016/03/ffc073891b259c.jpg",
+                "https://memepedia.ru/wp-content/uploads/2016/03/large_p19d7nh1hm1i37tnuim11ebqo5c1.jpg",
+                "https://memepedia.ru/wp-content/uploads/2016/03/ded-ulybaetsya-foto.jpg"
+            ]
         },
         {
             "id": 5,
@@ -58,7 +79,17 @@
             "reporter": "Christian Matthews",
             "dateDue": "2021-07-14",
             "stats": "progress",
-            "value": "400"
+            "value": "400",
+            "projectAssets": [
+                "https://cdn.theatlantic.com/thumbor/qf3OZxABtwdkxsPxNl_l-pbFyYY=/2733x1:4028x1296/1080x1080/media/img/mt/2020/10/Dwight_comop/original.jpg",
+                "https://i.pinimg.com/originals/82/52/94/825294e09c5e6eed6fcaa5354f47c2a8.jpg",
+                "https://static0.srcdn.com/wordpress/wp-content/uploads/2019/09/The-Office-Dwight-Feature.jpg",
+                "https://www.sostav.ru/images/news/2018/06/15/zc9zvfgd.jpg",
+                "https://memepedia.ru/wp-content/uploads/2016/03/garold-skryvaet-bol.jpg",
+                "https://memepedia.ru/wp-content/uploads/2016/03/ffc073891b259c.jpg",
+                "https://memepedia.ru/wp-content/uploads/2016/03/large_p19d7nh1hm1i37tnuim11ebqo5c1.jpg",
+                "https://memepedia.ru/wp-content/uploads/2016/03/ded-ulybaetsya-foto.jpg"
+            ]
         },
         {
             "id": 6,
@@ -68,7 +99,17 @@
             "reporter": "Arthur Cook",
             "dateDue": "2021-07-10",
             "stats": "open",
-            "value": "450"
+            "value": "450",
+            "projectAssets": [
+                "https://cdn.theatlantic.com/thumbor/qf3OZxABtwdkxsPxNl_l-pbFyYY=/2733x1:4028x1296/1080x1080/media/img/mt/2020/10/Dwight_comop/original.jpg",
+                "https://i.pinimg.com/originals/82/52/94/825294e09c5e6eed6fcaa5354f47c2a8.jpg",
+                "https://static0.srcdn.com/wordpress/wp-content/uploads/2019/09/The-Office-Dwight-Feature.jpg",
+                "https://www.sostav.ru/images/news/2018/06/15/zc9zvfgd.jpg",
+                "https://memepedia.ru/wp-content/uploads/2016/03/garold-skryvaet-bol.jpg",
+                "https://memepedia.ru/wp-content/uploads/2016/03/ffc073891b259c.jpg",
+                "https://memepedia.ru/wp-content/uploads/2016/03/large_p19d7nh1hm1i37tnuim11ebqo5c1.jpg",
+                "https://memepedia.ru/wp-content/uploads/2016/03/ded-ulybaetsya-foto.jpg"
+            ]
         },
         {
             "id": 7,
@@ -78,7 +119,8 @@
             "reporter": "Christian Matthews",
             "dateDue": "2021-07-14",
             "stats": "progress",
-            "value": "400"
+            "value": "400",
+            "projectAssets": []
         },
         {
             "id": 8,

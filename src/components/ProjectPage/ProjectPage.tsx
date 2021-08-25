@@ -1,9 +1,10 @@
-import { Box, Button, CardMedia, Grid, Typography } from '@material-ui/core';
+import { Box, Button, CardMedia, Grid, Paper, Typography } from '@material-ui/core';
 import { Loading } from 'components/Loading';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { currentProjectSelector, getProjectByIdAsync } from 'store/project-slice';
+import { ProjectGallery } from './components/ProjectGallery';
 import { useStyles } from './style';
 
 export const ProjectPage: React.FC = () => {
@@ -46,11 +47,15 @@ export const ProjectPage: React.FC = () => {
                                 <Typography variant="body1" className={classes.info}>
                                     Date Due: {currentProject.dateDue}
                                 </Typography>
+                                <Paper className={classes[currentProject.stats]}>
+                                    {currentProject.stats}
+                                </Paper>
                                 <Box
                                     display="flex"
                                     width="100%"
                                     justifyContent="space-around"
                                     alignSelf="center"
+                                    padding="10px 0"
                                 >
                                     <Button variant="outlined" color="primary">
                                         Edit
@@ -61,17 +66,7 @@ export const ProjectPage: React.FC = () => {
                                 </Box>
                             </Grid>
                         </Grid>
-                        <Grid container className={classes.galleryContainer}>
-                            {currentProject.projectAssets?.map((item) => (
-                                <Grid item xs={3} key={item} className={classes.media}>
-                                    <img
-                                        src={item}
-                                        alt="gallery item"
-                                        className={classes.mediaContent}
-                                    />
-                                </Grid>
-                            ))}
-                        </Grid>
+                        <ProjectGallery projectAssets={currentProject.projectAssets} />
                     </>
                 )}
             </Loading>
