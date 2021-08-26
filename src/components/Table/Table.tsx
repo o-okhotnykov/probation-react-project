@@ -34,7 +34,7 @@ export const TableComponent: React.FC<IDataTableProps<IUserData | Project>> = ({
         useSortBy,
     );
 
-    const handleRedirect = (row: any) => {
+    const handleRedirect = (row: Row<{ id?: number }>) => {
         if (isDetailedPage) {
             const { id } = row.original;
 
