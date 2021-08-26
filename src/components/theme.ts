@@ -28,14 +28,20 @@ export const ACCENT_LIGHT_TRANSPARENT = '#e5e5e5';
 export const theme = createTheme({
     typography: {
         fontFamily: 'Poppins, sans-serif',
-        h2: {
+        h1: {
             fontWeight: 900,
             fontSize: '2em',
             color: DARK_DEFAULT,
         },
+        h2: {
+            fontWeight: 500,
+            fontSize: '1.5em',
+            color: DARK_GREY,
+            textAlign: 'center',
+        },
         h3: {
             fontWeight: 500,
-            fontSize: '1.2em',
+            fontSize: '1.1em',
             color: DARK_GREY,
             textAlign: 'center',
         },
