@@ -27,7 +27,7 @@ export const MembersHeader: React.FC = () => {
             {isOpen && (
                 <ModalComponent open={isOpen} close={toggleModal}>
                     <AddModal
-                        header="Create user"
+                        header="Add new user"
                         handleCloseModal={toggleModal}
                         submit={registerAsync}
                     />

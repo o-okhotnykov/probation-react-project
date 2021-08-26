@@ -73,7 +73,7 @@ export const Form: React.FC<FormikProps<ILoginFormValues>> = (props) => {
                         </Button>
                     </Box>
                 </form>
-                <Typography className={classes.text}>
+                <Typography className={classes.text} variant="body1">
                     Don&apos;t have an account?{' '}
                     <Link to={ROUTE_PATH.register} className={classes.link}>
                         Register
