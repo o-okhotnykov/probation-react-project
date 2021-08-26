@@ -4,12 +4,16 @@ export type Project = {
     reporter: string;
     dateDue: string;
     stats: ProjectState;
-    id?: number;
+    id: number;
     img?: string;
     value?: string;
     projectAssets?: string[];
 };
-
+export type ProjectAssets = {
+    id: number;
+    url: string;
+    projectId: number;
+};
 export enum ProjectState {
     progress = 'progress',
     done = 'done',

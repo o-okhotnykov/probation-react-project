@@ -37,7 +37,6 @@ export const TableComponent: React.FC<IDataTableProps<IUserData | Project>> = ({
     const handleRedirect = (row: Row<{ id?: number }>) => {
         if (isDetailedPage) {
             const { id } = row.original;
-
             history.push(`${ROUTE_PATH.projects}/${id}`);
         }
     };

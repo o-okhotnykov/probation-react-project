@@ -17,10 +17,14 @@ export const useStyles = makeStyles(() => ({
         },
     },
     galleryContainer: {
+        width: '100%',
         display: 'flex',
         flexWrap: 'wrap',
         justifyContent: 'space-around',
         alignItems: 'center',
         padding: '30px 0',
+    },
+    infinityScroll: {
+        width: '100%',
     },
 }));

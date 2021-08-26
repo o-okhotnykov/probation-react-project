@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice, createSelector } from '@reduxjs/toolkit';
-import { GetProjectsParams, Project, ProjectResponse } from 'types/api/project';
+import { GetProjectsParams, Project, ProjectAssets, ProjectResponse } from 'types/api/project';
 import { httpService } from 'services/HttpService';
 import { LIMIT, PAGE } from 'constants/index';
 import { errorToastNotify } from 'toasts/component/errorToast';
@@ -8,12 +8,14 @@ import type { RootState } from './root-store';
 interface IProjectState {
     projects: ProjectResponse;
     currentProject: Project | null;
+    currentProjectAssets: ProjectAssets[];
     total: number;
 }
 
 const initialState: IProjectState = {
     projects: [],
     currentProject: null,
+    currentProjectAssets: [],
     total: 0,
 };
 
@@ -28,6 +30,14 @@ export const getProjectsAsync = createAsyncThunk(
 export const getProjectByIdAsync = createAsyncThunk('app/getProjectById', (id: number) => {
     return httpService.get<Project>(`projects/${id}`, {});
 });
+
+export const getProjectAssetsAsync = createAsyncThunk(
+    'app/getProjectAssetsProjects',
+    ({ id, page = PAGE, limit = LIMIT }: { id: number; page: number; limit: number }) => {
+        const params = { _page: page, _limit: limit };
+        return httpService.get<ProjectAssets[]>(`projects/${id}/images`, { params });
+    },
+);
 
 export const projectSlice = createSlice({
     name: 'project',
@@ -48,6 +58,13 @@ export const projectSlice = createSlice({
 
                 if (data) {
                     state.currentProject = data;
+                }
+            })
+            .addCase(getProjectAssetsAsync.fulfilled, (state, action) => {
+                const { data } = action.payload;
+
+                if (data) {
+                    state.currentProjectAssets = data;
                 }
             })
             .addCase(getProjectsAsync.rejected, (state, action) => {
@@ -73,6 +90,11 @@ export const projectsTotalSelector = createSelector(projectsSelector, ({ total }
 export const currentProjectSelector = createSelector(
     projectsSelector,
     ({ currentProject }) => currentProject,
+);
+
+export const currentProjectAssetsSelector = createSelector(
+    projectsSelector,
+    ({ currentProjectAssets }) => currentProjectAssets,
 );
 
 export const projectsReducer = projectSlice.reducer;

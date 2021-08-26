@@ -66,7 +66,7 @@ export const ProjectPage: React.FC = () => {
                                 </Box>
                             </Grid>
                         </Grid>
-                        <ProjectGallery projectAssets={currentProject.projectAssets} />
+                        <ProjectGallery projectId={currentProject.id} />
                     </>
                 )}
             </Loading>
