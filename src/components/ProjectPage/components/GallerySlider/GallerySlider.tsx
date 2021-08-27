@@ -26,7 +26,7 @@ export const GallerySlider: React.FC<GallerySliderProps> = ({ projectAssets }) =
     return (
         <Box className={classes.slideWrapper}>
             <Slider {...settings} className={classes.slider}>
-                {projectAssets?.map(({ id, url }) => (
+                {projectAssets.map(({ id, url }) => (
                     <Box key={id} className={classes.media}>
                         <img alt="slider" className={classes.mediaContent} src={url} />
                     </Box>

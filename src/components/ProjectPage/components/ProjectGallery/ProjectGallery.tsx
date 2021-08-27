@@ -45,7 +45,7 @@ export const ProjectGallery: React.FC<GalleryProps> = ({ projectId }) => {
 
     return (
         <>
-            {projectAssets?.length === 0 || projectAssets === undefined ? (
+            {projectAssets.length === 0 ? (
                 <Typography variant="h2">This project has no images</Typography>
             ) : (
                 <Box width="100%">
