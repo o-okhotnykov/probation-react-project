@@ -1,23 +1,31 @@
+/* eslint-disable @typescript-eslint/ban-types */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import { Table, TableBody, TableCell, TableHead, TableRow } from '@material-ui/core';
-import { Column, useSortBy, useTable } from 'react-table';
+import { Column, Row, useSortBy, useTable } from 'react-table';
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import shortid from 'shortid';
 import { IUserData } from 'types/api/auth';
 import { Project } from 'types/api/project';
+import { useHistory } from 'react-router-dom';
+import { ROUTE_PATH } from 'constants/index';
 import { useStyles } from './styles';
 
 interface IDataTableProps<T> {
     columns: Column[];
     data: T[];
+    isDetailedPage: boolean;
 }
 
 export const TableComponent: React.FC<IDataTableProps<IUserData | Project>> = ({
     columns,
     data,
+    isDetailedPage,
 }) => {
     const classes = useStyles();
+    const history = useHistory();
+
     const { getTableProps, headerGroups, rows, prepareRow } = useTable(
         {
             columns,
@@ -25,6 +33,14 @@ export const TableComponent: React.FC<IDataTableProps<IUserData | Project>> = ({
         },
         useSortBy,
     );
+
+    const handleRedirect = (row: Row<{ id?: number }>) => {
+        if (isDetailedPage) {
+            const { id } = row.original;
+
+            history.push(`${ROUTE_PATH.projects}/${id}`);
+        }
+    };
 
     return (
         <Table {...getTableProps()} className={classes.table}>
@@ -56,8 +72,9 @@ export const TableComponent: React.FC<IDataTableProps<IUserData | Project>> = ({
                     return (
                         <TableRow
                             {...row.getRowProps()}
-                            className={classes.tableRow}
+                            className={isDetailedPage ? classes.tableRowClicked : classes.tableRow}
                             key={shortid.generate()}
+                            onClick={() => handleRedirect(row)}
                         >
                             {row.cells.map((cell) => {
                                 return (

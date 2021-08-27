@@ -7,7 +7,8 @@ import { SideSection } from './SideSection';
 import { DashboardMain } from './Dashboard';
 import { MembersMain } from './Members';
 import { useStyles } from './style';
-import { ProjectsPage } from './ProjectsPage';
+import { Projects } from './Projects';
+import { ProjectPage } from './ProjectPage';
 
 export const Layout: React.FC = () => {
     const classes = useStyles();
@@ -22,7 +23,8 @@ export const Layout: React.FC = () => {
                 <Switch>
                     <PrivateRoute exact path={ROUTE_PATH.dashboard} component={DashboardMain} />
                     <PrivateRoute exact path={ROUTE_PATH.members} component={MembersMain} />
-                    <PrivateRoute exact path={ROUTE_PATH.projects} component={ProjectsPage} />
+                    <PrivateRoute exact path={ROUTE_PATH.projects} component={Projects} />
+                    <PrivateRoute path={`${ROUTE_PATH.projects}/:id`} component={ProjectPage} />
                     <Route exact path={ROUTE_PATH.main}>
                         <Redirect to={ROUTE_PATH.dashboard} />
                     </Route>

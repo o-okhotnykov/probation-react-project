@@ -9,7 +9,7 @@ import { Loading } from 'components/Loading';
 import { columns } from './columns';
 import { useStyles } from './styles';
 
-export const ProjectsPage: React.FC = () => {
+export const Projects: React.FC = () => {
     const dispatch = useDispatch();
     const classes = useStyles();
     const [pageState, setPageState] = useState(1);
@@ -35,7 +35,7 @@ export const ProjectsPage: React.FC = () => {
             <Loading apiCall={getProjectsAsync}>
                 {projectData && (
                     <>
-                        <TableComponent columns={columns} data={projectData} />
+                        <TableComponent columns={columns} data={projectData} isDetailedPage />
                         <Pagination
                             page={pageState}
                             count={Math.ceil(totalUsers / LIMIT)}

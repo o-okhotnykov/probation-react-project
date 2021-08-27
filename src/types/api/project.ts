@@ -1,12 +1,13 @@
 export type Project = {
-    id?: number;
-    img?: string;
     title: string;
     dateCreate: string;
     reporter: string;
     dateDue: string;
     stats: ProjectState;
+    id: number;
+    img?: string;
     value?: string;
+    projectAssets?: string[];
 };
 
 export enum ProjectState {

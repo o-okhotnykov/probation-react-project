@@ -1,14 +1,16 @@
 import { useHistory } from 'react-router-dom';
 import { ROUTE_PATH } from 'constants/index';
 import { Tab, Tabs } from '@material-ui/core';
+import { useState } from 'react';
 import { useStyles } from './styles';
 
 export const Navbar: React.FC = () => {
     const history = useHistory();
 
     const classes = useStyles();
-
+    const [pageLocation, setPageLocation] = useState<string>(ROUTE_PATH.dashboard);
     const handleChange = (event: React.ChangeEvent<unknown>, value: string) => {
+        setPageLocation(value);
         history.push(value);
     };
 
@@ -16,7 +18,7 @@ export const Navbar: React.FC = () => {
         <Tabs
             indicatorColor="primary"
             textColor="primary"
-            value={history.location.pathname}
+            value={pageLocation}
             onChange={handleChange}
         >
             <Tab className={classes.tab} label="Dashboard" value={ROUTE_PATH.dashboard} />

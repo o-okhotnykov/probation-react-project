@@ -12,6 +12,12 @@ export const useStyles = makeStyles((theme) => ({
         borderBottom: 0,
     },
     tableRow: {},
+    tableRowClicked: {
+        cursor: 'pointer',
+        '&:hover': {
+            backgroundColor: theme.palette.primary.light,
+        },
+    },
     tableCell: {
         textAlign: 'center',
         fontSize: '1em',
