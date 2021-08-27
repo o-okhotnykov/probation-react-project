@@ -68,7 +68,7 @@ export const projectSlice = createSlice({
 
                 if (data && !Number.isNaN(totalCount)) {
                     state.totalAssets = totalCount;
-                    state.currentProjectAssets = data;
+                    state.currentProjectAssets.push(...data);
                 }
             })
             .addCase(getProjectsAsync.rejected, (state, action) => {

@@ -33,14 +33,14 @@ export const ProjectGallery: React.FC<GalleryProps> = ({ projectId }) => {
     };
 
     const handleNext = () => {
-        setCount((prevState) => prevState + 1);
         dispatch(
             getProjectAssetsAsync({
                 id: projectId,
-                page: PAGE,
-                limit: LIMIT * count,
+                page: count,
+                limit: LIMIT,
             }),
         );
+        setCount((prevState) => prevState + 1);
     };
 
     return (
@@ -51,21 +51,11 @@ export const ProjectGallery: React.FC<GalleryProps> = ({ projectId }) => {
                 <Box width="100%">
                     <InfiniteScroll
                         className={classes.infinityScroll}
-                        dataLength={totalAssets}
+                        dataLength={projectAssets.length}
                         next={handleNext}
                         hasMore={totalAssets > projectAssets.length}
-                        loader={
-                            <img
-                                src="https://res.cloudinary.com/chuloo/image/upload/v1550093026/scotch-logo-gif_jq4tgr.gif"
-                                alt="loading"
-                            />
-                        }
-                        endMessage={
-                            <img
-                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Thats_all_folks.svg/796px-Thats_all_folks.svg.png"
-                                alt="all"
-                            />
-                        }
+                        loader={<Typography variant="h2">Loading..</Typography>}
+                        endMessage={<Typography variant="h2">No more pictures</Typography>}
                     >
                         <Grid container className={classes.galleryContainer}>
                             {projectAssets?.map(({ id, url }) => (

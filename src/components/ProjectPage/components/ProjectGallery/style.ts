@@ -26,5 +26,6 @@ export const useStyles = makeStyles(() => ({
     },
     infinityScroll: {
         width: '100%',
+        overflow: 'hidden !important',
     },
 }));
