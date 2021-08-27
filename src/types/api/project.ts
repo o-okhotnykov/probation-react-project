@@ -4,7 +4,7 @@ export type Project = {
     reporter: string;
     dateDue: string;
     stats: ProjectState;
-    id?: number;
+    id: number;
     img?: string;
     value?: string;
     projectAssets?: string[];
