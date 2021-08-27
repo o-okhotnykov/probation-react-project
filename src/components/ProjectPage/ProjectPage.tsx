@@ -1,22 +1,28 @@
+import { useEffect, useState } from 'react';
 import { Box, Button, CardMedia, Grid, Paper, Typography } from '@material-ui/core';
-import { Loading } from 'components/Loading';
-import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { Loading } from 'components/Loading';
+import { ModalComponent } from 'components/ModalComponent';
 import { currentProjectSelector, getProjectByIdAsync } from 'store/project-slice';
+import { RetireModal } from './components/RetireModal';
 import { ProjectGallery } from './components/ProjectGallery';
 import { useStyles } from './style';
 
 export const ProjectPage: React.FC = () => {
     const { id } = useParams<{ id: string }>();
+    const [isOpen, setIsOpen] = useState(false);
     const dispatch = useDispatch();
     const classes = useStyles();
+
     useEffect(() => {
         dispatch(getProjectByIdAsync(Number(id)));
     }, [dispatch, id]);
 
     const currentProject = useSelector(currentProjectSelector);
-
+    const toggleModal = () => {
+        setIsOpen(!isOpen);
+    };
     return (
         <Box padding="30px 10px" display="flex" flexDirection="column" alignItems="center">
             <Loading apiCall={getProjectByIdAsync}>
@@ -60,7 +66,11 @@ export const ProjectPage: React.FC = () => {
                                     <Button variant="outlined" color="primary">
                                         Edit
                                     </Button>
-                                    <Button variant="outlined" color="primary">
+                                    <Button
+                                        variant="outlined"
+                                        color="primary"
+                                        onClick={toggleModal}
+                                    >
                                         Delete
                                     </Button>
                                 </Box>
@@ -70,6 +80,11 @@ export const ProjectPage: React.FC = () => {
                     </>
                 )}
             </Loading>
+            {isOpen && (
+                <ModalComponent open={isOpen} close={toggleModal}>
+                    <RetireModal projectId={Number(id)} handleCloseModal={toggleModal} />
+                </ModalComponent>
+            )}
         </Box>
     );
 };

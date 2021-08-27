@@ -3,6 +3,7 @@ import { GetProjectsParams, Project, ProjectResponse } from 'types/api/project';
 import { httpService } from 'services/HttpService';
 import { LIMIT, PAGE } from 'constants/index';
 import { errorToastNotify } from 'toasts/component/errorToast';
+import { successfulToastNotify } from 'toasts';
 import type { RootState } from './root-store';
 
 interface IProjectState {
@@ -29,6 +30,10 @@ export const getProjectByIdAsync = createAsyncThunk('app/getProjectById', (id: n
     return httpService.get<Project>(`projects/${id}`, {});
 });
 
+export const deleteProjectAsync = createAsyncThunk('app/deleteProject', (id: number) => {
+    return httpService.delete<Project>(`/projects/${id}`, {});
+});
+
 export const projectSlice = createSlice({
     name: 'project',
     initialState,
@@ -49,6 +54,9 @@ export const projectSlice = createSlice({
                 if (data) {
                     state.currentProject = data;
                 }
+            })
+            .addCase(deleteProjectAsync.fulfilled, () => {
+                successfulToastNotify('The project was deleted ');
             })
             .addCase(getProjectsAsync.rejected, (state, action) => {
                 const { message } = action.error;
