@@ -1,11 +1,14 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Box, Grid, Typography } from '@material-ui/core';
 import { ModalComponent } from 'components/ModalComponent';
 import { LIMIT, PAGE } from 'constants/index';
 import { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useDispatch, useSelector } from 'react-redux';
-import { currentProjectAssetsSelector, getProjectAssetsAsync } from 'store/project-slice';
+import {
+    currentProjectAssetsSelector,
+    getProjectAssetsAsync,
+    totalAssetsSelector,
+} from 'store/project-slice';
 import { GallerySlider } from '../GallerySlider';
 import { useStyles } from './style';
 
@@ -17,7 +20,9 @@ export const ProjectGallery: React.FC<GalleryProps> = ({ projectId }) => {
     const classes = useStyles();
     const dispatch = useDispatch();
     const projectAssets = useSelector(currentProjectAssetsSelector);
+    const totalAssets = useSelector(totalAssetsSelector);
     const [isOpen, setIsSOpen] = useState(false);
+    const [count, setCount] = useState(2);
 
     useEffect(() => {
         dispatch(getProjectAssetsAsync({ id: projectId, page: PAGE, limit: LIMIT }));
@@ -25,6 +30,17 @@ export const ProjectGallery: React.FC<GalleryProps> = ({ projectId }) => {
 
     const toggleModal = () => {
         setIsSOpen(!isOpen);
+    };
+
+    const handleNext = () => {
+        setCount((prevState) => prevState + 1);
+        dispatch(
+            getProjectAssetsAsync({
+                id: projectId,
+                page: PAGE,
+                limit: LIMIT * count,
+            }),
+        );
     };
 
     return (
@@ -35,17 +51,19 @@ export const ProjectGallery: React.FC<GalleryProps> = ({ projectId }) => {
                 <Box width="100%">
                     <InfiniteScroll
                         className={classes.infinityScroll}
-                        dataLength={13}
-                        next={() =>
-                            dispatch(
-                                getProjectAssetsAsync({ id: projectId, page: PAGE, limit: 14 }),
-                            )
-                        }
-                        hasMore
+                        dataLength={totalAssets}
+                        next={handleNext}
+                        hasMore={totalAssets > projectAssets.length}
                         loader={
                             <img
                                 src="https://res.cloudinary.com/chuloo/image/upload/v1550093026/scotch-logo-gif_jq4tgr.gif"
                                 alt="loading"
+                            />
+                        }
+                        endMessage={
+                            <img
+                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Thats_all_folks.svg/796px-Thats_all_folks.svg.png"
+                                alt="all"
                             />
                         }
                     >

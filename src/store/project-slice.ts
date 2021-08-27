@@ -10,6 +10,7 @@ interface IProjectState {
     currentProject: Project | null;
     currentProjectAssets: ProjectAssets[];
     total: number;
+    totalAssets: number;
 }
 
 const initialState: IProjectState = {
@@ -17,6 +18,7 @@ const initialState: IProjectState = {
     currentProject: null,
     currentProjectAssets: [],
     total: 0,
+    totalAssets: 0,
 };
 
 export const getProjectsAsync = createAsyncThunk(
@@ -61,9 +63,11 @@ export const projectSlice = createSlice({
                 }
             })
             .addCase(getProjectAssetsAsync.fulfilled, (state, action) => {
-                const { data } = action.payload;
+                const { data, headers } = action.payload;
+                const totalCount = parseInt(headers['x-total-count'], 10);
 
-                if (data) {
+                if (data && !Number.isNaN(totalCount)) {
+                    state.totalAssets = totalCount;
                     state.currentProjectAssets = data;
                 }
             })
@@ -95,6 +99,11 @@ export const currentProjectSelector = createSelector(
 export const currentProjectAssetsSelector = createSelector(
     projectsSelector,
     ({ currentProjectAssets }) => currentProjectAssets,
+);
+
+export const totalAssetsSelector = createSelector(
+    projectsSelector,
+    ({ totalAssets }) => totalAssets,
 );
 
 export const projectsReducer = projectSlice.reducer;
