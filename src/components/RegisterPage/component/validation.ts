@@ -1,5 +1,5 @@
 import * as yup from 'yup';
-import { PASSWORD_REGEXP } from '../../../constants';
+import { PASSWORD_REGEXP } from 'constants/index';
 
 export const registerValidator = yup.object().shape({
     email: yup.string().email('The email should look like example@domain.ua').required('Required'),

@@ -1,25 +1,31 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { TableComponent } from 'components/Table';
-import { getProjectsAsync, projectsDataSelector, projectsTotalSelector } from 'store/project-slice';
 import { Pagination } from '@material-ui/lab';
+import { Box, Typography } from '@material-ui/core';
+import { getProjectsAsync, projectsDataSelector, projectsTotalSelector } from 'store/project-slice';
+import { TableComponent } from 'components/Table';
 import { LIMIT } from 'constants/index';
 import { Loading } from 'components/Loading';
-import { Box, Typography } from '@material-ui/core';
 import { columns } from './columns';
 import { useStyles } from './styles';
 
 export const Projects: React.FC = () => {
     const dispatch = useDispatch();
+    const classes = useStyles();
+    const [pageState, setPageState] = useState(1);
 
     useEffect(() => {
         dispatch(getProjectsAsync());
     }, [dispatch]);
 
-    const classes = useStyles();
     const projectData = useSelector(projectsDataSelector);
-    const [pageState, setPageState] = useState(1);
     const totalUsers = useSelector(projectsTotalSelector);
+
+    const handleChangePage = (event: ChangeEvent<unknown>, page: number) => {
+        event.preventDefault();
+        setPageState(page);
+        dispatch(getProjectsAsync({ page, limit: LIMIT }));
+    };
 
     return (
         <Box padding="30px" display="flex" flexDirection="column" alignItems="center">
@@ -33,10 +39,7 @@ export const Projects: React.FC = () => {
                         <Pagination
                             page={pageState}
                             count={Math.ceil(totalUsers / LIMIT)}
-                            onChange={(event: ChangeEvent<unknown>, page: number) => {
-                                setPageState(page);
-                                dispatch(getProjectsAsync({ page, limit: LIMIT }));
-                            }}
+                            onChange={(event, page) => handleChangePage(event, page)}
                         />
                     </>
                 )}
