@@ -20,6 +20,7 @@ export type IUserData = {
     surname: string;
     img: string;
     status: UserStatus;
+    role: UserRole;
 };
 
 export interface IEditForm {
@@ -45,5 +46,10 @@ export enum UserStatus {
     expired = 'expired',
 }
 
+export enum UserRole {
+    default = 'default',
+    contributor = 'contributor',
+    admin = 'admin',
+}
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type AsyncThunkProp = AsyncThunk<any, any, any>;
