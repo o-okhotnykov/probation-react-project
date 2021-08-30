@@ -3,6 +3,7 @@ import { GetProjectsParams, Project, ProjectResponse } from 'types/api/project';
 import { httpService } from 'services/HttpService';
 import { LIMIT, PAGE } from 'constants/index';
 import { errorToastNotify } from 'toasts/component/errorToast';
+import { successfulToastNotify } from 'toasts';
 import type { RootState } from './root-store';
 
 interface IProjectState {
@@ -29,6 +30,10 @@ export const getProjectByIdAsync = createAsyncThunk('app/getProjectById', (id: n
     return httpService.get<Project>(`projects/${id}`, {});
 });
 
+export const addProjectAsync = createAsyncThunk('app/addProject', (project: Project) => {
+    return httpService.post<Project>('projects', project);
+});
+
 export const projectSlice = createSlice({
     name: 'project',
     initialState,
@@ -50,6 +55,9 @@ export const projectSlice = createSlice({
                     state.currentProject = data;
                 }
             })
+            .addCase(addProjectAsync.fulfilled, () => {
+                successfulToastNotify('Project was added');
+            })
             .addCase(getProjectsAsync.rejected, (state, action) => {
                 const { message } = action.error;
                 if (message) {
@@ -57,6 +65,12 @@ export const projectSlice = createSlice({
                 }
             })
             .addCase(getProjectByIdAsync.rejected, (state, action) => {
+                const { message } = action.error;
+                if (message) {
+                    errorToastNotify(message);
+                }
+            })
+            .addCase(addProjectAsync.rejected, (state, action) => {
                 const { message } = action.error;
                 if (message) {
                     errorToastNotify(message);
