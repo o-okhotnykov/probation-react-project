@@ -26,11 +26,7 @@ export const MembersHeader: React.FC = () => {
 
             {isOpen && (
                 <ModalComponent open={isOpen} close={toggleModal}>
-                    <AddModal
-                        header="Add new user"
-                        handleCloseModal={toggleModal}
-                        submit={registerAsync}
-                    />
+                    <AddModal header="Create user" submit={registerAsync} />
                 </ModalComponent>
             )}
         </Box>
