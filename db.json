@@ -255,8 +255,13 @@
       "reporter": "Christian Matthews",
       "dateDue": "2021-07-14",
       "stats": "progress",
+<<<<<<< HEAD
       "value": "400"
 
+=======
+      "value": "400",
+      "views": 4
+>>>>>>> 07591fcdb3689e9dd6f73fc2f88c647b62dcfb15
     },
     {
       "id": 1,

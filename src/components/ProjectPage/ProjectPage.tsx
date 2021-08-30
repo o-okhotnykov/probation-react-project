@@ -1,9 +1,14 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Box, Button, CardMedia, Grid, Paper, Typography } from '@material-ui/core';
 import { Loading } from 'components/Loading';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { currentProjectSelector, getProjectByIdAsync } from 'store/project-slice';
+import {
+    currentProjectSelector,
+    getProjectByIdAsync,
+    patchProjectsViews,
+} from 'store/project-slice';
 import { ProjectGallery } from './components/ProjectGallery';
 import { useStyles } from './style';
 
