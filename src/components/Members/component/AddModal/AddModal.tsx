@@ -5,7 +5,6 @@ import { Form } from './Form';
 import { useStyles } from './styles';
 
 interface AddModalProps {
-    handleCloseModal: () => void;
     submit: AsyncThunkProp;
     header: string;
 }

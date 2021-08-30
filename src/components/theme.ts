@@ -45,25 +45,26 @@ export const theme = createTheme({
             color: DARK_GREY,
             textAlign: 'center',
         },
-        h5: {
-            fontWeight: 500,
-            fontSize: '1em',
-            color: '#1f2026',
+        h6: {
+            fontWeight: 900,
+            fontSize: '1.2em',
+            textTransform: 'uppercase',
+            color: PRIMARY_MAIN,
         },
         body1: {
             color: '#000',
-            fontWeight: 500,
+            fontWeight: 400,
             textTransform: 'capitalize',
-            fontSize: '.9em',
+            fontSize: '1em',
             textAlign: 'center',
         },
         body2: {
             fontWeight: 900,
-            fontSize: '.8em',
+            fontSize: '1em',
         },
         subtitle1: {
             fontWeight: 900,
-            fontSize: '.9em',
+            fontSize: '1em',
             color: '#8f9198',
         },
         caption: {
@@ -123,6 +124,12 @@ export const theme = createTheme({
                 '&:hover': {
                     color: PRIMARY_LIGHT,
                 },
+            },
+        },
+        MuiOutlinedInput: {
+            root: {
+                fontWeight: 900,
+                color: LIGHT_GREY,
             },
         },
     },

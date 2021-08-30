@@ -68,12 +68,7 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({ id }) => {
 
                 {isOpenEdit && (
                     <ModalComponent open={isOpenEdit} close={toggleModalEdit}>
-                        <EditModal
-                            id={id}
-                            header="Edit User"
-                            submit={patchUserAsync}
-                            handleCloseModal={toggleModalEdit}
-                        />
+                        <EditModal id={id} header="Edit User" submit={patchUserAsync} />
                     </ModalComponent>
                 )}
                 {isOpenRetire && (

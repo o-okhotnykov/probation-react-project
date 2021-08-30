@@ -1,7 +1,8 @@
 import * as yup from 'yup';
 import { PASSWORD_REGEXP } from 'constants/index';
 
-export const editFormValidator = yup.object().shape({
+export const addFormValidator = yup.object().shape({
+    email: yup.string().email('The email should look like example@domain.ua').required('Required'),
     password: yup
         .string()
         .matches(

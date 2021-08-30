@@ -6,7 +6,6 @@ import { useStyles } from './styles';
 
 interface EditModalProps {
     id: number;
-    handleCloseModal: () => void;
     submit: AsyncThunkProp;
     header: string;
 }
