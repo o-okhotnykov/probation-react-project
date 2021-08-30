@@ -1,9 +1,9 @@
-import { Box, Grid, Typography } from '@material-ui/core';
-import { ModalComponent } from 'components/ModalComponent';
-import { LIMIT, PAGE } from 'constants/index';
 import { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useDispatch, useSelector } from 'react-redux';
+import { Box, Grid, Typography } from '@material-ui/core';
+import { ModalComponent } from 'components/ModalComponent';
+import { LIMIT, PAGE } from 'constants/index';
 import {
     currentProjectAssetsSelector,
     getProjectAssetsAsync,
@@ -22,7 +22,7 @@ export const ProjectGallery: React.FC<GalleryProps> = ({ projectId }) => {
     const projectAssets = useSelector(currentProjectAssetsSelector);
     const totalAssets = useSelector(totalAssetsSelector);
     const [isOpen, setIsSOpen] = useState(false);
-    const [count, setCount] = useState(2);
+    const [count, setCount] = useState(1);
 
     useEffect(() => {
         dispatch(getProjectAssetsAsync({ id: projectId, page: PAGE, limit: LIMIT }));
@@ -36,7 +36,7 @@ export const ProjectGallery: React.FC<GalleryProps> = ({ projectId }) => {
         dispatch(
             getProjectAssetsAsync({
                 id: projectId,
-                page: count,
+                page: count + 1,
                 limit: LIMIT,
             }),
         );
