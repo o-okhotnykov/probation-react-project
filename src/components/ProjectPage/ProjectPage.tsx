@@ -11,11 +11,11 @@ export const ProjectPage: React.FC = () => {
     const { id } = useParams<{ id: string }>();
     const dispatch = useDispatch();
     const classes = useStyles();
+    const currentProject = useSelector(currentProjectSelector);
+
     useEffect(() => {
         dispatch(getProjectByIdAsync(Number(id)));
     }, [dispatch, id]);
-
-    const currentProject = useSelector(currentProjectSelector);
 
     return (
         <Box padding="30px 10px" display="flex" flexDirection="column" alignItems="center">
@@ -66,7 +66,7 @@ export const ProjectPage: React.FC = () => {
                                 </Box>
                             </Grid>
                         </Grid>
-                        <ProjectGallery projectAssets={currentProject.projectAssets} />
+                        <ProjectGallery projectId={currentProject.id} />
                     </>
                 )}
             </Loading>
