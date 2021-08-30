@@ -11,6 +11,7 @@ interface IProjectState {
     currentProjectAssets: ProjectAssets[];
     total: number;
     totalAssets: number;
+    views: number;
 }
 
 const initialState: IProjectState = {
@@ -19,6 +20,7 @@ const initialState: IProjectState = {
     currentProjectAssets: [],
     total: 0,
     totalAssets: 0,
+    views: 0,
 };
 
 export const getProjectsAsync = createAsyncThunk(
@@ -32,6 +34,13 @@ export const getProjectsAsync = createAsyncThunk(
 export const getProjectByIdAsync = createAsyncThunk('app/getProjectById', (id: number) => {
     return httpService.get<Project>(`projects/${id}`, {});
 });
+
+export const patchProjectsViews = createAsyncThunk(
+    'app/patchViews',
+    ({ id, views }: { id: number; views: number }) => {
+        return httpService.patch<Project>(`projects/${id}`, { data: { views } });
+    },
+);
 
 export const getProjectAssetsAsync = createAsyncThunk(
     'app/getProjectAssetsProjects',

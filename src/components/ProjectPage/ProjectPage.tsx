@@ -1,9 +1,14 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Box, Button, CardMedia, Grid, Paper, Typography } from '@material-ui/core';
 import { Loading } from 'components/Loading';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { currentProjectSelector, getProjectByIdAsync } from 'store/project-slice';
+import {
+    currentProjectSelector,
+    getProjectByIdAsync,
+    patchProjectsViews,
+} from 'store/project-slice';
 import { ProjectGallery } from './components/ProjectGallery';
 import { useStyles } from './style';
 
@@ -11,11 +16,17 @@ export const ProjectPage: React.FC = () => {
     const { id } = useParams<{ id: string }>();
     const dispatch = useDispatch();
     const classes = useStyles();
+    const currentProject = useSelector(currentProjectSelector);
+
     useEffect(() => {
         dispatch(getProjectByIdAsync(Number(id)));
     }, [dispatch, id]);
 
-    const currentProject = useSelector(currentProjectSelector);
+    useEffect(() => {
+        if (currentProject) {
+            dispatch(patchProjectsViews({ id: Number(id), views: currentProject.views + 1 }));
+        }
+    }, [currentProject, id, dispatch]);
 
     return (
         <Box padding="30px 10px" display="flex" flexDirection="column" alignItems="center">
