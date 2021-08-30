@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Box, Button, CardMedia, Grid, Paper, Typography } from '@material-ui/core';
 import { Loading } from 'components/Loading';
 import { useEffect } from 'react';
