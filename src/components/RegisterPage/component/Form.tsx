@@ -5,7 +5,7 @@ import { FormikProps } from 'formik';
 import { Link, Redirect } from 'react-router-dom';
 import { format } from 'date-fns';
 import { registerAsync, isAuthorizedSelector } from 'store/user-slice';
-import { UserStatus } from 'types/api/auth';
+import { UserRole, UserStatus } from 'types/api/auth';
 import { ROUTE_PATH } from 'constants/index';
 import logo from 'assets/logo.png';
 import { IRegisterFormValues } from 'types';
@@ -31,6 +31,7 @@ export const Form: React.FC<FormikProps<IRegisterFormValues>> = (props) => {
                 birthDate: values.birthDate,
                 status: UserStatus.register,
                 img: defaultUser,
+                role: UserRole.default,
             }),
         );
     };

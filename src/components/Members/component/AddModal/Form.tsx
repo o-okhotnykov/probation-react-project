@@ -4,7 +4,7 @@ import { format } from 'date-fns';
 import { useFormik } from 'formik';
 import { getUserAsync, getUsersAsync } from 'store/user-slice';
 import { useDispatch } from 'react-redux';
-import { UserStatus } from 'types/api/auth';
+import { UserRole, UserStatus } from 'types/api/auth';
 import { fileToBase64 } from 'helper/base64';
 import defaultUser from 'assets/default-user.png';
 
@@ -30,6 +30,7 @@ export const Form: React.FC<FormProps> = ({ submit }) => {
         birthDate: '',
         status: UserStatus.progress,
         img: defaultUser,
+        role: UserRole.default,
     };
 
     const onSubmit = async (values: IRegisterResponse) => {
