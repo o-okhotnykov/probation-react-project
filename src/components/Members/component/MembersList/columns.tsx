@@ -1,7 +1,9 @@
 import { Paper, Typography } from '@material-ui/core';
 import { ReactElement } from 'react';
+import { useSelector } from 'react-redux';
 import { Column } from 'react-table';
-import { UserStatus } from 'types/api/auth';
+import { isAdminSelector } from 'store/user-slice';
+import { UserRole } from 'types/api/auth';
 import { ActionMenu } from '../ActionMenu';
 import { useStyles } from './style';
 
@@ -30,7 +32,11 @@ export const columns: Column[] = [
         },
         accessor: 'email',
         Cell: function Email({ value }: { value: string }): ReactElement {
-            return <Typography variant="body1">{value}</Typography>;
+            return (
+                <Typography variant="body1" style={{ textTransform: 'lowercase' }}>
+                    {value}
+                </Typography>
+            );
         },
     },
     {
@@ -43,22 +49,25 @@ export const columns: Column[] = [
         },
     },
     {
-        Header: function Status(): ReactElement {
-            return <Typography variant="h3">Status</Typography>;
+        Header: function Role(): ReactElement {
+            return <Typography variant="h3">Role</Typography>;
         },
-        accessor: 'status',
-        Cell: function Progress({ value }: { value: UserStatus }): ReactElement {
+        accessor: 'role',
+        Cell: function Progress({ value }: { value: UserRole }): ReactElement {
             const classes = useStyles();
             return <Paper className={classes[value]}>{value}</Paper>;
         },
     },
     {
         Header: function Action(): ReactElement {
-            return <Typography variant="h3">Action</Typography>;
+            const isAdmin = useSelector(isAdminSelector);
+
+            return <>{isAdmin && <Typography variant="h3">Action</Typography>}</>;
         },
         accessor: 'id',
         Cell: function Action({ value }: { value: number }): ReactElement {
-            return <ActionMenu id={value} />;
+            const isAdmin = useSelector(isAdminSelector);
+            return <>{isAdmin && <ActionMenu id={value} />}</>;
         },
     },
 ];

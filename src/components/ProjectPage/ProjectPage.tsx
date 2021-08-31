@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { currentProjectSelector, getProjectByIdAsync } from 'store/project-slice';
+import { userSelector } from 'store/user-slice';
 import { ProjectGallery } from './components/ProjectGallery';
 import { useStyles } from './style';
 
@@ -12,6 +13,7 @@ export const ProjectPage: React.FC = () => {
     const dispatch = useDispatch();
     const classes = useStyles();
     const currentProject = useSelector(currentProjectSelector);
+    const currentUser = useSelector(userSelector);
 
     useEffect(() => {
         dispatch(getProjectByIdAsync(Number(id)));
@@ -50,20 +52,22 @@ export const ProjectPage: React.FC = () => {
                                 <Paper className={classes[currentProject.stats]}>
                                     {currentProject.stats}
                                 </Paper>
-                                <Box
-                                    display="flex"
-                                    width="100%"
-                                    justifyContent="space-around"
-                                    alignSelf="center"
-                                    padding="10px 0"
-                                >
-                                    <Button variant="outlined" color="primary">
-                                        Edit
-                                    </Button>
-                                    <Button variant="outlined" color="primary">
-                                        Delete
-                                    </Button>
-                                </Box>
+                                {currentProject?.reporterId === currentUser.userData?.id && (
+                                    <Box
+                                        display="flex"
+                                        width="100%"
+                                        justifyContent="space-around"
+                                        alignSelf="center"
+                                        padding="10px 0"
+                                    >
+                                        <Button variant="outlined" color="primary">
+                                            Edit
+                                        </Button>
+                                        <Button variant="outlined" color="primary">
+                                            Delete
+                                        </Button>
+                                    </Box>
+                                )}
                             </Grid>
                         </Grid>
                         <ProjectGallery projectId={currentProject.id} />

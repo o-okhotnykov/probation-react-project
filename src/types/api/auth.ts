@@ -19,7 +19,6 @@ export type IUserData = {
     name: string;
     surname: string;
     img: string;
-    status: UserStatus;
     role: UserRole;
 };
 
@@ -30,7 +29,7 @@ export interface IEditForm {
     confirmPassword: string;
     birthDate: string;
     img: string;
-    status: UserStatus;
+    role: UserRole;
 }
 export interface IEditFormResponse {
     email?: string;
@@ -38,12 +37,7 @@ export interface IEditFormResponse {
     surname: string;
     birthDate: string;
     img: string;
-    status: UserStatus;
-}
-export enum UserStatus {
-    progress = 'progress',
-    register = 'register',
-    expired = 'expired',
+    role: UserRole;
 }
 
 export enum UserRole {

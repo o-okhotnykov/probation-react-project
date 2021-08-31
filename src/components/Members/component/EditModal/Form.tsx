@@ -9,7 +9,7 @@ import {
     getUsersAsync,
 } from 'store/user-slice';
 import { useDispatch, useSelector } from 'react-redux';
-import { IEditForm, UserStatus } from 'types/api/auth';
+import { IEditForm, UserRole } from 'types/api/auth';
 import { fileToBase64 } from 'helper/base64';
 import defaultUser from 'assets/default-user.png';
 import { Loading } from 'components/Loading';
@@ -33,7 +33,7 @@ export const Form: React.FC<FormProps> = ({ id, submit }) => {
         password: '',
         confirmPassword: '',
         birthDate: '',
-        status: UserStatus.progress,
+        role: UserRole.default,
         img: defaultUser,
     });
 
@@ -51,7 +51,7 @@ export const Form: React.FC<FormProps> = ({ id, submit }) => {
                 password: '',
                 confirmPassword: '',
                 birthDate: currentUser.birthDate,
-                status: currentUser.status,
+                role: currentUser.role,
                 img: currentUser.img,
             });
         }
@@ -66,7 +66,7 @@ export const Form: React.FC<FormProps> = ({ id, submit }) => {
                     surname: values.surname,
                     birthDate: values.birthDate,
                     img: values.img,
-                    status: values.status,
+                    role: values.role,
                 },
             }),
         );
@@ -90,7 +90,7 @@ export const Form: React.FC<FormProps> = ({ id, submit }) => {
         }>,
         setFieldValue: (field: string, value: unknown) => void,
     ) => {
-        setFieldValue('status', event.target.value);
+        setFieldValue('role', event.target.value);
     };
 
     const formik = useFormik({
@@ -195,18 +195,18 @@ export const Form: React.FC<FormProps> = ({ id, submit }) => {
                             />
                         </Button>
                         <Select
-                            id="status"
-                            value={values.status}
+                            id="role"
+                            value={values.role}
                             onChange={(event) => handleSelect(event, setFieldValue)}
                         >
-                            <MenuItem id="status" value={UserStatus.progress}>
-                                Progress
+                            <MenuItem id="status" value={UserRole.admin}>
+                                Admin
                             </MenuItem>
-                            <MenuItem id="status" value={UserStatus.register}>
-                                Register
+                            <MenuItem id="status" value={UserRole.contributor}>
+                                Contributor
                             </MenuItem>
-                            <MenuItem id="status" value={UserStatus.expired}>
-                                Expired
+                            <MenuItem id="status" value={UserRole.default}>
+                                Default
                             </MenuItem>
                         </Select>
                     </Grid>
