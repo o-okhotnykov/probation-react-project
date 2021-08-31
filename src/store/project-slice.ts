@@ -54,7 +54,11 @@ export const getProjectAssetsAsync = createAsyncThunk(
 export const projectSlice = createSlice({
     name: 'project',
     initialState,
-    reducers: {},
+    reducers: {
+        clearAssets(state: IProjectState) {
+            state.currentProjectAssets = [];
+        },
+    },
     extraReducers: (builder) =>
         builder
             .addCase(getProjectsAsync.fulfilled, (state, action) => {
@@ -97,6 +101,8 @@ export const projectSlice = createSlice({
                 }
             }),
 });
+
+export const { clearAssets } = projectSlice.actions;
 
 export const projectsSelector = (state: RootState): IProjectState => state.projects;
 

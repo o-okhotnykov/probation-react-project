@@ -15,10 +15,12 @@ export const ProjectPage: React.FC = () => {
     const dispatch = useDispatch();
     const classes = useStyles();
     const currentProject = useSelector(currentProjectSelector);
+    const [projectId, setProjectId] = useState<number>(0);
 
     useEffect(() => {
-        dispatch(getProjectByIdAsync(Number(id)));
-    }, [dispatch, id]);
+        setProjectId(Number(id));
+        dispatch(getProjectByIdAsync(projectId));
+    }, [dispatch, id, projectId]);
 
     const toggleModal = () => {
         setIsOpen(!isOpen);
@@ -76,13 +78,13 @@ export const ProjectPage: React.FC = () => {
                                 </Box>
                             </Grid>
                         </Grid>
-                        <ProjectGallery projectId={currentProject.id} />
+                        <ProjectGallery projectId={projectId} />
                     </>
                 )}
             </Loading>
             {isOpen && (
                 <ModalComponent open={isOpen} close={toggleModal}>
-                    <RetireModal projectId={Number(id)} handleCloseModal={toggleModal} />
+                    <RetireModal projectId={projectId} handleCloseModal={toggleModal} />
                 </ModalComponent>
             )}
         </Box>
