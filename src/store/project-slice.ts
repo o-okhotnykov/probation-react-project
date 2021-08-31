@@ -34,7 +34,7 @@ export const getProjectsAsync = createAsyncThunk(
 
 export const getProjectByIdAsync = createAsyncThunk('app/getProjectById', async (id: number) => {
     const response = await httpService.get<Project>(`projects/${id}`, {});
-    const { data } = await response;
+    const { data } = response;
     httpService.patch<Project>(`projects/${id}`, { data: { views: data.views + 1 } });
     return response;
 });
