@@ -37,6 +37,10 @@ export const getProjectByIdAsync = createAsyncThunk('app/getProjectById', (id: n
 export const addProjectAsync = createAsyncThunk('app/addProject', (project: Project) => {
     return httpService.post<Project>('projects', project);
 });
+export const deleteProjectAsync = createAsyncThunk('app/deleteProject', (id: number) => {
+    return httpService.delete<Project>(`/projects/${id}`, {});
+});
+
 export const patchProjectsViews = createAsyncThunk(
     'app/patchViews',
     ({ id, views }: { id: number; views: number }) => {
@@ -75,6 +79,9 @@ export const projectSlice = createSlice({
             })
             .addCase(addProjectAsync.fulfilled, () => {
                 successfulToastNotify('Project was added');
+            })
+            .addCase(deleteProjectAsync.fulfilled, () => {
+                successfulToastNotify('The project was deleted ');
             })
             .addCase(getProjectAssetsAsync.fulfilled, (state, action) => {
                 const { data, headers } = action.payload;
