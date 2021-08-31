@@ -32,20 +32,16 @@ export const getProjectsAsync = createAsyncThunk(
     },
 );
 
-export const getProjectByIdAsync = createAsyncThunk('app/getProjectById', (id: number) => {
-    return httpService.get<Project>(`projects/${id}`, {});
+export const getProjectByIdAsync = createAsyncThunk('app/getProjectById', async (id: number) => {
+    const response = await httpService.get<Project>(`projects/${id}`, {});
+    const { data } = await response;
+    httpService.patch<Project>(`projects/${id}`, { data: { views: data.views + 1 } });
+    return response;
 });
 
 export const deleteProjectAsync = createAsyncThunk('app/deleteProject', (id: number) => {
     return httpService.delete<Project>(`/projects/${id}`, {});
 });
-
-export const patchProjectsViews = createAsyncThunk(
-    'app/patchViews',
-    ({ id, views }: { id: number; views: number }) => {
-        return httpService.patch<Project>(`projects/${id}`, { data: { views } });
-    },
-);
 
 export const getProjectAssetsAsync = createAsyncThunk(
     'app/getProjectAssetsProjects',

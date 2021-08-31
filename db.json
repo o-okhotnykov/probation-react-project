@@ -277,7 +277,8 @@
       "reporter": "Christian Matthews",
       "dateDue": "2021-07-14",
       "stats": "progress",
-      "value": "400"
+      "value": "400",
+      "views": 0
     },
     {
       "id": 4,
@@ -287,7 +288,8 @@
       "reporter": "Arthur Cook",
       "dateDue": "2021-07-10",
       "stats": "open",
-      "value": "450"
+      "value": "450",
+      "views": 0
     },
     {
       "id": 5,
@@ -297,7 +299,8 @@
       "reporter": "Christian Matthews",
       "dateDue": "2021-07-14",
       "stats": "progress",
-      "value": "400"
+      "value": "400",
+      "views": 0
     },
     {
       "id": 6,
@@ -307,7 +310,8 @@
       "reporter": "Arthur Cook",
       "dateDue": "2021-07-10",
       "stats": "open",
-      "value": "450"
+      "value": "450",
+      "views": 0
     },
     {
       "id": 7,
@@ -317,7 +321,8 @@
       "reporter": "Christian Matthews",
       "dateDue": "2021-07-14",
       "stats": "progress",
-      "value": "400"
+      "value": "400",
+      "views": 0
     },
     {
       "id": 8,
@@ -327,7 +332,8 @@
       "reporter": "Arthur Cook",
       "dateDue": "2021-07-10",
       "stats": "open",
-      "value": "450"
+      "value": "450",
+      "views": 0
     },
     {
       "id": 9,
@@ -337,7 +343,8 @@
       "reporter": "Christian Matthews",
       "dateDue": "2021-07-14",
       "stats": "progress",
-      "value": "400"
+      "value": "400",
+      "views": 0
     },
     {
       "id": 10,
@@ -347,7 +354,8 @@
       "reporter": "Arthur Cook",
       "dateDue": "2021-07-10",
       "stats": "open",
-      "value": "450"
+      "value": "450",
+      "views": 0
     },
     {
       "id": 11,
@@ -357,7 +365,8 @@
       "reporter": "Christian Matthews",
       "dateDue": "2021-07-14",
       "stats": "progress",
-      "value": "400"
+      "value": "400",
+      "views": 0
     },
     {
       "id": 12,
@@ -367,7 +376,8 @@
       "reporter": "Arthur Cook",
       "dateDue": "2021-07-10",
       "stats": "open",
-      "value": "450"
+      "value": "450",
+      "views": 0
     },
     {
       "id": 13,
@@ -377,7 +387,8 @@
       "reporter": "Christian Matthews",
       "dateDue": "2021-07-14",
       "stats": "progress",
-      "value": "400"
+      "value": "400",
+      "views": 0
     },
     {
       "id": 14,
@@ -387,7 +398,8 @@
       "reporter": "Arthur Cook",
       "dateDue": "2021-07-10",
       "stats": "open",
-      "value": "450"
+      "value": "450",
+      "views": 0
     },
     {
       "id": 15,
@@ -397,7 +409,8 @@
       "reporter": "Evelyn Tucker",
       "dateDue": "2021-07-03",
       "stats": "progress",
-      "value": "200"
+      "value": "200",
+      "views": 0
     },
     {
       "id": 16,
@@ -407,7 +420,8 @@
       "reporter": "Donald Curtis",
       "dateDue": "2021-07-12",
       "stats": "done",
-      "value": "500"
+      "value": "500",
+      "views": 0
     },
     {
       "id": 17,
@@ -417,7 +431,8 @@
       "reporter": "Alex Under",
       "dateDue": "2020-1-1",
       "stats": "progress",
-      "value": "550"
+      "value": "550",
+      "views": 0
     }
   ],
   "users": [

@@ -2,11 +2,7 @@ import { useEffect, useState } from 'react';
 import { Box, Button, CardMedia, Grid, Paper, Typography } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import {
-    currentProjectSelector,
-    getProjectByIdAsync,
-    patchProjectsViews,
-} from 'store/project-slice';
+import { currentProjectSelector, getProjectByIdAsync } from 'store/project-slice';
 import { Loading } from 'components/Loading';
 import { ModalComponent } from 'components/ModalComponent';
 import { RetireModal } from './components/RetireModal';
@@ -23,12 +19,6 @@ export const ProjectPage: React.FC = () => {
     useEffect(() => {
         dispatch(getProjectByIdAsync(Number(id)));
     }, [dispatch, id]);
-
-    useEffect(() => {
-        if (currentProject) {
-            dispatch(patchProjectsViews({ id: Number(id), views: currentProject.views + 1 }));
-        }
-    }, [currentProject, id, dispatch]);
 
     const toggleModal = () => {
         setIsOpen(!isOpen);
