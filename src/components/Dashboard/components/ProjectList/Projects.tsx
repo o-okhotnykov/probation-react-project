@@ -4,6 +4,7 @@ import { Box, Typography } from '@material-ui/core';
 import { getProjectsAsync, projectsDataSelector } from 'store/project-slice';
 import { TableComponent } from 'components/Table';
 import { Loading } from 'components/Loading';
+import { PAGE, SHORT_LIMIT } from 'constants/index';
 import { columns } from './columns';
 import { useStyles } from './styles';
 
@@ -12,7 +13,7 @@ export const ProjectList: React.FC = () => {
     const classes = useStyles();
 
     useEffect(() => {
-        dispatch(getProjectsAsync({ page: 1, limit: 4 }));
+        dispatch(getProjectsAsync({ page: PAGE, limit: SHORT_LIMIT }));
     }, [dispatch]);
 
     const projectData = useSelector(projectsDataSelector);
@@ -24,14 +25,12 @@ export const ProjectList: React.FC = () => {
             </Typography>
             <Loading apiCall={getProjectsAsync}>
                 {projectData && (
-                    <>
-                        <TableComponent
-                            columns={columns}
-                            data={projectData}
-                            isDetailedPage
-                            sortBy="dateCreate"
-                        />
-                    </>
+                    <TableComponent
+                        columns={columns}
+                        data={projectData}
+                        isDetailedPage
+                        sortBy="dateCreate"
+                    />
                 )}
             </Loading>
         </Box>
