@@ -3,6 +3,7 @@ import { GetProjectsParams, Project, ProjectAssets, ProjectResponse } from 'type
 import { httpService } from 'services/HttpService';
 import { LIMIT, PAGE } from 'constants/index';
 import { errorToastNotify } from 'toasts/component/errorToast';
+import { successfulToastNotify } from 'toasts';
 import type { RootState } from './root-store';
 
 interface IProjectState {
@@ -31,6 +32,10 @@ export const getProjectsAsync = createAsyncThunk(
 
 export const getProjectByIdAsync = createAsyncThunk('app/getProjectById', (id: number) => {
     return httpService.get<Project>(`projects/${id}`, {});
+});
+
+export const deleteProjectAsync = createAsyncThunk('app/deleteProject', (id: number) => {
+    return httpService.delete<Project>(`/projects/${id}`, {});
 });
 
 export const patchProjectsViews = createAsyncThunk(
@@ -68,6 +73,9 @@ export const projectSlice = createSlice({
                 if (data) {
                     state.currentProject = data;
                 }
+            })
+            .addCase(deleteProjectAsync.fulfilled, () => {
+                successfulToastNotify('The project was deleted ');
             })
             .addCase(getProjectAssetsAsync.fulfilled, (state, action) => {
                 const { data, headers } = action.payload;
