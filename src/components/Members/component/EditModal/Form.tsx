@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Button, Grid, MenuItem, Select, TextField } from '@material-ui/core';
+import { KeyboardDatePicker } from '@material-ui/pickers';
+import { MaterialUiPickersDate } from '@material-ui/pickers/typings/date';
 import { format } from 'date-fns';
 import { useFormik } from 'formik';
 import {
@@ -24,7 +26,6 @@ interface FormProps {
 export const Form: React.FC<FormProps> = ({ id, submit }) => {
     const classes = useStyles();
     const dispatch = useDispatch();
-    const currentDay = format(new Date(), 'yyyy-MM-dd');
     const currentUser = useSelector(currentUserSelector);
 
     const [value, setValue] = useState({
@@ -91,6 +92,16 @@ export const Form: React.FC<FormProps> = ({ id, submit }) => {
         setFieldValue: (field: string, value: unknown) => void,
     ) => {
         setFieldValue('status', event.target.value);
+    };
+
+    const handleChangeDate = (
+        event: MaterialUiPickersDate,
+        setFieldValue: (field: string, value: unknown) => void,
+    ) => {
+        if (event) {
+            const date = format(event, 'yyyy-MM-dd');
+            setFieldValue('dateDue', date);
+        }
     };
 
     const formik = useFormik({
@@ -167,19 +178,21 @@ export const Form: React.FC<FormProps> = ({ id, submit }) => {
                             variant="outlined"
                             fullWidth
                         />
-                        <TextField
-                            id="birthDate"
-                            type="date"
-                            InputProps={{ inputProps: { max: currentDay } }}
-                            defaultValue="2017-05-24"
+
+                        <KeyboardDatePicker
+                            className={classes.date}
+                            disableToolbar
+                            margin="normal"
+                            format="yyyy-MM-dd"
+                            inputVariant="outlined"
+                            placeholder="yyyy-MM-dd"
+                            id="dateDue"
+                            disableFuture
                             value={values.birthDate}
-                            onChange={handleChange}
+                            onChange={(event) => handleChangeDate(event, setFieldValue)}
                             onBlur={handleBlur}
                             helperText={touched.birthDate ? errors.birthDate : ''}
                             error={touched.birthDate && Boolean(errors.birthDate)}
-                            margin="dense"
-                            variant="outlined"
-                            fullWidth
                         />
                     </Grid>
                     <Grid item xs={6} className={classes.formPart}>
