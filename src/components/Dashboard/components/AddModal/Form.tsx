@@ -14,7 +14,7 @@ import { useStyles } from './styles';
 
 interface FormProps {
     handleCloseModal: () => void;
-    submit: (data: unknown) => void;
+    submit: (data: Project) => void;
 }
 
 export const Form: React.FC<FormProps> = ({ submit, handleCloseModal }) => {
