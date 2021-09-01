@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 import { Box, Button, CardMedia, Grid, Paper, Typography } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { currentProjectSelector, getProjectByIdAsync } from 'store/project-slice';
 import { Loading } from 'components/Loading';
 import { ModalComponent } from 'components/ModalComponent';
-import { currentProjectSelector, getProjectByIdAsync } from 'store/project-slice';
 import { RetireModal } from './components/RetireModal';
 import { ProjectGallery } from './components/ProjectGallery';
 import { useStyles } from './style';
@@ -15,10 +15,12 @@ export const ProjectPage: React.FC = () => {
     const dispatch = useDispatch();
     const classes = useStyles();
     const currentProject = useSelector(currentProjectSelector);
+    const [projectId, setProjectId] = useState<number>(0);
 
     useEffect(() => {
-        dispatch(getProjectByIdAsync(Number(id)));
-    }, [dispatch, id]);
+        setProjectId(Number(id));
+        dispatch(getProjectByIdAsync(projectId));
+    }, [dispatch, id, projectId]);
 
     const toggleModal = () => {
         setIsOpen(!isOpen);
@@ -76,13 +78,13 @@ export const ProjectPage: React.FC = () => {
                                 </Box>
                             </Grid>
                         </Grid>
-                        <ProjectGallery projectId={currentProject.id} />
+                        <ProjectGallery projectId={projectId} />
                     </>
                 )}
             </Loading>
             {isOpen && (
                 <ModalComponent open={isOpen} close={toggleModal}>
-                    <RetireModal projectId={Number(id)} handleCloseModal={toggleModal} />
+                    <RetireModal projectId={projectId} handleCloseModal={toggleModal} />
                 </ModalComponent>
             )}
         </Box>
