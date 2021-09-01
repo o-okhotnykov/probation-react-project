@@ -1,4 +1,4 @@
-import { Table, TableBody, TableCell, TableHead, TableRow } from '@material-ui/core';
+import { Box, Table, TableBody, TableCell, TableHead, TableRow } from '@material-ui/core';
 import { Column, Row, useSortBy, useTable } from 'react-table';
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
@@ -60,14 +60,16 @@ export const TableComponent: React.FC<IDataTableProps<IUserData | Project>> = ({
                                 key={shortid.generate()}
                                 className={classes.tableHead}
                             >
-                                {column.render('Header')}
+                                <Box display="flex" minHeight="25px">
+                                    {column.render('Header')}
 
-                                {column.isSorted &&
-                                    (column.isSortedDesc ? (
-                                        <ArrowDropDownIcon />
-                                    ) : (
-                                        <ArrowDropUpIcon />
-                                    ))}
+                                    {column.isSorted &&
+                                        (column.isSortedDesc ? (
+                                            <ArrowDropDownIcon />
+                                        ) : (
+                                            <ArrowDropUpIcon />
+                                        ))}
+                                </Box>
                             </TableCell>
                         ))}
                     </TableRow>
