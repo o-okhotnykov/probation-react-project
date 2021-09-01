@@ -256,7 +256,8 @@
       "dateDue": "2021-07-14",
       "stats": "progress",
       "value": "400",
-      "reporterId": 1
+      "reporterId": 1,
+      "views": 2
     },
     {
       "id": 1,
@@ -267,7 +268,8 @@
       "dateDue": "2021-07-10",
       "stats": "open",
       "value": "450",
-      "reporterId": 3
+      "reporterId": 3,
+      "views": 0
     },
     {
       "id": 3,
@@ -278,7 +280,8 @@
       "dateDue": "2021-07-14",
       "stats": "progress",
       "value": "400",
-      "reporterId": 1
+      "reporterId": 1,
+      "views": 0
     },
     {
       "id": 4,
@@ -289,7 +292,8 @@
       "dateDue": "2021-07-10",
       "stats": "open",
       "value": "450",
-      "reporterId": 1
+      "reporterId": 1,
+      "views": 0
     },
     {
       "id": 5,
@@ -300,7 +304,8 @@
       "dateDue": "2021-07-14",
       "stats": "progress",
       "value": "400",
-      "reporterId": 1
+      "reporterId": 1,
+      "views": 0
     },
     {
       "id": 6,
@@ -311,7 +316,8 @@
       "dateDue": "2021-07-10",
       "stats": "open",
       "value": "450",
-      "reporterId": 1
+      "reporterId": 1,
+      "views": 0
     },
     {
       "id": 7,
@@ -322,7 +328,8 @@
       "dateDue": "2021-07-14",
       "stats": "progress",
       "value": "400",
-      "reporterId": 1
+      "reporterId": 1,
+      "views": 0
     },
     {
       "id": 8,
@@ -333,7 +340,8 @@
       "dateDue": "2021-07-10",
       "stats": "open",
       "value": "450",
-      "reporterId": 1
+      "reporterId": 1,
+      "views": 0
     },
     {
       "id": 9,
@@ -344,7 +352,8 @@
       "dateDue": "2021-07-14",
       "stats": "progress",
       "value": "400",
-      "reporterId": 1
+      "reporterId": 1,
+      "views": 0
     },
     {
       "id": 10,
@@ -355,7 +364,8 @@
       "dateDue": "2021-07-10",
       "stats": "open",
       "value": "450",
-      "reporterId": 1
+      "reporterId": 1,
+      "views": 0
     },
     {
       "id": 11,
@@ -366,7 +376,8 @@
       "dateDue": "2021-07-14",
       "stats": "progress",
       "value": "400",
-      "reporterId": 1
+      "reporterId": 1,
+      "views": 0
     },
     {
       "id": 12,
@@ -377,7 +388,8 @@
       "dateDue": "2021-07-10",
       "stats": "open",
       "value": "450",
-      "reporterId": 1
+      "reporterId": 1,
+      "views": 0
     },
     {
       "id": 13,
@@ -388,7 +400,8 @@
       "dateDue": "2021-07-14",
       "stats": "progress",
       "value": "400",
-      "reporterId": 1
+      "reporterId": 1,
+      "views": 0
     },
     {
       "id": 14,
@@ -399,7 +412,8 @@
       "dateDue": "2021-07-10",
       "stats": "open",
       "value": "450",
-      "reporterId": 1
+      "reporterId": 1,
+      "views": 0
     },
     {
       "id": 15,
@@ -410,7 +424,11 @@
       "dateDue": "2021-07-03",
       "stats": "progress",
       "value": "200",
+<<<<<<< HEAD
       "reporterId": 1
+=======
+      "views": 0
+>>>>>>> dd94b7aa110a61afefeccf71f21a75eeccd09ad2
     },
     {
       "id": 16,
@@ -421,7 +439,11 @@
       "dateDue": "2021-07-12",
       "stats": "done",
       "value": "500",
+<<<<<<< HEAD
       "reporterId": 1
+=======
+      "views": 0
+>>>>>>> dd94b7aa110a61afefeccf71f21a75eeccd09ad2
     },
     {
       "id": 17,
@@ -432,7 +454,11 @@
       "dateDue": "2020-1-1",
       "stats": "progress",
       "value": "550",
+<<<<<<< HEAD
       "reporterId": 1
+=======
+      "views": 0
+>>>>>>> dd94b7aa110a61afefeccf71f21a75eeccd09ad2
     }
   ],
   "users": [

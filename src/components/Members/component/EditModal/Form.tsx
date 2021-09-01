@@ -113,8 +113,8 @@ export const Form: React.FC<FormProps> = ({ id, submit }) => {
     } = formik;
 
     return (
-        <Loading apiCall={getUserByIdAsync}>
-            <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className={classes.form}>
+            <Loading apiCall={getUserByIdAsync}>
                 <Grid container>
                     <Grid item xs={6}>
                         <TextField
@@ -197,6 +197,9 @@ export const Form: React.FC<FormProps> = ({ id, submit }) => {
                         <Select
                             id="role"
                             value={values.role}
+                            variant="outlined"
+                            color="primary"
+                            className={classes.select}
                             onChange={(event) => handleSelect(event, setFieldValue)}
                         >
                             <MenuItem id="status" value={UserRole.admin}>
@@ -221,7 +224,7 @@ export const Form: React.FC<FormProps> = ({ id, submit }) => {
                         Confirm
                     </Button>
                 </Box>
-            </form>
-        </Loading>
+            </Loading>
+        </form>
     );
 };
