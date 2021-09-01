@@ -5,10 +5,12 @@ import { Box, Grid, Typography } from '@material-ui/core';
 import { ModalComponent } from 'components/ModalComponent';
 import { LIMIT, PAGE } from 'constants/index';
 import {
+    clearAssets,
     currentProjectAssetsSelector,
     getProjectAssetsAsync,
     totalAssetsSelector,
 } from 'store/project-slice';
+import { Loading } from 'components/Loading';
 import { GallerySlider } from '../GallerySlider';
 import { useStyles } from './style';
 
@@ -25,6 +27,7 @@ export const ProjectGallery: React.FC<GalleryProps> = ({ projectId }) => {
     const [count, setCount] = useState(1);
 
     useEffect(() => {
+        dispatch(clearAssets());
         dispatch(getProjectAssetsAsync({ id: projectId, page: PAGE, limit: LIMIT }));
     }, [dispatch, projectId]);
 
@@ -45,9 +48,7 @@ export const ProjectGallery: React.FC<GalleryProps> = ({ projectId }) => {
 
     return (
         <>
-            {projectAssets.length === 0 ? (
-                <Typography variant="h2">This project has no images</Typography>
-            ) : (
+            <Loading apiCall={getProjectAssetsAsync} hideLoader={projectAssets.length > 0}>
                 <Box width="100%">
                     <InfiniteScroll
                         className={classes.infinityScroll}
@@ -76,13 +77,13 @@ export const ProjectGallery: React.FC<GalleryProps> = ({ projectId }) => {
                         </Grid>
                     </InfiniteScroll>
                 </Box>
-            )}
 
-            {isOpen && (
-                <ModalComponent open={isOpen} close={toggleModal}>
-                    <GallerySlider projectAssets={projectAssets} />
-                </ModalComponent>
-            )}
+                {isOpen && (
+                    <ModalComponent open={isOpen} close={toggleModal}>
+                        <GallerySlider projectAssets={projectAssets} />
+                    </ModalComponent>
+                )}
+            </Loading>
         </>
     );
 };

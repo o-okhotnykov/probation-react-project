@@ -4,17 +4,21 @@ import { isRequestPendingSelector } from 'store/loading-slice';
 import { useSelector } from 'react-redux';
 import { AsyncThunkProp } from 'types/api/auth';
 
-export const Loading: React.FC<{ apiCall: AsyncThunkProp }> = ({ apiCall, children }) => {
+interface LoadingProps {
+    apiCall: AsyncThunkProp;
+    hideLoader?: boolean;
+}
+
+export const Loading: React.FC<LoadingProps> = ({ apiCall, hideLoader = false, children }) => {
     const loading = useSelector(isRequestPendingSelector(apiCall.typePrefix));
-    return (
-        <>
-            {loading ? (
-                <Box>
-                    <CircularProgress />
-                </Box>
-            ) : (
-                children
-            )}
-        </>
-    );
+
+    if (loading && !hideLoader) {
+        return (
+            <Box>
+                <CircularProgress />
+            </Box>
+        );
+    }
+
+    return <>{children}</>;
 };

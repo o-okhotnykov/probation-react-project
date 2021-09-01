@@ -7,6 +7,7 @@ export type Project = {
     id: number;
     img: string;
     value?: string;
+    views: number;
 };
 export type ProjectAssets = {
     id: number;
