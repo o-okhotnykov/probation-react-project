@@ -169,7 +169,7 @@ export const Form: React.FC<FormProps> = ({ submit }) => {
                 </Grid>
                 <Grid item xs={6} className={classes.formPart}>
                     <img src={values.img} alt="user-img" className={classes.userImg} />
-                    <Button variant="contained" component="label">
+                    <Button variant="contained" color="primary" component="label">
                         Upload File
                         <input
                             style={{ display: 'none' }}
@@ -181,7 +181,10 @@ export const Form: React.FC<FormProps> = ({ submit }) => {
                     </Button>
                     <Select
                         id="status"
+                        variant="outlined"
+                        color="primary"
                         value={values.status}
+                        className={classes.select}
                         onChange={(event) => handleSelect(event, setFieldValue)}
                     >
                         <MenuItem id="status" value={UserStatus.progress}>
