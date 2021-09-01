@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { Button, Grid, TextField } from '@material-ui/core';
 import { format } from 'date-fns';
 import { useFormik } from 'formik';
-import { getUserAsync, userDataSelector } from 'store/user-slice';
+import { userDataSelector } from 'store/user-slice';
 import { useDispatch, useSelector } from 'react-redux';
 import { fileToBase64 } from 'helper/base64';
 import defaultProject from 'assets/default-project.png';
-import { Loading } from 'components/Loading';
 import { Project, ProjectState } from 'types/api/project';
+import { Loading } from 'components/Loading';
 import { addProjectAsync } from 'store/project-slice';
 import { editFormValidator } from './validation';
 import { useStyles } from './styles';
@@ -22,10 +22,6 @@ export const Form: React.FC<FormProps> = ({ submit, handleCloseModal }) => {
     const dispatch = useDispatch();
     const currentDay = format(new Date(), 'yyyy-MM-dd');
     const currentUser = useSelector(userDataSelector);
-
-    useEffect(() => {
-        dispatch(getUserAsync());
-    }, [dispatch]);
 
     const [value, setValue] = useState<Project>({
         id: 0,
@@ -84,8 +80,8 @@ export const Form: React.FC<FormProps> = ({ submit, handleCloseModal }) => {
     } = formik;
 
     return (
-        <Loading apiCall={addProjectAsync}>
-            <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className={classes.form}>
+            <Loading apiCall={addProjectAsync}>
                 <Grid container>
                     <Grid item xs={6}>
                         <TextField
@@ -142,7 +138,7 @@ export const Form: React.FC<FormProps> = ({ submit, handleCloseModal }) => {
                         </Button>
                     </Grid>
                 </Grid>
-            </form>
-        </Loading>
+            </Loading>
+        </form>
     );
 };
