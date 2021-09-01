@@ -9,22 +9,16 @@ interface LoadingProps {
     hideLoader?: boolean;
 }
 
-export const Loading: React.FC<LoadingProps> = ({ apiCall, hideLoader, children }) => {
+export const Loading: React.FC<LoadingProps> = ({ apiCall, hideLoader = false, children }) => {
     const loading = useSelector(isRequestPendingSelector(apiCall.typePrefix));
 
-    if (hideLoader) {
-        return <>{children}</>;
+    if (loading && !hideLoader) {
+        return (
+            <Box>
+                <CircularProgress />
+            </Box>
+        );
     }
 
-    return (
-        <>
-            {loading ? (
-                <Box>
-                    <CircularProgress />
-                </Box>
-            ) : (
-                children
-            )}
-        </>
-    );
+    return <>{children}</>;
 };
