@@ -25,13 +25,18 @@ export const ProjectGallery: React.FC<GalleryProps> = ({ projectId }) => {
     const totalAssets = useSelector(totalAssetsSelector);
     const [isOpen, setIsSOpen] = useState(false);
     const [count, setCount] = useState(1);
+    const [indexImg, setIndexImg] = useState(0);
 
     useEffect(() => {
         dispatch(clearAssets());
         dispatch(getProjectAssetsAsync({ id: projectId, page: PAGE, limit: LIMIT }));
     }, [dispatch, projectId]);
 
-    const toggleModal = () => {
+    const toggleModal = (index?: number) => {
+        if (index) {
+            setIndexImg(index);
+        }
+
         setIsSOpen(!isOpen);
     };
 
@@ -59,13 +64,13 @@ export const ProjectGallery: React.FC<GalleryProps> = ({ projectId }) => {
                         endMessage={<Typography variant="h2">No more pictures</Typography>}
                     >
                         <Grid container className={classes.galleryContainer}>
-                            {projectAssets?.map(({ id, url }) => (
+                            {projectAssets?.map(({ id, url }, index) => (
                                 <Grid
                                     item
                                     xs={3}
                                     key={id}
                                     className={classes.media}
-                                    onClick={toggleModal}
+                                    onClick={() => toggleModal(index)}
                                 >
                                     <img
                                         src={url}
@@ -80,7 +85,7 @@ export const ProjectGallery: React.FC<GalleryProps> = ({ projectId }) => {
 
                 {isOpen && (
                     <ModalComponent open={isOpen} close={toggleModal}>
-                        <GallerySlider projectAssets={projectAssets} />
+                        <GallerySlider projectAssets={projectAssets} index={indexImg} />
                     </ModalComponent>
                 )}
             </Loading>

@@ -4,6 +4,7 @@ import {
     IUserData,
     LoginResponse,
     RegisterResponse,
+    UserRole,
     UsersGetResponse,
 } from 'types/api/auth';
 import { IRegisterResponse, ILoginFormValues } from 'types';
@@ -17,6 +18,7 @@ import type { RootState } from './root-store';
 interface IUserState {
     accessToken: string;
     isAuthorized: boolean;
+    role: UserRole;
     userData: IUserData | null;
     currentUser: IUserData | null;
     usersData: IUserData[];
@@ -26,6 +28,7 @@ interface IUserState {
 const initialState: IUserState = {
     accessToken: '',
     isAuthorized: false,
+    role: UserRole.default,
     userData: null,
     currentUser: null,
     usersData: [],
@@ -87,6 +90,7 @@ export const userSlice = createSlice({
 
                 state.accessToken = data.accessToken;
                 state.isAuthorized = true;
+                state.role = data.user.role;
                 successfulToastNotify('Successful Register');
             })
             .addCase(loginAsync.fulfilled, (state, action) => {
@@ -94,10 +98,12 @@ export const userSlice = createSlice({
 
                 state.accessToken = data.accessToken;
                 state.isAuthorized = true;
+                state.role = data.user.role;
                 successfulToastNotify('Successful Login');
             })
             .addCase(getUserAsync.fulfilled, (state, action) => {
                 const { data } = action.payload;
+                state.role = data.role;
                 state.userData = data;
             })
             .addCase(getUsersAsync.fulfilled, (state, action) => {
@@ -161,6 +167,13 @@ export const currentUserSelector = createSelector(userSelector, ({ currentUser }
 export const isAuthorizedSelector = createSelector(
     userSelector,
     ({ isAuthorized }) => isAuthorized,
+);
+
+export const isAdminSelector = createSelector(userSelector, ({ role }) => role === UserRole.admin);
+
+export const isContributorSelector = createSelector(
+    userSelector,
+    ({ role }) => role === UserRole.contributor,
 );
 
 export const userReducer = userSlice.reducer;

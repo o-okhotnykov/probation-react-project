@@ -4,7 +4,7 @@ import { format } from 'date-fns';
 import { useFormik } from 'formik';
 import { getUserAsync, getUsersAsync } from 'store/user-slice';
 import { useDispatch } from 'react-redux';
-import { UserStatus } from 'types/api/auth';
+import { UserRole } from 'types/api/auth';
 import { fileToBase64 } from 'helper/base64';
 import defaultUser from 'assets/default-user.png';
 
@@ -28,8 +28,8 @@ export const Form: React.FC<FormProps> = ({ submit }) => {
         password: '',
         confirmPassword: '',
         birthDate: '',
-        status: UserStatus.progress,
         img: defaultUser,
+        role: UserRole.default,
     };
 
     const onSubmit = async (values: IRegisterResponse) => {
@@ -41,7 +41,7 @@ export const Form: React.FC<FormProps> = ({ submit }) => {
                 password: values.password,
                 birthDate: values.birthDate,
                 img: values.img,
-                status: values.status,
+                role: values.role,
             }),
         );
 
@@ -64,7 +64,7 @@ export const Form: React.FC<FormProps> = ({ submit }) => {
         }>,
         setFieldValue: (field: string, value: unknown) => void,
     ) => {
-        setFieldValue('status', event.target.value);
+        setFieldValue('role', event.target.value);
     };
 
     const formik = useFormik({
@@ -180,21 +180,21 @@ export const Form: React.FC<FormProps> = ({ submit }) => {
                         />
                     </Button>
                     <Select
-                        id="status"
+                        id="role"
+                        value={values.role}
                         variant="outlined"
                         color="primary"
-                        value={values.status}
                         className={classes.select}
                         onChange={(event) => handleSelect(event, setFieldValue)}
                     >
-                        <MenuItem id="status" value={UserStatus.progress}>
-                            Progress
+                        <MenuItem id="status" value={UserRole.admin}>
+                            Admin
                         </MenuItem>
-                        <MenuItem id="status" value={UserStatus.register}>
-                            Register
+                        <MenuItem id="status" value={UserRole.contributor}>
+                            Contributor
                         </MenuItem>
-                        <MenuItem id="status" value={UserStatus.expired}>
-                            Expired
+                        <MenuItem id="status" value={UserRole.default}>
+                            Default
                         </MenuItem>
                     </Select>
                 </Grid>
