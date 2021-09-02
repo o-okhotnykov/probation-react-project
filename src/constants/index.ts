@@ -4,6 +4,8 @@ export const BASE_URL = 'http://localhost:3010/';
 
 export const LIMIT = 10;
 
+export const SHORT_LIMIT = 4;
+
 export const PAGE = 1;
 
 export const ROUTE_PATH = {
