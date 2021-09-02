@@ -256,7 +256,8 @@
             "dateDue": "2021-07-14",
             "stats": "progress",
             "value": "400",
-            "views": 0
+            "reporterId": 1,
+            "views": 2
         },
         {
             "id": 1,
@@ -267,7 +268,8 @@
             "dateDue": "2021-07-10",
             "stats": "open",
             "value": "450",
-            "views": 1
+            "reporterId": 3,
+            "views": 0
         },
         {
             "id": 3,
@@ -278,7 +280,8 @@
             "dateDue": "2021-07-14",
             "stats": "progress",
             "value": "400",
-            "views": 3
+            "reporterId": 1,
+            "views": 0
         },
         {
             "id": 4,
@@ -289,6 +292,7 @@
             "dateDue": "2021-07-10",
             "stats": "open",
             "value": "450",
+            "reporterId": 1,
             "views": 0
         },
         {
@@ -300,6 +304,7 @@
             "dateDue": "2021-07-14",
             "stats": "progress",
             "value": "400",
+            "reporterId": 1,
             "views": 0
         },
         {
@@ -311,6 +316,7 @@
             "dateDue": "2021-07-10",
             "stats": "open",
             "value": "450",
+            "reporterId": 1,
             "views": 0
         },
         {
@@ -322,6 +328,7 @@
             "dateDue": "2021-07-14",
             "stats": "progress",
             "value": "400",
+            "reporterId": 1,
             "views": 0
         },
         {
@@ -333,6 +340,7 @@
             "dateDue": "2021-07-10",
             "stats": "open",
             "value": "450",
+            "reporterId": 1,
             "views": 0
         },
         {
@@ -344,6 +352,7 @@
             "dateDue": "2021-07-14",
             "stats": "progress",
             "value": "400",
+            "reporterId": 1,
             "views": 0
         },
         {
@@ -355,6 +364,7 @@
             "dateDue": "2021-07-10",
             "stats": "open",
             "value": "450",
+            "reporterId": 1,
             "views": 0
         },
         {
@@ -366,6 +376,7 @@
             "dateDue": "2021-07-14",
             "stats": "progress",
             "value": "400",
+            "reporterId": 1,
             "views": 0
         },
         {
@@ -377,6 +388,7 @@
             "dateDue": "2021-07-10",
             "stats": "open",
             "value": "450",
+            "reporterId": 1,
             "views": 0
         },
         {
@@ -388,6 +400,7 @@
             "dateDue": "2021-07-14",
             "stats": "progress",
             "value": "400",
+            "reporterId": 1,
             "views": 0
         },
         {
@@ -399,6 +412,7 @@
             "dateDue": "2021-07-10",
             "stats": "open",
             "value": "450",
+            "reporterId": 1,
             "views": 0
         },
         {
@@ -410,6 +424,7 @@
             "dateDue": "2021-07-03",
             "stats": "progress",
             "value": "200",
+            "reporterId": 1,
             "views": 0
         },
         {
@@ -421,6 +436,7 @@
             "dateDue": "2021-07-12",
             "stats": "done",
             "value": "500",
+            "reporterId": 1,
             "views": 0
         },
         {
@@ -432,19 +448,50 @@
             "dateDue": "2020-1-1",
             "stats": "progress",
             "value": "550",
+            "reporterId": 1,
             "views": 0
         }
     ],
     "users": [
         {
-            "email": "sashaohotni26@gmail.com",
-            "password": "$2a$10$m044tTqDFwmJDBrBXf1gEO1TV1fKcmllR/nSRwKpNJ4EtzwY7Ud0q",
-            "name": "322",
-            "surname": "322",
-            "birthDate": "2021-08-12",
-            "status": "register",
+            "email": "oleksandr.okhotnykov@nure.ua",
+            "password": "$2a$10$0COO4wUir6fXPE2M1f6J2efHF2kDTOsmvSBpW9AcIpCq8NP5QhVCW",
+            "name": "Not",
+            "surname": "Admin",
+            "birthDate": "2021-08-04",
             "img": "/static/media/default-user.fba28acd.png",
-            "id": 1
+            "role": "default",
+            "id": 2
+        },
+        {
+            "email": "sashaohotni322@gmail.com",
+            "password": "$2a$10$9nA7aNv0HnAHLNlEHLkhAe.r1k5ItwrWRXqVQ14kUMPUHC460ciRq",
+            "name": "Contributor",
+            "surname": "Contributor",
+            "birthDate": "2021-08-18",
+            "img": "/static/media/default-user.fba28acd.png",
+            "role": "contributor",
+            "id": 3
+        },
+        {
+            "email": "1w@fwe.f",
+            "password": "$2a$10$R9p9iMevy72Qenoot0T14udhSF.RW38xngu6pnQff6cA/jVerUg8a",
+            "name": "qqq",
+            "surname": "www",
+            "birthDate": "2021-08-03",
+            "img": "/static/media/default-user.fba28acd.png",
+            "role": "contributor",
+            "id": 4
+        },
+        {
+            "email": "sashaohotni26@gmail.com",
+            "password": "$2a$10$bEJ2rx2mxM1dE0C0lQ/fOuFkq0Ruby/r2Hjp3vh9dEQGuZk7LmpGG",
+            "name": "Admin",
+            "surname": "Admin",
+            "birthDate": "2021-08-29",
+            "img": "/static/media/default-user.fba28acd.png",
+            "role": "admin",
+            "id": 5
         }
     ]
 }
