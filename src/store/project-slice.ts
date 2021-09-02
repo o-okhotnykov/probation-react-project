@@ -39,6 +39,9 @@ export const getProjectByIdAsync = createAsyncThunk('app/getProjectById', async 
     return response;
 });
 
+export const addProjectAsync = createAsyncThunk('app/addProject', (project: Project) => {
+    return httpService.post<Project>('projects', project);
+});
 export const deleteProjectAsync = createAsyncThunk('app/deleteProject', (id: number) => {
     return httpService.delete<Project>(`/projects/${id}`, {});
 });
@@ -76,6 +79,9 @@ export const projectSlice = createSlice({
                     state.currentProject = data;
                 }
             })
+            .addCase(addProjectAsync.fulfilled, () => {
+                successfulToastNotify('Project was added');
+            })
             .addCase(deleteProjectAsync.fulfilled, () => {
                 successfulToastNotify('The project was deleted ');
             })
@@ -95,6 +101,12 @@ export const projectSlice = createSlice({
                 }
             })
             .addCase(getProjectByIdAsync.rejected, (state, action) => {
+                const { message } = action.error;
+                if (message) {
+                    errorToastNotify(message);
+                }
+            })
+            .addCase(addProjectAsync.rejected, (state, action) => {
                 const { message } = action.error;
                 if (message) {
                     errorToastNotify(message);

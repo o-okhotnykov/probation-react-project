@@ -267,7 +267,7 @@
             "dateDue": "2021-07-10",
             "stats": "open",
             "value": "450",
-            "views": 0
+            "views": 1
         },
         {
             "id": 3,
@@ -278,7 +278,7 @@
             "dateDue": "2021-07-14",
             "stats": "progress",
             "value": "400",
-            "views": 0
+            "views": 3
         },
         {
             "id": 4,

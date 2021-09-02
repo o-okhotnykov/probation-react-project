@@ -4,29 +4,6 @@ import { Column } from 'react-table';
 import { ProjectState } from 'types/api/project';
 import { useStyles } from './styles';
 
-// const progressStyle: {
-//     [key in ProjectState]: CSSProperties;
-// } = {
-//     open: {
-//         color: theme.palette.info.main,
-//         backgroundColor: theme.palette.info.light,
-//         textTransform: 'uppercase',
-//         ...memberStatus,
-//     },
-//     done: {
-//         color: theme.palette.success.main,
-//         backgroundColor: theme.palette.success.light,
-//         textTransform: 'uppercase',
-//         ...memberStatus,
-//     },
-//     progress: {
-//         color: theme.palette.warning.main,
-//         backgroundColor: theme.palette.warning.light,
-//         textTransform: 'uppercase',
-//         ...memberStatus,
-//     },
-// };
-
 export const columns: Column[] = [
     {
         Header: function Img(): ReactElement {
