@@ -1,4 +1,4 @@
-import { UserStatus } from './api/auth';
+import { UserRole } from './api/auth';
 
 export interface IRegisterFormValues {
     email: string;
@@ -20,6 +20,6 @@ export interface IRegisterResponse {
     surname: string;
     password: string;
     birthDate: string;
-    status: UserStatus;
     img: string;
+    role: UserRole;
 }

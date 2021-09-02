@@ -6,6 +6,7 @@ export type Project = {
     stats: ProjectState;
     id: number;
     img: string;
+    reporterId: number;
     value?: string;
     views: number;
 };

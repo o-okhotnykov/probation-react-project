@@ -6,19 +6,19 @@ const memberStatus = {
 };
 
 export const useStyles = makeStyles((theme) => ({
-    register: {
+    default: {
         color: theme.palette.info.main,
         backgroundColor: theme.palette.info.light,
         textTransform: 'uppercase',
         ...memberStatus,
     },
-    expired: {
+    admin: {
         color: theme.palette.error.main,
         backgroundColor: theme.palette.error.light,
         textTransform: 'uppercase',
         ...memberStatus,
     },
-    progress: {
+    contributor: {
         color: theme.palette.warning.main,
         backgroundColor: theme.palette.warning.light,
         textTransform: 'uppercase',
