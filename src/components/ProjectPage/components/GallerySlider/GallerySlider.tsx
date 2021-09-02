@@ -8,14 +8,15 @@ import { useStyles } from './style';
 
 interface GallerySliderProps {
     projectAssets: ProjectAssets[];
+    index: number;
 }
 
-export const GallerySlider: React.FC<GallerySliderProps> = ({ projectAssets }) => {
+export const GallerySlider: React.FC<GallerySliderProps> = ({ projectAssets, index }) => {
     const classes = useStyles();
 
     return (
         <Box className={classes.slideWrapper}>
-            <Slider {...settings} className={classes.slider}>
+            <Slider {...settings} className={classes.slider} initialSlide={index}>
                 {projectAssets.map(({ id, url }) => (
                     <Box key={id} className={classes.media}>
                         <img alt="slider" className={classes.mediaContent} src={url} />
