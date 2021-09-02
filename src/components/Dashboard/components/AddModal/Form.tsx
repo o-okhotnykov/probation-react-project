@@ -32,6 +32,7 @@ export const Form: React.FC<FormProps> = ({ submit, handleCloseModal }) => {
         dateCreate: '',
         dateDue: '',
         stats: ProjectState.open,
+        reporterId: 0,
         views: 0,
         img: '',
     });
@@ -46,6 +47,7 @@ export const Form: React.FC<FormProps> = ({ submit, handleCloseModal }) => {
                 dateDue: '',
                 stats: ProjectState.open,
                 views: 0,
+                reporterId: currentUser.id,
                 img: defaultProject,
             });
         }

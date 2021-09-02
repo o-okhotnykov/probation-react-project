@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import { currentProjectSelector, getProjectByIdAsync } from 'store/project-slice';
 import { Loading } from 'components/Loading';
 import { ModalComponent } from 'components/ModalComponent';
+import { userSelector } from 'store/user-slice';
 import { RetireModal } from './components/RetireModal';
 import { ProjectGallery } from './components/ProjectGallery';
 import { useStyles } from './style';
@@ -15,6 +16,7 @@ export const ProjectPage: React.FC = () => {
     const dispatch = useDispatch();
     const classes = useStyles();
     const currentProject = useSelector(currentProjectSelector);
+    const currentUser = useSelector(userSelector);
     const [projectId, setProjectId] = useState<number>(0);
 
     useEffect(() => {
@@ -58,24 +60,22 @@ export const ProjectPage: React.FC = () => {
                                 <Paper className={classes[currentProject.stats]}>
                                     {currentProject.stats}
                                 </Paper>
-                                <Box
-                                    display="flex"
-                                    width="100%"
-                                    justifyContent="space-around"
-                                    alignSelf="center"
-                                    padding="10px 0"
-                                >
-                                    <Button variant="outlined" color="primary">
-                                        Edit
-                                    </Button>
-                                    <Button
-                                        variant="outlined"
-                                        color="primary"
-                                        onClick={toggleModal}
+                                {currentProject.reporterId === currentUser.userData?.id && (
+                                    <Box
+                                        display="flex"
+                                        width="100%"
+                                        justifyContent="space-around"
+                                        alignSelf="center"
+                                        padding="10px 0"
                                     >
-                                        Delete
-                                    </Button>
-                                </Box>
+                                        <Button variant="outlined" color="primary">
+                                            Edit
+                                        </Button>
+                                        <Button variant="outlined" color="primary">
+                                            Delete
+                                        </Button>
+                                    </Box>
+                                )}
                             </Grid>
                         </Grid>
                         <ProjectGallery projectId={projectId} />
