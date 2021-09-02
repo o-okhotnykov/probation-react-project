@@ -13,12 +13,14 @@ interface IDataTableProps<T> {
     columns: Column[];
     data: T[];
     isDetailedPage: boolean;
+    sortBy?: string;
 }
 
 export const TableComponent: React.FC<IDataTableProps<IUserData | Project>> = ({
     columns,
     data,
     isDetailedPage,
+    sortBy = '',
 }) => {
     const classes = useStyles();
     const history = useHistory();
@@ -27,7 +29,16 @@ export const TableComponent: React.FC<IDataTableProps<IUserData | Project>> = ({
         {
             columns,
             data,
+            initialState: {
+                sortBy: [
+                    {
+                        id: sortBy,
+                        desc: false,
+                    },
+                ],
+            },
         },
+
         useSortBy,
     );
 
