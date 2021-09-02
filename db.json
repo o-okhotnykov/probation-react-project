@@ -268,7 +268,6 @@
             "dateDue": "2021-07-10",
             "stats": "open",
             "value": "450",
-            "reporterId": 3,
             "views": 0
         },
         {
@@ -280,7 +279,6 @@
             "dateDue": "2021-07-14",
             "stats": "progress",
             "value": "400",
-            "reporterId": 1,
             "views": 0
         },
         {
