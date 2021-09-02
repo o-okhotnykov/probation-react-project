@@ -454,15 +454,6 @@
     ],
     "users": [
         {
-            "email": "sashaohotni26@gmail.com",
-            "password": "$2a$10$hk/0Wo1WRYjEVRXCDUUxlutojrdrFgoUpz/k3i3P3DyCWxg0Iz0oS",
-            "name": "Admin",
-            "surname": "Admin",
-            "birthDate": "2021-08-03",
-            "role": "admin",
-            "id": 1
-        },
-        {
             "email": "oleksandr.okhotnykov@nure.ua",
             "password": "$2a$10$0COO4wUir6fXPE2M1f6J2efHF2kDTOsmvSBpW9AcIpCq8NP5QhVCW",
             "name": "Not",
@@ -491,6 +482,16 @@
             "img": "/static/media/default-user.fba28acd.png",
             "role": "contributor",
             "id": 4
+        },
+        {
+            "email": "sashaohotni26@gmail.com",
+            "password": "$2a$10$bEJ2rx2mxM1dE0C0lQ/fOuFkq0Ruby/r2Hjp3vh9dEQGuZk7LmpGG",
+            "name": "Admin",
+            "surname": "Admin",
+            "birthDate": "2021-08-29",
+            "img": "/static/media/default-user.fba28acd.png",
+            "role": "admin",
+            "id": 5
         }
     ]
 }
