@@ -1,11 +1,11 @@
 import React from 'react';
 import { Typography, Button, Grid, Box } from '@material-ui/core';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
+import { useSelector } from 'react-redux';
 import project1Logo from 'assets/project1-logo.png';
 import project2Logo from 'assets/project2-logo.png';
 import project3Logo from 'assets/project3-logo.png';
 import { isAdminSelector, isContributorSelector } from 'store/user-slice';
-import { useSelector } from 'react-redux';
 import { ProjectCard } from '../ProjectCard';
 import { useStyles } from './styles';
 
