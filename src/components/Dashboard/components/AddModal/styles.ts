@@ -36,4 +36,10 @@ export const useStyles = makeStyles({
         marginBottom: 25,
         borderRadius: '50%',
     },
+    date: {
+        marginTop: 10,
+        '& input': {
+            padding: '10.5px 14px',
+        },
+    },
 });
