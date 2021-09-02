@@ -32,8 +32,8 @@ export const Form: React.FC<FormProps> = ({ submit, handleCloseModal }) => {
         dateCreate: '',
         dateDue: '',
         stats: ProjectState.open,
-        img: defaultProject,
         views: 0,
+        img: '',
     });
 
     useEffect(() => {
@@ -45,8 +45,8 @@ export const Form: React.FC<FormProps> = ({ submit, handleCloseModal }) => {
                 dateCreate: currentDay,
                 dateDue: '',
                 stats: ProjectState.open,
-                img: defaultProject,
                 views: 0,
+                img: defaultProject,
             });
         }
     }, [currentUser, currentDay]);

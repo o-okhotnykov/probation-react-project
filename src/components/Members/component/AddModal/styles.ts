@@ -1,6 +1,12 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles({
+    form: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+    },
+
     action: {
         paddingTop: '15px',
         display: 'flex',
@@ -17,6 +23,10 @@ export const useStyles = makeStyles({
     },
     text: {
         padding: '15px 0px',
+    },
+    select: {
+        marginTop: '40px',
+        padding: '0px',
     },
     link: {
         textDecoration: 'none',
