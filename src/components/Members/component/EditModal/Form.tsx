@@ -113,8 +113,8 @@ export const Form: React.FC<FormProps> = ({ id, submit }) => {
     } = formik;
 
     return (
-        <Loading apiCall={getUserByIdAsync}>
-            <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className={classes.form}>
+            <Loading apiCall={getUserByIdAsync}>
                 <Grid container>
                     <Grid item xs={6}>
                         <TextField
@@ -196,7 +196,10 @@ export const Form: React.FC<FormProps> = ({ id, submit }) => {
                         </Button>
                         <Select
                             id="status"
+                            variant="outlined"
+                            color="primary"
                             value={values.status}
+                            className={classes.select}
                             onChange={(event) => handleSelect(event, setFieldValue)}
                         >
                             <MenuItem id="status" value={UserStatus.progress}>
@@ -221,7 +224,7 @@ export const Form: React.FC<FormProps> = ({ id, submit }) => {
                         Confirm
                     </Button>
                 </Box>
-            </form>
-        </Loading>
+            </Loading>
+        </form>
     );
 };

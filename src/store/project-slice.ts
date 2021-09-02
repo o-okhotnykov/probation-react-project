@@ -12,6 +12,7 @@ interface IProjectState {
     currentProjectAssets: ProjectAssets[];
     total: number;
     totalAssets: number;
+    views: number;
 }
 
 const initialState: IProjectState = {
@@ -20,6 +21,7 @@ const initialState: IProjectState = {
     currentProjectAssets: [],
     total: 0,
     totalAssets: 0,
+    views: 0,
 };
 
 export const getProjectsAsync = createAsyncThunk(
@@ -30,20 +32,19 @@ export const getProjectsAsync = createAsyncThunk(
     },
 );
 
-export const getProjectByIdAsync = createAsyncThunk('app/getProjectById', (id: number) => {
-    return httpService.get<Project>(`projects/${id}`, {});
+export const getProjectByIdAsync = createAsyncThunk('app/getProjectById', async (id: number) => {
+    const response = await httpService.get<Project>(`projects/${id}`, {});
+    const { data } = response;
+    httpService.patch<Project>(`projects/${id}`, { data: { views: data.views + 1 } });
+    return response;
 });
 
+export const addProjectAsync = createAsyncThunk('app/addProject', (project: Project) => {
+    return httpService.post<Project>('projects', project);
+});
 export const deleteProjectAsync = createAsyncThunk('app/deleteProject', (id: number) => {
     return httpService.delete<Project>(`/projects/${id}`, {});
 });
-
-export const patchProjectsViews = createAsyncThunk(
-    'app/patchViews',
-    ({ id, views }: { id: number; views: number }) => {
-        return httpService.patch<Project>(`projects/${id}`, { data: { views } });
-    },
-);
 
 export const getProjectAssetsAsync = createAsyncThunk(
     'app/getProjectAssetsProjects',
@@ -56,7 +57,11 @@ export const getProjectAssetsAsync = createAsyncThunk(
 export const projectSlice = createSlice({
     name: 'project',
     initialState,
-    reducers: {},
+    reducers: {
+        clearAssets(state: IProjectState) {
+            state.currentProjectAssets = [];
+        },
+    },
     extraReducers: (builder) =>
         builder
             .addCase(getProjectsAsync.fulfilled, (state, action) => {
@@ -73,6 +78,9 @@ export const projectSlice = createSlice({
                 if (data) {
                     state.currentProject = data;
                 }
+            })
+            .addCase(addProjectAsync.fulfilled, () => {
+                successfulToastNotify('Project was added');
             })
             .addCase(deleteProjectAsync.fulfilled, () => {
                 successfulToastNotify('The project was deleted ');
@@ -97,8 +105,16 @@ export const projectSlice = createSlice({
                 if (message) {
                     errorToastNotify(message);
                 }
+            })
+            .addCase(addProjectAsync.rejected, (state, action) => {
+                const { message } = action.error;
+                if (message) {
+                    errorToastNotify(message);
+                }
             }),
 });
+
+export const { clearAssets } = projectSlice.actions;
 
 export const projectsSelector = (state: RootState): IProjectState => state.projects;
 

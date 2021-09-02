@@ -5,8 +5,9 @@ export type Project = {
     dateDue: string;
     stats: ProjectState;
     id: number;
-    img?: string;
+    img: string;
     value?: string;
+    views: number;
 };
 export type ProjectAssets = {
     id: number;

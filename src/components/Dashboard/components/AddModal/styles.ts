@@ -1,26 +1,17 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles({
-    form: {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-    },
     btnUpload: {
         margin: '11% 0',
     },
     action: {
-        paddingTop: '15px',
+        padding: '25px 0',
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'space-between',
     },
     card: {
         boxShadow: 'none',
-    },
-    select: {
-        marginTop: '40px',
-        padding: '0px',
     },
     media: {
         margin: '10px auto',
