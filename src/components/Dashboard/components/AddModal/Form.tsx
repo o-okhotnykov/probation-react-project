@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button, Grid, TextField } from '@material-ui/core';
+import { KeyboardDatePicker } from '@material-ui/pickers';
+import { MaterialUiPickersDate } from '@material-ui/pickers/typings/date';
 import { format } from 'date-fns';
 import { useFormik } from 'formik';
-import { userDataSelector } from 'store/user-slice';
 import { useDispatch, useSelector } from 'react-redux';
+import { userDataSelector } from 'store/user-slice';
 import { fileToBase64 } from 'helper/base64';
 import defaultProject from 'assets/default-project.png';
 import { Project, ProjectState } from 'types/api/project';
@@ -64,6 +66,16 @@ export const Form: React.FC<FormProps> = ({ submit, handleCloseModal }) => {
         setFieldValue('img', data);
     };
 
+    const handleChangeDate = (
+        event: MaterialUiPickersDate,
+        setFieldValue: (field: string, value: unknown) => void,
+    ) => {
+        if (event) {
+            const date = format(event, 'yyyy-MM-dd');
+            setFieldValue('dateDue', date);
+        }
+    };
+
     const formik = useFormik({
         initialValues: value,
         enableReinitialize: true,
@@ -97,22 +109,25 @@ export const Form: React.FC<FormProps> = ({ submit, handleCloseModal }) => {
                             helperText={touched.title ? errors.title : ''}
                             error={touched.title && Boolean(errors.title)}
                             margin="dense"
+                            placeholder="Title"
                             variant="outlined"
                             fullWidth
                         />
 
-                        <TextField
+                        <KeyboardDatePicker
+                            className={classes.date}
+                            disableToolbar
+                            margin="normal"
+                            format="yyyy-MM-dd"
+                            inputVariant="outlined"
+                            placeholder="yyyy-MM-dd"
                             id="dateDue"
-                            type="date"
-                            InputProps={{ inputProps: { min: currentDay } }}
+                            disablePast
                             value={values.dateDue}
-                            onChange={handleChange}
+                            onChange={(event) => handleChangeDate(event, setFieldValue)}
                             onBlur={handleBlur}
                             helperText={touched.dateDue ? errors.dateDue : ''}
                             error={touched.dateDue && Boolean(errors.dateDue)}
-                            margin="dense"
-                            variant="outlined"
-                            fullWidth
                         />
                     </Grid>
                     <Grid item xs={6} className={classes.formPart}>
