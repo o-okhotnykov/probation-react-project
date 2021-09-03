@@ -8,7 +8,7 @@ export const Navbar: React.FC = () => {
     const history = useHistory();
 
     const classes = useStyles();
-    const [pageLocation, setPageLocation] = useState<string>(ROUTE_PATH.dashboard);
+    const [pageLocation, setPageLocation] = useState<string>(history.location.pathname);
     const handleChange = (event: React.ChangeEvent<unknown>, value: string) => {
         setPageLocation(value);
         history.push(value);
