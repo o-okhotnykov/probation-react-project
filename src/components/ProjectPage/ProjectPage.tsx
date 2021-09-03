@@ -61,27 +61,27 @@ export const ProjectPage: React.FC = () => {
                                 <Paper className={classes[currentProject.stats]}>
                                     {currentProject.stats}
                                 </Paper>
-                                {currentProject.reporterId === currentUser.userData?.id ||
-                                    (isAdmin && (
-                                        <Box
-                                            display="flex"
-                                            width="100%"
-                                            justifyContent="space-around"
-                                            alignSelf="center"
-                                            padding="10px 0"
+                                {(currentProject.reporterId === currentUser.userData?.id ||
+                                    isAdmin) && (
+                                    <Box
+                                        display="flex"
+                                        width="100%"
+                                        justifyContent="space-around"
+                                        alignSelf="center"
+                                        padding="10px 0"
+                                    >
+                                        <Button variant="outlined" color="primary">
+                                            Edit
+                                        </Button>
+                                        <Button
+                                            variant="outlined"
+                                            color="primary"
+                                            onClick={toggleModal}
                                         >
-                                            <Button variant="outlined" color="primary">
-                                                Edit
-                                            </Button>
-                                            <Button
-                                                variant="outlined"
-                                                color="primary"
-                                                onClick={toggleModal}
-                                            >
-                                                Delete
-                                            </Button>
-                                        </Box>
-                                    ))}
+                                            Delete
+                                        </Button>
+                                    </Box>
+                                )}
                             </Grid>
                         </Grid>
                         <ProjectGallery projectId={projectId} />
