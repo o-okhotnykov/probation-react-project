@@ -35,7 +35,7 @@ export const AddProject: React.FC = () => {
                                 to your local projects
                             </Typography>
 
-                            <Button color="primary" className={classes.btn}>
+                            <Button color="primary" className={classes.btn} onClick={toggleModal}>
                                 <AddCircleIcon className={classes.icon} />
                                 CREATE New Project
                             </Button>
