@@ -257,7 +257,11 @@
       "stats": "progress",
       "value": "400",
       "reporterId": 1,
+<<<<<<< HEAD
       "views": 2
+=======
+      "views": 3
+>>>>>>> 760f3ca2af40a0a13dc5ecb8a1baabb5a4d6a5a2
     },
     {
       "id": 1,

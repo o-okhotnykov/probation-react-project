@@ -25,12 +25,7 @@ export const ProjectList: React.FC = () => {
             </Typography>
             <Loading apiCall={getProjectsAsync}>
                 {projectData && (
-                    <TableComponent
-                        columns={columns}
-                        data={projectData}
-                        isDetailedPage
-                        sortBy="dateCreate"
-                    />
+                    <TableComponent columns={columns} data={projectData} isDetailedPage />
                 )}
             </Loading>
         </Box>
