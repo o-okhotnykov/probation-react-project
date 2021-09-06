@@ -40,6 +40,11 @@ export interface IEditFormResponse {
     role: UserRole;
 }
 
+export interface IChangePasswordResponse {
+    oldPassword: string;
+    newPassword: string;
+}
+
 export enum UserRole {
     default = 'default',
     contributor = 'contributor',

@@ -1,8 +1,9 @@
 import { Box, Button, Menu, MenuItem } from '@material-ui/core';
 import { ModalComponent } from 'components/ModalComponent';
 import { useState } from 'react';
-import { patchUserAsync } from 'store/user-slice';
+import { changePasswordAsync, patchUserAsync } from 'store/user-slice';
 import { IUserData } from 'types/api/auth';
+import { ChangePasswordModal } from '../ChangePasswordModal';
 import { EditModal } from '../EditModal';
 import { useStyles } from './styles';
 
@@ -60,11 +61,14 @@ export const ActionMenu: React.FC<{ user: IUserData }> = ({ user }) => {
                         <EditModal user={user} header="Edit User" submit={patchUserAsync} />
                     </ModalComponent>
                 )}
-                {/* {isOpenRetire && (
+                {isOpenRetire && (
                     <ModalComponent open={isOpenRetire} close={toggleModalRetire}>
-                        <RetireModal id={id} handleCloseModal={toggleModalRetire} />
+                        <ChangePasswordModal
+                            header="Change password"
+                            submit={changePasswordAsync}
+                        />
                     </ModalComponent>
-                )} */}
+                )}
             </Menu>
         </Box>
     );
