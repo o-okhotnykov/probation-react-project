@@ -17,11 +17,7 @@ export const columns: Column[] = [
     },
     {
         Header: function Title(): ReactElement {
-            return (
-                <Typography variant="h3" style={{ textAlign: 'end' }}>
-                    Title
-                </Typography>
-            );
+            return <Typography variant="h3">Title</Typography>;
         },
         accessor: 'title',
         Cell: function Surname({ value }: { value: string }): ReactElement {

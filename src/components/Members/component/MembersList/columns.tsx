@@ -19,7 +19,7 @@ export const columns: Column[] = [
     },
     {
         Header: function LastName(): ReactElement {
-            return <Typography variant="h3">LastName</Typography>;
+            return <Typography variant="h3">Last Name</Typography>;
         },
         accessor: 'surname',
         Cell: function Surname({ value }: { value: string }): ReactElement {
