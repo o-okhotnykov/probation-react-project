@@ -50,7 +50,12 @@ export const TableComponent: React.FC<IDataTableProps<IUserData | Project>> = ({
                                 key={shortid.generate()}
                                 className={classes.tableHead}
                             >
-                                <Box display="flex" minHeight="25px">
+                                <Box
+                                    display="flex"
+                                    minHeight="25px"
+                                    alignItems="center"
+                                    justifyContent="center"
+                                >
                                     {column.render('Header')}
 
                                     {column.isSorted &&
