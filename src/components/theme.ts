@@ -29,7 +29,7 @@ export const theme = createTheme({
     typography: {
         fontFamily: 'Poppins, sans-serif',
         h1: {
-            fontWeight: 900,
+            fontWeight: 500,
             fontSize: '2em',
             color: DARK_DEFAULT,
         },
@@ -63,7 +63,7 @@ export const theme = createTheme({
             fontSize: '1em',
         },
         subtitle1: {
-            fontWeight: 900,
+            fontWeight: 500,
             fontSize: '1em',
             color: '#8f9198',
         },

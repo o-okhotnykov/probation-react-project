@@ -27,7 +27,7 @@ export const MembersHeader: React.FC = () => {
                     onClick={toggleModal}
                     style={{ margin: '25px 0', padding: 0 }}
                 >
-                    <AddCircleIcon style={{ fontSize: 40 }} />
+                    <AddCircleIcon />
                     ADD NEW USER
                 </Button>
             )}

@@ -73,7 +73,11 @@ export const ProjectPage: React.FC = () => {
                                         <Button variant="outlined" color="primary">
                                             Edit
                                         </Button>
-                                        <Button variant="outlined" color="primary">
+                                        <Button
+                                            variant="outlined"
+                                            color="primary"
+                                            onClick={toggleModal}
+                                        >
                                             Delete
                                         </Button>
                                     </Box>
