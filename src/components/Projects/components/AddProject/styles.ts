@@ -10,8 +10,10 @@ export const useStyles = makeStyles(() => ({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'flex-start',
+        alignSelf: 'flex-start',
     },
     btn: {
+        margin: '25px 0px',
         padding: 0,
     },
     icon: {
