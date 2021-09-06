@@ -28,7 +28,7 @@ export const getProjectsAsync = createAsyncThunk(
     'app/getProjects',
     ({ page = PAGE, limit = LIMIT }: GetProjectsParams = { page: PAGE, limit: LIMIT }) => {
         const params = { _page: page, _limit: limit };
-        return httpService.get<ProjectResponse>('projects', { params });
+        return httpService.get<ProjectResponse>('projects?_sort=dateCreate&_order=asc', { params });
     },
 );
 
