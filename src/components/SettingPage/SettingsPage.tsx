@@ -31,7 +31,7 @@ export const SettingsPage: React.FC = () => {
                                 <Typography variant="h3">{user.birthDate}</Typography>
                             </Box>
                         </Box>
-                        <ActionMenu />
+                        <ActionMenu user={user} />
                     </Box>
                 </Box>
             )}

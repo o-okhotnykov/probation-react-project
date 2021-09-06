@@ -257,7 +257,7 @@
       "stats": "progress",
       "value": "400",
       "reporterId": 1,
-      "views": 3
+      "views": 4
     },
     {
       "id": 1,
@@ -413,7 +413,7 @@
       "stats": "progress",
       "value": "200",
       "reporterId": 1,
-      "views": 0
+      "views": 1
     },
     {
       "id": 16,
@@ -485,12 +485,18 @@
     {
       "email": "sashaohotni26@gmail.com",
       "password": "$2a$10$bEJ2rx2mxM1dE0C0lQ/fOuFkq0Ruby/r2Hjp3vh9dEQGuZk7LmpGG",
-      "name": "Admin",
-      "surname": "Admin",
+      "name": "Admin2",
+      "surname": "Admin2",
       "birthDate": "2021-08-29",
       "img": "/static/media/default-user.fba28acd.png",
       "role": "admin",
-      "id": 5
+      "id": 5,
+      "values": {
+        "name": "Admin2",
+        "surname": "Admin2",
+        "img": "/static/media/default-user.fba28acd.png",
+        "birthDate": "2021-08-29"
+      }
     }
   ]
 }

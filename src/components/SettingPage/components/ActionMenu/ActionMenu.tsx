@@ -1,11 +1,12 @@
 import { Box, Button, Menu, MenuItem } from '@material-ui/core';
+import { ModalComponent } from 'components/ModalComponent';
 import { useState } from 'react';
-
-// import { ModalComponent } from 'components/ModalComponent';
-// import { patchUserAsync } from 'store/user-slice';
+import { patchUserAsync } from 'store/user-slice';
+import { IUserData } from 'types/api/auth';
+import { EditModal } from '../EditModal';
 import { useStyles } from './styles';
 
-export const ActionMenu: React.FC = () => {
+export const ActionMenu: React.FC<{ user: IUserData }> = ({ user }) => {
     const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
     const [isOpenEdit, setIsSOpenEdit] = useState(false);
     const [isOpenRetire, setIsSOpenRetire] = useState(false);
@@ -53,13 +54,13 @@ export const ActionMenu: React.FC = () => {
             >
                 <MenuItem onClick={toggleModalEdit}>Edit User</MenuItem>
                 <MenuItem onClick={toggleModalRetire}>Change Password</MenuItem>
-                {/* 
+
                 {isOpenEdit && (
                     <ModalComponent open={isOpenEdit} close={toggleModalEdit}>
-                        <EditModal id={id} header="Edit User" submit={patchUserAsync} />
+                        <EditModal user={user} header="Edit User" submit={patchUserAsync} />
                     </ModalComponent>
                 )}
-                {isOpenRetire && (
+                {/* {isOpenRetire && (
                     <ModalComponent open={isOpenRetire} close={toggleModalRetire}>
                         <RetireModal id={id} handleCloseModal={toggleModalRetire} />
                     </ModalComponent>
