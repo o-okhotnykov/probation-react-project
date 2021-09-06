@@ -78,7 +78,7 @@ export const addUserAsync = createAsyncThunk('app/addUser', (user: IRegisterResp
 export const changePasswordAsync = createAsyncThunk(
     'app/changePassword',
     (values: IChangePasswordResponse) => {
-        return httpService.patch<RegisterResponse>('changePassword', { data: values });
+        return httpService.post<RegisterResponse>('changePassword', values);
     },
 );
 

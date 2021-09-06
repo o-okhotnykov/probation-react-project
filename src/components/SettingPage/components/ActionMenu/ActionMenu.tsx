@@ -66,6 +66,7 @@ export const ActionMenu: React.FC<{ user: IUserData }> = ({ user }) => {
                         <ChangePasswordModal
                             header="Change password"
                             submit={changePasswordAsync}
+                            handleClose={toggleModalRetire}
                         />
                     </ModalComponent>
                 )}
