@@ -62,7 +62,7 @@ export const columns: Column[] = [
     },
     {
         Header: function Action(): ReactElement {
-            return <Typography variant="h3">Action</Typography>;
+            return <Typography variant="h3">Status</Typography>;
         },
         accessor: 'stats',
         Cell: function Progress({ value }: { value: ProjectState }): ReactElement {
