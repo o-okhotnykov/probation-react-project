@@ -13,8 +13,7 @@ export const ROUTE_PATH = {
     dashboard: '/dashboard',
     projects: '/projects',
     members: '/members',
-    stats: '/stats',
-    help: '/help',
+    settings: '/settings',
     login: '/login',
     register: '/register',
 };

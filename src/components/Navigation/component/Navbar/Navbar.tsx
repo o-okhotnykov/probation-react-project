@@ -24,8 +24,7 @@ export const Navbar: React.FC = () => {
             <Tab className={classes.tab} label="Dashboard" value={ROUTE_PATH.dashboard} />
             <Tab className={classes.tab} label="All projects" value={ROUTE_PATH.projects} />
             <Tab className={classes.tab} label="Members" value={ROUTE_PATH.members} />
-            <Tab className={classes.tab} label="Stats" value={ROUTE_PATH.stats} />
-            <Tab className={classes.tab} label="Help" value={ROUTE_PATH.help} />
+            <Tab className={classes.tab} label="Settings" value={ROUTE_PATH.settings} />
         </Tabs>
     );
 };
