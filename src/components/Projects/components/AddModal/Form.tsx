@@ -8,8 +8,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { userDataSelector } from 'store/user-slice';
 import { fileToBase64 } from 'helper/base64';
 import defaultProject from 'assets/default-project.png';
-import { Loading } from 'components/Loading';
 import { Project, ProjectState } from 'types/api/project';
+import { Loading } from 'components/Loading';
 import { addProjectAsync } from 'store/project-slice';
 import { editFormValidator } from './validation';
 import { useStyles } from './styles';
@@ -96,7 +96,7 @@ export const Form: React.FC<FormProps> = ({ submit, handleCloseModal }) => {
     } = formik;
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className={classes.form}>
             <Loading apiCall={addProjectAsync}>
                 <Grid container>
                     <Grid item xs={6}>
