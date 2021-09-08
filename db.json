@@ -490,13 +490,7 @@
             "birthDate": "2021-08-29",
             "img": "/static/media/default-user.fba28acd.png",
             "role": "admin",
-            "id": 5,
-            "values": {
-                "name": "Admin2",
-                "surname": "Admin2",
-                "img": "/static/media/default-user.fba28acd.png",
-                "birthDate": "2021-08-29"
-            }
+            "id": 5
         }
     ]
 }

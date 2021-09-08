@@ -1,6 +1,6 @@
+import { useState } from 'react';
 import { Box, Button, Menu, MenuItem } from '@material-ui/core';
 import { ModalComponent } from 'components/ModalComponent';
-import { useState } from 'react';
 import { changePasswordAsync, patchUserAsync } from 'store/user-slice';
 import { IUserData } from 'types/api/auth';
 import { ChangePasswordModal } from '../ChangePasswordModal';

@@ -1,15 +1,8 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { Box, Button, Grid, TextField } from '@material-ui/core';
-import { KeyboardDatePicker } from '@material-ui/pickers';
-import { MaterialUiPickersDate } from '@material-ui/pickers/typings/date';
-import { format } from 'date-fns';
-import { useFormik } from 'formik';
-import { getUserAsync, getUserByIdAsync } from 'store/user-slice';
-import { AsyncThunkProp, IUserData } from 'types/api/auth';
-import { fileToBase64 } from 'helper/base64';
-
-import { Loading } from 'components/Loading';
 import { useDispatch } from 'react-redux';
+import { Box, Button, TextField } from '@material-ui/core';
+import { useFormik } from 'formik';
+import { AsyncThunkProp } from 'types/api/auth';
+import { Loading } from 'components/Loading';
 import { editFormValidator } from './validation';
 import { useStyles } from './styles';
 
@@ -24,10 +17,15 @@ interface PasswordValue {
     confirmPassword: string;
 }
 
+const value: PasswordValue = {
+    oldPassword: '',
+    newPassword: '',
+    confirmPassword: '',
+};
+
 export const Form: React.FC<FormProps> = ({ submit, handleClose }) => {
     const classes = useStyles();
     const dispatch = useDispatch();
-    const value = { oldPassword: '', newPassword: '', confirmPassword: '' };
 
     const onSubmit = async (values: PasswordValue) => {
         await dispatch(

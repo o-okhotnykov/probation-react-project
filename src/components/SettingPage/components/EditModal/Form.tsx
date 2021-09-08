@@ -1,3 +1,4 @@
+import { useDispatch } from 'react-redux';
 import { Box, Button, Grid, TextField } from '@material-ui/core';
 import { KeyboardDatePicker } from '@material-ui/pickers';
 import { MaterialUiPickersDate } from '@material-ui/pickers/typings/date';
@@ -6,9 +7,7 @@ import { useFormik } from 'formik';
 import { getUserAsync, getUserByIdAsync } from 'store/user-slice';
 import { IUserData } from 'types/api/auth';
 import { fileToBase64 } from 'helper/base64';
-
 import { Loading } from 'components/Loading';
-import { useDispatch } from 'react-redux';
 import { editFormValidator } from './validation';
 import { useStyles } from './styles';
 
