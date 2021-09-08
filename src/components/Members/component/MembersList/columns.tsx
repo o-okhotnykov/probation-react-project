@@ -53,7 +53,7 @@ export const columns: Column[] = [
             return <Typography variant="h3">Role</Typography>;
         },
         accessor: 'role',
-        Cell: function Progress({ value }: { value: UserRole }): ReactElement {
+        Cell: function Role({ value }: { value: UserRole }): ReactElement {
             const classes = useStyles();
             return <Paper className={classes[value]}>{value}</Paper>;
         },

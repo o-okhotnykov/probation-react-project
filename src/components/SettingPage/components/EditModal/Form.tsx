@@ -1,79 +1,47 @@
-import React, { useEffect, useState } from 'react';
-import { Box, Button, Grid, MenuItem, Select, TextField } from '@material-ui/core';
+import { useDispatch } from 'react-redux';
+import { Box, Button, Grid, TextField } from '@material-ui/core';
 import { KeyboardDatePicker } from '@material-ui/pickers';
 import { MaterialUiPickersDate } from '@material-ui/pickers/typings/date';
 import { format } from 'date-fns';
 import { useFormik } from 'formik';
-import {
-    currentUserSelector,
-    getUserAsync,
-    getUserByIdAsync,
-    getUsersAsync,
-} from 'store/user-slice';
-import { useDispatch, useSelector } from 'react-redux';
-import { IEditForm, UserRole } from 'types/api/auth';
+import { getUserAsync, getUserByIdAsync } from 'store/user-slice';
+import { IUserData } from 'types/api/auth';
 import { fileToBase64 } from 'helper/base64';
-import defaultUser from 'assets/default-user.png';
 import { Loading } from 'components/Loading';
 import { editFormValidator } from './validation';
 import { useStyles } from './styles';
 
+type EditUser = {
+    name: string;
+    surname: string;
+    img: string;
+    birthDate: string;
+};
+
 interface FormProps {
-    id: number;
+    user: IUserData;
     submit: (data: unknown) => void;
 }
 
-export const Form: React.FC<FormProps> = ({ id, submit }) => {
+export const Form: React.FC<FormProps> = ({ user, submit }) => {
     const classes = useStyles();
     const dispatch = useDispatch();
-    const currentUser = useSelector(currentUserSelector);
 
-    const [value, setValue] = useState({
-        name: '',
-        surname: '',
-        password: '',
-        confirmPassword: '',
-        birthDate: '',
-        role: UserRole.default,
-        img: defaultUser,
-    });
+    const value = {
+        name: user.name,
+        surname: user.surname,
+        img: user.img,
+        birthDate: user.birthDate,
+    };
 
-    useEffect(() => {
-        if (id) {
-            dispatch(getUserByIdAsync(id));
-        }
-    }, [id, dispatch]);
-
-    useEffect(() => {
-        if (currentUser) {
-            setValue({
-                name: currentUser.name,
-                surname: currentUser.surname,
-                password: '',
-                confirmPassword: '',
-                birthDate: currentUser.birthDate,
-                role: currentUser.role,
-                img: currentUser.img,
-            });
-        }
-    }, [currentUser]);
-
-    const onSubmit = async (values: IEditForm) => {
+    const onSubmit = async (values: EditUser) => {
         await dispatch(
             submit({
-                id,
-                values: {
-                    name: values.name,
-                    surname: values.surname,
-                    birthDate: values.birthDate,
-                    img: values.img,
-                    role: values.role,
-                },
+                id: user.id,
+                values,
             }),
         );
-
         dispatch(getUserAsync());
-        dispatch(getUsersAsync());
     };
 
     const handleUpload = async (
@@ -82,16 +50,6 @@ export const Form: React.FC<FormProps> = ({ id, submit }) => {
     ) => {
         const data = await fileToBase64(event.currentTarget.files![0]);
         setFieldValue('img', data);
-    };
-
-    const handleSelect = (
-        event: React.ChangeEvent<{
-            name?: string | undefined;
-            value: unknown;
-        }>,
-        setFieldValue: (field: string, value: unknown) => void,
-    ) => {
-        setFieldValue('role', event.target.value);
     };
 
     const handleChangeDate = (
@@ -106,7 +64,6 @@ export const Form: React.FC<FormProps> = ({ id, submit }) => {
 
     const formik = useFormik({
         initialValues: value,
-        enableReinitialize: true,
         validationSchema: editFormValidator,
         onSubmit,
     });
@@ -152,32 +109,6 @@ export const Form: React.FC<FormProps> = ({ id, submit }) => {
                             variant="outlined"
                             fullWidth
                         />
-                        <TextField
-                            id="password"
-                            label="Password"
-                            type="password"
-                            value={values.password}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            helperText={touched.password ? errors.password : ''}
-                            error={touched.password && Boolean(errors.password)}
-                            margin="dense"
-                            variant="outlined"
-                            fullWidth
-                        />
-                        <TextField
-                            id="confirmPassword"
-                            label="Confirm Password"
-                            type="password"
-                            value={values.confirmPassword}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            helperText={touched.confirmPassword ? errors.confirmPassword : ''}
-                            error={touched.confirmPassword && Boolean(errors.confirmPassword)}
-                            margin="dense"
-                            variant="outlined"
-                            fullWidth
-                        />
 
                         <KeyboardDatePicker
                             className={classes.date}
@@ -190,9 +121,7 @@ export const Form: React.FC<FormProps> = ({ id, submit }) => {
                             disableFuture
                             value={values.birthDate}
                             onChange={(event) => handleChangeDate(event, setFieldValue)}
-                            onBlur={handleBlur}
                             helperText={touched.birthDate ? errors.birthDate : ''}
-                            error={touched.birthDate && Boolean(errors.birthDate)}
                         />
                     </Grid>
                     <Grid item xs={6} className={classes.formPart}>
@@ -207,24 +136,6 @@ export const Form: React.FC<FormProps> = ({ id, submit }) => {
                                 onChange={(event) => handleUpload(event, setFieldValue)}
                             />
                         </Button>
-                        <Select
-                            id="role"
-                            value={values.role}
-                            variant="outlined"
-                            color="primary"
-                            className={classes.select}
-                            onChange={(event) => handleSelect(event, setFieldValue)}
-                        >
-                            <MenuItem id="status" value={UserRole.admin}>
-                                Admin
-                            </MenuItem>
-                            <MenuItem id="status" value={UserRole.contributor}>
-                                Contributor
-                            </MenuItem>
-                            <MenuItem id="status" value={UserRole.default}>
-                                Default
-                            </MenuItem>
-                        </Select>
                     </Grid>
                 </Grid>
                 <Box className={classes.action}>

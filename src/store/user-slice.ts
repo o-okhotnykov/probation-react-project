@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice, createSelector } from '@reduxjs/toolkit';
 import {
+    IChangePasswordResponse,
     IEditFormResponse,
     IUserData,
     LoginResponse,
@@ -60,19 +61,26 @@ export const getUserByIdAsync = createAsyncThunk('app/getUserById', (id: number)
 });
 
 export const deleteUserAsync = createAsyncThunk('app/deleteUserAsync', (id: number) => {
-    return httpService.delete<IUserData>(`/users/${id}`, {});
+    return httpService.delete<IUserData>(`users/${id}`, {});
 });
 
 export const patchUserAsync = createAsyncThunk(
     'app/patchUserAsync',
     ({ id, values }: { id: number; values: IEditFormResponse }) => {
-        return httpService.patch<IUserData>(`/users/${id}`, { data: values });
+        return httpService.patch<IUserData>(`users/${id}`, { data: values });
     },
 );
 
 export const addUserAsync = createAsyncThunk('app/addUser', (user: IRegisterResponse) => {
     return httpService.post<RegisterResponse>('users', user);
 });
+
+export const changePasswordAsync = createAsyncThunk(
+    'app/changePassword',
+    (values: IChangePasswordResponse) => {
+        return httpService.post<RegisterResponse>('changePassword', values);
+    },
+);
 
 export const userSlice = createSlice({
     name: 'user',
@@ -123,6 +131,9 @@ export const userSlice = createSlice({
             .addCase(addUserAsync.fulfilled, () => {
                 successfulToastNotify('Successful Adding');
             })
+            .addCase(changePasswordAsync.fulfilled, () => {
+                successfulToastNotify('Successful Change Password');
+            })
             .addCase(getUserByIdAsync.fulfilled, (state, action) => {
                 const { data } = action.payload;
 
@@ -143,6 +154,12 @@ export const userSlice = createSlice({
                 }
             })
             .addCase(addUserAsync.rejected, (state, action) => {
+                const { message } = action.error;
+                if (message) {
+                    errorToastNotify(message);
+                }
+            })
+            .addCase(changePasswordAsync.rejected, (state, action) => {
                 const { message } = action.error;
                 if (message) {
                     errorToastNotify(message);

@@ -25,11 +25,11 @@ export type IUserData = {
 export interface IEditForm {
     name: string;
     surname: string;
-    password: string;
-    confirmPassword: string;
+    password?: string;
+    confirmPassword?: string;
     birthDate: string;
     img: string;
-    role: UserRole;
+    role?: UserRole;
 }
 export interface IEditFormResponse {
     email?: string;
@@ -38,6 +38,11 @@ export interface IEditFormResponse {
     birthDate: string;
     img: string;
     role: UserRole;
+}
+
+export interface IChangePasswordResponse {
+    oldPassword: string;
+    newPassword: string;
 }
 
 export enum UserRole {

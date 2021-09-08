@@ -1,4 +1,3 @@
-import React from 'react';
 import { Box, Button, Grid, MenuItem, Select, TextField } from '@material-ui/core';
 import { MaterialUiPickersDate } from '@material-ui/pickers/typings/date';
 import { KeyboardDatePicker } from '@material-ui/pickers';
@@ -73,7 +72,7 @@ export const Form: React.FC<FormProps> = ({ submit }) => {
     ) => {
         if (event) {
             const date = format(event, 'yyyy-MM-dd');
-            setFieldValue('dateDue', date);
+            setFieldValue('birthDate', date);
         }
     };
 
@@ -169,7 +168,7 @@ export const Form: React.FC<FormProps> = ({ submit }) => {
                         format="yyyy-MM-dd"
                         inputVariant="outlined"
                         placeholder="yyyy-MM-dd"
-                        id="dateDue"
+                        id="birthDate"
                         disableFuture
                         value={values.birthDate}
                         onChange={(event) => handleChangeDate(event, setFieldValue)}
