@@ -17,9 +17,9 @@ import { fileToBase64 } from 'helper/base64';
 import defaultUser from 'assets/default-user.png';
 import { Loading } from 'components/Loading';
 import { ModalComponent } from 'components/ModalComponent';
+import { ChangePasswordModal } from 'components/SettingPage/components/ChangePasswordModal';
 import { editFormValidator } from './validation';
 import { useStyles } from './styles';
-import { ChangePasswordModal } from '../ChangePasswordModal';
 
 interface FormProps {
     id: number;
