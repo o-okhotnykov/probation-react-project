@@ -10,14 +10,14 @@ import { useStyles } from './styles';
 export const ActionMenu: React.FC<{ user: IUserData }> = ({ user }) => {
     const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
     const [isOpenEdit, setIsSOpenEdit] = useState(false);
-    const [isOpenRetire, setIsSOpenRetire] = useState(false);
+    const [isChangePassword, setIsChangePassword] = useState(false);
 
     const toggleModalEdit = () => {
         setIsSOpenEdit(!isOpenEdit);
     };
 
-    const toggleModalRetire = () => {
-        setIsSOpenRetire(!isOpenRetire);
+    const toggleModalChangePassword = () => {
+        setIsChangePassword(!isChangePassword);
     };
 
     const handleMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -54,19 +54,19 @@ export const ActionMenu: React.FC<{ user: IUserData }> = ({ user }) => {
                 onClose={handleClose}
             >
                 <MenuItem onClick={toggleModalEdit}>Edit User</MenuItem>
-                <MenuItem onClick={toggleModalRetire}>Change Password</MenuItem>
+                <MenuItem onClick={toggleModalChangePassword}>Change Password</MenuItem>
 
                 {isOpenEdit && (
                     <ModalComponent open={isOpenEdit} close={toggleModalEdit}>
                         <EditModal user={user} header="Edit User" submit={patchUserAsync} />
                     </ModalComponent>
                 )}
-                {isOpenRetire && (
-                    <ModalComponent open={isOpenRetire} close={toggleModalRetire}>
+                {isChangePassword && (
+                    <ModalComponent open={isChangePassword} close={toggleModalChangePassword}>
                         <ChangePasswordModal
                             header="Change password"
                             submit={changePasswordAsync}
-                            handleClose={toggleModalRetire}
+                            handleClose={toggleModalChangePassword}
                         />
                     </ModalComponent>
                 )}

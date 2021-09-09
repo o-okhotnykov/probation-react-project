@@ -7,8 +7,7 @@ const TAB_ROUTES = [
     ROUTE_PATH.dashboard,
     ROUTE_PATH.projects,
     ROUTE_PATH.members,
-    ROUTE_PATH.stats,
-    ROUTE_PATH.help,
+    ROUTE_PATH.settings,
 ];
 
 export const Navbar: React.FC = () => {

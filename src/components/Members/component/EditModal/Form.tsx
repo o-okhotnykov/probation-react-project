@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Box, Button, Grid, MenuItem, Select, TextField } from '@material-ui/core';
 import { KeyboardDatePicker } from '@material-ui/pickers';
 import { MaterialUiPickersDate } from '@material-ui/pickers/typings/date';
 import { format } from 'date-fns';
 import { useFormik } from 'formik';
 import {
+    changePasswordAsync,
     currentUserSelector,
     getUserAsync,
     getUserByIdAsync,
@@ -15,6 +16,8 @@ import { IEditForm, UserRole } from 'types/api/auth';
 import { fileToBase64 } from 'helper/base64';
 import defaultUser from 'assets/default-user.png';
 import { Loading } from 'components/Loading';
+import { ModalComponent } from 'components/ModalComponent';
+import { ChangePasswordModal } from 'components/SettingPage/components/ChangePasswordModal';
 import { editFormValidator } from './validation';
 import { useStyles } from './styles';
 
@@ -28,11 +31,14 @@ export const Form: React.FC<FormProps> = ({ id, submit }) => {
     const dispatch = useDispatch();
     const currentUser = useSelector(currentUserSelector);
 
+    const [isChangePassword, setIsChangePassword] = useState(false);
+
+    const toggleModalChangePassword = () => {
+        setIsChangePassword(!isChangePassword);
+    };
     const [value, setValue] = useState({
         name: '',
         surname: '',
-        password: '',
-        confirmPassword: '',
         birthDate: '',
         role: UserRole.default,
         img: defaultUser,
@@ -49,8 +55,6 @@ export const Form: React.FC<FormProps> = ({ id, submit }) => {
             setValue({
                 name: currentUser.name,
                 surname: currentUser.surname,
-                password: '',
-                confirmPassword: '',
                 birthDate: currentUser.birthDate,
                 role: currentUser.role,
                 img: currentUser.img,
@@ -140,6 +144,7 @@ export const Form: React.FC<FormProps> = ({ id, submit }) => {
                             variant="outlined"
                             fullWidth
                         />
+
                         <TextField
                             id="surname"
                             label="Surname"
@@ -148,32 +153,6 @@ export const Form: React.FC<FormProps> = ({ id, submit }) => {
                             onBlur={handleBlur}
                             helperText={touched.surname ? errors.surname : ''}
                             error={touched.surname && Boolean(errors.surname)}
-                            margin="dense"
-                            variant="outlined"
-                            fullWidth
-                        />
-                        <TextField
-                            id="password"
-                            label="Password"
-                            type="password"
-                            value={values.password}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            helperText={touched.password ? errors.password : ''}
-                            error={touched.password && Boolean(errors.password)}
-                            margin="dense"
-                            variant="outlined"
-                            fullWidth
-                        />
-                        <TextField
-                            id="confirmPassword"
-                            label="Confirm Password"
-                            type="password"
-                            value={values.confirmPassword}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            helperText={touched.confirmPassword ? errors.confirmPassword : ''}
-                            error={touched.confirmPassword && Boolean(errors.confirmPassword)}
                             margin="dense"
                             variant="outlined"
                             fullWidth
@@ -194,19 +173,6 @@ export const Form: React.FC<FormProps> = ({ id, submit }) => {
                             helperText={touched.birthDate ? errors.birthDate : ''}
                             error={touched.birthDate && Boolean(errors.birthDate)}
                         />
-                    </Grid>
-                    <Grid item xs={6} className={classes.formPart}>
-                        <img src={values.img} alt="user-img" className={classes.userImg} />
-                        <Button variant="contained" component="label" color="primary">
-                            Upload File
-                            <input
-                                style={{ display: 'none' }}
-                                id="file"
-                                name="file"
-                                type="file"
-                                onChange={(event) => handleUpload(event, setFieldValue)}
-                            />
-                        </Button>
                         <Select
                             id="role"
                             value={values.role}
@@ -226,6 +192,27 @@ export const Form: React.FC<FormProps> = ({ id, submit }) => {
                             </MenuItem>
                         </Select>
                     </Grid>
+                    <Grid item xs={6} className={classes.formPart}>
+                        <img src={values.img} alt="user-img" className={classes.userImg} />
+                        <Button variant="contained" component="label" color="primary">
+                            Upload File
+                            <input
+                                style={{ display: 'none' }}
+                                id="file"
+                                name="file"
+                                type="file"
+                                onChange={(event) => handleUpload(event, setFieldValue)}
+                            />
+                        </Button>
+                        <Button
+                            variant="contained"
+                            component="label"
+                            color="primary"
+                            onClick={toggleModalChangePassword}
+                        >
+                            Change password
+                        </Button>
+                    </Grid>
                 </Grid>
                 <Box className={classes.action}>
                     <Button
@@ -238,6 +225,15 @@ export const Form: React.FC<FormProps> = ({ id, submit }) => {
                     </Button>
                 </Box>
             </Loading>
+            {isChangePassword && (
+                <ModalComponent open={isChangePassword} close={toggleModalChangePassword}>
+                    <ChangePasswordModal
+                        header="Change password"
+                        submit={changePasswordAsync}
+                        handleClose={toggleModalChangePassword}
+                    />
+                </ModalComponent>
+            )}
         </form>
     );
 };
