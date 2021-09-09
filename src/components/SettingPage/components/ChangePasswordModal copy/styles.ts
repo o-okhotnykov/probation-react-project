@@ -19,10 +19,8 @@ export const useStyles = makeStyles({
         boxShadow: 'none',
     },
     select: {
-        width: '100%',
-        '& div': {
-            padding: '10.5px 14px',
-        },
+        marginTop: '40px',
+        padding: '0px',
     },
     media: {
         margin: '10px auto',
