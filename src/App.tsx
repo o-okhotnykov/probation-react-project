@@ -2,8 +2,8 @@ import { ToastContainer } from 'react-toastify';
 import { BrowserRouter as Router } from 'react-router-dom';
 import DateFnsUtils from '@date-io/date-fns';
 import { CssBaseline, ThemeProvider } from '@material-ui/core';
-import { theme } from 'components/theme';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+import { theme } from 'components/theme';
 import { Routes } from 'routes/Routes';
 import 'react-toastify/dist/ReactToastify.css';
 
