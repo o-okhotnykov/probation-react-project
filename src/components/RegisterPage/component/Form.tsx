@@ -1,9 +1,8 @@
 import React, { FormEvent } from 'react';
-import { Typography, CardContent, CardMedia, TextField, Button, Box } from '@material-ui/core';
+import { Typography, CardContent, CardMedia, Button, Box } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { FormikProps } from 'formik';
 import { Link, Redirect } from 'react-router-dom';
-import { format } from 'date-fns';
 import { registerAsync, isAuthorizedSelector } from 'store/user-slice';
 import { UserRole } from 'types/api/auth';
 import { ROUTE_PATH } from 'constants/index';
@@ -12,23 +11,24 @@ import { IRegisterFormValues } from 'types';
 import defaultUser from 'assets/default-user.png';
 import { Loading } from 'components/Loading';
 import { useStyles } from './styles';
+import { DatePicker, TextFieldComponent } from 'components/FormComponent';
 
 export const Form: React.FC<FormikProps<IRegisterFormValues>> = (props) => {
-    const { values, touched, errors, isValid, dirty, handleChange, handleBlur } = props;
+    const { values, touched, errors, isValid, dirty, handleChange, handleBlur, setFieldValue } =
+        props;
     const dispatch = useDispatch();
     const classes = useStyles();
     const isAuthorized = useSelector(isAuthorizedSelector);
-    const currentDay = format(new Date(), 'yyyy-MM-dd');
-
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
+
         dispatch(
             registerAsync({
                 email: values.email,
                 name: values.name,
                 surname: values.surname,
                 password: values.password,
-                birthDate: values.birthDate,
+                birthDate: new Date(values.birthDate).toISOString(),
                 img: defaultUser,
                 role: UserRole.default,
             }),
@@ -46,85 +46,65 @@ export const Form: React.FC<FormikProps<IRegisterFormValues>> = (props) => {
                     <Box className={classes.formContent}>
                         <CardMedia className={classes.media} image={logo} title="Paella dish" />
                         <CardContent>
-                            <TextField
+                            <TextFieldComponent
                                 id="email"
                                 label="Email"
                                 type="email"
                                 value={values.email}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
-                                helperText={touched.email ? errors.email : ''}
-                                error={touched.email && Boolean(errors.email)}
-                                margin="dense"
-                                variant="outlined"
-                                fullWidth
+                                touched={touched.email}
+                                errors={errors.email}
                             />
-
-                            <TextField
+                            <TextFieldComponent
                                 id="name"
                                 label="First Name"
+                                type="text"
                                 value={values.name}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
-                                helperText={touched.name ? errors.name : ''}
-                                error={touched.name && Boolean(errors.name)}
-                                margin="dense"
-                                variant="outlined"
-                                fullWidth
+                                touched={touched.name}
+                                errors={errors.name}
                             />
-                            <TextField
+                            <TextFieldComponent
                                 id="surname"
                                 label="Surname"
+                                type="text"
                                 value={values.surname}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
-                                helperText={touched.surname ? errors.surname : ''}
-                                error={touched.surname && Boolean(errors.surname)}
-                                margin="dense"
-                                variant="outlined"
-                                fullWidth
+                                touched={touched.surname}
+                                errors={errors.surname}
                             />
-
-                            <TextField
+                            <TextFieldComponent
                                 id="password"
                                 label="Password"
                                 type="password"
                                 value={values.password}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
-                                helperText={touched.password ? errors.password : ''}
-                                error={touched.password && Boolean(errors.password)}
-                                margin="dense"
-                                variant="outlined"
-                                fullWidth
+                                touched={touched.password}
+                                errors={errors.password}
                             />
-                            <TextField
+                            <TextFieldComponent
                                 id="confirmPassword"
                                 label="Confirm Password"
                                 type="password"
                                 value={values.confirmPassword}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
-                                helperText={touched.confirmPassword ? errors.confirmPassword : ''}
-                                error={touched.confirmPassword && Boolean(errors.confirmPassword)}
-                                margin="dense"
-                                variant="outlined"
-                                fullWidth
+                                touched={touched.confirmPassword}
+                                errors={errors.confirmPassword}
                             />
 
-                            <TextField
+                            <DatePicker
                                 id="birthDate"
-                                type="date"
-                                InputProps={{ inputProps: { max: currentDay } }}
-                                defaultValue="2017-05-24"
+                                name="birthDate"
                                 value={values.birthDate}
-                                onChange={handleChange}
+                                setFieldValue={setFieldValue}
                                 onBlur={handleBlur}
-                                helperText={touched.birthDate ? errors.birthDate : ''}
-                                error={touched.birthDate && Boolean(errors.birthDate)}
-                                margin="dense"
-                                variant="outlined"
-                                fullWidth
+                                errors={errors.birthDate}
+                                touched={touched.birthDate}
                             />
                         </CardContent>
 

@@ -1,5 +1,5 @@
 import React, { FormEvent } from 'react';
-import { CardContent, CardMedia, TextField, Button, Typography, Box } from '@material-ui/core';
+import { CardContent, CardMedia, Button, Typography, Box } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { FormikProps } from 'formik';
 import { Link, Redirect } from 'react-router-dom';
@@ -9,6 +9,7 @@ import { ROUTE_PATH } from 'constants/index';
 import logo from 'assets/logo.png';
 import { Loading } from 'components/Loading';
 import { useStyles } from './styles';
+import { TextFieldComponent } from 'components/FormComponent';
 
 export const Form: React.FC<FormikProps<ILoginFormValues>> = (props) => {
     const { values, touched, errors, isValid, dirty, handleChange, handleBlur } = props;
@@ -33,33 +34,25 @@ export const Form: React.FC<FormikProps<ILoginFormValues>> = (props) => {
                     <Box className={classes.formContent}>
                         <CardMedia className={classes.media} image={logo} title="Paella dish" />
                         <CardContent>
-                            <TextField
+                            <TextFieldComponent
                                 id="email"
                                 label="email"
                                 type="email"
                                 value={values.email}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
-                                helperText={touched.email ? errors.email : ''}
-                                error={touched.email && Boolean(errors.email)}
-                                margin="dense"
-                                variant="outlined"
-                                fullWidth
+                                touched={touched.email}
+                                errors={errors.email}
                             />
-
-                            <TextField
+                            <TextFieldComponent
                                 id="password"
                                 label="password"
                                 type="password"
                                 value={values.password}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
-                                helperText={touched.password ? errors.password : ''}
-                                error={touched.password && Boolean(errors.password)}
-                                margin="dense"
-                                color="primary"
-                                variant="outlined"
-                                fullWidth
+                                touched={touched.password}
+                                errors={errors.password}
                             />
                         </CardContent>
 

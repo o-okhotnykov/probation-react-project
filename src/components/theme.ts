@@ -128,8 +128,17 @@ export const theme = createTheme({
         },
         MuiOutlinedInput: {
             root: {
+                fontFamily: 'Poppins,sans-serif',
                 fontWeight: 900,
-                color: LIGHT_GREY,
+                color: DARK_DEFAULT,
+                'vertical-align': 'middle',
+            },
+        },
+        MuiFormHelperText: {
+            root: {
+                fontFamily: 'Poppins,sans-serif',
+                fontWeight: 900,
+                color: '#d32f2f',
             },
         },
     },

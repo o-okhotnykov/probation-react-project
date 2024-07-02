@@ -3,16 +3,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import ClearIcon from '@material-ui/icons/Clear';
 import { Typography, Button, IconButton, Menu, MenuItem, Box } from '@material-ui/core';
+import { AccountCircle } from '@material-ui/icons';
+import { useHistory } from 'react-router-dom';
 import { logout, getUserAsync, userDataSelector } from 'store/user-slice';
 import { Loading } from 'components/Loading';
-import { AccountCircle } from '@material-ui/icons';
+import { ROUTE_PATH } from 'constants/index';
 import { useStyles } from './style';
 
 export const UserMenu: React.FC = () => {
     const dispatch = useDispatch();
     const classes = useStyles();
     const userData = useSelector(userDataSelector);
-
+    const history = useHistory();
     useEffect(() => {
         dispatch(getUserAsync());
     }, [dispatch]);
@@ -32,6 +34,9 @@ export const UserMenu: React.FC = () => {
         dispatch(logout());
     };
 
+    const handleRedirect = () => {
+        history.push(ROUTE_PATH.settings);
+    };
     return (
         <Box display="flex" alignItems="center">
             <Loading apiCall={getUserAsync}>
@@ -73,7 +78,11 @@ export const UserMenu: React.FC = () => {
                     onClose={handleClose}
                 >
                     <MenuItem onClick={handleClose} className={classes.menu}>
-                        <Button startIcon={<PersonOutlineIcon />} className={classes.btn}>
+                        <Button
+                            onClick={handleRedirect}
+                            startIcon={<PersonOutlineIcon />}
+                            className={classes.btn}
+                        >
                             Edit Profile
                         </Button>
                     </MenuItem>

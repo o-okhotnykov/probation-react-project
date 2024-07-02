@@ -1,24 +1,23 @@
 import { useState } from 'react';
 import { Box, Button, Menu, MenuItem } from '@material-ui/core';
-import { ModalComponent } from 'components/ModalComponent';
-import { changePasswordAsync, patchUserAsync } from 'store/user-slice';
 import { IUserData } from 'types/api/auth';
-import { ChangePasswordModal } from '../ChangePasswordModal';
-import { EditModal } from '../EditModal';
+import { ChangePasswordForm } from '../ChangePasswordModal';
+import { EditModalForm } from '../EditModal';
 import { useStyles } from './styles';
+import { useModal } from 'components/ModalComponent/useModal';
 
 export const ActionMenu: React.FC<{ user: IUserData }> = ({ user }) => {
     const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
-    const [isOpenEdit, setIsSOpenEdit] = useState(false);
-    const [isChangePassword, setIsChangePassword] = useState(false);
 
-    const toggleModalEdit = () => {
-        setIsSOpenEdit(!isOpenEdit);
-    };
+    const editModal = useModal({
+        title: 'Change Password',
+        body: <EditModalForm user={user} />,
+    });
 
-    const toggleModalChangePassword = () => {
-        setIsChangePassword(!isChangePassword);
-    };
+    const changePasswordModal = useModal({
+        title: 'Change Password',
+        body: <ChangePasswordForm />,
+    });
 
     const handleMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
         setAnchorEl(event.currentTarget);
@@ -53,23 +52,10 @@ export const ActionMenu: React.FC<{ user: IUserData }> = ({ user }) => {
                 open={open}
                 onClose={handleClose}
             >
-                <MenuItem onClick={toggleModalEdit}>Edit User</MenuItem>
-                <MenuItem onClick={toggleModalChangePassword}>Change Password</MenuItem>
-
-                {isOpenEdit && (
-                    <ModalComponent open={isOpenEdit} close={toggleModalEdit}>
-                        <EditModal user={user} header="Edit User" submit={patchUserAsync} />
-                    </ModalComponent>
-                )}
-                {isChangePassword && (
-                    <ModalComponent open={isChangePassword} close={toggleModalChangePassword}>
-                        <ChangePasswordModal
-                            header="Change password"
-                            submit={changePasswordAsync}
-                            handleClose={toggleModalChangePassword}
-                        />
-                    </ModalComponent>
-                )}
+                <MenuItem onClick={editModal.toggleModal}>Edit User</MenuItem>
+                <MenuItem onClick={changePasswordModal.toggleModal}>Change Password</MenuItem>
+                <changePasswordModal.Modal />
+                <editModal.Modal />
             </Menu>
         </Box>
     );

@@ -1,31 +1,37 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
 import { Box, Typography } from '@material-ui/core';
-import { getProjectsAsync, projectsDataSelector } from 'store/project-slice';
+import { useQuery } from '@apollo/client';
 import { TableComponent } from 'components/Table';
-import { Loading } from 'components/Loading';
-import { PAGE, SHORT_LIMIT } from 'constants/index';
+import { Loading } from 'components/LoadingGraphql';
+import { LIMIT } from 'constants/index';
 import { columns } from './columns';
 import { useStyles } from './styles';
+import { getAllProjects, GetProjectsResponse } from './api';
+import { Project } from 'types/api/project';
 
 export const ProjectList: React.FC = () => {
-    const dispatch = useDispatch();
     const classes = useStyles();
 
-    useEffect(() => {
-        dispatch(getProjectsAsync({ page: PAGE, limit: SHORT_LIMIT }));
-    }, [dispatch]);
+    const [projectsState, setProjectsState] = useState<Project[]>();
 
-    const projectData = useSelector(projectsDataSelector);
+    const { data, loading } = useQuery<GetProjectsResponse>(getAllProjects, {
+        variables: { perPage: LIMIT, page: 0 },
+    });
+
+    useEffect(() => {
+        if (data?.allProjects) {
+            setProjectsState(data.allProjects);
+        }
+    }, [data]);
 
     return (
         <Box padding="30px" display="flex" flexDirection="column" alignItems="center">
             <Typography variant="h3" className={classes.headerText}>
                 PROJECT OVERVIEW
             </Typography>
-            <Loading apiCall={getProjectsAsync}>
-                {projectData && (
-                    <TableComponent columns={columns} data={projectData} isDetailedPage />
+            <Loading isLoading={loading}>
+                {projectsState && (
+                    <TableComponent columns={columns} data={projectsState} isDetailedPage />
                 )}
             </Loading>
         </Box>

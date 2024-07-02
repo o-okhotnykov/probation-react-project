@@ -7,11 +7,12 @@ import {
     DialogTitle,
     Typography,
 } from '@material-ui/core';
-import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { deleteProjectAsync } from 'store/project-slice';
 import { ROUTE_PATH } from 'constants/index';
 import { useStyles } from './styles';
+import { useMutation } from '@apollo/client';
+import { removeProjectQuery } from 'components/ProjectPage/api';
+import { successfulToastNotify } from 'toasts';
 
 interface RetireModalProps {
     projectId: number;
@@ -19,11 +20,13 @@ interface RetireModalProps {
 }
 
 export const RetireModal: React.FC<RetireModalProps> = ({ projectId, handleCloseModal }) => {
-    const dispatch = useDispatch();
     const classes = useStyles();
     const history = useHistory();
-    const handleClick = () => {
-        dispatch(deleteProjectAsync(projectId));
+    const [removeProject] = useMutation(removeProjectQuery);
+
+    const handleClick = async () => {
+        await removeProject({ variables: { id: projectId } });
+        successfulToastNotify('The project was deleted');
         history.push(ROUTE_PATH.projects);
     };
 

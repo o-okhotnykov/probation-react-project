@@ -1,18 +1,26 @@
 module.exports = {
     root: true,
     parser: '@typescript-eslint/parser',
-    plugins: ['react', '@typescript-eslint', 'prettier'],
+    plugins: ['react', '@typescript-eslint', 'prettier', 'testing-library'],
     extends: [
         'airbnb-typescript',
-        'airbnb/hooks',
         'eslint:recommended',
         'plugin:react/recommended',
+        'plugin:import/typescript',
+        'plugin:import/errors',
+        'plugin:import/warnings',
         'plugin:@typescript-eslint/recommended',
         'prettier',
-        'prettier/react',
-        'prettier/@typescript-eslint',
         'plugin:prettier/recommended',
     ],
+    settings: {
+        'import/resolver': {
+            node: {
+                extensions: ['.js', '.jsx', '.ts', '.tsx'],
+                moduleDirectory: ['node_modules', 'src/'],
+            },
+        },
+    },
     env: {
         browser: true,
         jasmine: true,
@@ -23,8 +31,11 @@ module.exports = {
         project: './tsconfig.json',
     },
     rules: {
+        '@typescript-eslint/indent': 'off',
+        'react/jsx-indent': 'off',
+        'import/named': 'off',
+        'react/require-default-props': 'off',
         'react/react-in-jsx-scope': 'off',
-        'react-hooks/exhaustive-deps': 'warn',
         '@typescript-eslint/no-non-null-assertion': 'off',
         'react/jsx-props-no-spreading': 'off',
         'consistent-return': 'off',
@@ -35,4 +46,10 @@ module.exports = {
         'prettier/prettier': ['error', {}, { usePrettierrc: true }],
         '@typescript-eslint/no-unused-vars': ['error'],
     },
+    overrides: [
+        {
+            files: ['**/__tests__/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[jt]s?(x)'],
+            extends: ['plugin:testing-library/react'],
+        },
+    ],
 };

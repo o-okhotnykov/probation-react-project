@@ -1,28 +1,27 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Typography, Button, Box } from '@material-ui/core';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import { useSelector } from 'react-redux';
 import { isAdminSelector, isContributorSelector } from 'store/user-slice';
-import { ModalComponent } from 'components/ModalComponent';
-import { addProjectAsync } from 'store/project-slice';
 import { useStyles } from './styles';
-import { AddModal } from '../AddModal';
+import { AddProjectForm } from '../AddModal';
+import { useModal } from 'components/ModalComponent/useModal';
 
 export const AddProject: React.FC = () => {
     const classes = useStyles();
     const isAdmin = useSelector(isAdminSelector);
     const isContributor = useSelector(isContributorSelector);
-    const [isOpen, setIsOpen] = useState(false);
 
-    const toggleModal = () => {
-        setIsOpen(!isOpen);
-    };
+    const { Modal, toggleModal } = useModal({
+        title: 'Add Modal',
+        body: <AddProjectForm />,
+    });
 
     return (
         <>
             {(isAdmin || isContributor) && (
                 <Box className={classes.addProject}>
-                    <Typography variant="h1">Add Project</Typography>
+                    <Typography variant="h2">Add Project</Typography>
                     <Typography variant="subtitle1">
                         Create a new project on ProManage. Collaborate your work. Directory to your
                         local projects
@@ -35,15 +34,7 @@ export const AddProject: React.FC = () => {
                 </Box>
             )}
 
-            {isOpen && (
-                <ModalComponent open={isOpen} close={toggleModal}>
-                    <AddModal
-                        header="Add new project"
-                        handleCloseModal={toggleModal}
-                        submit={addProjectAsync}
-                    />
-                </ModalComponent>
-            )}
+            <Modal />
         </>
     );
 };

@@ -1,7 +1,7 @@
 import { Box, Table, TableBody, TableCell, TableHead, TableRow } from '@material-ui/core';
 import { Column, Row, useSortBy, useTable } from 'react-table';
-import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import shortid from 'shortid';
 import { IUserData } from 'types/api/auth';
 import { Project } from 'types/api/project';

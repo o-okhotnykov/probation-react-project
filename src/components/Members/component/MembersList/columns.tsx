@@ -1,4 +1,5 @@
 import { Paper, Typography } from '@material-ui/core';
+import { useFormatDate } from 'context/FormatDateProvider';
 import { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
 import { Column } from 'react-table';
@@ -45,7 +46,8 @@ export const columns: Column[] = [
         },
         accessor: 'birthDate',
         Cell: function BirthDate({ value }: { value: string }): ReactElement {
-            return <Typography variant="body1">{value}</Typography>;
+            const { formatDate } = useFormatDate();
+            return <Typography variant="body1">{formatDate(value)}</Typography>;
         },
     },
     {

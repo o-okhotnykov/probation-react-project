@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice, createSelector } from '@reduxjs/toolkit';
 import {
     IChangePasswordResponse,
-    IEditFormResponse,
     IUserData,
     LoginResponse,
     RegisterResponse,
@@ -56,21 +55,6 @@ export const getUserAsync = createAsyncThunk('app/getUser', () => {
     return httpService.get<IUserData>(`my`, {});
 });
 
-export const getUserByIdAsync = createAsyncThunk('app/getUserById', (id: number) => {
-    return httpService.get<IUserData>(`users/${id}`, {});
-});
-
-export const deleteUserAsync = createAsyncThunk('app/deleteUserAsync', (id: number) => {
-    return httpService.delete<IUserData>(`users/${id}`, {});
-});
-
-export const patchUserAsync = createAsyncThunk(
-    'app/patchUserAsync',
-    ({ id, values }: { id: number; values: IEditFormResponse }) => {
-        return httpService.patch<IUserData>(`users/${id}`, { data: values });
-    },
-);
-
 export const addUserAsync = createAsyncThunk('app/addUser', (user: IRegisterResponse) => {
     return httpService.post<RegisterResponse>('users', user);
 });
@@ -114,32 +98,11 @@ export const userSlice = createSlice({
                 state.role = data.role;
                 state.userData = data;
             })
-            .addCase(getUsersAsync.fulfilled, (state, action) => {
-                const { data, headers } = action.payload;
-                const totalCount = parseInt(headers['x-total-count'], 10);
-                if (data && !Number.isNaN(totalCount)) {
-                    state.total = totalCount;
-                    state.usersData = data;
-                }
-            })
-            .addCase(deleteUserAsync.fulfilled, () => {
-                successfulToastNotify('Successful Delete');
-            })
-            .addCase(patchUserAsync.fulfilled, () => {
-                successfulToastNotify('Successful Edit');
-            })
             .addCase(addUserAsync.fulfilled, () => {
                 successfulToastNotify('Successful Adding');
             })
             .addCase(changePasswordAsync.fulfilled, () => {
                 successfulToastNotify('Successful Change Password');
-            })
-            .addCase(getUserByIdAsync.fulfilled, (state, action) => {
-                const { data } = action.payload;
-
-                if (data) {
-                    state.currentUser = data;
-                }
             })
             .addCase(registerAsync.rejected, (state, action) => {
                 const { message } = action.error;
@@ -148,6 +111,18 @@ export const userSlice = createSlice({
                 }
             })
             .addCase(loginAsync.rejected, (state, action) => {
+                const { message } = action.error;
+                if (message) {
+                    errorToastNotify(message);
+                }
+            })
+            .addCase(getUserAsync.rejected, (state, action) => {
+                const { message } = action.error;
+                if (message) {
+                    errorToastNotify(message);
+                }
+            })
+            .addCase(getUsersAsync.rejected, (state, action) => {
                 const { message } = action.error;
                 if (message) {
                     errorToastNotify(message);

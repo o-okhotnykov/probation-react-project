@@ -1,11 +1,10 @@
 import { IconButton, Menu, MenuItem } from '@material-ui/core';
 import { useState } from 'react';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
-import { ModalComponent } from 'components/ModalComponent';
-import { patchUserAsync } from 'store/user-slice';
-import { RetireModal } from '../RetireModal';
-import { EditModal } from '../EditModal';
+import { RetireModalBody } from '../RetireModalBody';
+import { EditModalForm } from '../EditModal';
 import { useStyles } from './styles';
+import { useModal } from 'components/ModalComponent/useModal';
 
 interface ActionMenuProps {
     id: number;
@@ -13,16 +12,15 @@ interface ActionMenuProps {
 
 export const ActionMenu: React.FC<ActionMenuProps> = ({ id }) => {
     const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
-    const [isOpenEdit, setIsSOpenEdit] = useState(false);
-    const [isOpenRetire, setIsSOpenRetire] = useState(false);
 
-    const toggleModalEdit = () => {
-        setIsSOpenEdit(!isOpenEdit);
-    };
-
-    const toggleModalRetire = () => {
-        setIsSOpenRetire(!isOpenRetire);
-    };
+    const { Modal: EditModal, toggleModal: toggleEditModal } = useModal({
+        title: 'Edit Modal',
+        body: <EditModalForm id={id} />,
+    });
+    const { Modal: RetireModal, toggleModal: toggleRetireModal } = useModal({
+        title: 'Edit Modal',
+        body: <RetireModalBody id={id} />,
+    });
 
     const handleMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
         setAnchorEl(event.currentTarget);
@@ -63,19 +61,10 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({ id }) => {
                 open={open}
                 onClose={handleClose}
             >
-                <MenuItem onClick={toggleModalEdit}>Edit</MenuItem>
-                <MenuItem onClick={toggleModalRetire}>Retire</MenuItem>
-
-                {isOpenEdit && (
-                    <ModalComponent open={isOpenEdit} close={toggleModalEdit}>
-                        <EditModal id={id} header="Edit User" submit={patchUserAsync} />
-                    </ModalComponent>
-                )}
-                {isOpenRetire && (
-                    <ModalComponent open={isOpenRetire} close={toggleModalRetire}>
-                        <RetireModal id={id} handleCloseModal={toggleModalRetire} />
-                    </ModalComponent>
-                )}
+                <MenuItem onClick={toggleEditModal}>Edit</MenuItem>
+                <MenuItem onClick={toggleRetireModal}>Retire</MenuItem>
+                <EditModal />
+                <RetireModal />
             </Menu>
         </>
     );

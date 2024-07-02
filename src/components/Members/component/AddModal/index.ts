@@ -1,1 +1,1 @@
-export { AddModal } from './AddModal';
+export { AddModalForm } from './AddModalForm';

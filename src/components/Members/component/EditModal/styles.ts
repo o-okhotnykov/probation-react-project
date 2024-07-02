@@ -40,17 +40,6 @@ export const useStyles = makeStyles({
         display: 'flex',
         alignItems: 'center',
         flexDirection: 'column',
-    },
-    userImg: {
-        width: 100,
-        height: 100,
-        marginBottom: 25,
-        borderRadius: '50%',
-    },
-    date: {
-        marginTop: 10,
-        '& input': {
-            padding: '10.5px 14px',
-        },
+        justifyContent: 'space-evenly',
     },
 });

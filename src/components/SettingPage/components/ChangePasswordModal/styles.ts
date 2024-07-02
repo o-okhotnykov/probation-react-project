@@ -18,10 +18,6 @@ export const useStyles = makeStyles({
     card: {
         boxShadow: 'none',
     },
-    select: {
-        marginTop: '40px',
-        padding: '0px',
-    },
     media: {
         margin: '10px auto',
         height: '15vh',

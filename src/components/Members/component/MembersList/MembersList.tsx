@@ -1,23 +1,23 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
 import { Box } from '@material-ui/core';
 import { Pagination } from '@material-ui/lab';
-import { useDispatch, useSelector } from 'react-redux';
 import { TableComponent } from 'components/Table';
-import { getUsersAsync, usersDataSelector, totalUsersSelector } from 'store/user-slice';
+import { useGetAllUsersQuery } from 'store/userApi';
 import { LIMIT } from 'constants/index';
-import { Loading } from 'components/Loading';
+import { Loading } from 'components/LoadingGraphql';
 import { columns } from './columns';
 
 export const MembersList: React.FC = () => {
-    const dispatch = useDispatch();
-    const usersData = useSelector(usersDataSelector);
     const [pageState, setPageState] = useState(1);
+    const [totalUsers, setTotalUsers] = useState(0);
+
+    const { data: users, isLoading } = useGetAllUsersQuery({ page: pageState - 1, perPage: LIMIT });
 
     useEffect(() => {
-        dispatch(getUsersAsync());
-    }, [dispatch]);
-
-    const totalUsers = useSelector(totalUsersSelector);
+        if (users) {
+            setTotalUsers(users?._allUsersMeta.count);
+        }
+    }, [users]);
 
     return (
         <Box
@@ -28,16 +28,19 @@ export const MembersList: React.FC = () => {
             width="100%"
             padding="30px 0"
         >
-            <Loading apiCall={getUsersAsync}>
-                {usersData && (
+            <Loading isLoading={isLoading}>
+                {users?.allUsers && (
                     <>
-                        <TableComponent columns={columns} data={usersData} isDetailedPage={false} />
+                        <TableComponent
+                            columns={columns}
+                            data={users?.allUsers}
+                            isDetailedPage={false}
+                        />
                         <Pagination
                             page={pageState}
                             count={Math.ceil(totalUsers / LIMIT)}
                             onChange={(event: ChangeEvent<unknown>, page: number) => {
                                 setPageState(page);
-                                dispatch(getUsersAsync({ page, limit: LIMIT }));
                             }}
                         />
                     </>

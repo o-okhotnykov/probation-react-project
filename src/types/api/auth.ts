@@ -10,7 +10,16 @@ export type RegisterResponse = {
     user: IUserData;
 };
 
-export type UsersGetResponse = IUserData[];
+export interface Pagination {
+    page: number;
+    per_page: number;
+    total: number;
+    total_pages: number;
+}
+
+export interface UsersGetResponse extends Pagination {
+    data: { allUsers: IUserData[] };
+}
 
 export type IUserData = {
     birthDate: string;
@@ -29,7 +38,7 @@ export interface IEditForm {
     confirmPassword?: string;
     birthDate: string;
     img: string;
-    role?: UserRole;
+    role: UserRole;
 }
 export interface IEditFormResponse {
     email?: string;

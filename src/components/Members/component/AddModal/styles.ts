@@ -36,6 +36,7 @@ export const useStyles = makeStyles({
         display: 'flex',
         alignItems: 'center',
         flexDirection: 'column',
+        justifyContent: 'space-evenly',
     },
     userImg: {
         width: 100,

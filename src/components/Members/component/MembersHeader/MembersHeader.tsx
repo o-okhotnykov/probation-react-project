@@ -1,18 +1,17 @@
-import { useState } from 'react';
 import { Box, Button, Typography } from '@material-ui/core';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import { useSelector } from 'react-redux';
-import { ModalComponent } from 'components/ModalComponent';
-import { isAdminSelector, registerAsync } from 'store/user-slice';
-import { AddModal } from '../AddModal';
+import { isAdminSelector } from 'store/user-slice';
+import { AddModalForm } from '../AddModal';
+import { useModal } from 'components/ModalComponent/useModal';
 
 export const MembersHeader: React.FC = () => {
-    const [isOpen, seIsOpen] = useState(false);
     const isAdmin = useSelector(isAdminSelector);
 
-    const toggleModal = () => {
-        seIsOpen(!isOpen);
-    };
+    const { Modal, toggleModal } = useModal({
+        title: 'Create user',
+        body: <AddModalForm />,
+    });
 
     return (
         <Box display="flex" flexDirection="column" alignItems="flex-start">
@@ -20,7 +19,6 @@ export const MembersHeader: React.FC = () => {
             <Typography variant="subtitle1">
                 List of members where you can get list of members
             </Typography>
-
             {isAdmin && (
                 <Button
                     color="primary"
@@ -31,12 +29,7 @@ export const MembersHeader: React.FC = () => {
                     ADD NEW USER
                 </Button>
             )}
-
-            {isOpen && (
-                <ModalComponent open={isOpen} close={toggleModal}>
-                    <AddModal header="Create user" submit={registerAsync} />
-                </ModalComponent>
-            )}
+            <Modal />
         </Box>
     );
 };

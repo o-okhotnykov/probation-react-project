@@ -24,5 +24,7 @@ export const RegisterPage = withFormik({
 
     validationSchema: registerValidator,
 
-    handleSubmit: () => {},
+    handleSubmit: (value, { setSubmitting }) => {
+        setSubmitting(false);
+    },
 })(Form);

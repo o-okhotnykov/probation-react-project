@@ -5,16 +5,18 @@ import createFilter from 'redux-persist-transform-filter';
 import { persistReducer } from 'redux-persist';
 import { enableMapSet } from 'immer';
 import { projectsReducer } from './project-slice';
+import { userApi } from './userApi';
 import { userReducer } from './user-slice';
 import { loadingReducer } from './loading-slice';
-import { loadingHandler } from './middleware';
+import { loadingHandler, rtkQueryErrorLogger } from './middleware';
 
 enableMapSet();
 
-const reducers = combineReducers({
+export const reducers = combineReducers({
     user: userReducer,
     projects: projectsReducer,
     loading: loadingReducer,
+    api: userApi.reducer,
 });
 
 const saveSubsetFilter = createFilter('user', ['accessToken', 'isAuthorized']);
@@ -33,7 +35,7 @@ export const store = configureStore({
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({
             serializableCheck: false,
-        }).concat(loadingHandler),
+        }).concat(userApi.middleware, loadingHandler, rtkQueryErrorLogger),
 });
 
 export const getStore = store.getState();
