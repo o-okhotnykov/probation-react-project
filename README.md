@@ -52,7 +52,7 @@ This project is a React application built with TypeScript and utilizes various l
 
 ### Getting Started:
 
-1. Install the necessary dependencies: `npm install`
-2. Start the development server: `npm start`
+1. Install the necessary dependencies: `yarn`
+2. Start the development server: `yarn dev`
 
 
